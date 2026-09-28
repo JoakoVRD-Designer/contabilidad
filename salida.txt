@@ -9,23 +9,21 @@ REMUNERACIONES
 ESTADO DE COSTO DE PRODUCCIÓN
   Inventario inicial materias primas                  10.658.251
   + Compras de materias primas                         8.564.272
+  - Devoluciones de compras de materias primas                 0   <- no hay datos
   + Fletes (9% compras)                                  770.784   <- 8.564.272 x 9%
   = Materia prima disponible                          19.993.307
   - Inventario final materias primas                   2.976.040
   = Materia prima utilizada                           17.017.267
-  - Materia prima indirecta utilizada                  2.991.756
-  = Materia prima directa                             14.025.511
   + Mano de obra directa                               5.451.100
-  = COSTO PRIMO                                       19.476.611
+  = COSTO PRIMO                                       22.468.367
   + Costos indirectos de fabricación                  25.378.750
-  = COSTO DE FABRICACIÓN                              44.855.361
+  = COSTO DE FABRICACIÓN DEL PERIODO                  47.847.117
   + Inventario inicial productos en proceso              999.665   <- 5% MP disponible
-  = Costo de productos en proceso                     45.855.026
   - Inventario final productos en proceso                999.665   <- 5% MP disponible
-  = Costo de producción terminada                     44.855.361
-  + Inventario inicial productos terminados            3.895.322   <- 20% costo primo
-  = Productos terminados disponibles para la venta    48.750.683
-  = COSTO DE VENTAS                                   48.750.683
+  = COSTO DE ARTÍCULOS TERMINADOS                     47.847.117
+  + Inventario inicial productos terminados            4.493.673   <- 20% costo primo
+  - Inventario final productos terminados                      0   <- no hay datos
+  = COSTO DE VENTAS                                   52.340.790
 
 DETALLE CIF
   Materia prima indirecta utilizada                    2.991.756   <- 4.155.217 - 1.163.461 (IF MPI 28%)
@@ -54,15 +52,15 @@ DETALLE GASTOS DE ADMINISTRACIÓN
   TOTAL GASTOS DE ADMINISTRACIÓN                      21.696.610
 
 DETALLE GASTOS DE VENTAS
-  Sueldo vendedores (11% ventas brutas)               26.008.489   <- ventas brutas x 11%
-  Comisiones por ventas (3,4% ventas netas)            7.797.818   <- ventas netas x 3,4%
-  Gastos de mercadeo (3,5% ventas netas)               8.027.166   <- ventas netas x 3,5%
+  Sueldo vendedores (11% ventas brutas)               27.923.812   <- ventas brutas x 11%
+  Comisiones por ventas (3,4% ventas netas)            8.372.066   <- ventas netas x 3,4%
+  Gastos de mercadeo (3,5% ventas netas)               8.618.304   <- ventas netas x 3,5%
   Nocheros ventas (1)                                    804.167
   Depreciación vehículo reparto                          618.335   <- (7.258.350 - 1.075.000) / 10
   Seguros (20%)                                        1.225.261   <- 6.126.306 x 20%
   Arriendo (20%)                                         979.000   <- 4.895.000 x 20%
   Luz (20%)                                              597.408   <- 2.987.040 x 20%
-  TOTAL GASTOS DE VENTAS                              46.057.644
+  TOTAL GASTOS DE VENTAS                              49.138.353
 
 RESUMEN PRORRATEO
   Seguros                                              6.126.306   <- fab 3.369.468 / adm 1.531.577 / ven 1.225.261
@@ -70,17 +68,17 @@ RESUMEN PRORRATEO
   Luz                                                  2.987.040   <- fab 1.642.872 / adm 746.760 / ven 597.408
 
 ESTADO DE RESULTADO
-  Ventas brutas                                      236.440.813   <- costo de ventas x 4,85 (100% + 385%)
-  - Devoluciones sobre ventas (3%)                     7.093.224
-  = Ventas netas                                     229.347.589
-  - Costo de ventas                                   48.750.683
-  = Margen de contribución                           180.596.906
+  Ventas brutas                                      253.852.832   <- costo de ventas x 4,85 (100% + 385%)
+  - Devoluciones sobre ventas (3%)                     7.615.585
+  = Ventas netas                                     246.237.247
+  - Costo de ventas                                   52.340.790
+  = Margen de contribución                           193.896.457
   - Gastos de administración                          21.696.610
-  - Gastos de ventas                                  46.057.644
+  - Gastos de ventas                                  49.138.353
   + Ingresos financieros                                       0   <- no hay datos
   - Gastos financieros                                         0   <- no hay datos
-  = UTILIDAD ANTES DE IMPUESTO                       112.842.652
-  - Impuesto 27%                                      30.467.516   <- utilidad antes de impuesto x 27%
-  = UTILIDAD NETA                                     82.375.136
+  = UTILIDAD ANTES DE IMPUESTO                       123.061.494
+  - Impuesto 27%                                      33.226.603   <- utilidad antes de impuesto x 27%
+  = UTILIDAD NETA                                     89.834.891
 
-GASTO TOTAL EMPRESA (CIF + adm + ventas): 93.133.004
+GASTO TOTAL EMPRESA (CIF + adm + ventas): 96.213.713

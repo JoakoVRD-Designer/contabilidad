@@ -4,10 +4,14 @@ Calcula estado de costo de producción, detalle de gastos (CIF, administración,
 ventas) y estado de resultado. Todos los valores se redondean a pesos enteros.
 Correcciones del profesor: se elimina el 8% de los CIF y el 20% del costo primo
 pasa a ser inventario inicial de productos TERMINADOS.
+Formato de la "Hoja de costos de ventas industriales": la MP utilizada entra completa
+al costo primo; la MP indirecta tiene su propio inventario y va solo a los CIF.
 """
+from decimal import Decimal, ROUND_HALF_UP
 
 def r(x):
-    return int(x + 0.5)  # redondeo comercial a peso entero
+    """Redondeo comercial (0,5 hacia arriba) a peso entero, sin errores de coma flotante."""
+    return int(Decimal(str(x)).quantize(Decimal(1), rounding=ROUND_HALF_UP))
 
 def linea(nombre, valor, formula=""):
     monto = f"{valor:>14,}".replace(",", ".")
@@ -39,12 +43,12 @@ linea("TOTAL MOD", MOD, " + ".join(f"{v:,}".replace(",", ".") for v in mod.value
 linea("TOTAL MOI", MOI, " + ".join(f"{v:,}".replace(",", ".") for v in moi.values()) + " + 2.412.500")
 
 # ---------------- Materias primas ----------------
-fletes = r(COMPRAS * 0.09)
+fletes = r(Decimal(COMPRAS) * Decimal("0.09"))
 mp_disp = IIMP + COMPRAS + fletes
 mp_util = mp_disp - IFMP
 if_mpi = r(MPI_INICIAL * 0.28)
 mpi_util = MPI_INICIAL - if_mpi
-mpd = mp_util - mpi_util
+mpd = mp_util  # la MPI no está en este inventario: va directo a CIF
 
 # ---------------- Gastos ----------------
 def prorr(total):
@@ -100,7 +104,7 @@ costo_pt_disp = costo_prod_term + IIPT
 costo_ventas = costo_pt_disp  # no hay inventario final de productos terminados
 
 # ---------------- Ventas y gastos de venta ----------------
-ventas_brutas = r(costo_ventas * (1 + MARGEN))
+ventas_brutas = r(Decimal(costo_ventas) * Decimal("4.85"))  # 100% + 385%
 devol = r(ventas_brutas * 0.03)
 ventas_netas = ventas_brutas - devol
 
@@ -119,22 +123,20 @@ GVEN = sum(v for _, v, _ in ven)
 print("\nESTADO DE COSTO DE PRODUCCIÓN")
 linea("Inventario inicial materias primas", IIMP)
 linea("+ Compras de materias primas", COMPRAS)
+linea("- Devoluciones de compras de materias primas", 0, "no hay datos")
 linea("+ Fletes (9% compras)", fletes, "8.564.272 x 9%")
 linea("= Materia prima disponible", mp_disp)
 linea("- Inventario final materias primas", IFMP)
 linea("= Materia prima utilizada", mp_util)
-linea("- Materia prima indirecta utilizada", mpi_util)
-linea("= Materia prima directa", mpd)
 linea("+ Mano de obra directa", MOD)
 linea("= COSTO PRIMO", costo_primo)
 linea("+ Costos indirectos de fabricación", CIF)
-linea("= COSTO DE FABRICACIÓN", costo_fab)
+linea("= COSTO DE FABRICACIÓN DEL PERIODO", costo_fab)
 linea("+ Inventario inicial productos en proceso", IIPP, "5% MP disponible")
-linea("= Costo de productos en proceso", costo_pp)
 linea("- Inventario final productos en proceso", ifpp, "5% MP disponible")
-linea("= Costo de producción terminada", costo_prod_term)
+linea("= COSTO DE ARTÍCULOS TERMINADOS", costo_prod_term)
 linea("+ Inventario inicial productos terminados", IIPT, "20% costo primo")
-linea("= Productos terminados disponibles para la venta", costo_pt_disp)
+linea("- Inventario final productos terminados", 0, "no hay datos")
 linea("= COSTO DE VENTAS", costo_ventas)
 
 for titulo, items, total in (("CIF", cif, CIF), ("GASTOS DE ADMINISTRACIÓN", adm, GADM),

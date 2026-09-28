@@ -9,9 +9,10 @@
 1. **MP disponible**: se calcula (10.658.251 + 8.564.272 + 770.784 = **19.993.307**). El dato del enunciado (14.633.631) no cuadra con la suma.
 2. **MOD** = quienes transforman la tela: operario cortador, operario de costura, ayudante de cortador y ayudante de costura.
    **MOI** = diseñador, auxiliar de planta, supervisor, empaquetador y los 3 nocheros de planta.
-3. **MP indirecta**: 4.155.217 es el inventario inicial de MPI; el inventario final es el 28% → MPI utilizada = 72%.
+3. **MP indirecta**: 4.155.217 es su propio inventario inicial (aparte de la MP); el inventario final es el 28% → MPI utilizada = 72%, que va solo a los CIF.
+5. **Formato**: se usa la "Hoja de costos de ventas industriales" del profesor (MP utilizada + MOD = costo primo).
 4. Sueldos de gerentes, secretaria y auxiliar de oficina → gasto de administración.
-5. **Precio de venta** = Costo de ventas × (100% + 385%) = Costo × 4,85. No hay inventario final de productos terminados.
+6. **Precio de venta** = Costo de ventas × (100% + 385%) = Costo × 4,85. No hay inventario final de productos terminados.
 
 ## 1. Cálculos previos
 
@@ -41,30 +42,30 @@
 | Arriendo | 4.895.000 | 2.692.250 | 1.223.750 | 979.000 |
 | Luz | 2.987.040 | 1.642.872 | 746.760 | 597.408 |
 
-## 2. Estado de costo de producción
+## 2. Hoja de costos de ventas industriales (formato de la guía)
 
 | Concepto | Fórmula | Valor |
 |---|---|---:|
-| Inventario inicial materias primas | | 10.658.251 |
-| + Compras de materias primas | | 8.564.272 |
-| + Fletes | 8.564.272 × 9% | 770.784 |
-| **= Materia prima disponible** | | **19.993.307** |
-| − Inventario final materias primas | | 2.976.040 |
-| = Materia prima utilizada | 19.993.307 − 2.976.040 | 17.017.267 |
-| − Materia prima indirecta utilizada (a CIF) | | 2.991.756 |
-| = Materia prima directa | 17.017.267 − 2.991.756 | 14.025.511 |
-| + Mano de obra directa | | 5.451.100 |
-| **= Costo primo** | 14.025.511 + 5.451.100 | **19.476.611** |
-| + CIF | detalle abajo | 25.378.750 |
-| **= Costo de fabricación** | 19.476.611 + 25.378.750 | **44.855.361** |
-| + Inventario inicial productos en proceso | 19.993.307 × 5% | 999.665 |
-| = Costo de productos en proceso | 44.855.361 + 999.665 | 45.855.026 |
-| − Inventario final productos en proceso | 19.993.307 × 5% | 999.665 |
-| **= Costo de producción terminada** | 45.855.026 − 999.665 | **44.855.361** |
-| + Inventario inicial productos terminados | 19.476.611 × 20% | 3.895.322 |
-| = Productos terminados disponibles para la venta | 44.855.361 + 3.895.322 | 48.750.683 |
-| − Inventario final productos terminados | no hay dato | 0 |
-| **= Costo de ventas** | | **48.750.683** |
+| Inventario inicial de materias primas | dato | 10.658.251 |
+| + Compras de materias primas | dato | 8.564.272 |
+| − Devoluciones de compras de materias primas | no hay datos | 0 |
+| + Gastos de fletes y traslado de materias primas | 8.564.272 × 9% | 770.784 |
+| **= Materia prima disponible** | 10.658.251 + 8.564.272 + 770.784 | **19.993.307** |
+| − Inventario final de materias primas | dato | 2.976.040 |
+| **= Materia prima utilizada** | 19.993.307 − 2.976.040 | **17.017.267** |
+| + Mano de obra directa | 1.478.300 + 1.578.400 + 1.217.350 + 1.177.050 | 5.451.100 |
+| **= Costo primo** | 17.017.267 + 5.451.100 | **22.468.367** |
+| + Gastos indirectos de fabricación | detalle abajo | 25.378.750 |
+| **= Costo de fabricación del periodo** | 22.468.367 + 25.378.750 | **47.847.117** |
+| + Inventario inicial de productos en proceso | 19.993.307 × 5% | 999.665 |
+| − Inventario final de productos en proceso | 19.993.307 × 5% | 999.665 |
+| **= Costo de artículos terminados** | 47.847.117 + 999.665 − 999.665 | **47.847.117** |
+| + Inventario inicial de productos terminados | 22.468.367 × 20% (costo primo) | 4.493.673 |
+| − Inventario final de productos terminados | no hay datos | 0 |
+| **= Costo de ventas** | 47.847.117 + 4.493.673 | **52.340.790** |
+
+La hoja del profesor no tiene línea para restar la materia prima indirecta: toda la MP utilizada entra al
+costo primo. La MP indirecta tiene su propio inventario (4.155.217, final 28%) y va solo a los CIF.
 
 ## 3. Detalle de gastos
 
@@ -104,17 +105,17 @@
 
 | Concepto | Fórmula | Valor |
 |---|---|---:|
-| Sueldo vendedores | 236.440.813 × 11% (ventas brutas) | 26.008.489 |
-| Comisiones por ventas | 229.347.589 × 3,4% (ventas netas) | 7.797.818 |
-| Gastos de mercadeo | 229.347.589 × 3,5% (ventas netas) | 8.027.166 |
+| Sueldo vendedores | 253.852.832 × 11% (ventas brutas) | 27.923.812 |
+| Comisiones por ventas | 246.237.247 × 3,4% (ventas netas) | 8.372.066 |
+| Gastos de mercadeo | 246.237.247 × 3,5% (ventas netas) | 8.618.304 |
 | Nochero ventas (1) | 4.825.000 ÷ 6 | 804.167 |
 | Depreciación vehículo reparto | (7.258.350 − 1.075.000) ÷ 10 | 618.335 |
 | Seguros | 6.126.306 × 20% | 1.225.261 |
 | Arriendo | 4.895.000 × 20% | 979.000 |
 | Luz | 2.987.040 × 20% | 597.408 |
-| **Total gastos de ventas** | | **46.057.644** |
+| **Total gastos de ventas** | | **49.138.353** |
 
-**Gasto total** (CIF + administración + ventas) = 25.378.750 + 21.696.610 + 46.057.644 = **93.133.004**
+**Gasto total** (CIF + administración + ventas) = 25.378.750 + 21.696.610 + 49.138.353 = **96.213.713**
 
 ## 4. Planilla "Detalle del gasto" (formato de la guía)
 
@@ -134,13 +135,13 @@
 | Depreciación vehículo administración | 402.857 | | 402.857 | |
 | Depreciación vehículo reparto | 618.335 | | | 618.335 |
 | Sueldo auxiliar de oficina | 415.000 | | 415.000 | |
-| Sueldo vendedores (11% ventas brutas) | 26.008.489 | | | 26.008.489 |
-| Comisiones por ventas (3,4% ventas netas) | 7.797.818 | | | 7.797.818 |
-| Gastos de mercadeo (3,5% ventas netas) | 8.027.166 | | | 8.027.166 |
+| Sueldo vendedores (11% ventas brutas) | 27.923.812 | | | 27.923.812 |
+| Comisiones por ventas (3,4% ventas netas) | 8.372.066 | | | 8.372.066 |
+| Gastos de mercadeo (3,5% ventas netas) | 8.618.304 | | | 8.618.304 |
 | Nocheros y guardias (3 planta / 2 adm / 1 ventas) | 4.825.000 | 2.412.500 | 1.608.333 | 804.167 |
-| **TOTALES** | **82.768.748** | **15.014.494** | **21.696.610** | **46.057.644** |
+| **TOTALES** | **85.849.457** | **15.014.494** | **21.696.610** | **49.138.353** |
 
-Comprobación: 15.014.494 + 21.696.610 + 46.057.644 = 82.768.748.
+Comprobación: 15.014.494 + 21.696.610 + 49.138.353 = 85.849.457.
 
 **CIF total del estado de costos** = CIF planilla + MP indirecta + MOI (sin nocheros, que ya están en la planilla)
 = 15.014.494 + 2.991.756 + 7.372.500 = **25.378.750**
@@ -149,18 +150,18 @@ Comprobación: 15.014.494 + 21.696.610 + 46.057.644 = 82.768.748.
 
 | Concepto | Fórmula | Valor |
 |---|---|---:|
-| Ventas | 48.750.683 × 4,85 | 236.440.813 |
-| − Devoluciones de ventas | 236.440.813 × 3% | 7.093.224 |
-| **= Ventas netas** | 236.440.813 − 7.093.224 | **229.347.589** |
-| − Costo de ventas | | 48.750.683 |
-| **= Margen de contribución** | 229.347.589 − 48.750.683 | **180.596.906** |
+| Ventas | 52.340.790 × 4,85 | 253.852.832 |
+| − Devoluciones de ventas | 253.852.832 × 3% | 7.615.585 |
+| **= Ventas netas** | 253.852.832 − 7.615.585 | **246.237.247** |
+| − Costo de ventas | | 52.340.790 |
+| **= Margen de contribución** | 246.237.247 − 52.340.790 | **193.896.457** |
 | − Gastos de administración | | 21.696.610 |
-| − Gastos de ventas | | 46.057.644 |
+| − Gastos de ventas | | 49.138.353 |
 | + Ingresos financieros | no hay datos | 0 |
 | − Gastos financieros | no hay datos | 0 |
-| **= Utilidad antes de impuesto** | 180.596.906 − 21.696.610 − 46.057.644 | **112.842.652** |
-| − Impuesto 27% | 112.842.652 × 27% | 30.467.516 |
-| **= Utilidad neta** | 112.842.652 − 30.467.516 | **82.375.136** |
+| **= Utilidad antes de impuesto** | 193.896.457 − 21.696.610 − 49.138.353 | **123.061.494** |
+| − Impuesto 27% | 123.061.494 × 27% | 33.226.603 |
+| **= Utilidad neta** | 123.061.494 − 33.226.603 | **89.834.891** |
 
 ## 6. Verificación y criterios alternativos
 
@@ -169,10 +170,11 @@ El resultado cambia solo si el profesor usa otro criterio en alguno de estos pun
 
 | Criterio | Costo de ventas | Utilidad antes de impuesto | Utilidad neta |
 |---|---:|---:|---:|
-| **Solución principal** | **48.750.683** | **112.842.652** | **82.375.136** |
-| Empaquetador como MOD (no MOI) | 48.916.183 | 113.313.729 | 82.719.022 |
-| MP indirecta completa (4.155.217) a CIF, sin el 28% | 48.517.991 | 112.180.319 | 81.891.633 |
-| Usar la MP disponible dada (14.633.631) en vez de la calculada | 42.319.072 | 94.535.780 | 69.011.119 |
+| **Solución principal (formato de la hoja del profesor)** | **52.340.790** | **123.061.494** | **89.834.891** |
+| Empaquetador como MOD (no MOI) | 52.506.290 | 123.532.572 | 90.178.778 |
+| MP indirecta completa (4.155.217) a CIF, sin el 28% | 53.504.251 | 126.373.157 | 92.252.405 |
+| Usar la MP disponible dada (14.633.631) en vez de la calculada | 45.909.179 | 104.754.623 | 76.470.875 |
+| Restar la MP indirecta de la MP utilizada (versión anterior) | 48.750.683 | 112.842.652 | 82.375.136 |
 
 Lo que no cambia en ningún criterio: los gastos de administración (21.696.610), el impuesto del 27% y la fórmula
 del precio de venta (costo × 4,85).

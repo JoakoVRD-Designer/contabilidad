@@ -1,0 +1,81 @@
+REMUNERACIONES
+  Sueldo por nochero/guardia                             804.167   <- 4.825.000 / 6
+  Nocheros planta (3)                                  2.412.500   <- 804.167 x 3  -> CIF (MOI)
+  Nocheros administración (2)                          1.608.333   <- 804.167 x 2  -> Gasto adm.
+  Nocheros ventas (1)                                    804.167   <- 804.167 x 1  -> Gasto ventas
+  TOTAL MOD                                            5.451.100   <- 1.478.300 + 1.578.400 + 1.217.350 + 1.177.050
+  TOTAL MOI                                            9.785.000   <- 1.750.000 + 720.000 + 4.075.000 + 827.500 + 2.412.500
+
+ESTADO DE COSTO DE PRODUCCIÓN
+  Inventario inicial materias primas                  10.658.251
+  + Compras de materias primas                         8.564.272
+  + Fletes (9% compras)                                  770.784   <- 8.564.272 x 9%
+  = Materia prima disponible                          19.993.307
+  - Inventario final materias primas                   2.976.040
+  = Materia prima utilizada                           17.017.267
+  - Materia prima indirecta utilizada                  2.991.756
+  = Materia prima directa                             14.025.511
+  + Mano de obra directa                               5.451.100
+  = COSTO PRIMO                                       19.476.611
+  + Costos indirectos de fabricación                  25.378.750
+  = COSTO DE FABRICACIÓN                              44.855.361
+  + Inventario inicial productos en proceso            4.894.987
+     20% costo primo                                   3.895.322
+     5% materia prima disponible                         999.665
+  = Costo de productos en proceso                     49.750.348
+  - Inventario final productos en proceso                999.665   <- 5% MP disponible
+  = COSTO DE PRODUCCIÓN TERMINADA / COSTO DE VENTAS    48.750.683
+
+DETALLE CIF
+  Materia prima indirecta utilizada                    2.991.756   <- 4.155.217 - 1.163.461 (IF MPI 28%)
+  Mano de obra indirecta                               9.785.000   <- ver remuneraciones
+  Seguros (55%)                                        3.369.468   <- 6.126.306 x 55%
+  Arriendo (55%)                                       2.692.250   <- 4.895.000 x 55%
+  Luz (55%)                                            1.642.872   <- 2.987.040 x 55%
+  Combustible vehículo planta                          2.177.080
+  Depreciación vehículo planta                           608.880   <- (14.520.360 - 1.125.000) / 22
+  Gastos de oficina planta                               188.652
+  Reparación vehículo planta                             896.125
+  Contador general (2 días planta)                     1.026.667   <- 3.080.000 / 6 x 2
+  TOTAL CIF                                           25.378.750
+
+DETALLE GASTOS DE ADMINISTRACIÓN
+  Sueldo gerente general                               7.000.000
+  Sueldo gerente finanzas                              5.500.000
+  Contador general (4 días adm.)                       2.053.333   <- 3.080.000 / 6 x 4
+  Sueldo secretaria administrativa                     1.215.000
+  Sueldo auxiliar de oficina                             415.000
+  Nocheros administración (2)                          1.608.333
+  Depreciación vehículo administración                   402.857   <- (9.510.000 - 1.050.000) / 21
+  Seguros (25%)                                        1.531.577   <- 6.126.306 x 25%
+  Arriendo (25%)                                       1.223.750   <- 4.895.000 x 25%
+  Luz (25%)                                              746.760   <- 2.987.040 x 25%
+  TOTAL GASTOS DE ADMINISTRACIÓN                      21.696.610
+
+DETALLE GASTOS DE VENTAS
+  Sueldo vendedores (11% ventas brutas)               26.008.489   <- ventas brutas x 11%
+  Comisiones por ventas (3,4% ventas netas)            7.797.818   <- ventas netas x 3,4%
+  Gastos de mercadeo (3,5% ventas netas)               8.027.166   <- ventas netas x 3,5%
+  Nocheros ventas (1)                                    804.167
+  Depreciación vehículo reparto                          618.335   <- (7.258.350 - 1.075.000) / 10
+  Seguros (20%)                                        1.225.261   <- 6.126.306 x 20%
+  Arriendo (20%)                                         979.000   <- 4.895.000 x 20%
+  Luz (20%)                                              597.408   <- 2.987.040 x 20%
+  TOTAL GASTOS DE VENTAS                              46.057.644
+
+RESUMEN PRORRATEO
+  Seguros                                              6.126.306   <- fab 3.369.468 / adm 1.531.577 / ven 1.225.261
+  Arriendo                                             4.895.000   <- fab 2.692.250 / adm 1.223.750 / ven 979.000
+  Luz                                                  2.987.040   <- fab 1.642.872 / adm 746.760 / ven 597.408
+
+ESTADO DE RESULTADO
+  Ventas brutas                                      236.440.813   <- costo de ventas x 4,85 (100% + 385%)
+  - Devoluciones sobre ventas (3%)                     7.093.224
+  = Ventas netas                                     229.347.589
+  - Costo de ventas                                   48.750.683
+  = Utilidad bruta (margen bruto)                    180.596.906
+  - Gastos de administración                          21.696.610
+  - Gastos de ventas                                  46.057.644
+  = RESULTADO OPERACIONAL                            112.842.652
+
+GASTO TOTAL EMPRESA (CIF + adm + ventas): 93.133.004

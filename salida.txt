@@ -73,9 +73,13 @@ ESTADO DE RESULTADO
   - Devoluciones sobre ventas (3%)                     7.093.224
   = Ventas netas                                     229.347.589
   - Costo de ventas                                   48.750.683
-  = Utilidad bruta (margen bruto)                    180.596.906
+  = Margen de contribución                           180.596.906
   - Gastos de administración                          21.696.610
   - Gastos de ventas                                  46.057.644
-  = RESULTADO OPERACIONAL                            112.842.652
+  + Ingresos financieros                                       0   <- no hay datos
+  - Gastos financieros                                         0   <- no hay datos
+  = UTILIDAD ANTES DE IMPUESTO                       112.842.652
+  - Impuesto 27%                                      30.467.516   <- utilidad antes de impuesto x 27%
+  = UTILIDAD NETA                                     82.375.136
 
 GASTO TOTAL EMPRESA (CIF + adm + ventas): 93.133.004

@@ -113,15 +113,48 @@
 
 **Gasto total** (CIF + administración + ventas) = 25.378.750 + 21.696.610 + 46.057.644 = **93.133.004**
 
-## 4. Estado de resultado
+## 4. Planilla "Detalle del gasto" (formato de la guía)
+
+| Detalle del gasto | Valor total | CIF | Gtos. adm. | Gtos. ventas |
+|---|---:|---:|---:|---:|
+| Seguros robo e incendio (55/25/20) | 6.126.306 | 3.369.468 | 1.531.577 | 1.225.261 |
+| Arriendo (55/25/20) | 4.895.000 | 2.692.250 | 1.223.750 | 979.000 |
+| Combustible vehículo planta | 2.177.080 | 2.177.080 | | |
+| Depreciación vehículo planta | 608.880 | 608.880 | | |
+| Gastos oficina planta | 188.652 | 188.652 | | |
+| Luz (55/25/20) | 2.987.040 | 1.642.872 | 746.760 | 597.408 |
+| Reparación vehículo planta | 896.125 | 896.125 | | |
+| Sueldo gerente general | 7.000.000 | | 7.000.000 | |
+| Sueldo gerente finanzas | 5.500.000 | | 5.500.000 | |
+| Sueldo contador general (2 días / 4 días) | 3.080.000 | 1.026.667 | 2.053.333 | |
+| Sueldo secretaria administrativa | 1.215.000 | | 1.215.000 | |
+| Depreciación vehículo administración | 402.857 | | 402.857 | |
+| Depreciación vehículo reparto | 618.335 | | | 618.335 |
+| Sueldo auxiliar de oficina | 415.000 | | 415.000 | |
+| Sueldo vendedores (11% ventas brutas) | 26.008.489 | | | 26.008.489 |
+| Comisiones por ventas (3,4% ventas netas) | 7.797.818 | | | 7.797.818 |
+| Gastos de mercadeo (3,5% ventas netas) | 8.027.166 | | | 8.027.166 |
+| Nocheros y guardias (3 planta / 2 adm / 1 ventas) | 4.825.000 | 2.412.500 | 1.608.333 | 804.167 |
+| **TOTALES** | **82.768.748** | **15.014.494** | **21.696.610** | **46.057.644** |
+
+Comprobación: 15.014.494 + 21.696.610 + 46.057.644 = 82.768.748.
+
+**CIF total del estado de costos** = CIF planilla + MP indirecta + MOI (sin nocheros, que ya están en la planilla)
+= 15.014.494 + 2.991.756 + 7.372.500 = **25.378.750**
+
+## 5. Estado de resultados (formato de la guía)
 
 | Concepto | Fórmula | Valor |
 |---|---|---:|
-| Ventas brutas | 48.750.683 × 4,85 | 236.440.813 |
-| − Devoluciones sobre ventas | 236.440.813 × 3% | 7.093.224 |
-| **= Ventas netas** | | **229.347.589** |
+| Ventas | 48.750.683 × 4,85 | 236.440.813 |
+| − Devoluciones de ventas | 236.440.813 × 3% | 7.093.224 |
+| **= Ventas netas** | 236.440.813 − 7.093.224 | **229.347.589** |
 | − Costo de ventas | | 48.750.683 |
-| **= Utilidad bruta** | 229.347.589 − 48.750.683 | **180.596.906** |
+| **= Margen de contribución** | 229.347.589 − 48.750.683 | **180.596.906** |
 | − Gastos de administración | | 21.696.610 |
 | − Gastos de ventas | | 46.057.644 |
-| **= Resultado operacional** | 180.596.906 − 21.696.610 − 46.057.644 | **112.842.652** |
+| + Ingresos financieros | no hay datos | 0 |
+| − Gastos financieros | no hay datos | 0 |
+| **= Utilidad antes de impuesto** | 180.596.906 − 21.696.610 − 46.057.644 | **112.842.652** |
+| − Impuesto 27% | 112.842.652 × 27% | 30.467.516 |
+| **= Utilidad neta** | 112.842.652 − 30.467.516 | **82.375.136** |

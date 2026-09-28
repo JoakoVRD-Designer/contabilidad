@@ -161,3 +161,18 @@ Comprobación: 15.014.494 + 21.696.610 + 46.057.644 = 82.768.748.
 | **= Utilidad antes de impuesto** | 180.596.906 − 21.696.610 − 46.057.644 | **112.842.652** |
 | − Impuesto 27% | 112.842.652 × 27% | 30.467.516 |
 | **= Utilidad neta** | 112.842.652 − 30.467.516 | **82.375.136** |
+
+## 6. Verificación y criterios alternativos
+
+Todo se recalculó con un segundo script independiente (`escenarios.py`) y los resultados coinciden.
+El resultado cambia solo si el profesor usa otro criterio en alguno de estos puntos:
+
+| Criterio | Costo de ventas | Utilidad antes de impuesto | Utilidad neta |
+|---|---:|---:|---:|
+| **Solución principal** | **48.750.683** | **112.842.652** | **82.375.136** |
+| Empaquetador como MOD (no MOI) | 48.916.183 | 113.313.729 | 82.719.022 |
+| MP indirecta completa (4.155.217) a CIF, sin el 28% | 48.517.991 | 112.180.319 | 81.891.633 |
+| Usar la MP disponible dada (14.633.631) en vez de la calculada | 42.319.072 | 94.535.780 | 69.011.119 |
+
+Lo que no cambia en ningún criterio: los gastos de administración (21.696.610), el impuesto del 27% y la fórmula
+del precio de venta (costo × 4,85).

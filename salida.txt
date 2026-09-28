@@ -19,12 +19,13 @@ ESTADO DE COSTO DE PRODUCCIÓN
   = COSTO PRIMO                                       19.476.611
   + Costos indirectos de fabricación                  25.378.750
   = COSTO DE FABRICACIÓN                              44.855.361
-  + Inventario inicial productos en proceso            4.894.987
-     20% costo primo                                   3.895.322
-     5% materia prima disponible                         999.665
-  = Costo de productos en proceso                     49.750.348
+  + Inventario inicial productos en proceso              999.665   <- 5% MP disponible
+  = Costo de productos en proceso                     45.855.026
   - Inventario final productos en proceso                999.665   <- 5% MP disponible
-  = COSTO DE PRODUCCIÓN TERMINADA / COSTO DE VENTAS    48.750.683
+  = Costo de producción terminada                     44.855.361
+  + Inventario inicial productos terminados            3.895.322   <- 20% costo primo
+  = Productos terminados disponibles para la venta    48.750.683
+  = COSTO DE VENTAS                                   48.750.683
 
 DETALLE CIF
   Materia prima indirecta utilizada                    2.991.756   <- 4.155.217 - 1.163.461 (IF MPI 28%)

@@ -2,7 +2,8 @@
 
 Calcula estado de costo de producción, detalle de gastos (CIF, administración,
 ventas) y estado de resultado. Todos los valores se redondean a pesos enteros.
-Supuesto: se elimina el 8% de los CIF del inventario inicial de productos en proceso.
+Correcciones del profesor: se elimina el 8% de los CIF y el 20% del costo primo
+pasa a ser inventario inicial de productos TERMINADOS.
 """
 
 def r(x):
@@ -90,12 +91,13 @@ GADM = sum(v for _, v, _ in adm)
 # ---------------- Estado de costo de producción ----------------
 costo_primo = mpd + MOD
 costo_fab = costo_primo + CIF
-iipp_a, iipp_b = r(costo_primo * 0.20), r(mp_disp * 0.05)
-IIPP = iipp_a + iipp_b
+IIPP = r(mp_disp * 0.05)
 ifpp = r(mp_disp * 0.05)
 costo_pp = costo_fab + IIPP
 costo_prod_term = costo_pp - ifpp
-costo_ventas = costo_prod_term  # no hay inventarios de productos terminados
+IIPT = r(costo_primo * 0.20)
+costo_pt_disp = costo_prod_term + IIPT
+costo_ventas = costo_pt_disp  # no hay inventario final de productos terminados
 
 # ---------------- Ventas y gastos de venta ----------------
 ventas_brutas = r(costo_ventas * (1 + MARGEN))
@@ -127,12 +129,13 @@ linea("+ Mano de obra directa", MOD)
 linea("= COSTO PRIMO", costo_primo)
 linea("+ Costos indirectos de fabricación", CIF)
 linea("= COSTO DE FABRICACIÓN", costo_fab)
-linea("+ Inventario inicial productos en proceso", IIPP)
-linea("   20% costo primo", iipp_a)
-linea("   5% materia prima disponible", iipp_b)
+linea("+ Inventario inicial productos en proceso", IIPP, "5% MP disponible")
 linea("= Costo de productos en proceso", costo_pp)
 linea("- Inventario final productos en proceso", ifpp, "5% MP disponible")
-linea("= COSTO DE PRODUCCIÓN TERMINADA / COSTO DE VENTAS", costo_ventas)
+linea("= Costo de producción terminada", costo_prod_term)
+linea("+ Inventario inicial productos terminados", IIPT, "20% costo primo")
+linea("= Productos terminados disponibles para la venta", costo_pt_disp)
+linea("= COSTO DE VENTAS", costo_ventas)
 
 for titulo, items, total in (("CIF", cif, CIF), ("GASTOS DE ADMINISTRACIÓN", adm, GADM),
                              ("GASTOS DE VENTAS", ven, GVEN)):

@@ -1,6 +1,7 @@
 # Solución: fábrica de camisas (costos, detalle de gastos y estado de resultado)
 
-> Se eliminó el **8% de los CIF** del inventario inicial de productos en proceso.
+> Correcciones del profesor: se eliminó el **8% de los CIF**, y el **20% del costo primo** pasa a ser
+> **inventario inicial de productos TERMINADOS** (no en proceso).
 > Todos los valores están redondeados a pesos. `calculo.py` hace todos los cálculos (`python3 calculo.py`).
 
 ## Supuestos (revisarlos con lo visto en clases)
@@ -10,7 +11,7 @@
    **MOI** = diseñador, auxiliar de planta, supervisor, empaquetador y los 3 nocheros de planta.
 3. **MP indirecta**: 4.155.217 es el inventario inicial de MPI; el inventario final es el 28% → MPI utilizada = 72%.
 4. Sueldos de gerentes, secretaria y auxiliar de oficina → gasto de administración.
-5. **Precio de venta** = Costo de ventas × (100% + 385%) = Costo × 4,85. Como no hay inventario de productos terminados, costo de ventas = costo de producción terminada.
+5. **Precio de venta** = Costo de ventas × (100% + 385%) = Costo × 4,85. No hay inventario final de productos terminados.
 
 ## 1. Cálculos previos
 
@@ -56,12 +57,14 @@
 | **= Costo primo** | 14.025.511 + 5.451.100 | **19.476.611** |
 | + CIF | detalle abajo | 25.378.750 |
 | **= Costo de fabricación** | 19.476.611 + 25.378.750 | **44.855.361** |
-| + Inventario inicial productos en proceso | 3.895.322 + 999.665 | 4.894.987 |
-|   · 20% costo primo | 19.476.611 × 20% | 3.895.322 |
-|   · 5% MP disponible | 19.993.307 × 5% | 999.665 |
-| = Costo de productos en proceso | 44.855.361 + 4.894.987 | 49.750.348 |
+| + Inventario inicial productos en proceso | 19.993.307 × 5% | 999.665 |
+| = Costo de productos en proceso | 44.855.361 + 999.665 | 45.855.026 |
 | − Inventario final productos en proceso | 19.993.307 × 5% | 999.665 |
-| **= Costo de producción terminada = Costo de ventas** | 49.750.348 − 999.665 | **48.750.683** |
+| **= Costo de producción terminada** | 45.855.026 − 999.665 | **44.855.361** |
+| + Inventario inicial productos terminados | 19.476.611 × 20% | 3.895.322 |
+| = Productos terminados disponibles para la venta | 44.855.361 + 3.895.322 | 48.750.683 |
+| − Inventario final productos terminados | no hay dato | 0 |
+| **= Costo de ventas** | | **48.750.683** |
 
 ## 3. Detalle de gastos
 

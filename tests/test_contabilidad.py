@@ -7,6 +7,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, suma_digitos_decreciente
 from ejemplos.ejercicio_camisas import construir
+from ejemplos import loyola_rubilar
+from contabilidad.remuneraciones import liquidacion
 
 
 class TestAsientos(unittest.TestCase):
@@ -74,6 +76,37 @@ class TestFacturaDeCompra(unittest.TestCase):
     def test_retencion_parcial(self):
         neto, iva, ret, no_ret, pago = impuestos.factura_de_compra(1_000_000, "0.65")
         self.assertEqual((ret, no_ret, pago), (123_500, 66_500, 1_066_500))
+
+
+class TestLoyolaRubilar(unittest.TestCase):
+    def tearDown(self):
+        loyola_rubilar.VENTAS_INCLUYEN_IVA = False
+
+    def test_estado_de_resultados_principal(self):
+        er = loyola_rubilar.resultado(loyola_rubilar.construir())
+        self.assertEqual(er["Ventas"], 229_204_390)
+        self.assertEqual(er["Devoluciones de ventas"], 7_667_320)
+        self.assertEqual(er["Costo de ventas"], 130_315_924)
+        self.assertEqual(er["Utilidad antes de impuesto"], 27_304_479)
+        self.assertEqual(er["Utilidad neta"], 19_932_270)
+
+    def test_variante_ventas_con_iva(self):
+        loyola_rubilar.VENTAS_INCLUYEN_IVA = True
+        er = loyola_rubilar.resultado(loyola_rubilar.construir())
+        self.assertEqual(er["Utilidad neta"], 16_907_331)
+
+
+class TestRemuneraciones(unittest.TestCase):
+    def test_liquidacion_basica_cuadra(self):
+        r = liquidacion(600_000, imm=553_553, uf=39_000, impuesto_unico=0)
+        self.assertEqual(r["gratificacion"], 150_000)        # 25 % está bajo el tope 4,75 IMM ÷ 12
+        self.assertEqual(r["total_imponible"], 750_000)
+        self.assertEqual(r["salud_7"], 52_500)
+        self.assertEqual(r["sueldo_liquido"], r["total_haberes"] - r["total_descuentos"])
+
+    def test_gratificacion_con_tope(self):
+        r = liquidacion(2_000_000, imm=553_553, uf=39_000)
+        self.assertEqual(r["gratificacion"], 219_115)        # 4,75 × 553.553 ÷ 12
 
 
 class TestDepreciacion(unittest.TestCase):

@@ -11,7 +11,7 @@ y balance general**, con la normativa chilena y los apoyos del SII documentados,
 | `data/plan_de_cuentas.csv` | Plan de cuentas base (se puede editar). |
 | `docs/sii/` | Apoyos que ofrece el SII (facturación gratuita, F29, libros, tablas). |
 | `docs/normativa/` | Leyes y normas: Código Tributario, LIR, IVA, regímenes, NIIF para PYMES. |
-| `docs/contabilidad/` | Guías: factura de compra con cambio de sujeto, F29 y declaraciones juradas. |
+| `docs/contabilidad/` | Guías: ciclo contable, IVA y PPM, remuneraciones, factura de compra con cambio de sujeto (F29, DJ) y la evaluación Loyola y Rubilar resuelta. |
 | `ejemplos/` | Ejemplos que registran asientos y comprueban los resultados. |
 | `ejercicio_camisas/` | Ejercicio de la fábrica de camisas resuelto con todo el detalle e imágenes. |
 | `tests/` | Pruebas automáticas. |
@@ -21,6 +21,7 @@ y balance general**, con la normativa chilena y los apoyos del SII documentados,
 ```bash
 python3 -m unittest discover -s tests -t .      # pruebas
 python3 ejemplos/ejercicio_camisas.py            # libro diario + estado de resultados del ejercicio
+python3 ejemplos/loyola_rubilar.py               # evaluación Loyola y Rubilar con libro diario completo
 ```
 
 ```python

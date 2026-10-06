@@ -38,7 +38,7 @@ def generar(semilla):
 def enunciado(n, e):
     lineas = [f"EJERCICIO {n}. La sociedad comercial presenta (las ventas brutas incluyen IVA 19 %; neto = sin IVA):", ""]
     for i, (b, dev, meses, tasa) in enumerate(e["facturas"], start=1):
-        lineas.append(f"  Venta bruta N°{i}: ${m(b)} al crédito, cancelada con {meses} {"mes" if meses == 1 else "meses"} de retraso (interés mensual {pct(tasa)}); devolución {pct(dev)}.")
+        lineas.append(f"  Venta bruta N°{i}: ${m(b)} al crédito, cancelada con {meses} {'mes' if meses == 1 else 'meses'} de retraso (interés mensual {pct(tasa)}); devolución {pct(dev)}.")
     cap, tasas = e["deposito"]
     lineas += ["", f"  Las ventas incluyen {pct(e['ganancia'])} de ganancia sobre el costo.",
                f"  Gastos de administración {pct(e['pct_adm'])} de las ventas netas · sueldos {pct(e['pct_sueldos'])} de las ventas brutas.",

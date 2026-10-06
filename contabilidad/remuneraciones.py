@@ -36,3 +36,20 @@ def liquidacion(sueldo_base, imm, uf, comision_afp="0.0058", horas_extras=0, com
     return {"gratificacion": grat, "total_imponible": imponible, "afp_10": afp, "comision_afp": comision,
             "salud_7": salud, "seguro_cesantia": ces, "base_impuesto_unico": tributable, "no_imponible": no_imponible,
             "total_haberes": haberes, "total_descuentos": descuentos, "sueldo_liquido": haberes - descuentos}
+
+
+def costo_empleador(imponible, uf, sis="0.0178", adicional_reforma="0.035", mutual="0.0093",
+                    cesantia_empleador="0.024", tope_afp_uf="90", tope_cesantia_uf="135.2", cesantia=True):
+    """Cotizaciones a cargo del EMPLEADOR (se suman al costo del trabajador, no se descuentan de su sueldo).
+
+    Valores por defecto (verifica cada mes en el PDF de indicadores de Previred):
+      sis 1,78 % (trimestre ago-oct 2026) · adicional de la reforma 3,5 % desde ago-2026 (era 1 %)
+      mutual 0,93 % (cotización básica; el adicional depende de la mutualidad) · AFC empleador 2,4 % (indefinido) ⚠️.
+    """
+    base = min(imponible, redondear(D(tope_afp_uf) * D(uf)))
+    base_ces = min(imponible, redondear(D(tope_cesantia_uf) * D(uf)))
+    r = {"sis": redondear(D(base) * D(sis)), "adicional_reforma": redondear(D(base) * D(adicional_reforma)),
+         "mutual": redondear(D(base) * D(mutual)),
+         "afc_empleador": redondear(D(base_ces) * D(cesantia_empleador)) if cesantia else 0}
+    r["total_empleador"] = sum(r.values())
+    return r

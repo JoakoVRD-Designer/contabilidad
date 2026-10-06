@@ -8,7 +8,7 @@ from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balan
 from contabilidad.depreciacion import lineal, suma_digitos_decreciente
 from ejemplos.ejercicio_camisas import construir
 from ejemplos import loyola_rubilar
-from contabilidad.remuneraciones import liquidacion
+from contabilidad.remuneraciones import costo_empleador, liquidacion
 
 
 class TestAsientos(unittest.TestCase):
@@ -110,6 +110,18 @@ class TestRemuneraciones(unittest.TestCase):
     def test_gratificacion_con_tope(self):
         r = liquidacion(2_000_000, imm=553_553, uf=39_000)
         self.assertEqual(r["gratificacion"], 219_115)        # 4,75 × 553.553 ÷ 12
+
+
+class TestCostoEmpleador(unittest.TestCase):
+    def test_costo_empleador_septiembre_2026(self):
+        r = costo_empleador(750_000, uf=41_057.20)
+        self.assertEqual((r["sis"], r["adicional_reforma"], r["mutual"], r["afc_empleador"]),
+                         (13_350, 26_250, 6_975, 18_000))
+        self.assertEqual(r["total_empleador"], 64_575)
+
+    def test_respeta_tope_imponible(self):
+        r = costo_empleador(10_000_000, uf=41_057.20)    # tope 90 UF = 3.695.148
+        self.assertEqual(r["sis"], round(3_695_148 * 0.0178))
 
 
 class TestDepreciacion(unittest.TestCase):

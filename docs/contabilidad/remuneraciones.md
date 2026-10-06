@@ -33,7 +33,7 @@ del trabajo y otras): son un costo para la empresa, no un descuento del trabajad
 
 | Indicador | Valor | Nota |
 |---|---|---|
-| Ingreso mínimo mensual | **$553.553** desde las remuneraciones de mayo 2026 | Otra fuente indica $539.000: **confirma cuál rige en tu mes** |
+| Ingreso mínimo mensual | **$553.553** desde las remuneraciones de mayo 2026 | Confirmado en el PDF de Previred de septiembre; $539.000 rigió en enero-febrero |
 | Tope gratificación mensual | ≈ $219.115 (4,75 × 553.553 ÷ 12) | |
 | Tope imponible AFP y salud | 90 UF | |
 | Tope imponible cesantía | 135,2 UF | |

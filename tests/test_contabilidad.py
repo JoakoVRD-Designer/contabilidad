@@ -80,20 +80,23 @@ class TestFacturaDeCompra(unittest.TestCase):
 
 class TestLoyolaRubilar(unittest.TestCase):
     def tearDown(self):
-        loyola_rubilar.VENTAS_INCLUYEN_IVA = False
+        loyola_rubilar.VENTAS_INCLUYEN_IVA = True
 
-    def test_estado_de_resultados_principal(self):
+    def test_estado_de_resultados_ventas_con_iva(self):
+        er = loyola_rubilar.resultado(loyola_rubilar.construir())
+        self.assertEqual(er["Ventas"], 192_608_732)
+        self.assertEqual(er["Devoluciones de ventas"], 6_443_126)
+        self.assertEqual(er["Costo de ventas"], 109_509_180)
+        self.assertEqual(er["Margen de contribución"], 76_656_426)
+        self.assertEqual(er["Gastos de administración"], 67_890_468)
+        self.assertEqual(er["Utilidad antes de impuesto"], 17_671_378)
+        self.assertEqual(er["Utilidad neta"], 12_900_106)
+
+    def test_variante_montos_netos(self):
+        loyola_rubilar.VENTAS_INCLUYEN_IVA = False
         er = loyola_rubilar.resultado(loyola_rubilar.construir())
         self.assertEqual(er["Ventas"], 229_204_390)
-        self.assertEqual(er["Devoluciones de ventas"], 7_667_320)
-        self.assertEqual(er["Costo de ventas"], 130_315_924)
-        self.assertEqual(er["Utilidad antes de impuesto"], 27_304_479)
         self.assertEqual(er["Utilidad neta"], 19_932_270)
-
-    def test_variante_ventas_con_iva(self):
-        loyola_rubilar.VENTAS_INCLUYEN_IVA = True
-        er = loyola_rubilar.resultado(loyola_rubilar.construir())
-        self.assertEqual(er["Utilidad neta"], 16_907_331)
 
 
 class TestRemuneraciones(unittest.TestCase):

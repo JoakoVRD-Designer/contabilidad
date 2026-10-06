@@ -3,12 +3,12 @@
 Se pide: asientos en el libro diario (1 punto por cuenta) y completar el estado de resultados (2 puntos por línea).
 
 SUPUESTOS (están marcados porque el enunciado no los aclara; si tu profesor usa otro, cambia la constante):
-  1. Las "ventas brutas" son valores NETOS (sin IVA): se agrega IVA 19 % como débito fiscal.
-  2. La devolución % se calcula sobre la venta neta y se reversa su IVA; se recupera la mercadería a su costo.
+  1. CONFIRMADO: las ventas brutas incluyen IVA (bruto = con IVA, neto = sin IVA): neto = bruto ÷ 1,19.
+  2. La devolución % se calcula sobre la venta neta (igual proporción que sobre el bruto) y se reversa su IVA; se recupera la mercadería a su costo.
   3. "Las ventas incluyen 70 % de ganancia": costo = venta neta ÷ 1,70.
   4. Interés por mora = saldo adeudado (factura con IVA menos nota de crédito) × tasa mensual × meses.
      El interés no lleva IVA y se cobra por transferencia junto con el saldo.
-  5. "Sueldos pagados" (15 % de las ventas brutas) se suman a los gastos de administración.
+  5. "Sueldos pagados" (15 % de las ventas brutas, con IVA) se suman a los gastos de administración.
   6. Gastos de ventas = 11 % del margen de contribución.
   7. Utilidad en venta de activo fijo: va en la línea de ingresos de la estructura ("+ Ingresos financieros"),
      que es la única línea de ingresos no operacionales del formato. Se registra contra Banco (valor libro cero).
@@ -28,7 +28,7 @@ from contabilidad.impuestos import redondear
 # (venta neta, % devolución, meses de atraso, tasa mensual)
 FACTURAS = [(52_360_415, "0.03", 3, "0.025"), (85_320_960, "0.05", 2, "0.022"), (91_523_015, "0.02", 4, "0.024")]
 MARGEN_GANANCIA = D("0.70")
-VENTAS_INCLUYEN_IVA = False   # True si el enunciado debe leerse como "venta bruta = neto + IVA"
+VENTAS_INCLUYEN_IVA = True    # confirmado: bruto = con IVA, neto = sin IVA (False: los montos serían netos)
 UTILIDAD_ACTIVO_FIJO = 1_250_000
 DEPOSITO = (8_750_500, ["0.0036", "0.0041", "0.0039"])
 CUENTAS_EXTRA = {"1.1.07": "Depósito a plazo", "4.2.02": "Utilidad en venta de activo fijo"}
@@ -45,8 +45,9 @@ def plan():
 def construir():
     d = LibroDiario(plan())
     f = date(2026, 6, 16)
-    ventas_netas_total = devol_total = 0
+    ventas_netas_total = devol_total = montos_enunciado = 0
     for n, (neto, pct_dev, meses, tasa) in enumerate(FACTURAS, start=1):
+        montos_enunciado += neto   # "ventas brutas" tal como las da el enunciado
         if VENTAS_INCLUYEN_IVA:
             neto, iva, bruto = impuestos.iva_desde_bruto(neto)
         else:
@@ -66,12 +67,11 @@ def construir():
                     [("1.1.02", saldo + interes, 0), ("1.1.03", 0, saldo), ("4.2.01", 0, interes)])
         ventas_netas_total += neto
         devol_total += dev
-    ventas_brutas = ventas_netas_total
-    ventas_netas = ventas_brutas - devol_total
+    ventas_netas = ventas_netas_total - devol_total
     costo_neto = sum(l.debe - l.haber for a in d.asientos for l in a.lineas if l.cuenta == "5.1.01")
     margen = ventas_netas - costo_neto
     g_adm_18 = redondear(D(ventas_netas) * D("0.18"))
-    sueldos = redondear(D(ventas_brutas) * D("0.15"))
+    sueldos = redondear(D(montos_enunciado) * D("0.15"))   # sobre las ventas brutas del enunciado
     g_ven = redondear(D(margen) * D("0.11"))
     d.registrar(f, "Gastos de administración 18 % de las ventas netas", [("6.1.02", g_adm_18, 0), ("1.1.02", 0, g_adm_18)])
     d.registrar(f, "Sueldos pagados 15 % de las ventas brutas", [("6.1.01", sueldos, 0), ("1.1.02", 0, sueldos)])

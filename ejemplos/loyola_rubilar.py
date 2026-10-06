@@ -31,15 +31,10 @@ MARGEN_GANANCIA = D("0.70")
 VENTAS_INCLUYEN_IVA = True    # confirmado: bruto = con IVA, neto = sin IVA (False: los montos serían netos)
 UTILIDAD_ACTIVO_FIJO = 1_250_000
 DEPOSITO = (8_750_500, ["0.0036", "0.0041", "0.0039"])
-CUENTAS_EXTRA = {"1.1.07": "Depósito a plazo", "4.2.02": "Utilidad en venta de activo fijo"}
 
 
 def plan():
-    p = PlanDeCuentas.desde_csv()
-    from contabilidad.cuentas import Cuenta
-    return PlanDeCuentas(list(p) + [Cuenta("1.1.07", "Depósito a plazo", "activo", "deudora", "Activo circulante"),
-                                    Cuenta("4.2.02", "Utilidad en venta de activo fijo", "ingreso", "acreedora",
-                                           "Ingresos no operacionales")])
+    return PlanDeCuentas.desde_csv()
 
 
 def construir():

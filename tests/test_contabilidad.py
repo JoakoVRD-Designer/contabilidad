@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, suma_digitos_decreciente
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import loyola_rubilar
+from ejemplos import loyola_rubilar, situaciones
 from contabilidad.remuneraciones import costo_empleador, liquidacion
 
 
@@ -132,6 +132,27 @@ class TestDepreciacion(unittest.TestCase):
 
     def test_lineal_termina_en_valor_residual(self):
         self.assertEqual(lineal(1_000_000, 100_000, 3)[-1][3], 100_000)
+
+
+
+class TestSituaciones(unittest.TestCase):
+    def test_hay_15_y_todas_cuadran(self):
+        resueltas = situaciones.resolver_todas()
+        self.assertEqual(len(resueltas), 15)
+        for titulo, _, diario, _, _ in resueltas:
+            filas, tot = balance_comprobacion(diario)      # lanza error si no cuadra
+            self.assertEqual(tot["debe"], tot["haber"], titulo)
+
+    def test_valores_clave(self):
+        v = {i: r[4] for i, r in enumerate(situaciones.resolver_todas(), start=1)}
+        self.assertEqual(v[1]["iva"], 475_000)
+        self.assertEqual(v[5], {"ret": 122_000, "liquido": 678_000})
+        self.assertEqual(v[8]["dep"], 2_100_000)
+        self.assertEqual(v[9], {"anio1": 1_800_000, "libros": 500_000})
+        self.assertEqual(v[10]["utilidad"], 800_000)
+        self.assertEqual(v[13], {"iva": 1_425_000, "total": 1_747_000})
+        self.assertEqual(v[14], {"uai": 5_350_000, "neta": 3_905_500})
+        self.assertEqual(v[15]["bruto"], 22_253)
 
 
 if __name__ == "__main__":

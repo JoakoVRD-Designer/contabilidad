@@ -21,6 +21,7 @@ codigo,nombre,tipo,naturaleza,grupo
 2.1.06,Impuesto a la renta por pagar,pasivo,acreedora,Pasivo circulante
 2.1.07,Cotizaciones previsionales por pagar,pasivo,acreedora,Pasivo circulante
 2.1.08,Anticipo de clientes,pasivo,acreedora,Pasivo circulante
+2.1.09,IVA retenido por pagar (cambio de sujeto),pasivo,acreedora,Pasivo circulante
 2.2.01,Préstamos bancarios largo plazo,pasivo,acreedora,Pasivo largo plazo
 3.1.01,Capital,patrimonio,acreedora,Patrimonio
 3.1.02,Utilidades acumuladas,patrimonio,acreedora,Patrimonio

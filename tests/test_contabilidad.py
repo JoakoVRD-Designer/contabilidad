@@ -61,6 +61,21 @@ class TestImpuestos(unittest.TestCase):
             impuestos.depreciacion_acelerada_meses(2)
 
 
+class TestFacturaDeCompra(unittest.TestCase):
+    def test_retencion_total(self):
+        self.assertEqual(impuestos.factura_de_compra(1_000_000), (1_000_000, 190_000, 190_000, 0, 1_000_000))
+
+    def test_asiento_cuadra_y_se_registra(self):
+        d = LibroDiario(PlanDeCuentas.desde_csv())
+        d.registrar(date(2026, 7, 10), "Factura de compra (trigo)", impuestos.asiento_factura_de_compra(1_000_000, "1.1.13"))
+        d.registrar(date(2026, 7, 20), "Pago F29: IVA retenido", [("2.1.09", 190_000, 0), ("1.1.02", 0, 190_000)])
+        balance_comprobacion(d)
+
+    def test_retencion_parcial(self):
+        neto, iva, ret, no_ret, pago = impuestos.factura_de_compra(1_000_000, "0.65")
+        self.assertEqual((ret, no_ret, pago), (123_500, 66_500, 1_066_500))
+
+
 class TestDepreciacion(unittest.TestCase):
     def test_suma_de_digitos(self):
         t = suma_digitos_decreciente(1_000_000, 100_000, 4)  # suma = 10; factores 4/10, 3/10, 2/10, 1/10

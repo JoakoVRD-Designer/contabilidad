@@ -2,7 +2,7 @@
 
 > Correcciones del profesor: se eliminó el **8% de los CIF**, y el **20% del costo primo** pasa a ser
 > **inventario inicial de productos TERMINADOS** (no en proceso).
-> Todos los valores están redondeados a pesos. `calculo.py` hace todos los cálculos (`python3 calculo.py`).
+> Todos los valores están redondeados a pesos. `calculo.py` hace todos los cálculos (`python3 ejercicio_camisas/calculo.py`).
 
 ## Supuestos (revisarlos con lo visto en clases)
 

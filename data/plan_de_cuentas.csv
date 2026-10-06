@@ -1,0 +1,49 @@
+codigo,nombre,tipo,naturaleza,grupo
+1.1.01,Caja,activo,deudora,Activo circulante
+1.1.02,Banco,activo,deudora,Activo circulante
+1.1.03,Clientes,activo,deudora,Activo circulante
+1.1.04,IVA crédito fiscal,activo,deudora,Activo circulante
+1.1.05,PPM por recuperar,activo,deudora,Activo circulante
+1.1.06,Anticipo a proveedores,activo,deudora,Activo circulante
+1.1.10,Inventario materias primas,activo,deudora,Activo circulante
+1.1.11,Inventario productos en proceso,activo,deudora,Activo circulante
+1.1.12,Inventario productos terminados,activo,deudora,Activo circulante
+1.1.13,Inventario mercaderías,activo,deudora,Activo circulante
+1.2.01,Vehículos,activo,deudora,Activo fijo
+1.2.02,Maquinarias y equipos,activo,deudora,Activo fijo
+1.2.03,Muebles y útiles,activo,deudora,Activo fijo
+1.2.90,Depreciación acumulada,activo,acreedora,Activo fijo
+2.1.01,Proveedores,pasivo,acreedora,Pasivo circulante
+2.1.02,IVA débito fiscal,pasivo,acreedora,Pasivo circulante
+2.1.03,Remuneraciones por pagar,pasivo,acreedora,Pasivo circulante
+2.1.04,Retenciones por pagar,pasivo,acreedora,Pasivo circulante
+2.1.05,Honorarios por pagar,pasivo,acreedora,Pasivo circulante
+2.1.06,Impuesto a la renta por pagar,pasivo,acreedora,Pasivo circulante
+2.1.07,Cotizaciones previsionales por pagar,pasivo,acreedora,Pasivo circulante
+2.1.08,Anticipo de clientes,pasivo,acreedora,Pasivo circulante
+2.2.01,Préstamos bancarios largo plazo,pasivo,acreedora,Pasivo largo plazo
+3.1.01,Capital,patrimonio,acreedora,Patrimonio
+3.1.02,Utilidades acumuladas,patrimonio,acreedora,Patrimonio
+3.1.03,Utilidad (pérdida) del ejercicio,patrimonio,acreedora,Patrimonio
+3.1.04,Retiros / dividendos,patrimonio,deudora,Patrimonio
+4.1.01,Ventas,ingreso,acreedora,Ingresos de explotación
+4.1.02,Devoluciones sobre ventas,ingreso,deudora,Ingresos de explotación
+4.2.01,Ingresos financieros,ingreso,acreedora,Ingresos no operacionales
+5.1.01,Costo de ventas,costo,deudora,Costo de ventas
+5.2.01,Materia prima directa utilizada,costo,deudora,Costos de producción
+5.2.02,Mano de obra directa,costo,deudora,Costos de producción
+5.2.03,Costos indirectos de fabricación (CIF),costo,deudora,Costos de producción
+6.1.01,Sueldos administración,gasto,deudora,Gastos de administración
+6.1.02,Arriendo administración,gasto,deudora,Gastos de administración
+6.1.03,Seguros administración,gasto,deudora,Gastos de administración
+6.1.04,Luz y servicios básicos administración,gasto,deudora,Gastos de administración
+6.1.05,Depreciación administración,gasto,deudora,Gastos de administración
+6.1.06,Honorarios administración,gasto,deudora,Gastos de administración
+6.2.01,Sueldos y comisiones de ventas,gasto,deudora,Gastos de ventas
+6.2.02,Gastos de mercadeo,gasto,deudora,Gastos de ventas
+6.2.03,Depreciación vehículo de reparto,gasto,deudora,Gastos de ventas
+6.2.04,Arriendo ventas,gasto,deudora,Gastos de ventas
+6.2.05,Seguros ventas,gasto,deudora,Gastos de ventas
+6.2.06,Luz y servicios básicos ventas,gasto,deudora,Gastos de ventas
+6.3.01,Gastos financieros,gasto,deudora,Gastos no operacionales
+6.4.01,Impuesto a la renta (primera categoría),gasto,deudora,Impuesto

@@ -24,6 +24,7 @@ python3 -m unittest discover -s tests -t .      # pruebas
 python3 ejemplos/ejercicio_camisas.py            # libro diario + estado de resultados del ejercicio
 python3 ejemplos/loyola_rubilar.py               # evaluación Loyola y Rubilar con libro diario completo
 python3 ejemplos/situaciones.py                  # 15 situaciones inventadas y resueltas
+python3 ejemplos/practica.py --ejercicio 7       # ejercicio aleatorio para practicar (--solucion; --verificar 300)
 ```
 
 ```python

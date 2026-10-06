@@ -37,20 +37,26 @@ def plan():
     return PlanDeCuentas.desde_csv()
 
 
-def construir():
+def construir(facturas=None, ganancia=None, pct_adm="0.18", pct_sueldos="0.15", pct_ventas="0.11",
+              activo_fijo=None, deposito=None):
+    """Con argumentos distintos resuelve otro ejercicio del mismo tipo (lo usa ejemplos/practica.py)."""
+    facturas = FACTURAS if facturas is None else facturas
+    ganancia = MARGEN_GANANCIA if ganancia is None else D(ganancia)
+    activo_fijo = UTILIDAD_ACTIVO_FIJO if activo_fijo is None else activo_fijo
+    deposito = DEPOSITO if deposito is None else deposito
     d = LibroDiario(plan())
     f = date(2026, 6, 16)
     ventas_netas_total = devol_total = montos_enunciado = 0
-    for n, (neto, pct_dev, meses, tasa) in enumerate(FACTURAS, start=1):
+    for n, (neto, pct_dev, meses, tasa) in enumerate(facturas, start=1):
         montos_enunciado += neto   # "ventas brutas" tal como las da el enunciado
         if VENTAS_INCLUYEN_IVA:
             neto, iva, bruto = impuestos.iva_desde_bruto(neto)
         else:
             _, iva, bruto = impuestos.iva_desde_neto(neto)
-        costo = redondear(D(neto) / (1 + MARGEN_GANANCIA))
+        costo = redondear(D(neto) / (1 + ganancia))
         dev = redondear(D(neto) * D(pct_dev))
         iva_dev = redondear(D(dev) * impuestos.IVA)
-        costo_dev = redondear(D(dev) / (1 + MARGEN_GANANCIA))
+        costo_dev = redondear(D(dev) / (1 + ganancia))
         saldo = bruto - (dev + iva_dev)
         interes = redondear(D(saldo) * D(tasa) * meses)
         d.registrar(f, f"Venta de mercadería N°{n} al crédito", [("1.1.03", bruto, 0), ("4.1.01", 0, neto), ("2.1.02", 0, iva)])
@@ -65,14 +71,14 @@ def construir():
     ventas_netas = ventas_netas_total - devol_total
     costo_neto = sum(l.debe - l.haber for a in d.asientos for l in a.lineas if l.cuenta == "5.1.01")
     margen = ventas_netas - costo_neto
-    g_adm_18 = redondear(D(ventas_netas) * D("0.18"))
-    sueldos = redondear(D(montos_enunciado) * D("0.15"))   # sobre las ventas brutas del enunciado
-    g_ven = redondear(D(margen) * D("0.11"))
+    g_adm_18 = redondear(D(ventas_netas) * D(pct_adm))
+    sueldos = redondear(D(montos_enunciado) * D(pct_sueldos))   # sobre las ventas brutas del enunciado
+    g_ven = redondear(D(margen) * D(pct_ventas))
     d.registrar(f, "Gastos de administración 18 % de las ventas netas", [("6.1.02", g_adm_18, 0), ("1.1.02", 0, g_adm_18)])
     d.registrar(f, "Sueldos pagados 15 % de las ventas brutas", [("6.1.01", sueldos, 0), ("1.1.02", 0, sueldos)])
     d.registrar(f, "Gastos de ventas 11 % del margen de contribución", [("6.2.01", g_ven, 0), ("1.1.02", 0, g_ven)])
-    d.registrar(f, "Utilidad en venta de activo fijo", [("1.1.02", UTILIDAD_ACTIVO_FIJO, 0), ("4.2.02", 0, UTILIDAD_ACTIVO_FIJO)])
-    capital, tasas = DEPOSITO
+    d.registrar(f, "Utilidad en venta de activo fijo", [("1.1.02", activo_fijo, 0), ("4.2.02", 0, activo_fijo)])
+    capital, tasas = deposito
     interes_dp = redondear(D(capital) * sum(D(t) for t in tasas))
     d.registrar(f, "Constitución de depósito a plazo 3 meses", [("1.1.07", capital, 0), ("1.1.02", 0, capital)])
     d.registrar(f, "Vencimiento del depósito a plazo con intereses",
@@ -80,7 +86,7 @@ def construir():
     er = estado_resultados(d)
     # La utilidad en venta de activo fijo entra a la línea de ingresos de la estructura (supuesto 7).
     er_ajustado = dict(er)
-    extra = UTILIDAD_ACTIVO_FIJO
+    extra = activo_fijo
     er_ajustado["Ingresos financieros"] += extra
     er_ajustado["Utilidad antes de impuesto"] += extra
     imp = redondear(D(er_ajustado["Utilidad antes de impuesto"]) * D("0.27"))

@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, suma_digitos_decreciente
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import loyola_rubilar, situaciones
+from ejemplos import loyola_rubilar, practica, situaciones
 from contabilidad.remuneraciones import costo_empleador, liquidacion
 
 
@@ -153,6 +153,13 @@ class TestSituaciones(unittest.TestCase):
         self.assertEqual(v[13], {"iva": 1_425_000, "total": 1_747_000})
         self.assertEqual(v[14], {"uai": 5_350_000, "neta": 3_905_500})
         self.assertEqual(v[15]["bruto"], 22_253)
+
+
+class TestPractica(unittest.TestCase):
+    def test_dos_caminos_independientes_coinciden(self):
+        ok, omitidos, fallos = practica.verificar(150)
+        self.assertEqual(fallos, [])
+        self.assertGreater(ok, 100)
 
 
 if __name__ == "__main__":

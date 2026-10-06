@@ -9,6 +9,7 @@ from contabilidad.depreciacion import lineal, suma_digitos_decreciente
 from ejemplos.ejercicio_camisas import construir
 from ejemplos import loyola_rubilar, practica, situaciones
 from contabilidad.remuneraciones import costo_empleador, liquidacion
+from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 
 
 class TestAsientos(unittest.TestCase):
@@ -160,6 +161,27 @@ class TestPractica(unittest.TestCase):
         ok, omitidos, fallos = practica.verificar(150)
         self.assertEqual(fallos, [])
         self.assertGreater(ok, 100)
+
+
+class TestEstadosFinancieros(unittest.TestCase):
+    def test_flujo_de_efectivo_camisas(self):
+        f = flujo_efectivo(construir())
+        self.assertEqual(f["financiacion"], 300_000_000)          # aporte de capital
+        self.assertEqual(f["variacion_neta"], f["operacion"] + f["inversion"] + f["financiacion"])
+
+    def test_flujo_con_venta_de_activo_fijo_va_a_inversion(self):
+        d, _, _ = situaciones.s10()
+        f = flujo_efectivo(d)
+        self.assertEqual(f["inversion"], 4_522_000)
+
+    def test_flujo_con_deposito_a_plazo(self):
+        d, _, _ = situaciones.s12()
+        f = flujo_efectivo(d)
+        self.assertEqual(f["inversion"], 60_000)                   # el capital sale y vuelve; queda el interés cobrado
+
+    def test_cambios_en_el_patrimonio(self):
+        c = cambios_patrimonio(construir())
+        self.assertEqual(c["Patrimonio final"], 300_000_000 + 89_834_891)
 
 
 if __name__ == "__main__":

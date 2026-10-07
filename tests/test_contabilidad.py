@@ -10,6 +10,7 @@ from ejemplos.ejercicio_camisas import construir
 from ejemplos import loyola_rubilar, practica, situaciones
 from contabilidad.remuneraciones import costo_empleador, liquidacion
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
+from contabilidad import indicadores
 
 
 class TestAsientos(unittest.TestCase):
@@ -182,6 +183,26 @@ class TestEstadosFinancieros(unittest.TestCase):
     def test_cambios_en_el_patrimonio(self):
         c = cambios_patrimonio(construir())
         self.assertEqual(c["Patrimonio final"], 300_000_000 + 89_834_891)
+
+
+class TestIndicadoresLiquidez(unittest.TestCase):
+    def test_formulas_de_la_clase(self):
+        self.assertEqual(str(indicadores.razon_corriente(300, 200)), "1.50")
+        self.assertEqual(str(indicadores.prueba_acida(300, 100, 200)), "1.00")
+        self.assertEqual(indicadores.capital_de_trabajo(300, 200), 100)
+
+    def test_pasivo_corriente_cero(self):
+        with self.assertRaises(ValueError):
+            indicadores.razon_corriente(100, 0)
+
+    def test_datos_de_ejemplo_cmpc_en_musd(self):
+        d = indicadores.diagnostico(4_365_561, 1_487_267, 2_089_423)
+        self.assertEqual((str(d["razon_corriente"]), str(d["prueba_acida"]), d["capital_de_trabajo"]), ("2.09", "1.38", 2_276_138))
+
+    def test_desde_el_libro_diario(self):
+        d, _, _ = situaciones.s02()                      # compra de mercaderías a crédito y pago al proveedor
+        ac, inv, pc = indicadores.corrientes_desde_diario(d)
+        self.assertEqual((ac, inv, pc), (3_200_000 + 608_000 - 3_808_000, 3_200_000, 0))
 
 
 if __name__ == "__main__":

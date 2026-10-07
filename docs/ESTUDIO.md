@@ -11,9 +11,11 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 | 4 | Estado de resultados (formato de la guía) | `docs/contabilidad/evaluacion-loyola-rubilar.md` | `python3 ejemplos/practica.py --ejercicio 1` (cambia el número) y luego `--solucion` |
 | 5 | Costos: costo primo, CIF, costo de ventas | `ejercicio_camisas/SOLUCION.md` | Rehaz el ejercicio de las camisas con tus propios datos |
 | 6 | Remuneraciones y Previred | `docs/contabilidad/remuneraciones.md`, `docs/previred/previred.md` | Situaciones 6 y 7 |
-| 7 | Depreciación | `docs/contabilidad/ciclo-contable-y-ppm.md` (depreciación) | Situaciones 8 y 9 |
+| 7 | Depreciación (los 4 métodos) | `docs/contabilidad/depreciacion.md` | Situaciones 8 y 9; luego arma tu planilla de suma de dígitos con otros datos |
+| 7b | Horas extras | `docs/contabilidad/horas-extras.md` | Calcula $630.000 con 2 horas (debe dar $10.500) y luego con tu sueldo |
 | 8 | **Indicadores de liquidez** | `docs/contabilidad/estados-financieros.md` (sección 6) | `python3 ejemplos/quiz_liquidez.py 1` y luego `--solucion` |
 | 9 | Normativa y apoyos del SII | `docs/normativa/`, `docs/sii/` | Verifica cada dato en sii.cl |
+| 10 | **Biblioteca de PDFs** para seguir aprendiendo | `docs/contabilidad/biblioteca-de-recursos.md` | Descarga uno y pégame el texto para incorporarlo |
 
 ## Cómo usar una clase rápida
 

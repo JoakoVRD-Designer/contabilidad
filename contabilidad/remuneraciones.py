@@ -53,3 +53,25 @@ def costo_empleador(imponible, uf, sis="0.0178", adicional_reforma="0.035", mutu
          "afc_empleador": redondear(D(base_ces) * D(cesantia_empleador)) if cesantia else 0}
     r["total_empleador"] = sum(r.values())
     return r
+
+
+def valor_hora_ordinaria(sueldo_mensual, jornada_semanal=42):
+    """Valor de la hora ordinaria con sueldo mensual, según el método de la Dirección del Trabajo.
+
+    sueldo ÷ 30 = día · × 28 = lo ganado en 4 semanas · ÷ (jornada semanal × 4) = hora.
+    Con 42 horas la hora ordinaria es sueldo × 0,0055556; con el recargo de 50 % la hora EXTRA es sueldo × 0,0083333
+    (ese es el factor que cita la Dirección del Trabajo). Jornada de 42 horas vigente desde el 26-04-2026.
+    """
+    return D(sueldo_mensual) / D(30) * D(28) / (D(jornada_semanal) * 4)
+
+
+def hora_extra(sueldo_mensual, horas, jornada_semanal=42, recargo="0.5"):
+    """Pago de horas extraordinarias (recargo mínimo de 50 %, art. 32 del Código del Trabajo).
+
+    `horas` puede ser decimal (minutos incluidos: 90 minutos = 1.5). Máximo legal pactable: 2 horas por día (art. 31).
+    Devuelve valor de la hora ordinaria, de la hora extra y pago total (pesos enteros en el total).
+    """
+    ordinaria = valor_hora_ordinaria(sueldo_mensual, jornada_semanal)
+    extra = ordinaria * (1 + D(recargo))
+    return {"hora_ordinaria": ordinaria.quantize(D("0.01")), "hora_extra": extra.quantize(D("0.01")),
+            "pago": redondear(extra * D(str(horas)))}

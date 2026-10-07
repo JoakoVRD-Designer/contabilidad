@@ -41,3 +41,40 @@ def _tabla(costo, cuotas):
         acum += dep
         filas.append((k, dep, acum, int(costo) - acum))
     return filas
+
+
+def unidades_produccion(costo, residual, unidades_totales, producidas_por_periodo):
+    """Depreciación por uso: (costo − residual) ÷ unidades totales estimadas × unidades producidas en el periodo."""
+    por_unidad = (Decimal(costo) - Decimal(residual)) / Decimal(unidades_totales)
+    if sum(producidas_por_periodo) > unidades_totales:
+        raise ValueError("Las unidades producidas superan las unidades totales estimadas")
+    filas, acum = [], 0
+    for k, u in enumerate(producidas_por_periodo, start=1):
+        dep = redondear(por_unidad * Decimal(u))
+        acum += dep
+        filas.append((k, dep, acum, int(costo) - acum))
+    return filas
+
+
+def saldo_decreciente(costo, residual, vida_util, doble=False):
+    """Saldo decreciente: una tasa fija sobre el valor en libros.
+
+    doble=False: tasa = 1 − (residual ÷ costo)^(1/n)  (llega justo al valor residual; exige residual > 0).
+    doble=True : tasa = 2 ÷ n (doble saldo decreciente); nunca baja del valor residual y el último año ajusta.
+    """
+    costo, residual = Decimal(costo), Decimal(residual)
+    if doble:
+        tasa = Decimal(2) / Decimal(vida_util)
+    else:
+        if residual <= 0:
+            raise ValueError("Con tasa 1 − (residual ÷ costo)^(1/n) el valor residual debe ser mayor que cero")
+        tasa = 1 - (residual / costo) ** (Decimal(1) / Decimal(vida_util))
+    filas, libros, acum = [], costo, 0
+    for k in range(1, vida_util + 1):
+        dep = redondear(libros * tasa)
+        if k == vida_util or libros - dep < residual:
+            dep = int(libros - residual)
+        acum += dep
+        libros = costo - acum
+        filas.append((k, dep, acum, int(libros)))
+    return filas

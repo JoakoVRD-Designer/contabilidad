@@ -1,14 +1,15 @@
 import sys
+from decimal import Decimal as D
 import unittest
 from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
-from contabilidad.depreciacion import lineal, suma_digitos_decreciente
+from contabilidad.depreciacion import lineal, saldo_decreciente, suma_digitos_decreciente, unidades_produccion
 from ejemplos.ejercicio_camisas import construir
 from ejemplos import loyola_rubilar, practica, quiz_liquidez, situaciones
-from contabilidad.remuneraciones import costo_empleador, liquidacion
+from contabilidad.remuneraciones import costo_empleador, hora_extra, liquidacion, valor_hora_ordinaria
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 from contabilidad import indicadores
 
@@ -228,6 +229,49 @@ class TestQuizLiquidez(unittest.TestCase):
         self.assertEqual(str(indicadores.razon_corriente(861_294_191, 459_498_307)), "1.87")
         self.assertEqual(indicadores.capital_de_trabajo(861_294_191, 459_498_307), 401_795_884)
         self.assertEqual(str(indicadores.prueba_acida(861_294_191, 113_382_245, 459_498_307)), "1.63")   # inventarios de la clase
+
+
+class TestHorasExtra(unittest.TestCase):
+    def test_ejemplo_de_la_direccion_del_trabajo(self):
+        r = hora_extra(800_000, 1)                       # hora ordinaria 4.444,4 → extra 6.666,6
+        self.assertEqual((str(r["hora_ordinaria"]), str(r["hora_extra"])), ("4444.44", "6666.67"))
+
+    def test_sueldo_630000_con_42_horas(self):
+        r = hora_extra(630_000, 2)
+        self.assertEqual((str(r["hora_extra"]), r["pago"]), ("5250.00", 10_500))
+
+    def test_con_45_horas_la_hora_extra_era_menor(self):
+        self.assertEqual(str(hora_extra(630_000, 1, jornada_semanal=45)["hora_extra"]), "4900.00")
+
+    def test_factor_de_la_dt_es_el_de_la_hora_extra(self):
+        ordinaria = valor_hora_ordinaria(1, 42)                     # 28 ÷ 30 ÷ 168 = 0,0055556 por peso de sueldo
+        self.assertAlmostEqual(float(ordinaria), 0.0055556, places=7)
+        self.assertAlmostEqual(float(ordinaria * D("1.5")), 0.0083333, places=7)   # factor 0,0083333 = hora EXTRA
+
+
+class TestOtrosMetodosDepreciacion(unittest.TestCase):
+    def test_unidades_de_produccion(self):
+        t = unidades_produccion(100_000, 10_000, 90_000, [20_000, 30_000, 25_000, 15_000])
+        self.assertEqual([f[1] for f in t], [20_000, 30_000, 25_000, 15_000])
+        self.assertEqual(t[-1][3], 10_000)
+
+    def test_unidades_no_pueden_pasar_el_total(self):
+        with self.assertRaises(ValueError):
+            unidades_produccion(100_000, 10_000, 10, [6, 6])
+
+    def test_saldo_decreciente_llega_al_residual(self):
+        t = saldo_decreciente(100_000, 10_000, 5)
+        self.assertEqual(t[0][1], 36_904)
+        self.assertEqual(t[-1][3], 10_000)
+
+    def test_doble_saldo_no_baja_del_residual(self):
+        t = saldo_decreciente(100_000, 10_000, 5, doble=True)
+        self.assertEqual([f[1] for f in t][:2], [40_000, 24_000])
+        self.assertEqual(t[-1][3], 10_000)
+
+    def test_suma_de_digitos_ejemplo_cinco_anios(self):
+        t = suma_digitos_decreciente(100_000, 10_000, 5)
+        self.assertEqual([f["depreciacion_ejercicio"] for f in t], [30_000, 24_000, 18_000, 12_000, 6_000])
 
 
 if __name__ == "__main__":

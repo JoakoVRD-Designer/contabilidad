@@ -218,6 +218,8 @@ class TestQuizLiquidez(unittest.TestCase):
     def test_ejemplo_de_la_clase(self):
         self.assertEqual(str(indicadores.razon_corriente(861_294_191, 459_498_307)), "1.87")
         self.assertEqual(indicadores.capital_de_trabajo(861_294_191, 459_498_307), 401_795_884)
+        # al profesor le dio 1,63 en la prueba ácida: eso implica inventarios de ≈ $112,3 millones
+        self.assertEqual(str(indicadores.prueba_acida(861_294_191, 112_311_951, 459_498_307)), "1.63")
 
 
 if __name__ == "__main__":

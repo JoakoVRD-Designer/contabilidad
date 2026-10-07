@@ -60,14 +60,14 @@ if __name__ == "__main__":
         print(solucion(ac, inv, pc))
     elif arg == "clase":
         ac, pc = 861_294_191, 459_498_307   # datos confirmados por el alumno: al profesor le dio 1,87
-        print(f"EJEMPLO DE LA CLASE (inventarios: el profesor aún no los dictó)\n  Activo corriente: ${m(ac)}\n  Pasivo corriente: ${m(pc)}\n")
+        print(f"EJEMPLO DE LA CLASE\n  Activo corriente: ${m(ac)}\n  Pasivo corriente: ${m(pc)}\n")
         print(f"1) Razón corriente = {m(ac)} ÷ {m(pc)} = {num(I.razon_corriente(ac, pc))}  → dentro del ideal de 1,5 a 2,0 (al profesor le dio 1,87)")
         print(f"3) Capital de trabajo = {m(ac)} − {m(pc)} = ${m(I.capital_de_trabajo(ac, pc))}  → positivo")
-        print("2) La prueba ácida necesita el valor de 'Inventarios' del balance: anótalo cuando el profesor lo diga.")
-        corte = ac - pc
-        print(f"\n   Pista: la prueba ácida llega a 1,0 cuando los inventarios valen ${m(corte)} (= capital de trabajo).")
-        print("   Si los inventarios son menores que eso, la prueba ácida es mayor a 1,0. Con los inventarios que dicte el profesor:")
-        print("   python3 ejemplos/quiz_liquidez.py calcular 861294191 <inventarios> 459498307")
+        print("2) Prueba ácida = (activo corriente − inventarios) ÷ pasivo corriente. Al profesor le dio 1,63.")
+        bajo, alto = ac - D("1.635") * pc, ac - D("1.625") * pc
+        print(f"   Entonces sus inventarios están entre ${m(int(bajo))} y ${m(int(alto))} (≈ ${m(ac - int(D('1.63') * pc))}); confirma el valor exacto en el balance.")
+        print(f"   Con esos inventarios: ({m(ac)} − inventarios) ÷ {m(pc)} ≈ 1,63 → sobre 1,0: paga sus deudas sin vender inventario.")
+        print("   Para comprobar con el valor exacto: python3 ejemplos/quiz_liquidez.py calcular 861294191 <inventarios> 459498307")
     else:
         n = int(arg)
         ac, inv, pc = generar(n)

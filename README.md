@@ -9,6 +9,7 @@ y balance general**, con la normativa chilena y los apoyos del SII documentados,
 |---|---|
 | `contabilidad/` | Paquete Python: plan de cuentas, asientos y libro diario, mayor, balance, estados, IVA, honorarios, depreciación. |
 | `data/plan_de_cuentas.csv` | Plan de cuentas base (se puede editar). |
+| `docs/ESTUDIO.md` | **Ruta de estudio**: orden de los temas, qué hacer y cómo comprobar. |
 | `docs/sii/` | Apoyos que ofrece el SII (facturación gratuita, F29, libros, tablas). |
 | `docs/normativa/` | Leyes y normas: Código Tributario, LIR, IVA, regímenes, NIIF para PYMES. |
 | `docs/previred/` | Previred: documentos, plazos, archivo de 105 campos, LRE, costo del empleador. |
@@ -25,6 +26,7 @@ python3 ejemplos/ejercicio_camisas.py            # libro diario + estado de resu
 python3 ejemplos/loyola_rubilar.py               # evaluación Loyola y Rubilar con libro diario completo
 python3 ejemplos/situaciones.py                  # 15 situaciones inventadas y resueltas
 python3 ejemplos/practica.py --ejercicio 7       # ejercicio aleatorio para practicar (--solucion; --verificar 300)
+python3 ejemplos/quiz_liquidez.py 3 --solucion   # ejercicio de liquidez explicado paso a paso
 ```
 
 ```python

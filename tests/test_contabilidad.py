@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, suma_digitos_decreciente
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import loyola_rubilar, practica, situaciones
+from ejemplos import loyola_rubilar, practica, quiz_liquidez, situaciones
 from contabilidad.remuneraciones import costo_empleador, liquidacion
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 from contabilidad import indicadores
@@ -203,6 +203,20 @@ class TestIndicadoresLiquidez(unittest.TestCase):
         d, _, _ = situaciones.s02()                      # compra de mercaderías a crédito y pago al proveedor
         ac, inv, pc = indicadores.corrientes_desde_diario(d)
         self.assertEqual((ac, inv, pc), (3_200_000 + 608_000 - 3_808_000, 3_200_000, 0))
+
+
+class TestQuizLiquidez(unittest.TestCase):
+    def test_solucion_es_consistente_con_los_indicadores(self):
+        ac, inv, pc = quiz_liquidez.generar(3)
+        texto = quiz_liquidez.solucion(ac, inv, pc)
+        self.assertIn(quiz_liquidez.num(indicadores.razon_corriente(ac, pc)), texto)
+        self.assertIn(quiz_liquidez.num(indicadores.prueba_acida(ac, inv, pc)), texto)
+
+    def test_mismo_numero_mismo_ejercicio(self):
+        self.assertEqual(quiz_liquidez.generar(5), quiz_liquidez.generar(5))
+
+    def test_ejemplo_de_la_clase(self):
+        self.assertEqual(str(indicadores.razon_corriente(861_294_282, 498_307_000)), "1.73")
 
 
 if __name__ == "__main__":

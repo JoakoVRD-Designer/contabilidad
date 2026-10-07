@@ -34,6 +34,13 @@ def capital_de_trabajo(activo_corriente, pasivo_corriente):
     return activo_corriente - pasivo_corriente
 
 
+def porcentaje(parte, total):
+    """Qué porcentaje es la parte del total: parte ÷ total × 100 (2 decimales)."""
+    if total == 0:
+        raise ValueError("El total es cero")
+    return (D(parte) / D(total) * 100).quantize(D("0.01"), rounding=ROUND_HALF_UP)
+
+
 def _juicio_razon(r):
     if r < D("1"):
         return "menor a 1,0: el activo corriente no alcanza a cubrir las deudas de corto plazo"

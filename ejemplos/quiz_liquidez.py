@@ -58,6 +58,16 @@ if __name__ == "__main__":
         print(enunciado("CÁLCULO CON TUS DATOS", ac, inv, pc))
         print()
         print(solucion(ac, inv, pc))
+    elif arg == "clase2":
+        ac, inv, pc = 861_294_191, 93_370_770, 508_778_498   # segundo balance de la clase (otro año)
+        d = I.diagnostico(ac, inv, pc)
+        print(f"SEGUNDO EJEMPLO DE LA CLASE (otro año)\n  Activo corriente: ${m(ac)}\n  Inventarios: ${m(inv)}\n  Pasivo corriente: ${m(pc)}\n")
+        print(solucion(ac, inv, pc))
+        ct = d["capital_de_trabajo"]
+        print("\nPORCENTAJES (parte ÷ total × 100, con el activo corriente como 100 %)")
+        print(f"  Capital de trabajo ÷ Activo corriente × 100 = {m(ct)} ÷ {m(ac)} × 100 = {num(I.porcentaje(ct, ac))} %")
+        print(f"  Pasivo corriente ÷ Activo corriente × 100 = {m(pc)} ÷ {m(ac)} × 100 = {num(I.porcentaje(pc, ac))} %")
+        print(f"  Inventarios ÷ Activo corriente × 100 = {m(inv)} ÷ {m(ac)} × 100 = {num(I.porcentaje(inv, ac))} %")
     elif arg == "clase":
         ac, pc = 861_294_191, 459_498_307   # datos confirmados por el alumno: al profesor le dio 1,87
         print(f"EJEMPLO DE LA CLASE\n  Activo corriente: ${m(ac)}\n  Pasivo corriente: ${m(pc)}\n")

@@ -4,6 +4,7 @@ Uso:
     python3 ejemplos/quiz_liquidez.py 3              # ejercicio N°3 (solo el enunciado: intenta resolverlo)
     python3 ejemplos/quiz_liquidez.py 3 --solucion   # con la explicación paso a paso
     python3 ejemplos/quiz_liquidez.py clase          # el ejemplo que dictó el profesor
+    python3 ejemplos/quiz_liquidez.py calcular AC INV PC   # tus propios números (pesos enteros, sin puntos)
 El mismo número siempre da el mismo ejercicio.
 """
 import random
@@ -52,12 +53,21 @@ def solucion(ac, inv, pc):
 
 if __name__ == "__main__":
     arg = sys.argv[1] if len(sys.argv) > 1 else "1"
-    if arg == "clase":
+    if arg == "calcular":
+        ac, inv, pc = (int(x) for x in sys.argv[2:5])
+        print(enunciado("CÁLCULO CON TUS DATOS", ac, inv, pc))
+        print()
+        print(solucion(ac, inv, pc))
+    elif arg == "clase":
         ac, pc = 861_294_282, 498_307_000   # el profesor dictó "498.307": se completaron los miles (ver docs)
         print(f"EJEMPLO DE LA CLASE (inventarios: el profesor aún no los dictó)\n  Activo corriente: ${m(ac)}\n  Pasivo corriente: ${m(pc)} (≈)\n")
         print(f"1) Razón corriente = {m(ac)} ÷ {m(pc)} = {num(I.razon_corriente(ac, pc))}  → dentro del ideal de 1,5 a 2,0")
         print(f"3) Capital de trabajo = {m(ac)} − {m(pc)} = ${m(I.capital_de_trabajo(ac, pc))}  → positivo")
         print("2) La prueba ácida necesita el valor de 'Inventarios' del balance: anótalo cuando el profesor lo diga.")
+        corte = ac - pc
+        print(f"\n   Pista: la prueba ácida llega a 1,0 cuando los inventarios valen ${m(corte)} (= capital de trabajo).")
+        print("   Si los inventarios son menores que eso, la prueba ácida es mayor a 1,0. Con los inventarios que dicte el profesor:")
+        print("   python3 ejemplos/quiz_liquidez.py calcular 861294282 <inventarios> 498307000")
     else:
         n = int(arg)
         ac, inv, pc = generar(n)

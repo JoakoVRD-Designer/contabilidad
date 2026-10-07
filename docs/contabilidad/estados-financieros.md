@@ -81,6 +81,11 @@ Evalúan la **capacidad de pago a corto plazo sin asfixiar la caja**. *Activo co
 
 Código: `contabilidad.indicadores.razon_corriente()`, `prueba_acida()`, `capital_de_trabajo()`, `diagnostico()` y `corrientes_desde_diario(diario)`.
 
+**Cómo leer el resultado:** un valor más alto significa **más holgura** para pagar las deudas de corto plazo, no que la empresa tenga más compromisos. Pasarse mucho de 2,0 puede
+indicar recursos ociosos; quedar bajo 1,0 indica que el activo corriente no alcanza para cubrir las deudas.
+
+**Truco útil:** la prueba ácida es 1,0 justo cuando los inventarios valen lo mismo que el capital de trabajo. Si los inventarios son menores, la prueba ácida es mayor a 1,0.
+
 ### Ejemplo con datos reales (para practicar)
 
 Cifras de un resumen de búsqueda del estado de situación financiera consolidado al 30 de junio de 2026, en **millones de dólares (MUS$)**.

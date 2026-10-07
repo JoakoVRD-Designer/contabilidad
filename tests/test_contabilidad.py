@@ -216,7 +216,8 @@ class TestQuizLiquidez(unittest.TestCase):
         self.assertEqual(quiz_liquidez.generar(5), quiz_liquidez.generar(5))
 
     def test_ejemplo_de_la_clase(self):
-        self.assertEqual(str(indicadores.razon_corriente(861_294_282, 498_307_000)), "1.73")
+        self.assertEqual(str(indicadores.razon_corriente(861_294_191, 459_498_307)), "1.87")
+        self.assertEqual(indicadores.capital_de_trabajo(861_294_191, 459_498_307), 401_795_884)
 
 
 if __name__ == "__main__":

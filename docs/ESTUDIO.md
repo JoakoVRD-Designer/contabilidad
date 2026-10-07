@@ -18,7 +18,7 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 ## Cómo usar una clase rápida
 
 1. **Antes**: lee el tema de la tabla (10 minutos). Así la clase deja de ser nueva.
-2. **Durante**: anota solo **números y fórmulas** tal como las dicta el profesor (por ejemplo "activo corriente 861.294.282"), con la unidad (pesos, miles, millones).
+2. **Durante**: anota solo **números y fórmulas** tal como las dicta el profesor (por ejemplo "activo corriente 861.294.191"), con la unidad (pesos, miles, millones).
    Si algo no cuadra con lo que sabes, escribe una "?" y sigue.
 3. **Después (el mismo día)**: resuelve a mano el ejercicio con esos números y compara con el programa. Si no coincide, hay un error: encuéntralo.
 4. **Explícalo en voz alta** en tres frases ("la razón corriente mide cuántos pesos de activo líquido hay por cada peso de deuda de corto plazo"). Si no puedes, vuelve a *Leer*.

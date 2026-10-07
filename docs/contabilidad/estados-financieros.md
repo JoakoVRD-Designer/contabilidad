@@ -86,6 +86,19 @@ indicar recursos ociosos; quedar bajo 1,0 indica que el activo corriente no alca
 
 **Truco útil:** la prueba ácida es 1,0 justo cuando los inventarios valen lo mismo que el capital de trabajo. Si los inventarios son menores, la prueba ácida es mayor a 1,0.
 
+### Qué datos buscar en el balance (estado de situación financiera)
+
+Solo **tres** datos, siempre del mismo balance, de la misma fecha y en la misma unidad:
+
+| Dato | Cómo aparece en el balance | Para qué se usa |
+|---|---|---|
+| **Activo corriente** | "Total activos corrientes" (no "Total activos") | Razón corriente, prueba ácida, capital de trabajo |
+| **Pasivo corriente** | "Total pasivos corrientes" (no "Total pasivos") | Los tres indicadores |
+| **Inventarios** | "Inventarios" o "Existencias", dentro del activo corriente | Solo la prueba ácida |
+
+Cuidado con: confundir *total activos* con *total activos corrientes*; mezclar unidades (pesos, miles de pesos, millones de dólares); mezclar balance individual con consolidado;
+y comparar fechas distintas. Ejemplo de la clase: 861.294.191, 459.498.307 y 113.382.245 → razón 1,87, prueba ácida 1,63, capital de trabajo $401.795.884 (46,65 % del activo corriente).
+
 ### Ejemplo con datos reales (para practicar)
 
 Cifras de un resumen de búsqueda del estado de situación financiera consolidado al 30 de junio de 2026, en **millones de dólares (MUS$)**.

@@ -35,3 +35,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - No fijarse en la **unidad** (pesos, miles de pesos, millones de dólares) al comparar empresas.
 - Dar por buena una cifra sin **comprobar** que el balance cuadra.
 - [Clase: financiera vs administrativa, liquidez y banco](contabilidad/clase-financiera-vs-administrativa.md)
+- [Caso integrador: panadería, sucursal y crédito](contabilidad/caso-panaderia.md)

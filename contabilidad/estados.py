@@ -49,7 +49,9 @@ def estado_resultados(diario):
 
 def balance_general(diario):
     s = _saldos(diario)
-    activo = _suma(diario, s, tipo="activo")
+    # Las cuentas de activo de naturaleza acreedora (depreciación acumulada) RESTAN del activo.
+    activo = sum(v if diario.plan[c].naturaleza == "deudora" else -v
+                 for c, v in s.items() if diario.plan[c].tipo == "activo")
     pasivo = _suma(diario, s, tipo="pasivo")
     patrimonio = _suma(diario, s, tipo="patrimonio")
     resultado = estado_resultados(diario)["Utilidad neta"]

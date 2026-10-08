@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, saldo_decreciente, suma_digitos_decreciente, unidades_produccion
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import loyola_rubilar, practica, quiz_liquidez, situaciones
+from ejemplos import caso_panaderia, loyola_rubilar, practica, quiz_liquidez, situaciones
 from contabilidad.remuneraciones import costo_empleador, hora_extra, liquidacion, valor_hora_ordinaria
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 from contabilidad import indicadores
@@ -272,6 +272,19 @@ class TestOtrosMetodosDepreciacion(unittest.TestCase):
     def test_suma_de_digitos_ejemplo_cinco_anios(self):
         t = suma_digitos_decreciente(100_000, 10_000, 5)
         self.assertEqual([f["depreciacion_ejercicio"] for f in t], [30_000, 24_000, 18_000, 12_000, 6_000])
+
+
+class TestCasoPanaderia(unittest.TestCase):
+    def test_el_caso_cuadra_y_la_depreciacion_resta_del_activo(self):
+        d = caso_panaderia.construir()
+        balance_comprobacion(d)
+        b = balance_general(d)          # lanza error si el activo no iguala pasivo + patrimonio
+        self.assertEqual(b["Activo"], 36_171_567)
+        self.assertEqual(estado_resultados(d)["Utilidad neta"], 2_093_287)
+        self.assertEqual(flujo_efectivo(d)["variacion_neta"], 26_054_900)
+
+    def test_cuota_del_credito(self):
+        self.assertEqual(caso_panaderia.cuota_mensual(15_000_000, D("0.012"), 36), 515_583)
 
 
 if __name__ == "__main__":

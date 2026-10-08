@@ -20,7 +20,7 @@
 | Inventarios | $113.382.245 | $93.370.770 |
 | Pasivo corriente | $459.498.307 | $508.778.498 |
 
-*(El activo corriente de los dos balances es el mismo según lo que anotaste: confírmalo.)*
+*(Confirmado por el alumno: el activo corriente se repite en los dos balances, 861.294.191.)*
 
 ## Balance 1
 

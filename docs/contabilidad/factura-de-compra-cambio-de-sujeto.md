@@ -52,7 +52,7 @@ Con retención parcial, el proveedor cobra además el IVA no retenido. En códig
 
 ## 4. Formulario 29 (declaración y pago mensual)
 
-> ⚠️ **Corregido:** el código 39 de la tabla de abajo (IVA retenido sumado a los débitos) viene de software de terceros y **no coincide con la plantilla del profesor**. Usa las líneas de `docs/tareas/trabajo-juan-castillo.md` (líneas 5, 6, 14 y 25).
+> ⚠️ **Aclaración:** el código 39 (retención total) va en el **reverso** del F29 y se suma al total a pagar, no a los débitos; la retención parcial es el 554 y el 596 suma las retenciones. Detalle y fuentes en `docs/tareas/trabajo-juan-castillo.md`.
 
 Códigos que aparecen en tu foto del F29 y en los programas revisados:
 

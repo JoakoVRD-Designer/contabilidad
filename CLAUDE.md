@@ -35,7 +35,7 @@
 
 ## Profesores
 - Carmen: guía INSUCO (balance de comprobación y saldos, libro mayor) → resuelta, tema claro.
-- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (Matius Loyola, Diego Quintana, Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Falta: resolución real ⚠️, qué DJ pide, logo. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
+- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (Matius Loyola, Diego Quintana, Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Regla del profe: solo se inventan los montos; lo demás sigue la norma (Res. 4095/2000 retención total, F29 cód. 39/596, DJ F3500). Falta: adjuntar resolución oficial, logo. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
 - Rafael: trabajo en grupo en Excel (libro diario, libro mayor, balance, estado de resultados y demás) → viene después de Juan Castillo.
 
 ## Clases cubiertas

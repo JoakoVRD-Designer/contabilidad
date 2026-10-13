@@ -28,42 +28,48 @@ Portada 5 % · Introducción 5 % · Resolución 5 % · Diseño factura 20 % · R
 - **Con margen:** cigarrillos, gas licuado, tarjetas telefónicas.
 - **Productos silvestres no aparece en las diapositivas**: el porcentaje hay que sacarlo de la resolución (⚠️ pendiente).
 
-## Resolución de productos silvestres ⚠️ (sii.cl bloqueado: resúmenes de búsqueda, no el texto oficial)
+## Regla de trabajo del profesor
+Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigue la norma.
 
-- Se mencionan las **Res. Ex. SII N° 5776 de 1999 y N° 4095 de 2000** (rosa mosqueta, mora, hongos, boldo, entre otros); el comprador emite factura de compra y retiene el IVA. La versión de 1999 habla de 18 %; la de 2000 menciona retención total en ciertos casos. No pude confirmar el porcentaje vigente.
-- Fuentes: [Res. 5776/1999](https://www.sii.cl/documentos/resoluciones/1999/r577699.htm), [Res. 4095/2000](https://www.sii.cl/documentos/resoluciones/2000b/reso4095.htm), [Res. 2/2018](https://www.sii.cl/normativa_legislacion/resoluciones/2018/reso2.pdf).
-- **Falta:** abrir la resolución en el computador del liceo y copiar número, fecha, lista de productos y porcentaje. Ese texto se adjunta al trabajo.
+## Normativa de productos silvestres ⚠️ (de resúmenes de búsqueda: sii.cl no se puede abrir desde aquí; hay que contrastar con el texto oficial)
 
-## F29: líneas según la plantilla del profesor
+- **Resolución Exenta SII N° 4095 del 25-08-2000:** cambio de sujeto en productos silvestres. El comprador emite **factura de compra**, retiene el IVA y lo declara y paga; el vendedor no emite factura. La retención es **total** (100 % del IVA; en 1999-2000 era 18 % porque esa era la tasa del IVA). La Res. N° 2 de 2018 mantiene el régimen.
+- **Productos:** rosa mosqueta, mora, hongos, frutos de espino, hojas de boldo, tilo, manzanilla, llantén, toronjil, cedrón, hierbas pectorales, romero, quillay, hierba de hipérico y cera de abeja.
+- **Documento:** factura de compra electrónica, DTE tipo **46** (45 en papel). En el libro de compras el IVA retenido total lleva el **código 15**.
+- **F29 (agente retenedor):** factura de compra emitida en la **línea 25** (519 / 520); IVA retenido en el **reverso: código 39** (retención total; línea 118 en las instrucciones de nov-2024, el N° de línea cambia según el año) y **554** si fuera parcial; **596** = total de retenciones.
+- **F29 (vendedor retenido):** línea 5 (515 / 587) si es retención total; líneas 6 (720) y 14 (516 / 517) si es parcial.
+- **Declaración jurada: F3500**, informe mensual de retenedores de cambio de sujeto. Plazo: hasta el **día 15** del mes siguiente (si no es hábil, el siguiente hábil); se presenta aunque no haya movimiento; un registro por operación. Códigos de producto: **3101** rosa mosqueta, **3102** mora, **3103** hongos, **3104** frutos de espino, **3105** hojas de boldo, **3106** tilo. Columnas: RUT del vendedor, código de producto, tipo de documento, cantidad, unidad de medida, IVA retenido. No la presentan los facturadores electrónicos que documentan todo por ese medio y envían su libro de compras y ventas (aquí se hace igual porque el profesor la pide).
+- Fuentes: [Res. 4095/2000](https://www.sii.cl//documentos/resoluciones/2000b/reso4095.htm), [instrucciones F3500](https://www.sii.cl/declaraciones_juradas/instrucciones_f3500.html), [formulario F3500](https://www.sii.cl/formularios/imagen/F3500.pdf), [instrucciones F29 nov-2024](https://www.sii.cl/servicios_online/instrucciones_f29_20241112.pdf), [productos afectos (Laudus)](https://laudus.cl/contenidos/contabilidad-sii/productos-afectos-cambio-sujeto-iva-facturas-compra/).
+- **Aclaración:** el código 39 sí corresponde al IVA retenido total (lo había puesto en una versión anterior y luego lo "corregí" mal). Lo que no hacía bien era sumarlo a los débitos: va en el reverso y se suma al total a pagar.
+
+## F29: líneas del anverso según la plantilla del profesor
 
 | Línea | Código | Qué se registra |
 |---|---|---|
-| 5 | 515 / 587 | Facturas de compra recibidas con **retención total** (vendedor retenido) |
+| 5 | 515 / 587 | Facturas de compra recibidas con retención total (vendedor retenido) |
 | 6 | 720 | Retención parcial: total neto (vendedor retenido) |
-| 14 | 516 / 517 | Facturas de compra recibidas con **retención parcial** (vendedor retenido) |
+| 14 | 516 / 517 | Facturas de compra recibidas con retención parcial (vendedor retenido) |
 | 7 | 503 / 502 | Facturas emitidas: débito |
-| 25 | 519 / 520 | Facturas recibidas del giro **y facturas de compra emitidas**: crédito (comprador) |
+| 25 | 519 / 520 | Facturas recibidas del giro y facturas de compra emitidas: crédito (comprador) |
 | 20 / 42 | 538 / 537 | Total débitos / total créditos |
 | 43 | 89 | IVA determinado |
 | 52 | 62 | PPM |
 | — | 91 | Total a pagar |
 
-**Corrección:** antes escribí que el código 39 era el IVA retenido y que se sumaba a los débitos. La plantilla del profesor no lo muestra así. El IVA retenido por el comprador va en el **reverso** del F29 (la plantilla trae solo el anverso), y ese código hay que confirmarlo en el formulario del SII ⚠️.
-
 ## Archivos generados (datos de ejemplo, editables)
 
-- `trabajo_juan_castillo/cambio_sujeto_silvestres.xlsx`: **la plantilla del profesor rellena** (L. COMPRAS, L. VENTAS, FORMULARIO 29) con 5 compras y 5 ventas, más hojas Parámetros, Facturas de compra, Libro diario y DJ retenciones. Todo con fórmulas.
+- `trabajo_juan_castillo/cambio_sujeto_silvestres.xlsx`: **la plantilla del profesor rellena** (L. COMPRAS, L. VENTAS, FORMULARIO 29) con 5 compras y 5 ventas, más hojas Parámetros, Facturas de compra, Libro diario y DJ F3500. Todo con fórmulas.
 - `trabajo_juan_castillo/cambio_sujeto_silvestres.docx`: informe con el formato pedido (Arial 12, 1,5, márgenes) y las 9 secciones.
 - Se regeneran con `python3 ejemplos/trabajo_juan_castillo.py`.
 - Resultado del ejemplo: compras netas 5.650.000 · IVA retenido 1.073.500 · ventas netas 7.000.000 (IVA 1.330.000) · IVA determinado 256.500 · PPM 70.000 · **total F29 1.400.000**; el libro diario cuadra (28.177.000).
-- ⚠️ Empresa, RUT, proveedores, clientes, kilos y precios son inventados. Retención total del IVA = hipótesis (cambiar en la hoja Parámetros).
+- Inventados: montos (kilos y precios) y nombres de personas. Los RUT son ficticios pero con dígito verificador válido. La retención total sale de la norma.
 
 ## Falta antes de entregar (lo haces tú)
 
-1. Adjuntar la resolución (número, fecha, lista de productos, porcentaje) y ajustar la retención.
-2. Pegar el logo institucional en la portada.
-3. Confirmar con el profesor qué declaración jurada pide y el código del IVA retenido en el reverso del F29.
-4. Cambiar los datos inventados por los de tu grupo, si el profesor lo quiere.
+1. Abrir en sii.cl la Res. Ex. 4095/2000 y adjuntarla; contrastar mis datos con el texto oficial.
+2. Mirar en el F29 vigente el N° de línea del reverso donde están los códigos 39, 554 y 596.
+3. Pegar el logo institucional en la portada (la foto que tengo está muy borrosa).
+4. Confirmar con el profesor que la DJ es la F3500.
 
 ## Otro material de la carpeta
 

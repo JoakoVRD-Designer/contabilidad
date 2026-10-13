@@ -303,6 +303,7 @@ class TestRatiosDeLaClase(unittest.TestCase):
         self.assertEqual(indicadores.endeudamiento_total(400, 1000), D("40.00"))
         self.assertEqual(indicadores.endeudamiento_patrimonial(400, 600), D("0.67"))
         self.assertEqual(indicadores.margen_neto(150, 1000), D("15.00"))
+        self.assertEqual(indicadores.roe(150, 600), D("25.00"))
 
 
 class TestTrabajoJuanCastillo(unittest.TestCase):

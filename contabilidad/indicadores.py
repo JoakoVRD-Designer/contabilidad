@@ -66,6 +66,14 @@ def margen_neto(utilidad_neta, ventas_totales):
     return porcentaje(utilidad_neta, ventas_totales)
 
 
+def roe(utilidad_neta, patrimonio_neto):
+    """ROE (rentabilidad sobre el patrimonio): utilidad neta ÷ patrimonio neto × 100.
+
+    Lo usan quienes invierten en una sociedad anónima para ver la ganancia que generará su inversión en un periodo.
+    """
+    return porcentaje(utilidad_neta, patrimonio_neto)
+
+
 def _juicio_razon(r):
     if r < D("1"):
         return "menor a 1,0: el activo corriente no alcanza a cubrir las deudas de corto plazo"

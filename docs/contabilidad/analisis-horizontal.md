@@ -59,4 +59,6 @@ Razones que dieron en clase: es más rápido, evita errores de vuelto y devoluci
 | Endeudamiento patrimonial | pasivo total ÷ patrimonio neto | Por cada $1 que ponen los dueños, la empresa debe tantos pesos a terceros |
 | Margen neto de utilidad | utilidad neta ÷ ventas totales × 100 | De cada $100 que vende la empresa, cuántos quedan como ganancia neta real |
 
-Código: `indicadores.endeudamiento_total`, `endeudamiento_patrimonial`, `margen_neto`.
+| **ROE** (rentabilidad sobre el patrimonio) | utilidad neta ÷ patrimonio neto × 100 | Ganancia que generará la inversión de quienes ponen plata en una sociedad anónima durante un periodo; se expresa en % |
+
+Código: `indicadores.endeudamiento_total`, `endeudamiento_patrimonial`, `margen_neto`, `roe`.

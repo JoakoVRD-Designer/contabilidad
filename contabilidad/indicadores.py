@@ -41,6 +41,16 @@ def porcentaje(parte, total):
     return (D(parte) / D(total) * 100).quantize(D("0.01"), rounding=ROUND_HALF_UP)
 
 
+def variacion(anterior, actual):
+    """Análisis horizontal: el año más antiguo es la base (100 %).
+
+    Devuelve (porcentaje del actual sobre la base, variación en %, variación en pesos).
+    Más de 100 % = variación positiva; menos de 100 % = variación negativa.
+    """
+    pct = porcentaje(actual, anterior)
+    return pct, pct - 100, actual - anterior
+
+
 def _juicio_razon(r):
     if r < D("1"):
         return "menor a 1,0: el activo corriente no alcanza a cubrir las deudas de corto plazo"

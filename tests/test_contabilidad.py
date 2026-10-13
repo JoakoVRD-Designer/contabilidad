@@ -287,6 +287,14 @@ class TestCasoPanaderia(unittest.TestCase):
         self.assertEqual(caso_panaderia.cuota_mensual(15_000_000, D("0.012"), 36), 515_583)
 
 
+class TestVariacion(unittest.TestCase):
+    def test_variacion_del_disponible_de_la_clase(self):
+        pct, var, pesos = indicadores.variacion(250_326_400, 263_140_620)
+        self.assertEqual((pct, var, pesos), (D("105.12"), D("5.12"), 12_814_220))
+        self.assertEqual(indicadores.variacion(250_326_460, 263_140_620)[0], D("105.12"))   # con el otro valor dictado da igual
+        self.assertLess(indicadores.variacion(200, 150)[1], 0)
+
+
 class TestTrabajoJuanCastillo(unittest.TestCase):
     def test_numeros_y_libro_diario_cuadran(self):
         c = trabajo_juan_castillo.calculos()

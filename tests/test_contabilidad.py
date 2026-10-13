@@ -290,15 +290,16 @@ class TestCasoPanaderia(unittest.TestCase):
 class TestTrabajoJuanCastillo(unittest.TestCase):
     def test_numeros_y_libro_diario_cuadran(self):
         c = trabajo_juan_castillo.calculos()
-        self.assertEqual((c["neto"], c["retenido"], c["total_f29"]), (3_800_000, 722_000, 1_200_000))
+        self.assertEqual((c["neto_c"], c["retenido"], c["determinado"], c["total_f29"]), (5_650_000, 1_073_500, 256_500, 1_400_000))
+        self.assertEqual((len(c["compras"]), len(c["ventas"])), (5, 5))     # la consigna pide 5 compras y 5 ventas
         d = LibroDiario(PlanDeCuentas.desde_csv())
         for fecha, glosa, lineas in trabajo_juan_castillo.asientos(c):
-            d.registrar(date(2026, 6, 1), glosa, lineas)      # lanza error si algún asiento no cuadra
+            d.registrar(fecha, glosa, lineas)      # lanza error si algún asiento no cuadra
         balance_comprobacion(d)
 
     def test_retencion_parcial_deja_iva_al_proveedor(self):
         c = trabajo_juan_castillo.calculos(retencion=D("0.5"))
-        self.assertEqual(c["retenido"], 361_000)
+        self.assertEqual(c["retenido"], 536_750)
 
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores.
 - `data/plan_de_cuentas.csv` plan de cuentas.
-- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, caso_panaderia, trabajo_juan_castillo (genera Excel y Word).
+- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, caso_panaderia, trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
 - `tests/test_contabilidad.py` (49 pruebas).
 
@@ -35,7 +35,7 @@
 
 ## Profesores
 - Carmen: guía INSUCO (balance de comprobación y saldos, libro mayor) → resuelta, tema claro.
-- Juan Castillo: trabajo grupal "cambio de sujeto de IVA", producto asignado: productos silvestres (puntaje y plan en `docs/tareas/trabajo-juan-castillo.md`). Falta: texto de la Res. 4095/2000 ⚠️, empresa y datos, qué DJ pide.
+- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (Matius Loyola, Diego Quintana, Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Falta: resolución real ⚠️, qué DJ pide, logo. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
 - Rafael: trabajo en grupo en Excel (libro diario, libro mayor, balance, estado de resultados y demás) → viene después de Juan Castillo.
 
 ## Clases cubiertas

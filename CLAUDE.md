@@ -41,6 +41,7 @@
 ## Clases cubiertas
 Variación porcentual entre dos años (año antiguo = 100 %; positiva >100, negativa <100), grupos del activo corriente, ratios de endeudamiento total y patrimonial, margen neto y ROE (utilidad neta ÷ patrimonio neto × 100). Costos y estado de resultados (camisas), Loyola y Rubilar, cuatro estados financieros, características de la información, liquidez, contabilidad financiera vs administrativa, balance tributario (8 columnas) vs financiero.
 Próxima nota: trabajo en grupo en Excel con libro diario, mayor y balance.
+Tarea de ratios con el estado financiero de AFP Capital (FECU, NIIF, cifras en miles de pesos, año 2025 primero): se hace el jueves; el profesor la sube a Classroom.
 
 ## Pendientes
 Resolución SII cambio de sujeto ⚠️ · mutual 0,93 % y AFC 2,4 % ⚠️ · cifras CMPC/Copec ⚠️ · "F3500" ⚠️ · plantilla Excel para la última nota.

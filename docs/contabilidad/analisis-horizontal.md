@@ -77,3 +77,18 @@ Siete datos en total: activo corriente, pasivo corriente, activo total, pasivo t
 - Las sociedades anónimas deben presentar estados financieros **cada tres meses**: al 31 de marzo, 30 de junio, 30 de septiembre y 31 de diciembre. Son **cuatro estados financieros al año**.
 - ⚠️ En los estados reales los nombres cambian ("total activos corrientes", "ganancia del periodo", "ingresos de actividades ordinarias"). Pregunta al profesor qué partida toma como ventas totales y como utilidad neta, y si usa el valor del trimestre o el acumulado al cierre.
 - Calcular todo de una vez: `python3 ejemplos/quiz_ratios.py AC PC ACTIVO_TOTAL PASIVO_TOTAL PATRIMONIO UTILIDAD VENTAS`.
+
+## Cómo leer el estado financiero real (FECU, NIIF)
+
+- **FECU** (Ficha Estadística Codificada Uniforme): el informe financiero que presentan las sociedades; se prepara con las **Normas Internacionales de Información Financiera (NIIF)**.
+- **Identificación:** período del 1 de enero al 31 de diciembre, moneda peso chileno y cifras **expresadas en miles de pesos** (la cifra 1.000 significa $1.000.000).
+- **Orden de las columnas:** el año **más reciente aparece primero** (2025) y el anterior después (2024), al revés de como lo anotamos en clase. Ojo al calcular la variación: la **base (100 %) es el año antiguo, 2024**.
+- **Unidades:** los ratios y las variaciones porcentuales dan lo mismo en pesos o en miles de pesos, siempre que todos los datos estén en la misma unidad. Solo hay que multiplicar por 1.000 si piden el valor en pesos.
+
+**Posibles causas de que baje el efectivo de una AFP** (ejemplo del profesor, sin tener la información real):
+1. Menos cotizantes (las empresas pagan las cotizaciones por transferencia vía Previred).
+2. Más trabajadores cesantes, lo que reduce los ingresos.
+3. Personas que ganan menos.
+Antes (pandemia) otra causa fueron los retiros del 10 % de los fondos.
+
+**Tarea (se hace el jueves; el profesor la sube a Classroom):** buscar en el estado financiero de AFP Capital el activo corriente de 2025 y los demás conceptos de la tabla de ratios. Calcula con `python3 ejemplos/quiz_ratios.py ...`.

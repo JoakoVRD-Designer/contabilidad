@@ -33,3 +33,30 @@ Se presentan dos años seguidos para conocer la **variación**, positiva o negat
 ⚠️ El profesor dijo "250 millones 326.460" y después "326.400". Con cualquiera de los dos el resultado es 105,12 % (la variación en pesos cambia: 12.814.160 con 326.460). Confirma cuál es el valor correcto.
 
 Código: `contabilidad.indicadores.variacion(anterior, actual)` devuelve (porcentaje sobre la base, variación %, variación en pesos).
+
+## Variación negativa: las existencias
+
+| | Valor | Porcentaje |
+|---|---:|---:|
+| Año anterior (base) | 383.510.000 | 100 % |
+| Año siguiente | 298.140.600 | X |
+
+X = 298.140.600 × 100 ÷ 383.510.000 = **77,74 %** → no llega al 100 %, la variación es **negativa**.
+Disminución = 100 − 77,74 = **22,26 %** (el profesor dijo 77,7 y 22,3; en la clase se le escapó "77,3"). En pesos: −85.369.400.
+
+**Posibles causas:** se vendió más antes del cierre (¿subió el disponible o las cuentas por cobrar?); si no, buscar otra razón, por ejemplo vender más barato.
+Cada empresa tiene su situación concreta: el cálculo dice cuánto cambió, el análisis dice por qué.
+
+## Ejemplo de causa: más pagos electrónicos que en efectivo
+
+Razones que dieron en clase: es más rápido, evita errores de vuelto y devolución, y a algunas personas les "duele menos" pagar con tarjeta. Es subjetivo; sirve para explicar por qué subió el disponible en el banco.
+
+## Ratios que vienen (los vas a calcular y luego decir qué ratio corresponde)
+
+| Ratio | Fórmula | Cómo se lee |
+|---|---|---|
+| Endeudamiento total | pasivo total ÷ activo total (× 100) | Porcentaje de los activos financiado con deuda de terceros; el resto son recursos propios |
+| Endeudamiento patrimonial | pasivo total ÷ patrimonio neto | Por cada $1 que ponen los dueños, la empresa debe tantos pesos a terceros |
+| Margen neto de utilidad | utilidad neta ÷ ventas totales × 100 | De cada $100 que vende la empresa, cuántos quedan como ganancia neta real |
+
+Código: `indicadores.endeudamiento_total`, `endeudamiento_patrimonial`, `margen_neto`.

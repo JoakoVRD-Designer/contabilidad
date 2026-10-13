@@ -51,6 +51,21 @@ def variacion(anterior, actual):
     return pct, pct - 100, actual - anterior
 
 
+def endeudamiento_total(pasivo_total, activo_total):
+    """Porcentaje de los activos que financia deuda de terceros: pasivo total ÷ activo total × 100 (el resto son recursos propios)."""
+    return porcentaje(pasivo_total, activo_total)
+
+
+def endeudamiento_patrimonial(pasivo_total, patrimonio_neto):
+    """Por cada $1 que aportan los dueños, la empresa debe tantos pesos a terceros: pasivo total ÷ patrimonio neto."""
+    return _ratio(pasivo_total, patrimonio_neto)
+
+
+def margen_neto(utilidad_neta, ventas_totales):
+    """Por cada $100 que vende la empresa, cuántos quedan como ganancia neta: utilidad neta ÷ ventas totales × 100."""
+    return porcentaje(utilidad_neta, ventas_totales)
+
+
 def _juicio_razon(r):
     if r < D("1"):
         return "menor a 1,0: el activo corriente no alcanza a cubrir las deudas de corto plazo"

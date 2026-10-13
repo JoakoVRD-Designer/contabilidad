@@ -295,6 +295,17 @@ class TestVariacion(unittest.TestCase):
         self.assertLess(indicadores.variacion(200, 150)[1], 0)
 
 
+class TestRatiosDeLaClase(unittest.TestCase):
+    def test_variacion_negativa_de_las_existencias(self):
+        pct, var, pesos = indicadores.variacion(383_510_000, 298_140_600)
+        self.assertEqual((pct, var, pesos), (D("77.74"), D("-22.26"), -85_369_400))
+
+    def test_ratios_de_endeudamiento_y_margen(self):
+        self.assertEqual(indicadores.endeudamiento_total(400, 1000), D("40.00"))
+        self.assertEqual(indicadores.endeudamiento_patrimonial(400, 600), D("0.67"))
+        self.assertEqual(indicadores.margen_neto(150, 1000), D("15.00"))
+
+
 class TestTrabajoJuanCastillo(unittest.TestCase):
     def test_numeros_y_libro_diario_cuadran(self):
         c = trabajo_juan_castillo.calculos()

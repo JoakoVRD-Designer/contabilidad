@@ -22,15 +22,15 @@ Se presentan dos años seguidos para conocer la **variación**, positiva o negat
 
 | | Valor | Porcentaje |
 |---|---:|---:|
-| Año anterior (base) | 250.326.400 | 100 % |
+| Año anterior (base) | 250.326.460 | 100 % |
 | Año siguiente | 263.140.620 | X |
 
-**X = año siguiente × 100 ÷ año anterior** = 263.140.620 × 100 ÷ 250.326.400 = **105,12 %**
+**X = año siguiente × 100 ÷ año anterior** = 263.140.620 × 100 ÷ 250.326.460 = **105,12 %**
 
 - Variación = 105,12 − 100 = **+5,12 %** (el efectivo aumentó).
-- Variación en pesos = 263.140.620 − 250.326.400 = **12.814.220**.
+- Variación en pesos = 263.140.620 − 250.326.460 = **12.814.160**.
 
-⚠️ El profesor dijo "250 millones 326.460" y después "326.400". Con cualquiera de los dos el resultado es 105,12 % (la variación en pesos cambia: 12.814.160 con 326.460). Confirma cuál es el valor correcto.
+Dato confirmado por el alumno: el efectivo del año anterior es **250.326.460** (en clase se dictó también como 326.400).
 
 Código: `contabilidad.indicadores.variacion(anterior, actual)` devuelve (porcentaje sobre la base, variación %, variación en pesos).
 

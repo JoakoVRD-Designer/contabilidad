@@ -289,9 +289,8 @@ class TestCasoPanaderia(unittest.TestCase):
 
 class TestVariacion(unittest.TestCase):
     def test_variacion_del_disponible_de_la_clase(self):
-        pct, var, pesos = indicadores.variacion(250_326_400, 263_140_620)
-        self.assertEqual((pct, var, pesos), (D("105.12"), D("5.12"), 12_814_220))
-        self.assertEqual(indicadores.variacion(250_326_460, 263_140_620)[0], D("105.12"))   # con el otro valor dictado da igual
+        pct, var, pesos = indicadores.variacion(250_326_460, 263_140_620)     # dato confirmado: 250.326.460
+        self.assertEqual((pct, var, pesos), (D("105.12"), D("5.12"), 12_814_160))
         self.assertLess(indicadores.variacion(200, 150)[1], 0)
 
 

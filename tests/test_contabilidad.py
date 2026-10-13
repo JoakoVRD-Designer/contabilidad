@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, saldo_decreciente, suma_digitos_decreciente, unidades_produccion
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import caso_panaderia, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones
+from ejemplos import caso_panaderia, quiz_ratios, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones
 from contabilidad.remuneraciones import costo_empleador, hora_extra, liquidacion, valor_hora_ordinaria
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 from contabilidad import indicadores
@@ -304,6 +304,16 @@ class TestRatiosDeLaClase(unittest.TestCase):
         self.assertEqual(indicadores.endeudamiento_patrimonial(400, 600), D("0.67"))
         self.assertEqual(indicadores.margen_neto(150, 1000), D("15.00"))
         self.assertEqual(indicadores.roe(150, 600), D("25.00"))
+
+
+class TestQuizRatios(unittest.TestCase):
+    def test_informe_de_ratios(self):
+        t = quiz_ratios.informe(600, 300, 1000, 400, 600, 90, 900)
+        self.assertIn("= 2,00", t)
+        self.assertIn("= 40,00 %", t)
+        self.assertIn("= 0,67", t)
+        self.assertIn("= 10,00 %", t)
+        self.assertIn("= 15,00 %", t)
 
 
 class TestTrabajoJuanCastillo(unittest.TestCase):

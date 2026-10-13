@@ -61,3 +61,19 @@ Razones que dieron en clase: es más rápido, evita errores de vuelto y devoluci
 | **ROE** (rentabilidad sobre el patrimonio) | utilidad neta ÷ patrimonio neto × 100 | Ganancia que generará la inversión de quienes ponen plata en una sociedad anónima durante un periodo; se expresa en % |
 
 Código: `indicadores.endeudamiento_total`, `endeudamiento_patrimonial`, `margen_neto`, `roe`.
+
+## Ejercicio con un estado financiero real (AFP Capital): qué concepto buscar para cada ratio
+
+| Ratio | Conceptos que hay que encontrar |
+|---|---|
+| Razón corriente | activo corriente y pasivo corriente |
+| Endeudamiento total | pasivo total y activo total |
+| Endeudamiento patrimonial | pasivo total y patrimonio neto |
+| Margen neto | utilidad neta y ventas totales |
+| ROE | utilidad neta y patrimonio neto |
+
+Siete datos en total: activo corriente, pasivo corriente, activo total, pasivo total, patrimonio neto, utilidad neta y ventas.
+
+- Las sociedades anónimas deben presentar estados financieros **cada tres meses**: al 31 de marzo, 30 de junio, 30 de septiembre y 31 de diciembre. Son **cuatro estados financieros al año**.
+- ⚠️ En los estados reales los nombres cambian ("total activos corrientes", "ganancia del periodo", "ingresos de actividades ordinarias"). Pregunta al profesor qué partida toma como ventas totales y como utilidad neta, y si usa el valor del trimestre o el acumulado al cierre.
+- Calcular todo de una vez: `python3 ejemplos/quiz_ratios.py AC PC ACTIVO_TOTAL PASIVO_TOTAL PATRIMONIO UTILIDAD VENTAS`.

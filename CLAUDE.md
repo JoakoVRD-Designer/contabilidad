@@ -15,9 +15,9 @@
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores.
 - `data/plan_de_cuentas.csv` plan de cuentas.
-- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, caso_panaderia.
+- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, caso_panaderia, trabajo_juan_castillo (genera Excel y Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (47 pruebas).
+- `tests/test_contabilidad.py` (49 pruebas).
 
 ## Fórmulas confirmadas
 - Neto = bruto ÷ 1,19; IVA 19 %. Precio con 385 % sobre costo = costo × 4,85. Prorrateo 55/25/20.

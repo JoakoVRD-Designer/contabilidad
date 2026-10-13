@@ -57,3 +57,10 @@ Con retención parcial de 50 %: retenido 95.000 y pago al proveedor 1.095.000. C
 1. ¿La empresa es inventada o el profesor da datos? Si es inventada: qué producto silvestre (rosa mosqueta, hongos, mora...) y montos.
 2. ¿Qué es la "declaración jurada mensual de retenciones" para el profesor?
 3. ¿Formato de entrega (Word) y fecha?
+
+## Archivos generados (datos de ejemplo, editables)
+
+- `trabajo_juan_castillo/cambio_sujeto_silvestres.xlsx`: hojas Parámetros, Facturas de compra, Libro de compras, Libro diario, F29 y DJ retenciones. Todo con fórmulas; cambia las celdas azules y se recalcula. Verifiqué que el libro diario cuadra y que el F29 da $1.200.000.
+- `trabajo_juan_castillo/cambio_sujeto_silvestres.docx`: informe con las 9 secciones del puntaje.
+- Se regeneran con `python3 ejemplos/trabajo_juan_castillo.py`.
+- ⚠️ Empresa, RUT, proveedores, kilos y precios son inventados. La retención del IVA (total) y la tasa de PPM son hipótesis: cámbialas en la hoja Parámetros.

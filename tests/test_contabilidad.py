@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, saldo_decreciente, suma_digitos_decreciente, unidades_produccion
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import caso_panaderia, loyola_rubilar, practica, quiz_liquidez, situaciones
+from ejemplos import caso_panaderia, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones
 from contabilidad.remuneraciones import costo_empleador, hora_extra, liquidacion, valor_hora_ordinaria
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 from contabilidad import indicadores
@@ -285,6 +285,20 @@ class TestCasoPanaderia(unittest.TestCase):
 
     def test_cuota_del_credito(self):
         self.assertEqual(caso_panaderia.cuota_mensual(15_000_000, D("0.012"), 36), 515_583)
+
+
+class TestTrabajoJuanCastillo(unittest.TestCase):
+    def test_numeros_y_libro_diario_cuadran(self):
+        c = trabajo_juan_castillo.calculos()
+        self.assertEqual((c["neto"], c["retenido"], c["total_f29"]), (3_800_000, 722_000, 1_200_000))
+        d = LibroDiario(PlanDeCuentas.desde_csv())
+        for fecha, glosa, lineas in trabajo_juan_castillo.asientos(c):
+            d.registrar(date(2026, 6, 1), glosa, lineas)      # lanza error si algún asiento no cuadra
+        balance_comprobacion(d)
+
+    def test_retencion_parcial_deja_iva_al_proveedor(self):
+        c = trabajo_juan_castillo.calculos(retencion=D("0.5"))
+        self.assertEqual(c["retenido"], 361_000)
 
 
 if __name__ == "__main__":

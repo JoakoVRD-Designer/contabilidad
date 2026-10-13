@@ -92,3 +92,10 @@ Siete datos en total: activo corriente, pasivo corriente, activo total, pasivo t
 Antes (pandemia) otra causa fueron los retiros del 10 % de los fondos.
 
 **Tarea (se hace el jueves; el profesor la sube a Classroom):** buscar en el estado financiero de AFP Capital el activo corriente de 2025 y los demás conceptos de la tabla de ratios. Calcula con `python3 ejemplos/quiz_ratios.py ...`.
+
+## Por qué una AFP puede ganar cientos de millones (comentario del profesor sobre AFP Capital)
+
+- Las AFP ganan con los **fondos de pensiones**: cobran por administrarlos y las cuentas se actualizan cada cierto tiempo.
+- Según el profesor, una reforma tributaria bajó la **garantía exigida (encaje) de 10 % a 1 %**; esa diferencia (un 9 %, cientos de millones de pesos) se **entregó a los accionistas**. Por eso, cada vez, la AFP gana más.
+- ⚠️ Es lo que dijo en clase, dictado a medias; no lo verifiqué en fuentes oficiales. No lo cites en una prueba sin confirmarlo con el profesor.
+- Para el análisis: una variación del patrimonio o de la utilidad se explica mirando esas decisiones (dividendos, garantías) además del giro del negocio.

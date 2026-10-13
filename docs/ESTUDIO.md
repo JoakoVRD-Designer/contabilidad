@@ -37,3 +37,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Clase: financiera vs administrativa, liquidez y banco](contabilidad/clase-financiera-vs-administrativa.md)
 - [Caso integrador: panadería, sucursal y crédito](contabilidad/caso-panaderia.md)
 - [Guía INSUCO: balance de comprobación y saldos](tareas/balance-de-comprobacion.md)
+- [Trabajo de Juan Castillo: cambio de sujeto, productos silvestres](tareas/trabajo-juan-castillo.md)

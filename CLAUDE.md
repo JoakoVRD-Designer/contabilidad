@@ -35,7 +35,7 @@
 
 ## Profesores
 - Carmen: guía INSUCO (balance de comprobación y saldos, libro mayor) → resuelta, tema claro.
-- Juan Castillo: trabajo sobre una empresa que vende un producto → consigna pendiente (preguntar).
+- Juan Castillo: trabajo grupal "cambio de sujeto de IVA", producto asignado: productos silvestres (puntaje y plan en `docs/tareas/trabajo-juan-castillo.md`). Falta: texto de la Res. 4095/2000 ⚠️, empresa y datos, qué DJ pide.
 - Rafael: trabajo en grupo en Excel (libro diario, libro mayor, balance, estado de resultados y demás) → viene después de Juan Castillo.
 
 ## Clases cubiertas

@@ -33,6 +33,10 @@
 - Loyola y Rubilar: ventas brutas = con IVA; utilidad neta 12.900.106.
 - Pendiente: consigna real de la tarea de liquidez (la armé por suposición).
 
+## Profesores
+- Carmen: guía INSUCO (balance de comprobación y saldos, libro mayor) → resuelta, tema claro.
+- Juan Castillo: trabajo sobre una empresa que vende un producto → consigna pendiente (preguntar).
+
 ## Clases cubiertas
 Costos y estado de resultados (camisas), Loyola y Rubilar, cuatro estados financieros, características de la información, liquidez, contabilidad financiera vs administrativa, balance tributario (8 columnas) vs financiero.
 Próxima nota: trabajo en grupo en Excel con libro diario, mayor y balance.

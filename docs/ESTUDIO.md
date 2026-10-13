@@ -36,3 +36,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - Dar por buena una cifra sin **comprobar** que el balance cuadra.
 - [Clase: financiera vs administrativa, liquidez y banco](contabilidad/clase-financiera-vs-administrativa.md)
 - [Caso integrador: panadería, sucursal y crédito](contabilidad/caso-panaderia.md)
+- [Guía INSUCO: balance de comprobación y saldos](tareas/balance-de-comprobacion.md)

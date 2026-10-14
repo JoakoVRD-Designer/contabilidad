@@ -99,3 +99,19 @@ Antes (pandemia) otra causa fueron los retiros del 10 % de los fondos.
 - Según el profesor, una reforma tributaria bajó la **garantía exigida (encaje) de 10 % a 1 %**; esa diferencia (un 9 %, cientos de millones de pesos) se **entregó a los accionistas**. Por eso, cada vez, la AFP gana más.
 - ⚠️ Es lo que dijo en clase, dictado a medias; no lo verifiqué en fuentes oficiales. No lo cites en una prueba sin confirmarlo con el profesor.
 - Para el análisis: una variación del patrimonio o de la utilidad se explica mirando esas decisiones (dividendos, garantías) además del giro del negocio.
+
+## Dónde está cada dato en el estado financiero real (nombres NIIF)
+
+| Dato que pide el profesor | Cómo se llama en el estado financiero | Dónde |
+|---|---|---|
+| Activo corriente | **Total de activos corrientes** | Estado de situación financiera |
+| Pasivo corriente | **Total de pasivos corrientes** | Estado de situación financiera |
+| Activo total | **Total de activos** | Estado de situación financiera |
+| Pasivo total | **Total de pasivos** = corrientes + no corrientes (si solo aparece el total de pasivos corrientes y no corrientes por separado, se suman) | Estado de situación financiera |
+| Patrimonio neto | **Patrimonio total** (o "patrimonio neto") | Estado de situación financiera |
+| Utilidad neta | **Ganancia (pérdida)** del ejercicio | Estado de resultados |
+| Ventas totales | **Ingresos de actividades ordinarias** | Estado de resultados |
+
+- Se toma el valor de **2025** (primera columna) y, para la variación, también el de 2024.
+- Control: **activo total = pasivo total + patrimonio total**. Si no cuadra, algún dato está mal copiado.
+- ⚠️ Busqué las cifras reales de AFP Capital 2025 en internet y no pude confirmarlas: aparecieron números que no coinciden entre sí (de la administradora y de los fondos). **No uses cifras de aquí: sácalas del PDF que sube el profesor.**

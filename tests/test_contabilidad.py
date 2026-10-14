@@ -11,7 +11,7 @@ from ejemplos.ejercicio_camisas import construir
 from ejemplos import caso_panaderia, quiz_ratios, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones
 from contabilidad.remuneraciones import costo_empleador, hora_extra, liquidacion, valor_hora_ordinaria
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
-from contabilidad import indicadores
+from contabilidad import indicadores, proyectos
 
 
 class TestAsientos(unittest.TestCase):
@@ -314,6 +314,19 @@ class TestQuizRatios(unittest.TestCase):
         self.assertIn("= 0,67", t)
         self.assertIn("= 10,00 %", t)
         self.assertIn("= 15,00 %", t)
+
+
+class TestProyectos(unittest.TestCase):
+    def test_pasos_de_mensual_a_anual(self):
+        self.assertEqual(proyectos.anual(10), 120)
+        self.assertEqual(proyectos.mensual(120), 10)
+        self.assertEqual(proyectos.ingreso_anual(10, 10_000), 1_200_000)    # 10 mesas al mes a $10.000
+
+    def test_periodo_de_recuperacion(self):
+        neto, anios, meses = proyectos.periodo_recuperacion(1_000_000, 1_200_000, 600_000)
+        self.assertEqual((neto, anios, meses), (600_000, D("1.67"), D("20.0")))
+        with self.assertRaises(ValueError):
+            proyectos.periodo_recuperacion(1_000_000, 500_000, 600_000)
 
 
 class TestTrabajoJuanCastillo(unittest.TestCase):

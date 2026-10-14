@@ -39,3 +39,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Guía INSUCO: balance de comprobación y saldos](tareas/balance-de-comprobacion.md)
 - [Trabajo de Juan Castillo: cambio de sujeto, productos silvestres](tareas/trabajo-juan-castillo.md)
 - [Clase: grupos del activo corriente y variación porcentual](contabilidad/analisis-horizontal.md)
+- [Cierre del semestre: informe de prefactibilidad y currículum vitae](tareas/prefactibilidad-y-curriculum.md)

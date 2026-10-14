@@ -5,7 +5,7 @@ from .cuentas import Cuenta, PlanDeCuentas
 from .asientos import Asiento, Linea, LibroDiario
 from .libros import libro_mayor, balance_comprobacion
 from .estados import estado_resultados, balance_general
-from . import impuestos, indicadores
+from . import impuestos, indicadores, proyectos
 
 __all__ = ["Cuenta", "PlanDeCuentas", "Asiento", "Linea", "LibroDiario", "libro_mayor",
-           "balance_comprobacion", "estado_resultados", "balance_general", "impuestos", "indicadores"]
+           "balance_comprobacion", "estado_resultados", "balance_general", "impuestos", "indicadores", "proyectos"]

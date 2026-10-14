@@ -17,9 +17,10 @@
 - `data/plan_de_cuentas.csv` plan de cuentas.
 - `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (53 pruebas).
+- `tests/test_contabilidad.py` (55 pruebas).
 
 ## Fórmulas confirmadas
+- Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
 - Neto = bruto ÷ 1,19; IVA 19 %. Precio con 385 % sobre costo = costo × 4,85. Prorrateo 55/25/20.
 - Estado de resultados: ventas − devoluciones = ventas netas − costo ventas = margen contribución − G.adm − G.ventas + ing.fin − g.fin = UAI − 27 % = utilidad neta.
 - Razón corriente = AC ÷ PC (ideal 1,5–2,0). Prueba ácida = (AC − inventario) ÷ PC. Capital de trabajo = AC − PC. Porcentaje = parte ÷ total × 100.
@@ -35,7 +36,7 @@
 
 ## Profesores
 - Carmen: guía INSUCO (balance de comprobación y saldos, libro mayor) → resuelta, tema claro.
-- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (Matius Loyola, Diego Quintana, Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Regla del profe: solo se inventan los montos; lo demás sigue la norma (Res. 4095/2000 retención total, F29 cód. 39/596, DJ F3500). Falta: adjuntar resolución oficial, logo. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
+- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (Matius Loyola, Diego Quintana, Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Regla del profe: solo se inventan los montos; lo demás sigue la norma (Res. 4095/2000 retención total SIN crédito fiscal, F29 línea 22 y reverso cód. 39/596, DJ F3500; verificado con los PDF `docs/normativa/`). Falta: adjuntar resolución oficial, logo. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
 - Rafael: trabajo en grupo en Excel (libro diario, libro mayor, balance, estado de resultados y demás) → viene después de Juan Castillo.
 
 ## Clases cubiertas
@@ -45,4 +46,4 @@ Próxima nota: trabajo en grupo en Excel con libro diario, mayor y balance.
 Tarea de ratios con el estado financiero de AFP Capital (FECU, NIIF, cifras en miles de pesos, año 2025 primero): se hace el jueves; el profesor la sube a Classroom.
 
 ## Pendientes
-Resolución SII cambio de sujeto ⚠️ · mutual 0,93 % y AFC 2,4 % ⚠️ · cifras CMPC/Copec ⚠️ · "F3500" ⚠️ · plantilla Excel para la última nota.
+Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota · PDF de AFP Capital (el alumno dijo que lo mandó; no llegó) · código 15 o 31 en el libro de compras.

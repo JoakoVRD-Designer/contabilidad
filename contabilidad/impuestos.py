@@ -83,11 +83,15 @@ def factura_de_compra(neto, porcentaje_retencion="1"):
     return neto, iva, retenido, iva - retenido, neto + iva - retenido
 
 
-def asiento_factura_de_compra(neto, cuenta_compra, porcentaje_retencion="1"):
+def asiento_factura_de_compra(neto, cuenta_compra, porcentaje_retencion="1", credito_fiscal=True):
     """Líneas (cuenta, debe, haber) del comprador para una factura de compra con retención de IVA.
 
     El IVA total de la factura es crédito fiscal del comprador (si el bien da derecho a crédito); la parte retenida
     queda como pasivo y se paga al fisco en el F29; el proveedor cobra solo el neto más el IVA no retenido.
     """
     neto, iva, retenido, no_retenido, pago = factura_de_compra(neto, porcentaje_retencion)
+    if not credito_fiscal:
+        # Productos silvestres (Res. 4095/2000): el IVA se declara y paga SIN derecho a crédito fiscal, por lo que
+        # forma parte del costo de lo comprado. ⚠️ Confirmar este tratamiento con el profesor.
+        return [(cuenta_compra, neto + iva, 0), ("2.1.01", 0, pago), ("2.1.09", 0, retenido)]
     return [(cuenta_compra, neto, 0), ("1.1.04", iva, 0), ("2.1.01", 0, pago), ("2.1.09", 0, retenido)]

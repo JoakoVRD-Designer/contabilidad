@@ -91,7 +91,7 @@ def s06():
     return d, [f"Gratificación = 25 % × 750.000 = {m(l['gratificacion'])} (bajo el tope)", f"Imponible = {m(l['total_imponible'])}",
                f"AFP 10 % {m(l['afp_10'])} + comisión {m(l['comision_afp'])} + salud 7 % {m(l['salud_7'])} + cesantía {m(l['seguro_cesantia'])} = {m(prev)}",
                f"Sueldo líquido = {m(l['total_haberes'])} − {m(prev)} = {m(l['sueldo_liquido'])}",
-               f"Costo empleador (SIS + reforma 3,5 % + mutual + AFC) = {m(e['total_empleador'])}"], {"liquido": l["sueldo_liquido"], "empleador": e["total_empleador"]}
+               f"Costo empleador (3,5 % reforma con SIS incluido + mutual + AFC) = {m(e['total_empleador'])}"], {"liquido": l["sueldo_liquido"], "empleador": e["total_empleador"]}
 
 
 def s07():

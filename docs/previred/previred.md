@@ -67,10 +67,10 @@ que contrasta los topes con la planilla de Previred.
 | AFP 10 % + comisión | trabajador | 10 % + comisión de su AFP |
 | Salud | trabajador | 7 % |
 | Seguro de cesantía | trabajador | 0,6 % (indefinido) |
-| **Cotización adicional de la reforma** | **solo empleador** | **1 %** desde agosto 2025 (0,1 % a la cuenta individual y 0,9 % al Seguro Social); **3,5 % desde agosto 2026**; sube hasta **8,5 % en 2033** |
+| **Cotización adicional de la reforma** | **solo empleador** | **1 %** desde agosto 2025 (0,1 % a la cuenta individual y 0,9 % al Seguro Social); **3,5 % desde agosto 2026 (el SIS de 1,78 % ya está incluido en ese 3,5 %)**; sube hasta **8,5 % en 2033** |
 | SIS | empleador | 1,78 % (ago-oct 2026) |
-| Mutual (Ley 16.744) | empleador | ⚠️ 0,93 % básica + adicional según la mutualidad |
-| Seguro de cesantía (parte empleador) | empleador | ⚠️ 2,4 % indefinido |
+| Mutual (Ley 16.744) | empleador | 0,90 % básica + 0,03 % SANNA (= 0,93 %) + adicional según riesgo |
+| Seguro de cesantía (parte empleador) | empleador | 2,4 % indefinido (confirmado en Previred oct-2026) |
 
 La cotización adicional **no se puede descontar** al trabajador. Fuentes: [Previsión Social](https://previsionsocial.gob.cl/empleadores-nueva-cotizacion-establecida-en-la-reforma-de-pensiones-rige-a-partir-de-la-remuneracion-de-agosto-de-2025/),
 [Hacienda](https://www.hacienda.cl/noticias-y-eventos/noticias/implementacion-de-la-reforma-previsional-nueva-cotizacion-del-empleador-regira),

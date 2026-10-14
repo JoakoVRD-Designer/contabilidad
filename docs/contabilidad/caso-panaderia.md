@@ -48,19 +48,19 @@ Estado de resultados del mes
   Ventas netas                       8.000.000
   Costo de ventas                    3.550.000
   Margen de contribución             4.450.000
-  Gastos de administración             832.483
+  Gastos de administración             805.783
   Gastos de ventas                     750.000
   Ingresos financieros                       0
   Gastos financieros                         0
-  Utilidad antes de impuesto         2.867.517
-  Impuesto                             774.230
-  Utilidad neta                      2.093.287
+  Utilidad antes de impuesto         2.894.217
+  Impuesto                             781.439
+  Utilidad neta                      2.112.778
 
 Balance general
   Activo                            36.171.567
-  Pasivo                             4.078.280
+  Pasivo                             4.058.789
   Patrimonio (capital)              30.000.000
-  Resultado del ejercicio            2.093.287
+  Resultado del ejercicio            2.112.778
 
 Flujo de efectivo del mes
   Operación                          6.054.900
@@ -69,9 +69,9 @@ Flujo de efectivo del mes
   Variación neta                    26.054.900
 
 Indicadores de liquidez
-  Razón corriente  = 26.254.900 ÷ 4.078.280 = 6,44  (sobre 2,0: cubre con holgura (revisa si hay recursos ociosos))
-  Prueba ácida     = (26.254.900 − 200.000) ÷ 4.078.280 = 6,39  (sobre 1,0: paga sus deudas sin vender inventario)
-  Capital de trabajo = 26.254.900 − 4.078.280 = 22.176.620
+  Razón corriente  = 26.254.900 ÷ 4.058.789 = 6,47  (sobre 2,0: cubre con holgura (revisa si hay recursos ociosos))
+  Prueba ácida     = (26.254.900 − 200.000) ÷ 4.058.789 = 6,42  (sobre 1,0: paga sus deudas sin vender inventario)
+  Capital de trabajo = 26.254.900 − 4.058.789 = 22.196.111
 
 2) CONTABILIDAD ADMINISTRATIVA (para la dueña: interna)
 
@@ -92,9 +92,9 @@ Informe B: presupuesto mensual de la sucursal
 3) EL CRÉDITO
   Monto 15.000.000 a 36 meses, tasa 1,200 % mensual ⚠️
   Cuota mensual = P·i ÷ (1 − (1+i)^−n) = 515.583
-  Flujo operativo mensual (utilidad neta + depreciación) ≈ 2.176.620
-  Cuota ÷ flujo operativo = 23,7 %
-  Razón corriente pro forma (con la porción de 12 meses del crédito en el pasivo corriente) = 41.254.900 ÷ 8.381.982 = 4,92
+  Flujo operativo mensual (utilidad neta + depreciación) ≈ 2.196.111
+  Cuota ÷ flujo operativo = 23,5 %
+  Razón corriente pro forma (con la porción de 12 meses del crédito en el pasivo corriente) = 41.254.900 ÷ 8.362.491 = 4,93
 
 4) RIESGO PRINCIPAL: no poder pagar las cuotas (liquidez).
    Dato para evaluarlo: razón corriente y cuota ÷ flujo operativo; en la sucursal, las ventas por horario (informe A).

@@ -119,8 +119,8 @@ class TestCostoEmpleador(unittest.TestCase):
     def test_costo_empleador_septiembre_2026(self):
         r = costo_empleador(750_000, uf=41_057.20)
         self.assertEqual((r["sis"], r["adicional_reforma"], r["mutual"], r["afc_empleador"]),
-                         (13_350, 26_250, 6_975, 18_000))
-        self.assertEqual(r["total_empleador"], 64_575)
+                         (13_350, 12_900, 6_975, 18_000))
+        self.assertEqual(r["total_empleador"], 51_225)
 
     def test_respeta_tope_imponible(self):
         r = costo_empleador(10_000_000, uf=41_057.20)    # tope 90 UF = 3.695.148
@@ -280,7 +280,7 @@ class TestCasoPanaderia(unittest.TestCase):
         balance_comprobacion(d)
         b = balance_general(d)          # lanza error si el activo no iguala pasivo + patrimonio
         self.assertEqual(b["Activo"], 36_171_567)
-        self.assertEqual(estado_resultados(d)["Utilidad neta"], 2_093_287)
+        self.assertEqual(estado_resultados(d)["Utilidad neta"], 2_112_778)
         self.assertEqual(flujo_efectivo(d)["variacion_neta"], 26_054_900)
 
     def test_cuota_del_credito(self):
@@ -332,7 +332,7 @@ class TestProyectos(unittest.TestCase):
 class TestTrabajoJuanCastillo(unittest.TestCase):
     def test_numeros_y_libro_diario_cuadran(self):
         c = trabajo_juan_castillo.calculos()
-        self.assertEqual((c["neto_c"], c["retenido"], c["determinado"], c["total_f29"]), (5_650_000, 1_073_500, 256_500, 1_400_000))
+        self.assertEqual((c["neto_c"], c["retenido"], c["determinado"], c["total_f29"]), (5_650_000, 1_073_500, 1_330_000, 2_473_500))
         self.assertEqual((len(c["compras"]), len(c["ventas"])), (5, 5))     # la consigna pide 5 compras y 5 ventas
         d = LibroDiario(PlanDeCuentas.desde_csv())
         for fecha, glosa, lineas in trabajo_juan_castillo.asientos(c):

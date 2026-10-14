@@ -48,3 +48,38 @@ Control: activo total = pasivo total + patrimonio → 246.818.325 + 502.438.517 
 - **Efectivo:** bajó 22 %, aunque sube el rubro de activos financieros a valor razonable (78,5 mil millones vs 50,5): el dinero pasó de caja a inversiones.
 
 Código: `python3 ejemplos/quiz_ratios.py AC PC ACTIVO_TOTAL PASIVO_TOTAL PATRIMONIO UTILIDAD VENTAS`.
+
+## Todo con sus fórmulas (M$)
+
+**Pasivo total** = pasivos corrientes + pasivos no corrientes
+- 2025: 151.965.167 + 94.853.158 = 246.818.325 · 2024: 121.562.115 + 81.498.345 = 203.060.460
+
+**Razón corriente** = activo corriente ÷ pasivo corriente
+- 2025: 139.937.812 ÷ 151.965.167 = 0,92 · 2024: 122.681.361 ÷ 121.562.115 = 1,01
+
+**Capital de trabajo** = activo corriente − pasivo corriente
+- 2025: 139.937.812 − 151.965.167 = −12.027.355 · 2024: 122.681.361 − 121.562.115 = 1.119.246
+
+**Endeudamiento total** = pasivo total ÷ activo total × 100
+- 2025: 246.818.325 ÷ 749.256.842 × 100 = 32,94 % · 2024: 203.060.460 ÷ 677.813.557 × 100 = 29,96 %
+
+**Endeudamiento patrimonial** = pasivo total ÷ patrimonio neto
+- 2025: 246.818.325 ÷ 502.438.517 = 0,49 · 2024: 203.060.460 ÷ 474.753.097 = 0,43
+
+**Margen neto** = utilidad neta ÷ ventas totales × 100
+- 2025: 126.980.727 ÷ 215.168.560 × 100 = 59,01 % · 2024: 102.713.160 ÷ 205.892.506 × 100 = 49,89 %
+
+**ROE** = utilidad neta ÷ patrimonio neto × 100
+- 2025: 126.980.727 ÷ 502.438.517 × 100 = 25,27 % · 2024: 102.713.160 ÷ 474.753.097 × 100 = 21,64 %
+
+**Variación porcentual:** % = valor 2025 × 100 ÷ valor 2024; variación = % − 100; en pesos = 2025 − 2024
+- Efectivo: 44.392.892 × 100 ÷ 57.182.645 = 77,63 % → −22,37 % (−12.789.753)
+- Activo corriente: 139.937.812 × 100 ÷ 122.681.361 = 114,07 % → +14,07 %
+- Pasivo corriente: 151.965.167 × 100 ÷ 121.562.115 = 125,01 % → +25,01 %
+- Activo total: 749.256.842 × 100 ÷ 677.813.557 = 110,54 % → +10,54 %
+- Pasivo total: 246.818.325 × 100 ÷ 203.060.460 = 121,55 % → +21,55 %
+- Patrimonio: 502.438.517 × 100 ÷ 474.753.097 = 105,83 % → +5,83 %
+- Utilidad neta: 126.980.727 × 100 ÷ 102.713.160 = 123,63 % → +23,63 %
+- Ventas: 215.168.560 × 100 ÷ 205.892.506 = 104,51 % → +4,51 %
+
+**Control:** activo total = pasivo total + patrimonio → 246.818.325 + 502.438.517 = 749.256.842 ✓

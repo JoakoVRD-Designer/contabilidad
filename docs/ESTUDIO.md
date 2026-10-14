@@ -40,3 +40,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Trabajo de Juan Castillo: cambio de sujeto, productos silvestres](tareas/trabajo-juan-castillo.md)
 - [Clase: grupos del activo corriente y variación porcentual](contabilidad/analisis-horizontal.md)
 - [Cierre del semestre: informe de prefactibilidad y currículum vitae](tareas/prefactibilidad-y-curriculum.md)
+- [Tarea de ratios con AFP Capital 2025 resuelta](tareas/ratios-afp-capital.md)

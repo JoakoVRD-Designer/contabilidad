@@ -16,9 +16,9 @@ Fuentes completas en `docs/normativa/fuentes/` (72 y 11 páginas). Son documento
 
 ## Cambio de sujeto, Res. Ex. SII N° 4095 (25-08-2000), productos silvestres
 - Retiene el comprador: los que venden a exportadores y los de Primera Categoría con contabilidad completa y compras anuales sobre **$50.000.000**.
-- Factura de compra (DTE 46); el comprador declara y paga el IVA retenido **sin derecho a crédito fiscal**; el vendedor no emite factura y usa lo retenido como crédito (puede pedir devolución del remanente dentro del mes siguiente).
+- Factura de compra (DTE 46); el comprador paga íntegro el IVA retenido (cód. 39, N° 4) y ese IVA **sí es su crédito fiscal** (N° 6; verificado en sii.cl el 16-10-2026, corrige lo anterior); el vendedor no emite factura y usa lo retenido como crédito (puede pedir devolución del remanente dentro del mes siguiente).
 - Retención **total, 19 %** hoy (18 % en el año 2000, la tasa de entonces).
 - F29: **código 39** (línea 118, reverso, signo +), 554 retención parcial, **596 total de retenciones** (= 39 + 554 + 597 + 555 − 736), que se suma al total a pagar (código 91).
 - **DJ F3500** (mensual, día 15, aunque no haya movimiento; Res. 185/2010). Productos 3101 rosa mosqueta, 3102 mora, 3103 hongos, 3104 frutos de espino, 3105 hojas de boldo, 3106 tilo, 3107 manzanilla, 3108 llantén, 3109 toronjil, 3110 cedrón, 3111 hierbas pectorales, 3112 romero, 3113 quillay, 3114 hierba de hipérico, 3115 cera de abeja (unidad 1 = kilogramo).
 - Otros: berries parcial 14 % (+5 % del vendedor), ganado 8 %, harina anticipo 12 %, carne 5 %, chatarra, construcción, oro y papel total.
-- Por confirmar con el profesor: código 15 o 31 para el IVA en el libro de compras; numeral de la resolución sobre el crédito del comprador.
+- Libro de compras: **código 31** "IVA retenido silvestres" (tabla SII de códigos de otros impuestos y retenciones). Crédito del comprador: N° 6 de la resolución.

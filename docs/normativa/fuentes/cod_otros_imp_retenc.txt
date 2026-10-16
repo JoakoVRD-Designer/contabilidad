@@ -1,0 +1,581 @@
+Códigos  Otros Impuestos y Retenciones.  
+ 
+ 
+ 
+ 
+Código 
+Código 
+Cambio de 
+Sujeto en 
+caso de 
+Retención 
+Total 
+ 
+Nombre 
+ 
+Descripción General 
+ 
+Documentos en que se aplica 
+ 
+14 
+  
+IVA de margen de 
+comercialización  
+ 
+Para Facturas de venta del 
+contribuyente.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+ 
+15 
+  
+IVA retenido total  
+ 
+Corresponde al IVA retenido 
+en Facturas de compra del 
+contribuyente que genera el 
+Libro de compras. Suma de 
+retenciones con tasa total 
+del IVA. 
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+17 
+  
+IVA ANTICIPADO 
+FAENAMIENTO 
+CARNE  
+ 
+Tasa de 5% sobre Monto 
+base faenamiento. Se 
+registra el monto de IVA 
+anticipado cobrado al 
+cliente.  
+ 
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+18 
+  
+IVA ANTICIPADO 
+CARNE  
+ 
+Tasa de 5%. Se registra el 
+monto de IVA anticipado 
+cobrado al cliente.  
+ 
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+19 
+  
+IVA ANTICIPADO 
+HARINA  
+ 
+Tasa de 12%. Se registra el 
+monto de IVA anticipado 
+cobrado al cliente.  
+ 
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+30  
+ 
+301 
+ 
+IVA RETENIDO 
+LEGUMBRES  
+ 
+Normalmente 10% 
+retención.  
+Si se retuvo el 10%, el 
+monto retenido se registra 
+en el IEC en Retención 
+parcial.  
+Si se retuvo el total del IVA, 
+por ser NDF se registra 
+también en Retención Total.  
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+31 
+  
+IVA RETENIDO 
+SILVESTRES  
+ 
+Total del IVA retención. El 
+monto retenido se registra 
+en el IEC en Retención 
+total.  
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+32  
+ 
+321 
+ 
+IVA RETENIDO 
+GANADO  
+ 
+Normalmente 8% retención.  
+Si se retuvo el 8%, el monto 
+retenido se registra en el 
+IEC en Retención parcial.  
+Si se retuvo el total del IVA, 
+por ser NDF, se registra en 
+el IEC en Retención Total.  
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+33  
+ 
+331 
+ 
+IVA RETENIDO 
+MADERA  
+ 
+Normalmente 8% retención.  
+Si se retuvo el 8%, el monto 
+retenido se registra en el 
+IEC en Retención parcial.  
+Si se retuvo el total del IVA, 
+por ser NDF, se registra en 
+el IEC en Retención Total.  
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+34  
+ 
+341 
+ 
+IVA RETENIDO TRIGO  
+ 
+Normalmente 4% retención.  
+Si se retuvo el 4%, el monto 
+retenido se registra en el 
+IEC en Retención parcial.  
+Si se retuvo el total del IVA 
+por ser NDF se registra en 
+el IEC en Retención Total.  
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+36  
+ 
+361 
+ 
+IVA RETENIDO ARROZ  
+ 
+Normalmente 10% 
+retención.  
+Si se retuvo el 10%, el 
+monto retenido se registra 
+en el IEC en Retención 
+parcial.  
+Si se retuvo el total del IVA 
+por ser NDF se registra en 
+el IEC en Retención Total.  
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+37  
+ 
+371 
+ 
+IVA RETENIDO  
+HIDROBIOLOGICAS  
+ 
+Normalmente 10% 
+retención.  
+Si se retuvo el 10%, el 
+monto retenido se registra 
+en el IEC en Retención 
+parcial.  
+Si se retuvo el total del IVA 
+por ser NDF se registra en 
+el IEC en Retención Total.  
+ 
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+38  
+  
+IVA RETENIDO 
+CHATARRA  
+Total del IVA retención. El 
+monto retenido se registra 
+en el IEC en Retención 
+total.  
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+ 
+39  
+  
+IVA RETENIDO PPA  
+ 
+Total del IVA retención. El 
+monto retenido se registra 
+en el IEC en Retención 
+total.  
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56) 
+  
+ 
+41  
+  
+IVA RETENIDO 
+CONSTRUCCION  
+ 
+Se retiene el total del IVA.  
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+ 
+23  
+  
+IMPUESTO 
+ADICIONAL  
+Art 37 Letras a, b, c 
+ 
+ 
+ 
+Tasa del 15%  
+a) artículos oro, platino, 
+marfil  
+b) Joyas, piedras preciosas  
+c) Pieles finas  
+ 
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+44  
+  
+IMPUESTO 
+ADICIONAL  
+Art 37 Letras e, h, i, l  
+ 
+Tasa del 15% en 1era . 
+venta  
+e) Alfombras, tapices  
+h) Casa rodantes  
+i) Caviar  
+l) Armas de aire o gas  
+ 
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+45  
+  
+IMPUESTO 
+ADICIONAL  
+Art 37 Letras j  
+ 
+Tasa del 50% en 1era venta  
+Pirotecnia  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56) y 
+documentos exentos en casos 
+especiales. 
+  
+ 
+24  
+  
+IMPUESTO ART. 42, 
+Ley 825/74  
+letra a ) 
+ 
+ 
+Tasa del 27%  
+Licores, Piscos, destilados, 
+etc.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56) y 
+documentos exentos en casos 
+especiales.  
+ 
+ 
+25  
+  
+IMPUESTO ART. 42, 
+letra c  
+ 
+ 
+Tasa del 15%  
+Vinos.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56) y 
+documentos exentos en casos 
+especiales. 
+  
+ 
+26  
+  
+IMPUESTO ART. 42, 
+letra c  
+ 
+Tasa del 15%  
+Cervezas y bebidas 
+alcohólicas. 
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56) y 
+documentos exentos en casos 
+especiales. 
+  
+ 
+27  
+  
+IMPUESTO ART. 42, 
+letra d y e  
+ 
+Tasa del 13%  
+Bebidas analcohólicas y 
+minerales.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56) y 
+documentos exentos en casos 
+especiales. 
+  
+ 
+28  
+  
+Impuesto específico 
+diesel.  
+ 
+1,5 UTM por m3. 
+Traspasado al comprador 
+por compra de diesel. 
+Artículo 6, Ley N° 18.502, y 
+artículos 1° y 3° del Decreto 
+Supremo N° 311/86.  
+ 
+Se usa en las Facturas que emite el 
+vendedor. Se registra en el IEV.  
+En el IEC se registra bajo este Código si 
+el comprador tiene derecho al crédito y 
+no está contemplado en el Código 29. Si 
+el comprador no tiene derecho a 
+recuperar este impuesto, el mont o de 
+este impuesto va en el campo “Impuesto 
+sin derecho a crédito”. 
+  
+ 
+29  
+  
+Recuperación Impuesto 
+Específico Diesel 
+Transportistas.  
+ 
+Para transportistas de carga  
+Art 2° Ley N°19.764/2001.  
+ 
+En el IEC se registra separado con este 
+Código el monto que corresponde al % 
+del Impuesto específico que se recupera; 
+el % no recuperado en este caso, va en 
+el campo “Impuesto sin derecho a 
+crédito”.  
+ 
+ 
+35  
+  
+Impuesto específico 
+gasolina  
+ 
+6 UTM por m3. Artículo 6, 
+Ley N° 18.502, y artículos 1° 
+y 3° del Decreto Supremo 
+N° 311/86. No da derecho a 
+crédito.  
+ 
+ 
+Se usa en las Facturas que emite el 
+vendedor, en el IEV.  
+No se registra separado en el IEC. En el 
+IEC se debe incorporar este monto en el 
+campo “Impuesto sin derecho a crédito”. 
+  
+ 
+47  
+  
+IVA RETENIDO 
+CARTONES  
+ 
+Retención Total.  
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+ 
+48  
+ 
+481 
+ 
+IVA RETENIDO 
+FRAMBUESAS Y 
+PASAS  
+ 
+Retención del 14 %.  
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+49  
+  
+FACTURA DE 
+COMPRA SIN 
+RETENCIÓN (Sólo 
+Bolsa de Productos de 
+Chile)  
+ 
+ 
+0% de retención.  
+ 
+Factura de Compra emitida (Cód. 45, 46)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+50  
+  
+IVA de margen de 
+comercialización de 
+instrumentos de 
+prepago.  
+ 
+ 
+Para Facturas de venta del 
+contribuyente.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+51  
+  
+Impuesto gas natural 
+comprimido; 1,93 
+UTM/KM3, Art. 1°, Ley 
+N° 20.052, Se usa en 
+Facturas que emite el 
+vendedor, se registra en 
+la IEV, no se registra 
+separado en la IEC.  
+ 
+Para Facturas de venta del 
+contribuyente.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+52  
+  
+Impuesto gas licuado de 
+petróleo; 1,40 UTM/M3, 
+Art 1°, Ley N° 20.052, e 
+usa en Facturas que 
+emite el vendedor, se 
+registra en la IEV, no se 
+registra separado en la 
+IEC. 
+  
+ 
+Para Facturas de venta del 
+contribuyente.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+53  
+  
+Impuesto Retenido 
+Suplementeros Art 74 
+N°5 Ley de la Renta.  
+ 
+Para Facturas de venta del 
+contribuyente, retención del 
+0,5% sobre el precio de 
+venta al público.  
+ 
+Facturas (Cód. 30, 33)  
+Notas de Crédito (Cód. 60, 61)  
+Notas de Débito (Cód. 55, 56)  
+ 
+ 
+60  
+  
+IMPUESTO RETENIDO 
+FACTURA DE INICIO  
+ 
+Retención Total de 
+Impuestos Factura de Inicio.  
+Solo una retención por 
+documento. 
+  
+ 
+Factura de Inicio (Cód. 29)  
+ 
+ 
+ 

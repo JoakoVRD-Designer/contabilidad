@@ -1,13 +1,21 @@
 # Usar Claude Code en tu PC con navegador (guía)
 
-⚠️ Comandos de memoria: confirma en la documentación actual de Claude Code (docs.claude.com) antes de ejecutar; los nombres cambian.
+Camino elegido (16-10-2026): **Claude in Chrome**, la extensión oficial de Anthropic. Ya está conectada a Claude Code en este PC, así que no hay que instalar Playwright ni construir un MCP propio.
 
-1. **Instala Node.js** (versión LTS) desde nodejs.org.
-2. **Instala Claude Code:** en una terminal, `npm install -g @anthropic-ai/claude-code`, y entra con tu cuenta de Claude (`claude`).
-3. **Trae el proyecto:** `git clone <URL del repositorio>` y luego `git checkout claude/formulas-estado-resultado-gastos-cyjsb9`. Abre la terminal dentro de la carpeta `contabilidad` y escribe `claude`.
-4. **Agrega un MCP de navegador (Playwright):** `claude mcp add playwright -- npx @playwright/mcp@latest`.
-5. **Reglas de seguridad:**
-   - Inicia sesión tú mismo en Classroom, SII, etc. en la ventana del navegador que se abra; nunca escribas contraseñas en el chat.
-   - Pide que te consulte antes de enviar, publicar o borrar algo.
-   - Cambia las contraseñas que ya escribiste en este chat.
-6. **Prueba:** "abre sii.cl/documentos/resoluciones/2000b/reso4095.htm y guarda el texto en docs/normativa/".
+## Cómo se usa
+1. Abre Chrome con la extensión Claude in Chrome activa.
+2. En la carpeta del repo (`C:\Users\kukic\Documents\contabilidad`) abre una terminal y escribe `claude`.
+3. Pide cosas como: "abre sii.cl/... y guarda el texto en docs/normativa/fuentes/". Claude abre su propia pestaña en un grupo aparte.
+4. Para guardar archivos, Claude descarga con `curl` desde la terminal o copia el texto de la página. Siempre quedan dentro del repo.
+
+## Reglas de seguridad
+- Inicias sesión **tú**, a mano, en Classroom, SII, etc. Claude nunca pide, escribe ni guarda contraseñas.
+- Si Claude ve una pantalla de login, de cambio de cuenta o de aceptar términos, se detiene y te avisa.
+- Solo lee. Antes de enviar, publicar, borrar o entregar algo, te pide confirmación en el chat. No entrega trabajos por ti.
+
+## Prueba hecha (16-10-2026)
+- sii.cl: se leyeron la Res. 4095/2000, las instrucciones del F29 y las de la DJ F3500 → OK (archivos en `docs/normativa/fuentes/`).
+- classroom.google.com: abrió con la cuenta personal y mostró la pantalla de "Continuar" (aceptar términos). Claude se detuvo ahí. Para leer la clase hay que tener abierta en Chrome la **cuenta del liceo** donde está la clase de Juan Castillo.
+
+## Alternativa (no instalada)
+Playwright MCP (`@playwright/mcp`, de Microsoft) con un perfil separado. ⚠️ Antes de usarlo, revisa el comando en su documentación oficial.

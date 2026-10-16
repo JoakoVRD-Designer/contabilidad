@@ -1,0 +1,385 @@
+  Versión 4.0 
+Instrucciones de llenado Información de Compras. 
+ 
+1. (*)  La  información  de  este  campo  debe  ser  registrada  en  forma 
+obligatoria. 
+2. El documento “Códigos Otros Impuestos y Retenciones” complementa 
+estas instrucciones. 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+Descripción de campos: 
+Campo N° 1 (*), Tipo de Documento: Registre el código del documento, de 
+acuerdo al siguiente detalle: 
+ 
+CÓDIGOS DE DOCUMENTOS DE COMPRAS 
+Código Nombre del documento 
+29 Factura de Inicio 
+30 Factura 
+32 Factura de ventas y servicios no afectos o exentos de IVA 
+33 Factura Electrónica 
+34 Factura no Afecta o Exenta Electrónica 
+40 Liquidación Factura 
+43 Liquidación Factura Electrónica 
+45 Factura de Compra 
+46 Factura de Compra electrónica 
+55 Nota de Débito 
+56 Nota de Débito Electrónica 
+60 Nota de Crédito 
+61 Nota de Crédito Electrónica 
+108 SRF Solicitud de Registro de Factura 
+901 Factura de ventas a empresas del territorio preferencial 
+(Res. Ex. N° 1057, del 25.04.85) 
+914 Declaración de Ingreso (DIN) 
+911 Declaración de Ingreso a Zona Franca Primaria 
+ 
+Usuarios de Zona Franca 
+904 Factura de Traspaso 
+909 Facturas Venta Módulo ZF 
+910 Solicitud Traslado Zona Franca (Z) 
+911 Declaración de Ingreso a Zona Franca Primaria 
+ 
+Para consultar nómina actualizada de documentos, siga este enlace. 
+ 
+Campo N° 2 (*), Folio del Documento: Registre el número del documento.  
+Campo N° 3 (*), RUT del Proveedor: Registre el RUT del proveedor de los 
+productos y/o servicios. 
+Campo N° 4, Tasa de Impuesto: Registre la tasa de impuesto asociada a la 
+operación. Para IVA debe registrar “19” y para compras relacionadas a la Ley N° 
+18.211 debe registrar la tasa vigente para el año respectivo. 
+ 
+Tipo de Impuesto Tasa de Impuesto 
+IVA 19 
+Ley N° 18.211 0.61 
+ 
+Campo N° 5 (*), Nombre o Razón Social: Registre el nombre completo o 
+Razón Social del Proveedor. 
+Campo N° 6, Tipo de Impuesto (*): Registre “1” si el tipo de impuesto asociado 
+a la compra, corresponde a Impuesto al Valor Agregado (IVA) ó “2” para las 
+operaciones relacionadas al Art. 11 de la Ley N° 18.211 (Ad-Valorem Zona 
+Franca, que grava la importación de mercancías extranjeras a las Zonas 
+Francas de Extensión). 
+ 
+Tipo de Impuesto Código 
+IVA 1 
+Ley N° 18.211 2 
+ 
+Campo N° 7 (*), Fecha de emisión del Documento: Registre la fecha de 
+emisión del documento. 
+Campo N° 8, Documento Anulado: Registre una A si la Nota de Crédito, está 
+asociada a una factura de compra, en otros casos, debe ir este campo en 
+blanco.  
+Este campo solo debe ser utilizado para Notas de Crédito emitidas por facturas 
+de compra. 
+Campo N° 9, Monto Exento o No Gravado: Registre el monto exento o no 
+gravado del documento. 
+Campo N° 10, Monto Neto: Registre el monto neto indicado en el documento. 
+Campo N° 11, Monto IVA Recuperable: Registre el monto del IVA con derecho 
+al 100% del crédito fiscal. 
+Campo N° 12, Código IVA No Recuperable: Registre el Código asignado a 
+operaciones afectadas con IVA sin derecho a recuperar crédito fiscal, de    
+acuerdo a la siguiente tabla. 
+ 
+Operaciones con IVA no recuperable Código 
+Compras destinadas a generar operaciones exentas o no 
+gravadas. 
+1 
+Facturas de proveedores registradas fuera del plazo legal  2 
+Gastos no necesarios para producir la renta 3 
+Entregas Gratuitas recibidas (premios, bonificacion es, etc.) 4 
+Otros 9 
+                                                           
+1 La tasa de impuesto del Art. 11 de la Ley N° 18.211 se fija el 01 de abril de cada año. La tasa 
+vigente a contar del 01-04-2011, es de un 0,6%, según la Resolución Ex. N° 738, del Ministerio 
+de Hacienda, publicada en el Diario Oficial de 02-03-2011. 
+ 
+ 
+ 
+ 
+ 
+Campo N° 13, Monto IVA No Recuperable: Registre el monto del IVA sin 
+derecho a crédito fiscal. 
+Este campo se utiliza cuando, al registrar un documento recibido, el IVA de 
+dicho documento no da derecho a ser recuperado por ser una compra destinada 
+a operaciones exentas o no gravadas, por estar registrado fuera  de plazo, 
+corresponder a entregas gratuitas, o por corresponder a gastos no necesarios 
+para producir la renta. 
+Campo N° 14, Monto IVA Uso Común: Registre el monto del IVA de uso 
+común. 
+El campo IVA de uso común es utilizado cuando el crédito fiscal de una factura 
+está asociado tanto a operaciones afectas como exentas o no gravadas y, el 
+monto de IVA a recuperar solo se podrá determinar al final del mes, mediante 
+proporción. 
+Campo N° 15 , Código  Otro  Impuesto  o  Retención: Registre  el  código 
+asociado a otros impuestos o retención, de acuerdo a los códigos indicados en 
+el documento “Códigos Otros Impuestos y Retenciones”. 
+En los casos que el documento tributario tenga asociado más de un impuesto 
+adicional y/o retención, se deberán ingresar tantas filas como sea necesario: 
+esto es, ingresar todos los datos del documento, modificando los campos N° 15, 
+16, 17 y 18, que hacen mención a Otros Impuestos o Retenciones. 
+Campo N° 16, Tasa Otro Impuesto o Retención: Registre la tasa de impuesto 
+de acuerdo al tipo de impuesto que se esté registrando, o la tasa de retención 
+para el caso de Facturas de Compra emitidas. 
+La información de los Códigos y tasas asociadas se encuentra en el documento 
+“Códigos Otros Impuestos y Retenciones”. 
+Campo N° 17, Monto Otro Impuesto o Retención (Con Crédito): Registre el 
+monto del impuesto con derecho a crédito. 
+En el caso de impuestos retenidos, se debe indicar la parte retenida. 
+Campo N° 18, Monto Otro Impuesto (Sin Crédito): Registre el monto de los 
+impuestos adicionales y específicos sin derecho a crédito. 
+Se debe registrar, en caso que corresponda: el Impuesto Adicional art. 37, D.L. 
+N°  825,  (suntuarios);  Impuesto  Adicional  art.  42,  D.L.  N°  825 (bebidas 
+alcohólicas, analcohólicas y productos similares) y el Impuesto Específico al 
+Petróleo Diesel. Siempre se debe registrar el Impuesto Específico a la Gasolina. 
+Campo N° 19, Monto Neto Activo Fijo: Registre el monto neto del activo fijo. 
+Este monto está incluido en el campo N°10 Monto Neto. 
+Campo N° 20, Monto IVA Activo Fijo: Registre el monto del IVA del activo fijo. 
+El registro de este campo es obligatorio si tiene adquisiciones de activo fijo. 
+Este monto del IVA activo fijo está incluido en el campo “Monto IVA 
+Recuperable”, “IVA No Recuperable” y/o “Monto IVA Uso Común”, dependiendo 
+si el activo fijo se destina a operaciones afectas, exentas o no gravadas o para 
+ambos tipos de operaciones, respectivamente. 
+Campo N° 21, Monto IVA No Retenido: Registre la diferencia entre el IVA total 
+y el IVA retenido parcial. Este campo se utiliza solo para Facturas de Compra 
+emitidas y Notas de Crédito y Débito asociadas. 
+Campo  N°  22,  Monto  Impuesto  Cigarros  Puros2: Registre el  monto del 
+Impuesto Específico a los Cigarros Puros, de acuerdo a las tasas vigentes, 
+establecidas en el Art. 3°, del D.L. N° 828, de 1974. 
+Campo N° 23, Monto Impuesto Cigarrillos3: Registre el monto del Impuesto 
+Específico a los Cigarrillos, de acuerdo a las tasas vigentes, establecidas en el 
+Art. 4°, del D.L. N° 828, de 1974. 
+Campo N° 24, Monto Impuesto Tabaco Elaborado4: Registre el monto del 
+Impuesto Específico a los Tabacos Elaborados, de acuerdo a las tasas vigentes, 
+establecidas en el Art. 5°, del D.L. N° 828, de 1974. 
+Campo N° 25, Monto Impuesto a Vehículos Automóviles: Registre el monto 
+del Impuesto a los vehículos automóviles, de acuerdo a lo establecido en el Art. 
+46 del D.L. N° 825, de 1974, derogado a contar del 1° de enero de 2007, por el 
+Art. 1° de la Ley N° 19.914, de 2003. Este campo solo debe ser utilizado por 
+contribuyentes que envían la Información Electrónica de Compras de períodos 
+en los cuales estaba vigente dicha normativa, para operaciones posteriores no 
+se debe ingresar información. 
+Campo N° 26, Código de Sucursal: Registre el código numérico, entregado por 
+el SII, de la Sucursal donde se  emitió el documento, para el caso de los 
+documentos electrónicos. 
+Campo N° 27, Número Interno: Registre el número del comprobante contable 
+relacionado con la operación. 
+Campo N° 28, Notas de Débito o Crédito por Facturas de Compra: Registre 
+un 1 si la Nota de C rédito o la Nota  de Débito, s egún c orresponda, está  
+asociada a una factura de compra, en otros casos, debe ir este campo en 
+blanco. 
+Este campo solo debe ser utilizado para Notas de Crédito y Notas de Débito 
+emitidas por facturas de compra. 
+Campo N° 29, Monto Total (*): Registre el monto total del documento. 
+Monto Neto (campo 10) + Monto Exento o No Gravado (campo 9) + Monto IVA 
+Recuperable (campo 11) + Monto IVA No Recuperable (campo 13) + Monto IVA 
+Uso Común (campo 14) + Monto Otro Impuesto o Retención con crédito5 (campo 
+17) + Monto Otro Impuesto o Retención sin crédito6 (campo 18) + Monto Impuesto 
+Cigarros Puros (campo 22) + Monto Impuesto Cigarrillos (campo 23) + Monto 
+Impuesto Tabaco Elaborado (campo 24) + Monto Impuesto a Vehículos 
+Automóviles (campo 25). 
+ 
+ 
+ 
+ 
+ 
+      
+2 La tasa de impuesto vigente a los cigarros puros es del 52,6%. 
+3 La tasa de impuesto vigente a los cigarrillos está compuesta por una parte fija de 0,0000675 
+unidades tributarias mensuales por cada cigarrillo; y, además, un impuesto variable de 62,3%. 
+4 La tasa de impuesto vigente al tabaco elaborado es de 59,7%. 
+5 En caso de Retención Parcial o Total o Factura de Inicio restar este ítem. 
+6 En caso de Retención Parcial o Total o Factura de Inicio restar este ítem. 
+  Versión 4.0 
+ 
+Instrucciones de llenado Información de Ventas. 
+ 
+1. (*) La información requerida en el campo debe ser registrada en forma 
+obligatoria. 
+2. El documento “Códigos Países”  y “Código Otros Impuestos y Retenciones” 
+se encuentran al final de este Instructivo. 
+-------------------------------------------------------------------------------- 
+Descripción de campos: 
+ 
+Campo N° 1 (*), Tipo de Documento: Registre el código asignado para cada 
+documento, de acuerdo a la tabla adjunta: 
+ 
+Código Nombre del Documento 
+29 Factura de Inicio 
+30 Factura 
+32 Factura de ventas y servicios no afectos o exentos 
+33 Factura Electrónica 
+34 Factura no Afecta o Exenta Electrónica 
+35 Boletas de Ventas y Servicios 
+38 Boletas  No Afectas o Exentas 
+39 Boletas Electrónica 
+40 Liquidación factura 
+41 Boletas No Afectas o Exentas Electrónica 
+43 Liquidación-Factura Electrónica 
+45 Factura de Compra 
+46 Factura de Compra electrónica 
+48 Comprobante de pago electrónico 
+55 Nota de Débito 
+56 Nota de Débito Electrónica 
+60 Nota de Crédito 
+61 Nota de Crédito Electrónica 
+101 Factura de exportación 
+102 Factura de venta exenta a zona franca primaria (Res. 
+Ex. N° 601 de 07.05.82) 
+103 Liquidación 
+104 Nota de Débito de Exportación 
+105 Boletas liquidación (Res. Ex. N° 1423 del 23.12.76) 
+106 Nota de Crédito de Exportación 
+108 SRF Solicitud Registro de Factura 
+109 Factura a turista (Res. Ex. N° 6428 de 06.12.93) 
+110 Factura de Exportación Electrónica 
+111 Nota de Débito de Exportación Electrónica 
+112 Nota de Crédito de Exportación Electrónica 
+901 Factura de ventas a empresas del territorio preferencial 
+(Res. Ex. N° 1057, del 25.04.85) 
+902 Conocimiento de Embarque (Marítimo o aéreo) 
+903 Documento Único de Salida (DUS) 
+904 Factura de Traspaso (Usuario Zona Franca) 
+919 Resumen Ventas de nacionales pasajes sin Factura 
+920 Otros registros no documentados. Aumenta débito 
+922 Otros registros. Disminuye débito 
+924 Resumen ventas de internacionales pasajes sin Factura 
+ 
+Documentos Zona Franca y Mercaderías No Nacionales 
+905 Factura de Reexpedición (Usuario Zona Franca) 
+906 Boletas Venta Módulos ZF (Usuario Zona Franca) 
+907 Facturas Venta Módulo ZF (Usuario Zona Franca) 
+ 
+Para consultar nómina actualizada de documentos, siga este enlace. 
+ 
+Campo N° 2 (*), Folio del Documento: Registre el número del documento. 
+Campo N° 3 (*), Rut del Cliente: Registre el RUT del cliente. 
+Campo N° 4 (*), Tasa de Impuesto: Registre la tasa del IVA o de la Ley N° 
+18.211, según corresponda.  
+Tasa de Impuesto Tipo de Impuesto 
+19% IVA 
+0,6% Ley N° 18.211 
+ 
+Campo N° 5   (*), Nombre o Razón Social: Registre el nombre completo o 
+Razón social del cliente. 
+Campo N° 6  (*), Fecha Emisión del Documento: Registre la fecha de emisión 
+del documento. 
+Campo N° 7 Documento Anulado: Registre “A” para aquellos documentos que 
+sean anulados. 
+Campo N° 8 Monto Exento o No Gravado: Registre el monto exento o no 
+gravado indicado en el documento. 
+Campo N° 9 (*), Monto Neto: Registre el monto neto indicado en el documento. 
+Campo N° 10 (*), Monto IVA: Registre el monto total del IVA indicado en el 
+documento. 
+Tener presente los casos especiales: 
+a) En los documentos exentos, el campo debe ir con un cero. 
+b) En las Notas de Crédito fuera de plazo para rebajar el débito; se debe 
+registrar el IVA recargado en el documento. Este valor deberá ser   
+registrado adicionalmente en el campo N° 11 (IVA Fuera de Plazo), para 
+considerar que el IVA no se debe descontar. 
+c) En casos de Ventas por cuenta de terceros (comisionista), se debe registrar 
+el IVA recargado en el documento. Este valor, deberá registrarse 
+adicionalmente en el campo IVA Terceros y/o IVA propio, cuando hayan 
+ventas propias y por cuenta de terceros, según corresponda. 
+Campo N° 11 Monto IVA Fuera de Plazo (Nota de Crédito): Registre el IVA de 
+aquellas Notas de Crédito que por estar fuera de plazo, no podrán descontar el 
+débito fiscal. 
+Campo  N°  12  Código  Otro  Impuesto  o  Retención:  Registre  el  Código 
+asociado a otro impuesto o retención, de acuerdo a los códigos indicados en el 
+documento “Códigos Otros Impuestos y Retenciones”. 
+En los casos que el documento tributario tenga asociado más de un impuesto 
+adicional y/o retención, se deberán ingresar tantas filas como sea necesario:      
+esto es, ingresar todos los datos del documento, modificando los campos N° 12, 
+13 y 14, que hacen mención a Otros Impuestos o Retenciones. 
+Campo N° 13 Tasa Otro Impuesto o Retención: Registre la tasa de impuesto 
+de acuerdo al tipo de impuesto que se esté registrando o la tasa de retención 
+para el caso de Facturas de Compra recibidas. La información de las tasas 
+asociadas se encuentra en el documento “Códigos Otros Impuestos y 
+Retenciones”. 
+Campo N° 14 Monto Otro Impuesto o Retenciones: Registre el monto del 
+impuesto con derecho a crédito. 
+Campo N° 15 Monto IVA Propio: Registre para la venta por cuenta de terceros 
+el monto correspondiente a la parte de IVA propio de la operación (cuando en un 
+mismo documento se registren ventas propias y de terceros). 
+Campo N° 16 Monto IVA Terceros: Registre el monto de IVA a declarar por el 
+mandante. Este campo debe ser utilizado por los contribuyentes que realicen 
+ventas por cuenta de terceros. 
+Campo N° 17 Monto IVA Retenido Total: Registre el monto de IVA retenido 
+total (si la tasa de retención es por el total del IVA) de aquellas ventas 
+efectuadas con Factura de compra recibida y Nota de Crédito y Débito 
+asociadas (cambio de sujeto). 
+Campo N° 18 Monto IVA Retenido Parcial: Registre el monto de retención 
+parcial de IVA (si la tasa de retención es menor al Total del IVA) de aquella 
+venta efectuada con Facturas de compra recibidas y Notas de Crédito y Débito 
+asociadas (cambio de sujeto). 
+Campo N° 19 Monto IVA No Retenido: Registre la diferencia entre el IVA y el 
+IVA retenido parcial. Este campo se utiliza sólo para Facturas de compra 
+recibidas y Notas de Crédito y Débito asociadas. 
+Campo N° 20 Monto Impuesto Zona Franca - Ley 18.211: Registre el monto 
+Impuesto Zona Franca registrado en el documento. (1) 
+Campo N° 21 Monto Crédito Especial Empresas Constructoras: Registre el 
+monto correspondiente al crédito especial empresa constructora consignado en 
+el documento, conforme a lo señalado en el artículo 21 del DL N° 910/75. (2) 
+Campo N° 22 Tipo Documento Referencia: Registre el Código del documento 
+emitido (Nota de Crédito) que anulan a una factura o a una Nota de Débito en 
+forma completa. 
+Campo N° 23 Folio Documento Referencia: Registre el Folio del documento 
+anulado. 
+Campo N° 24 Monto Depósito por Envases: Registre el monto por concepto 
+de depósito por envases. 
+Campo N° 25 Monto No Facturable: Registre el monto de las operaciones de 
+intermediación de valores, efectuadas por Corredores de Bolsa o Agentes de 
+Valores. 
+Campo N° 26 Monto Período: Registre la sumatoria de  los campos,  Monto 
+Total (campo N° 40) + Monto No Facturable (campo N° 25) 
+Campo N° 27 Monto Pasaje Nacional: Registre el monto de la venta de 
+pasajes cuyo destino sea el territorio nacional, efectuadas con Factura Exenta o 
+No Gravada. 
+Campo N° 28 Monto Pasaje Internacional: Registre el monto de la venta de 
+pasajes cuyo destino no sea el territorio nacional, efectuada con Factura Exenta 
+o No Gravada. 
+Campo N° 29 Número Id Receptor Extranjero: Registrar el número o código 
+de identificación del receptor extranjero, de operaciones efectuadas con 
+Facturas de Exportación. 
+Campo  N° 30 Nacionalidad: Registrar el código país con que se identifica la 
+nacionalidad del extranjero, conforme a Tabla Países Aduana. El Código se 
+encuentra en el documento “Códigos Países”. 
+Campo N° 31 Indicador de Servicio: Registrar el número asignado al tipo de 
+servicio. 
+Indicador Descripción 
+1 Facturación de servicios periódicos domiciliarios 
+2 Facturación de otros servicios periódicos 
+ 
+Nota: Este campo es obligatorio para los servicios periódicos domiciliarios (1), el 
+documento debe ser registrado en el mes en que se devenga el impuesto 
+(según fecha de vencimiento). 
+Campo N° 32 Indicador sin Costo: Registrar valor “1” para aquellos casos que 
+corresponda a una entrega gratuita. 
+Campo N° 33 Rut Liquidador: Registre Rut del emisor de la Liquidación o 
+Liquidación-Factura. 
+Campo N° 34 Monto Neto Comisiones: Registrar el monto neto de la comisión, 
+indicado en la Liquidación-Factura emitida. 
+Campo N° 35 Monto Comisiones Exentas: Registrar monto exento de la 
+comisión, indicado en la Liquidación-Factura emitida. 
+Campo N° 36 Monto IVA Comisiones: Registrar monto IVA de la comisión, 
+indicado en la Liquidación-Factura emitida. 
+Campo N° 37 Código Sucursal SII: Registre el código de la Sucursal, que 
+corresponde al número entregado por el SII para identificar a la sucursal donde 
+se emitió el documento, que sirve para su identificación. 
+Campo N° 38  Número Interno: Registre el número asignado al documento en 
+el registro. 
+Campo N° 39 Notas de Débito o Crédito por Facturas de Compra: Registre 
+en este campo, sólo aquellas Notas de Débito o de Crédito recibidas por el 
+contribuyente. Se debe anotar un “1” si la Nota de Débito o Crédito afecta a una 
+Factura de Compra. 
+Campo N° 40 (*), Monto Total: Registre la sumatoria de los campos 
+Monto Neto (campo 9) + Monto Exento o No Gravado (campo 8) + Monto IVA o 
+Ley N° 18.211 (campo 10 o campo 20) + Monto Otro Impuesto o Retención 
+(campo 14) + Monto Depósito por Envases (campo 24) – Monto IVA Retenido Total 
+(campo 17) – Monto IVA Retenido Parcial (campo 18) – Monto Crédito Especial 
+Empresas Constructoras (campo 21) – Monto Neto Comisiones (campo 34) – 
+Monto IVA Comisiones (campo 36) – Monto Comisiones Exentas (campo 35). 
+ 
+      
+ 
+1 Ley N° 18.211, corresponde a la tasa de impuesto para aquellas operaciones efectuadas en Zona 
+Franca que alcanza al 0,6% a contar del 01 -04-2011, según Resolución Ex. N° 738, de 2011, del 
+Ministerio de Hacienda. 
+2 Crédito Especial Empresa Constructora, artículo 21 del DL N° 910/75 y sus modificaciones. (65%) 

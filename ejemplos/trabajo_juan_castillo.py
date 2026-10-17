@@ -34,7 +34,7 @@ def rut(numero):
 
 EMPRESA = {"razon": "Silvestres del Ñuble SpA (ficticia)", "rut": rut(76123456), "rut_num": 76123456,
            "giro": "Compra y venta de productos silvestres", "direccion": "Chillán (dirección ficticia)"}
-INTEGRANTES = ["Matius Loyola", "Diego Quintana", "Joaquín Verdejo"]
+INTEGRANTES = ["Joaquín Verdejo", "[Nombre integrante 2]", "[Nombre integrante 3]"]
 PERIODO = "Octubre 2026"
 RETENCION = D("1")          # Res. Ex. SII N° 4095/2000: productos silvestres = retención TOTAL (100 % del IVA)
 PPM = D("0.01")             # tasa de PPM de la plantilla del profesor (celda A81)

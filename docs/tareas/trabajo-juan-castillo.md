@@ -1,9 +1,9 @@
 # Trabajo grupal de Juan Castillo: cambio de sujeto de IVA (productos silvestres)
 
-Fuente: carpeta de Classroom "Cálculo y registros de impuestos (4° C Contabilidad)". Texto de la consigna en `trabajo_juan_castillo/base/consigna.txt`.
+Fuente: carpeta de Classroom "Cálculo y registros de impuestos (4° C Contabilidad)". 
 
 - **Publicado:** 5 oct · **Entrega: 19 de octubre de 2026** · **100 puntos** (el .docx trae "31 julio 2025", es una copia vieja).
-- **Grupo 9, productos silvestres:** Matius Loyola, Diego Quintana, Joaquín Verdejo.
+- **Grupo 9, productos silvestres:** Joaquín Verdejo y otros dos integrantes.
 - **Actividad:** grupo de 3; investigar la retención de IVA (parcial o total) en el producto asignado; buscar la resolución en el SII; hacer el modelo de factura; averiguar cómo se contabiliza; presentar el **F29 con 5 compras y 5 ventas** (incluido el libro de compras y ventas); declaración jurada de retenciones que deba presentar al SII.
 
 ## Formato exigido
@@ -73,5 +73,5 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 
 ## Otro material de la carpeta
 
-- `TRABAJO GRUPAL PROCESAMIENTO CUARTO.pdf`: grupos de 4 que contabilizan **un mes de contabilidad** (sorteo). Joaquín Verdejo está en el **Grupo 3, mes de OCTUBRE**, con Alejandro Gutiérrez, Francisco Morales y Daniel Vergara. Hay una versión DESARROLLADA de ejemplo. Probablemente es el trabajo que mencionaste de Rafael: confírmalo.
+- `TRABAJO GRUPAL PROCESAMIENTO CUARTO.pdf`: grupos de 4 que contabilizan **un mes de contabilidad** (sorteo). Joaquín Verdejo está en el **Grupo 3, mes de OCTUBRE**. Hay una versión DESARROLLADA de ejemplo. Probablemente es el trabajo que mencionaste de Rafael: confírmalo.
 - Otras guías: balance clasificado, estado de resultado, asientos de cierre, rentas presuntas, PPM de 2ª categoría, F22, plantillas de sueldos y honorarios con sus declaraciones juradas.

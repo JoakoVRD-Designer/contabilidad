@@ -123,7 +123,10 @@ def construir_excel(ruta):
     from openpyxl import load_workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     c = calculos()
-    wb = load_workbook(RAIZ / "base" / "plantilla_compras_ventas_f29.xlsx")
+    plantilla = RAIZ / "base" / "plantilla_compras_ventas_f29.xlsx"
+    if not plantilla.exists():
+        raise SystemExit("Falta la plantilla del profesor: guárdala como trabajo_juan_castillo/base/plantilla_compras_ventas_f29.xlsx (no se publica en el repositorio).")
+    wb = load_workbook(plantilla)
     lc, lv, f29 = wb["L. COMPRAS"], wb["L. VENTAS"], wb["FORMULARIO 29"]
     azul = Font(color="0000FF")
     FMT = "#,##0"

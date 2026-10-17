@@ -57,4 +57,3 @@ Procedimiento correcto:
 4. Revisar los asientos contra los documentos (factura, boleta, comprobante).
 5. Corregir con un **asiento de ajuste o reverso** con glosa, sin borrar, y rehacer el balance.
 
-Hoja resuelta sobre la foto: [guia_insuco_resuelta.jpg](imagenes/guia_insuco_resuelta.jpg)

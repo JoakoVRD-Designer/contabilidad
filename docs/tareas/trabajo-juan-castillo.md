@@ -49,6 +49,8 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 3. Libro de compras: **código 31**, no 15.
 4. La resolución nombra el formulario 3290; hoy es la F3500.
 5. Los números de línea de la plantilla del profesor son de un F29 antiguo. Se usan los de la plantilla y en el Word se anotan los equivalentes de 2024.
+6. **Total del libro de compras (17-10-2026):** el SII (instrucciones de la Información de Compras, nota 5) dice que con retención total o parcial el monto total RESTA lo retenido: total = neto + IVA − IVA retenido = neto (antes sumaba neto + IVA).
+7. **Libro diario en orden cronológico (17-10-2026):** antes iban las 5 compras y después las 5 ventas.
 
 ## F29: líneas usadas (plantilla del profesor → instrucciones SII 2024)
 
@@ -76,9 +78,10 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 ## Falta antes de entregar (lo haces tú)
 
 1. ~~Resolución~~ ✔ adjunta en el Word (texto oficial). ~~Líneas del F29~~ ✔ verificadas. ~~Código 15/31~~ ✔ 31.
-2. Logo: deja la imagen en `trabajo_juan_castillo/base/logo.png` y vuelve a ejecutar el script (o pégala a mano en la portada).
+2. ~~Logo~~ ✔ en la portada: `trabajo_juan_castillo/base/logo.png`, renderizado del SVG oficial de insucochillan.cl (ver `logo-fuente.txt`).
 3. Classroom: abrir con la cuenta del liceo para leer publicaciones y comentarios del trabajo (no se pudo: Chrome tenía la cuenta personal).
-4. Revisar el Word en Word/LibreOffice y abrir el Excel para que recalcule las fórmulas.
+4. ~~Revisión visual~~ ✔ (17-10-2026, LibreOffice): Word de 13 páginas, todo en Arial (títulos incluidos), tablas con anchos a la medida y montos a la derecha, texto oficial de la resolución en párrafos con su tabla de ejemplo. Excel recalculado sin errores de fórmula: F29 = 1.400.000, libro diario cuadra (28.177.000), DJ = 1.073.500. Se corrigieron: fechas `###` en los libros (columna angosta) y montos ocultos del reverso del F29 (ahora en AP:AR combinadas; el 596 quedó en su fila, AP99).
+5. Período del ejemplo: octubre 2026 (algunas fechas son posteriores a la entrega del 19-10; si el profesor lo objeta, se cambia a septiembre).
 
 ## Otro material de la carpeta
 

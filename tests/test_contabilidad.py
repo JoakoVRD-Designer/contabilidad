@@ -339,6 +339,10 @@ class TestTrabajoJuanCastillo(unittest.TestCase):
             d.registrar(fecha, glosa, lineas)      # lanza error si algún asiento no cuadra
         balance_comprobacion(d)
 
+    def test_libro_diario_en_orden_cronologico(self):
+        fechas = [fecha for fecha, _, _ in trabajo_juan_castillo.asientos(trabajo_juan_castillo.calculos())]
+        self.assertEqual(fechas, sorted(fechas))
+
     def test_retencion_parcial_deja_iva_al_proveedor(self):
         c = trabajo_juan_castillo.calculos(retencion=D("0.5"))
         self.assertEqual(c["retenido"], 536_750)

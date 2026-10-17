@@ -11,7 +11,8 @@
 4. Antes de commit: `python3 -m unittest discover -s tests > /tmp/t.txt 2>&1 && git commit` (no usar `| tail`, oculta fallos).
 5. Rama: `claude/formulas-estado-resultado-gastos-cyjsb9`. No crear PR sin pedirlo. Commits terminan con Co-Authored-By y Claude-Session del sistema.
 6. **Nunca escribir nombres de personas que no sean profesores** (compañeros, listas de curso, etc.) en archivos, código, documentos ni commits; esos nombres solo se usan en el chat. Solo consta el nombre del alumno (Joaquín Verdejo) y de los profesores.
-7. Cada clase nueva → un archivo en `docs/` + línea en `docs/ESTUDIO.md`.
+7. **Nunca borrar plantillas, guías ni fotos de hojas del profesor** del repo: son el material de clase del alumno.
+8. Cada clase nueva → un archivo en `docs/` + línea en `docs/ESTUDIO.md`.
 
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores, proyectos (anual/mensual, periodo de recuperación).

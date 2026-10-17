@@ -20,7 +20,7 @@ OBJETIVO B. Con ese navegador, completar el trabajo de Juan Castillo, en este or
 6. Inserta el logo institucional en la portada del Word (te daré la ruta de la imagen) y adjunta el texto de la resolución en su sección.
 
 REGLAS DE TRABAJO (obligatorias)
-- La regla del profesor: solo se inventan los MONTOS; todo lo demás debe seguir la norma. Formato del Word: Arial 12, interlineado 1,5, márgenes sup 2,5 / inf 2,0 / izq 3,0 / der 2,0 cm; portada con logo y nombres (Matius Loyola, Diego Quintana, Joaquín Verdejo); introducción de media página.
+- La regla del profesor: solo se inventan los MONTOS; todo lo demás debe seguir la norma. Formato del Word: Arial 12, interlineado 1,5, márgenes sup 2,5 / inf 2,0 / izq 3,0 / der 2,0 cm; portada con logo y nombres (Integrante 2, Integrante 3, Joaquín Verdejo); introducción de media página.
 - Antes de cada commit: python3 -m unittest discover -s tests > salida.txt 2>&1 y revisa el resultado. No hagas commit si fallan.
 - Todo dato no verificado en la fuente oficial va marcado con ⚠️. No inventes cifras, resoluciones ni números de línea.
 - Si algo está contradicho entre fuentes, gana lo que diga el profesor; si no hay profesor, gana la fuente oficial del SII; y me lo cuentas.

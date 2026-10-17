@@ -53,7 +53,10 @@ def rut(numero):
 
 EMPRESA = {"razon": "Silvestres del Ñuble SpA (ficticia)", "rut": rut(76123456), "rut_num": 76123456,
            "giro": "Compra y venta de productos silvestres", "direccion": "Chillán (dirección ficticia)"}
-INTEGRANTES = ["Matius Loyola", "Diego Quintana", "Joaquín Verdejo"]
+# Nombres reales en trabajo_juan_castillo/base/integrantes.txt (uno por línea; no se sube a GitHub)
+_ARCHIVO_INTEGRANTES = Path(__file__).resolve().parent.parent / "trabajo_juan_castillo" / "base" / "integrantes.txt"
+INTEGRANTES = ([x.strip() for x in _ARCHIVO_INTEGRANTES.read_text(encoding="utf-8").splitlines() if x.strip()]
+               if _ARCHIVO_INTEGRANTES.exists() else ["Joaquín Verdejo", "Integrante 2", "Integrante 3"])
 PERIODO = "Octubre 2026"
 RETENCION = D("1")          # Res. Ex. SII N° 4095/2000: productos silvestres = retención TOTAL (100 % del IVA)
 PPM = D("0.01")             # tasa de PPM de la plantilla del profesor (celda A81)

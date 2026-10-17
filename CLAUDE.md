@@ -10,7 +10,8 @@
 3. Lo no verificado va con ⚠️ (en la nube el proxy bloquea sii.cl y otros; en el PC del alumno sí se abren, con Claude in Chrome: ver `docs/CONECTAR_MI_PC.md`).
 4. Antes de commit: `python3 -m unittest discover -s tests > /tmp/t.txt 2>&1 && git commit` (no usar `| tail`, oculta fallos).
 5. Rama: `claude/formulas-estado-resultado-gastos-cyjsb9`. No crear PR sin pedirlo. Commits terminan con Co-Authored-By y Claude-Session del sistema.
-6. Cada clase nueva → un archivo en `docs/` + línea en `docs/ESTUDIO.md`.
+6. **Nunca escribir nombres de personas que no sean profesores** (compañeros, listas de curso, etc.) en archivos, código, documentos ni commits; esos nombres solo se usan en el chat. Solo consta el nombre del alumno (Joaquín Verdejo) y de los profesores.
+7. Cada clase nueva → un archivo en `docs/` + línea en `docs/ESTUDIO.md`.
 
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores, proyectos (anual/mensual, periodo de recuperación).
@@ -36,7 +37,7 @@
 
 ## Profesores
 - Carmen: guía INSUCO (balance de comprobación y saldos, libro mayor) → resuelta, tema claro.
-- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (Integrante 2, Integrante 3, Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Regla del profe: solo se inventan los montos; lo demás sigue la norma (Res. 4095/2000 retención total; el IVA de la factura de compra SÍ es crédito fiscal (N° 6); F29 línea 25 519/520 de la plantilla y reverso cód. 39 (lín. 118) / 596 (lín. 122); libro de compras cód. 31; DJ F3500. Verificado en sii.cl el 16-10-2026, fuentes en `docs/normativa/fuentes/`). Falta: logo (`trabajo_juan_castillo/base/logo.png`) y leer Classroom con la cuenta del liceo. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
+- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (grupo de 3; solo consta Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Regla del profe: solo se inventan los montos; lo demás sigue la norma (Res. 4095/2000 retención total; el IVA de la factura de compra SÍ es crédito fiscal (N° 6); F29 línea 25 519/520 de la plantilla y reverso cód. 39 (lín. 118) / 596 (lín. 122); libro de compras cód. 31; DJ F3500. Verificado en sii.cl el 16-10-2026, fuentes en `docs/normativa/fuentes/`). Falta: logo (`trabajo_juan_castillo/base/logo.png`) y leer Classroom con la cuenta del liceo. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
 - Rafael: trabajo en grupo en Excel (libro diario, libro mayor, balance, estado de resultados y demás) → viene después de Juan Castillo.
 
 ## Clases cubiertas

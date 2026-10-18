@@ -129,7 +129,7 @@ FUENTES = [
          "https://www.sii.cl/destacados/modernizacion/tipos_regimenes_mt.html"),
     ]),
     ("Leyes (Biblioteca del Congreso Nacional, www.bcn.cl)", [
-        ("Decreto Ley N° 825 de 1974, Ley sobre Impuesto a las Ventas y Servicios (artículo 3°: cambio de sujeto).",
+        ("Decreto Ley N° 825 de 1974, Ley sobre Impuesto a las Ventas y Servicios (artículo 3°: cambio de sujeto; artículo 14: tasa del 19 %).",
          "https://www.bcn.cl/leychile/navegar?idNorma=6369"),
         ("Decreto Ley N° 824 de 1974, Ley sobre Impuesto a la Renta (artículos 14 letra D y 84: régimen Pro Pyme y PPM).",
          "https://www.bcn.cl/leychile/navegar?idNorma=6368"),
@@ -656,6 +656,7 @@ def paginas_f29_profesor(ruta_xlsx):
 # Word: formato pedido por el profesor
 # ----------------------------------------------------------------------------------------------------------------------
 def construir_word(ruta, paginas_f29=()):
+    import re
     import struct
     from docx import Document
     from docx.enum.table import WD_TABLE_ALIGNMENT
@@ -939,19 +940,46 @@ def construir_word(ruta, paginas_f29=()):
             "imputándolo a otros débitos o pidiendo devolución (N° 7). La retención es total (100 % del IVA; la resolución dice 18 % porque esa "
             "era la tasa del año 2000, hoy 19 %). El N° 16 pedía informar cada mes en el formulario 3290; hoy ese informe es la declaración "
             "jurada F3500. La empresa del ejemplo compra más de $50.000.000 al año, por lo que es agente retenedor.")
-    parrafo("Texto oficial de la resolución (fuente: www.sii.cl/documentos/resoluciones/2000b/reso4095.htm, consultado el 16-10-2026):", junto=True)
+    parrafo("Texto oficial de la resolución (fuente: www.sii.cl/documentos/resoluciones/2000b/reso4095.htm, consultado el 16-10-2026). "
+            "Entre corchetes y en cursiva van nuestras notas con los valores actuales; por ejemplo, el IVA era 18 % en el año 2000 "
+            "y hoy es 19 % (artículo 14 del D.L. 825):", junto=True)
     titulos = ("RESOLUCION EXENTA", "MATERIA", "C O N S I D E R A N D O", "S E R E S U E L V E", "ANOTESE Y PUBLIQUESE")
+    # notas de actualización dentro del texto oficial: (patrón, nota, solo la primera vez en todo el texto)
+    notas = [(re.compile(r"18 ?%"), "hoy 19 %", False),
+             (re.compile(r'"facturas de compra"'), "hoy factura de compra electrónica, DTE 46", True),
+             (re.compile(r"Código 39"), "hoy línea 117 del F29, código 39", False),
+             (re.compile(r"formulario N[º°] ?3290(?:\.1)?|formulario 3290"), "hoy Declaración Jurada F3500", False)]
+    usadas = set()
+    AZUL = RGBColor(0x1F, 0x4E, 0x78)
     for tipo, x in texto_resolucion():
         if tipo == "tabla":                       # el ejemplo de factura de compra que trae la resolución
             tabla(x[0], x[1:], tam=9, anchos=[2.6, 6.6, 3.0, 3.8], derecha={2, 3})
+            neto = 15000                          # 100 kg × $150, como en el ejemplo
+            nota = doc.add_paragraph()
+            nota.paragraph_format.line_spacing = 1.0
+            r = nota.add_run(f"[Con la tasa actual de 19 %, el ejemplo queda: neto ${m(neto)} + IVA a retener ${m(neto * 19 // 100)} = "
+                             f"${m(neto + neto * 19 // 100)}; menos IVA retenido ${m(neto * 19 // 100)}; total a pagar ${m(neto)}.]")
+            r.font.size, r.font.italic, r.font.bold, r.font.color.rgb = Pt(10), True, True, AZUL
             continue
-        par = doc.add_paragraph(x)
+        hallazgos = []
+        for k, (patron, texto_nota, una_vez) in enumerate(notas):
+            for mm in patron.finditer(x):
+                if una_vez and k in usadas:
+                    break
+                hallazgos.append((mm.end(), texto_nota))
+                usadas.add(k)
+        par = doc.add_paragraph()
         par.paragraph_format.line_spacing = 1.0
         if x.startswith(titulos) or x.endswith(":"):      # títulos y frases que presentan lo que sigue (ej. "Por ejemplo:")
             par.paragraph_format.keep_with_next = True
-        for run in par.runs:
-            run.font.size = Pt(10)
-            run.font.bold = x.startswith(titulos)
+        inicio = 0
+        for fin, texto_nota in sorted(hallazgos) + [(len(x), None)]:
+            r = par.add_run(x[inicio:fin])
+            r.font.size, r.font.bold = Pt(10), x.startswith(titulos)
+            if texto_nota:
+                r = par.add_run(f" [{texto_nota}]")
+                r.font.size, r.font.italic, r.font.bold, r.font.color.rgb = Pt(10), True, True, AZUL
+            inicio = fin
 
     # ---- Facturas: cada una en su página ----
     seccion("Diseño y ejemplo de factura de cambio de sujeto de IVA", nueva_pagina=True)

@@ -47,7 +47,7 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 1. **"Sin derecho a crédito fiscal" era un ERROR.** Venía del resumen en PDF, no del profesor. La resolución (N° 6) y la plantilla del profesor (línea 25) dicen que sí hay crédito. Corregido: el F29 baja de 2.473.500 a **1.400.000**.
 2. La factura de compra va en la línea de los códigos **519 / 520** (**28** en el F29 Actualizado, 25 en la plantilla antigua), no en la de 564 / 521.
 3. Libro de compras: **código 31**, no 15.
-4. La resolución nombra el formulario 3290; hoy es la F3500.
+4. La resolución nombra el formulario 3290; hoy es la F3500. En el texto oficial transcrito en el Word (18-10-2026) van notas entre corchetes con los valores de hoy: 18 % → 19 % (art. 14 D.L. 825), formulario 3290 → DJ F3500, factura de compra en papel → electrónica (DTE 46), código 39 → línea 117 del F29 Actualizado; y el ejemplo del N° 3 recalculado con 19 % (IVA $2.850).
 5. Los números de línea de la plantilla antigua eran de un F29 viejo. **El 15-10 el profesor subió el "F29 Actualizado" (leído el 17-10): se usan sus líneas** (tabla de abajo).
 6. **Total del libro de compras (17-10-2026):** el SII (instrucciones de la Información de Compras, nota 5) dice que con retención total o parcial el monto total RESTA lo retenido: total = neto + IVA − IVA retenido = neto (antes sumaba neto + IVA).
 7. **Libro diario en orden cronológico (17-10-2026):** antes iban las 5 compras y después las 5 ventas.

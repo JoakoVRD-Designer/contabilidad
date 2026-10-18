@@ -76,7 +76,11 @@ def rut(numero):
 
 EMPRESA = {"razon": "Silvestres del Ñuble SpA (ficticia)", "rut": rut(76123456), "rut_num": 76123456,
            "giro": "Compra y venta de productos silvestres", "direccion": "Chillán (dirección ficticia)"}
-INTEGRANTES = ["Joaquín Verdejo"]               # en la portada va solo el alumno (lo pidió él, 18-10-2026)
+# Nombres de la portada: base/integrantes.txt (uno por línea; archivo local que no se sube a GitHub, porque en el repo
+# solo consta el nombre del alumno). Si no existe, va solo el alumno.
+_ARCHIVO_INTEGRANTES = Path(__file__).resolve().parent.parent / "trabajo_juan_castillo" / "base" / "integrantes.txt"
+INTEGRANTES = ([x.strip() for x in _ARCHIVO_INTEGRANTES.read_text(encoding="utf-8").splitlines() if x.strip()]
+               if _ARCHIVO_INTEGRANTES.exists() else ["Joaquín Verdejo"])
 PERIODO = "Septiembre 2026"          # mes del ejemplo: todo queda antes de la entrega (19-10-2026)
 MES, MES_SIGUIENTE = 9, "octubre"
 FIN_MES = date(2026, 9, 30)          # costo de ventas y pago a proveedores

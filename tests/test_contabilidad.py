@@ -362,8 +362,10 @@ class TestTrabajoJuanCastillo(unittest.TestCase):
             doc = Document(ruta)
         textos = [p.text for p in doc.paragraphs]
         self.assertIn(f"Profesor: {trabajo_juan_castillo.PROFESOR}", textos)       # portada sin datos inventados
-        i = textos.index("Integrante:")
-        self.assertEqual(textos[i + 1:i + 3], ["Joaquín Verdejo", ""])             # solo el alumno en la portada
+        nombres = trabajo_juan_castillo.INTEGRANTES                                # salen de base/integrantes.txt (local)
+        i = textos.index("Integrante:" if len(nombres) == 1 else "Integrantes:")
+        self.assertEqual(textos[i + 1:i + 2 + len(nombres)], nombres + [""])       # la portada lista justo esos nombres
+        self.assertEqual(nombres[0], "Joaquín Verdejo")
         self.assertTrue(all(url.startswith("https://") for _, items in trabajo_juan_castillo.FUENTES for _, url in items if url))
         self.assertTrue(any(trabajo_juan_castillo.MODULO in t for t in textos))     # el ramo de este trabajo
         celdas = {celda.text for t in doc.tables for fila in t.rows for celda in fila.cells}

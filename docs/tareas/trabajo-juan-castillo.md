@@ -3,7 +3,7 @@
 Fuente: carpeta de Classroom "Cálculo y registros de impuestos (4° C Contabilidad)".
 
 - **Publicado:** 5 oct · **Entrega: 19 de octubre de 2026, IMPRESO** (no se sube a Classroom) · **100 puntos** (el .docx trae "31 julio 2025", es una copia vieja).
-- **Grupo 9, productos silvestres.** En la portada va **solo Joaquín Verdejo** y el profesor como «Juan Castillo» (lo pidió el alumno, 18-10-2026).
+- **Grupo 9, productos silvestres.** Los nombres de la portada salen de `trabajo_juan_castillo/base/integrantes.txt` (archivo local, fuera de git; si no existe, va solo Joaquín Verdejo). El 18-10-2026 el alumno pidió agregar a un compañero solo para esta entrega. Profesor: «Juan Castillo».
 - **Actividad:** grupo de 3; investigar la retención de IVA (parcial o total) en el producto asignado; buscar la resolución en el SII; hacer el modelo de factura; averiguar cómo se contabiliza; presentar el **F29 con 5 compras y 5 ventas** (incluido el libro de compras y ventas); declaración jurada de retenciones que deba presentar al SII.
 
 ## Formato exigido

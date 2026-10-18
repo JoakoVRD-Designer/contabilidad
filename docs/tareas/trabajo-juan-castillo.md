@@ -3,7 +3,7 @@
 Fuente: carpeta de Classroom "Cálculo y registros de impuestos (4° C Contabilidad)".
 
 - **Publicado:** 5 oct · **Entrega: 19 de octubre de 2026, IMPRESO** (no se sube a Classroom) · **100 puntos** (el .docx trae "31 julio 2025", es una copia vieja).
-- **Grupo 9, productos silvestres:** Joaquín Verdejo y otros dos integrantes.
+- **Grupo 9, productos silvestres.** En la portada va **solo Joaquín Verdejo** y el profesor como «Juan Castillo» (lo pidió el alumno, 18-10-2026).
 - **Actividad:** grupo de 3; investigar la retención de IVA (parcial o total) en el producto asignado; buscar la resolución en el SII; hacer el modelo de factura; averiguar cómo se contabiliza; presentar el **F29 con 5 compras y 5 ventas** (incluido el libro de compras y ventas); declaración jurada de retenciones que deba presentar al SII.
 
 ## Formato exigido
@@ -52,7 +52,7 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 6. **Total del libro de compras (17-10-2026):** el SII (instrucciones de la Información de Compras, nota 5) dice que con retención total o parcial el monto total RESTA lo retenido: total = neto + IVA − IVA retenido = neto (antes sumaba neto + IVA).
 7. **Libro diario en orden cronológico (17-10-2026):** antes iban las 5 compras y después las 5 ventas.
 8. **Reverso (17-10-2026):** el F29 Actualizado del profesor pone el 39 en la línea 117 y el 596 en la 121; las instrucciones SII 2024, en la 118 y la 122. Gana el profesor.
-9. **Tasa de PPM:** 1 % en la plantilla de libros del profesor (L. VENTAS, A81) y 0,25 % en el ejemplo del F29 Actualizado. Se mantiene 1 %. ⚠️ Confirmar con el profesor (con 0,25 %: PPM 17.500 y total F29 1.347.500).
+9. **Tasa de PPM (resuelto el 18-10-2026 con la norma vigente, como pidió el alumno):** la plantilla del profesor traía 1 % y el ejemplo de su F29 Actualizado 0,25 % (de otro año). La empresa del ejemplo es **Pro Pyme General** (art. 14 D N° 3 LIR) con ingresos del año anterior ≤ 50.000 UF: tasa permanente 0,25 %, rebajada a la mitad (**0,125 %**) por los años 2025 a 2027 (Ley N° 21.755, art. 25; **Circular SII N° 53 de 03-09-2025**, rige desde los ingresos de agosto de 2025 hasta los de diciembre de 2027). PPM = 7.000.000 × 0,125 % = 8.750. La página del SII «Tipos de regímenes» todavía muestra solo la tasa permanente.
 10. **Resumen de la resolución (18-10-2026):** decía «retienen los compradores que venden a exportadores»; el N° 2 dice que retienen los **exportadores que compran**. Corregido en el Word.
 11. **Portada (18-10-2026):** el ramo es «Cálculo y Registros de Impuestos» (así se llama el curso en Classroom), no «Procesamiento de información contable». El segundo apellido del profesor no tenía fuente y se quitó (en Classroom aparece como «juan castillo»).
 12. **DJ F3500 (18-10-2026):** el Word decía que los facturadores electrónicos no la presentan, y la empresa del ejemplo lo es; ahora explica que se presenta para mostrar cómo se informa cada retención.
@@ -82,7 +82,7 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 - `trabajo_juan_castillo/cambio_sujeto_silvestres.docx`: informe con el formato pedido (Arial 12, 1,5, márgenes) y las 9 secciones.
 - `trabajo_juan_castillo/cambio_sujeto_silvestres.pdf`: **el informe listo para imprimir** (16 páginas tamaño carta). Conviene imprimir este PDF: sale igual que en pantalla, aunque el PC de la imprenta tenga otro Word.
 - Se regeneran con `python ejemplos/trabajo_juan_castillo.py`; el PDF, con `soffice --headless --convert-to pdf --outdir trabajo_juan_castillo trabajo_juan_castillo/cambio_sujeto_silvestres.docx` (LibreOffice).
-- Resultado del ejemplo: compras netas 5.650.000 · IVA de compras 1.073.500 (crédito fiscal y también retenido) · ventas netas 7.000.000 (IVA 1.330.000) · IVA determinado 256.500 · PPM 70.000 · IVA retenido 1.073.500 · **total F29 1.400.000**; el libro diario cuadra (lo verifica el test).
+- Resultado del ejemplo: compras netas 5.650.000 · IVA de compras 1.073.500 (crédito fiscal y también retenido) · ventas netas 7.000.000 (IVA 1.330.000) · IVA determinado 256.500 · PPM 8.750 (0,125 %) · IVA retenido 1.073.500 · **total F29 1.338.750**; el libro diario cuadra (28.115.750; lo verifica el test).
 - Inventados: montos (kilos y precios) y nombres de personas. Los RUT son ficticios pero con dígito verificador válido. La retención total sale de la norma.
 
 ## Falta antes de entregar (lo haces tú)
@@ -92,9 +92,10 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 3. ~~Classroom~~ ✔ leído el 17-10 con la cuenta del liceo (`classroom-juan-castillo.md`): las instrucciones no cambian; el adjunto nuevo es el **"F29 Actualizado"**. ✔ El 18-10 el trabajo se pasó a sus líneas (tabla del F29 y conclusiones del Word; hoja F29 ACTUALIZADO del Excel). Opcional: rellenar el archivo original del profesor (hay que descargarlo, con tu permiso).
 4. ~~Revisión visual~~ ✔ (17-10-2026, LibreOffice): Word de 13 páginas, todo en Arial (títulos incluidos), tablas con anchos a la medida y montos a la derecha, texto oficial de la resolución en párrafos con su tabla de ejemplo. Excel recalculado sin errores de fórmula: F29 = 1.400.000, libro diario cuadra (28.177.000), DJ = 1.073.500. Se corrigieron: fechas `###` en los libros (columna angosta) y montos ocultos del reverso del F29 (ahora en AP:AR combinadas; el 596 quedó en su fila, AP99).
 5. Período del ejemplo: octubre 2026 (algunas fechas son posteriores a la entrega del 19-10; si el profesor lo objeta, se cambia a septiembre).
-6. ⚠️ **Tasa de PPM:** preguntar al profesor si es 1 % (su plantilla de libros) o 0,25 % (ejemplo de su F29 Actualizado). Si es 0,25 %: cambiar `PPM` en `ejemplos/trabajo_juan_castillo.py` y regenerar (PPM 17.500; total F29 1.347.500); el Word y el Excel se actualizan solos.
-7. Revisión del 18-10-2026 (LibreOffice): Excel sin errores de fórmula; hoja F29 ACTUALIZADO en una sola página al imprimir; F29 = 1.400.000; libro diario 28.177.000 = 28.177.000.
-8. **Revisión para imprimir (18-10-2026):** 16 páginas tamaño carta, con número de página (la portada sin número). Cada factura va completa en su página, con recuadro rojo (RUT, tipo y folio), timbre electrónico y, en la de compra, la leyenda de retención que pide el N° 3. Libros, libro diario, F29, DJ y conclusiones empiezan en página nueva. El libro diario no corta asientos entre páginas, repite los títulos y cierra con sumas iguales. Ninguna tabla queda separada de su título.
+6. ~~Tasa de PPM~~ ✔ 0,125 % según la norma vigente (discrepancia 9). Si el profesor pidiera otra, se cambia `PPM` en `ejemplos/trabajo_juan_castillo.py` y en la hoja Parámetros del Excel.
+7. Revisión del 18-10-2026 (LibreOffice): Excel sin errores de fórmula; hoja F29 ACTUALIZADO en una sola página al imprimir; F29 = 1.338.750; libro diario 28.115.750 = 28.115.750.
+8. **Revisión para imprimir (18-10-2026):** 17 páginas tamaño carta (16 + fuentes), con número de página (la portada sin número). Cada factura va completa en su página, con recuadro rojo (RUT, tipo y folio), timbre electrónico y, en la de compra, la leyenda de retención que pide el N° 3. Libros, libro diario, F29, DJ y conclusiones empiezan en página nueva. El libro diario no corta asientos entre páginas, repite los títulos y cierra con sumas iguales. Ninguna tabla queda separada de su título.
+9. **Fuentes (18-10-2026):** página final «Fuentes consultadas» en el Word y hoja «Fuentes» en el Excel: 11 enlaces oficiales con https (8 de sii.cl, revisados con respuesta 200 y certificado válido, y 3 de bcn.cl, abiertos en el navegador) más el material del profesor. El Word queda de 17 páginas.
 
 ## Otro material de la carpeta
 

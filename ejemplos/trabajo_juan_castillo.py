@@ -75,16 +75,17 @@ def rut(numero):
 
 EMPRESA = {"razon": "Silvestres del Ñuble SpA (ficticia)", "rut": rut(76123456), "rut_num": 76123456,
            "giro": "Compra y venta de productos silvestres", "direccion": "Chillán (dirección ficticia)"}
-# Nombres reales en trabajo_juan_castillo/base/integrantes.txt (uno por línea; no se sube a GitHub)
-_ARCHIVO_INTEGRANTES = Path(__file__).resolve().parent.parent / "trabajo_juan_castillo" / "base" / "integrantes.txt"
-INTEGRANTES = ([x.strip() for x in _ARCHIVO_INTEGRANTES.read_text(encoding="utf-8").splitlines() if x.strip()]
-               if _ARCHIVO_INTEGRANTES.exists() else ["Joaquín Verdejo", "Integrante 2", "Integrante 3"])
+INTEGRANTES = ["Joaquín Verdejo"]               # en la portada va solo el alumno (lo pidió él, 18-10-2026)
 PERIODO = "Octubre 2026"
 CURSO = "Cuarto Medio C"
 MODULO = "Cálculo y Registros de Impuestos"     # nombre del curso en Classroom (el trabajo es de este ramo)
 PROFESOR = "Juan Castillo"                      # así aparece en Classroom (no hay fuente para el segundo apellido)
 RETENCION = D("1")          # Res. Ex. SII N° 4095/2000: productos silvestres = retención TOTAL (100 % del IVA)
-PPM = D("0.01")             # tasa de PPM de la plantilla del profesor (celda A81); ⚠️ el ejemplo del F29 Actualizado usa 0,25 %
+REGIMEN = "Pro Pyme General (art. 14 letra D N° 3 de la Ley sobre Impuesto a la Renta)"
+# PPM del régimen Pro Pyme General con ingresos del año anterior ≤ 50.000 UF: 0,25 % permanente, rebajado a la mitad por los años
+# comerciales 2025 a 2027 (Ley N° 21.755, art. 25; Circular SII N° 53 de 03-09-2025, verificada el 18-10-2026). La plantilla
+# del profesor traía 1 % y el ejemplo de su F29 Actualizado 0,25 % (de otro año); el alumno pidió usar la norma vigente.
+PPM = D("0.00125")
 MARGEN = D("0.40")          # ganancia sobre el costo para calcular el costo de ventas
 # (fecha, folio, proveedor, rut, producto, código F3500, kilos, precio por kilo)
 COMPRAS = [(date(2026, 10, 2), 201, "Juan Pérez (recolector)", rut(11111111), "Rosa mosqueta", 3101, 1200, 1500),
@@ -99,6 +100,39 @@ VENTAS = [(date(2026, 10, 5), 101, "Exportadora Andes SpA", rut(76200100), 1_900
           (date(2026, 10, 21), 104, "Comercial Maule SpA", rut(76200400), 900_000),
           (date(2026, 10, 28), 105, "Distribuidora Bío Bío Ltda.", rut(76200500), 1_300_000)]
 DETALLE_VENTA_MODELO = ("Rosa mosqueta", 760)   # producto y kilos de la factura de venta modelo (la primera venta); precio = neto ÷ kilos
+# Fuentes del trabajo: todas oficiales y con https (enlaces revisados el 18-10-2026; los de bcn.cl, abiertos en el navegador)
+REVISION_FUENTES = "18 de octubre de 2026"
+FUENTES = [
+    ("Servicio de Impuestos Internos (www.sii.cl)", [
+        ("Resolución Exenta SII N° 4095, de 25-08-2000: cambio de sujeto del IVA en los productos silvestres.",
+         "https://www.sii.cl/documentos/resoluciones/2000b/reso4095.htm"),
+        ("Instrucciones de llenado del Formulario 29 (12-11-2024): líneas y códigos del F29.",
+         "https://www.sii.cl/servicios_online/instrucciones_f29_20241112.pdf"),
+        ("Instrucciones de la Declaración Jurada F3500, informe mensual de retenedores de cambio de sujeto.",
+         "https://www.sii.cl/declaraciones_juradas/instrucciones_f3500.html"),
+        ("Preguntas frecuentes: plazo de la Declaración Jurada 3500 (día 15 de cada mes; día 23 con el D.S. N° 1001 de 2006).",
+         "https://www.sii.cl/preguntas_frecuentes/ddjj/001_135_6150.htm"),
+        ("Tabla de códigos de otros impuestos y retenciones (código 31, IVA retenido silvestres).",
+         "https://www.sii.cl/declaraciones_juradas/ddjj_3327_3328/cod_otros_imp_retenc.pdf"),
+        ("Instrucciones de llenado de la información de compras y ventas (monto total de las facturas con retención).",
+         "https://www.sii.cl/declaraciones_juradas/ddjj_3327_3328/instrucciones_llenado_comp_vtas.pdf"),
+        ("Circular N° 53, de 03-09-2025: rebaja transitoria de la tasa de PPM del régimen Pro Pyme General (años 2025 a 2027).",
+         "https://www.sii.cl/normativa_legislacion/circulares/2025/circu53.pdf"),
+        ("Tipos de regímenes tributarios: requisitos del régimen Pro Pyme General.",
+         "https://www.sii.cl/destacados/modernizacion/tipos_regimenes_mt.html"),
+    ]),
+    ("Leyes (Biblioteca del Congreso Nacional, www.bcn.cl)", [
+        ("Decreto Ley N° 825 de 1974, Ley sobre Impuesto a las Ventas y Servicios (artículo 3°: cambio de sujeto).",
+         "https://www.bcn.cl/leychile/navegar?idNorma=6369"),
+        ("Decreto Ley N° 824 de 1974, Ley sobre Impuesto a la Renta (artículos 14 letra D y 84: régimen Pro Pyme y PPM).",
+         "https://www.bcn.cl/leychile/navegar?idNorma=6368"),
+        ("Ley N° 21.755 de 2025, artículo 25: rebaja transitoria del impuesto de primera categoría y del PPM de las pymes.",
+         "https://www.bcn.cl/leychile/navegar?idNorma=1214890"),
+    ]),
+    ("Material del curso", [
+        ("«F29 Actualizado» y plantilla de compras, ventas y F29 del profesor Juan Castillo (Classroom del curso).", None),
+    ]),
+]
 
 
 def calculos(retencion=RETENCION, ppm=PPM, margen=MARGEN):
@@ -193,15 +227,18 @@ def construir_excel(ruta):
     datos = [("Empresa (ficticia)", EMPRESA["razon"]), ("RUT (ficticio)", EMPRESA["rut"]), ("Período", PERIODO),
              ("Tasa de IVA", 0.19), ("Retención del IVA (1 = total; Res. Ex. SII 4095/2000)", float(RETENCION)),
              ("Margen de ganancia sobre el costo", float(MARGEN)),
-             ("Integrantes", ", ".join(INTEGRANTES))]
+             ("Integrante" if len(INTEGRANTES) == 1 else "Integrantes", ", ".join(INTEGRANTES)),
+             ("Régimen tributario", REGIMEN),
+             ("Tasa de PPM (rebaja transitoria 2025-2027: Ley N° 21.755 y Circular SII N° 53 de 2025)", float(PPM))]
     for i, (k, v) in enumerate(datos, start=1):
         p.cell(row=i, column=1, value=k).font = Font(bold=True)
         p.cell(row=i, column=2, value=v).font = azul
     p["B4"].number_format = "0%"
     p["B5"].number_format = "0%"
     p["B6"].number_format = "0%"
-    p["A9"] = "Datos inventados. Celdas azules = datos que puedes cambiar; las planillas se recalculan solas."
-    p.column_dimensions["A"].width = 62
+    p["B9"].number_format = "0.000%"
+    p["A11"] = "Datos inventados. Celdas azules = datos que puedes cambiar; las planillas se recalculan solas. Fuentes: hoja Fuentes."
+    p.column_dimensions["A"].width = 84
     p.column_dimensions["B"].width = 40
 
     # ---- L. COMPRAS ----
@@ -283,7 +320,8 @@ def construir_excel(ruta):
     lv["D78"] = "=E94"
     lv["D79"] = "=MAX(D75+D78-D73,0)"
     lv["D80"] = "=D76"
-    lv["A81"] = float(PPM)                     # misma tasa que el Word (la plantilla trae 0,01)
+    lv["A81"] = "=Parámetros!B9"               # la tasa de PPM sale de Parámetros (la plantilla traía 0,01)
+    lv["A81"].number_format = "0.000%"
     lv["D81"] = "=ROUND(C81*A81,0)"
     lv["D82"], lv["D83"] = 0, 0
     lv["D84"] = "=D80+D81+D82+D83"
@@ -312,7 +350,7 @@ def construir_excel(ruta):
         _celda(f29, k).value = v
         if k.startswith("AP") or k.startswith("T"):
             _celda(f29, k).number_format = FMT
-    _celda(f29, "AC74").number_format = "0.00%"
+    _celda(f29, "AC74").number_format = "0.000%"
     f29["B96"] = "REVERSO: CAMBIO DE SUJETO (agente retenedor)"
     f29["B96"].font = Font(bold=True)
     f29["B97"] = "[39] Retenciones de IVA a terceros con retención total (línea 117 del F29 Actualizado)"
@@ -361,7 +399,7 @@ def construir_excel(ruta):
         (50, "89", "IVA determinado (débitos − créditos)", "=MAX({538}-{537},0)", FMT, False),
         (None, "PAGOS PROVISIONALES MENSUALES"),
         (69, "563", "PPM 1ª categoría (art. 84 a): base imponible (ventas netas)", "='L. VENTAS'!C81", FMT, False),
-        (69, "115", "PPM: tasa", "='L. VENTAS'!A81", "0.00%", False),
+        (69, "115", "PPM: tasa (Pro Pyme General; rebaja transitoria de la Ley N° 21.755)", "='L. VENTAS'!A81", "0.000%", False),
         (69, "62", "PPM neto determinado", "='L. VENTAS'!D81", FMT, False),
         (79, "595", "SUBTOTAL IMPUESTO DETERMINADO ANVERSO (89 + 62)", "={89}+{62}", FMT, False),
         (None, "REVERSO: RETENCIÓN DE IVA POR CAMBIO DE SUJETO (agente retenedor)"),
@@ -481,7 +519,8 @@ def construir_excel(ruta):
     j["A1"] = "DECLARACIÓN JURADA F3500: informe mensual de retenedores de cambio de sujeto de IVA"
     j["A1"].font = Font(bold=True)
     j["A2"] = (f"Contribuyente: {EMPRESA['razon']}, RUT {EMPRESA['rut']} · Período: {PERIODO} · "
-               "Plazo: hasta el día 15 del mes siguiente (si no es hábil, el día hábil siguiente: 16-11-2026). Se presenta aunque no haya movimiento.")
+               "Plazo: hasta el día 15 del mes siguiente (si no es hábil, el día hábil siguiente: 16-11-2026; los retenedores que cumplen el "
+               "D.S. N° 1001 de 2006 tienen hasta el día 23). Se presenta aunque no haya movimiento.")
     cab = ["RUT del vendedor (retenido)", "Código de producto (F3500)", "Producto", "Tipo de documento", "N° documento", "Fecha",
            "Cantidad", "Unidad de medida (cód. 1)", "IVA retenido total"]
     for i, t in enumerate(cab, start=1):
@@ -502,6 +541,27 @@ def construir_excel(ruta):
                        "compras y ventas no están obligados a presentarla; aquí se presenta porque el profesor la pide. ⚠️ Verificar el formato vigente en sii.cl.")
     for col, w in zip("ABCDEFGHI", [20, 16, 20, 30, 12, 12, 10, 14, 16]):
         j.column_dimensions[col].width = w
+    # ---- Fuentes (todas oficiales y con https) ----
+    fz = wb.create_sheet("Fuentes")
+    fz["A1"] = f"FUENTES CONSULTADAS: todas oficiales y con conexión segura (https). Enlaces revisados el {REVISION_FUENTES}."
+    fz["A1"].font = Font(bold=True)
+    for i, t in enumerate(["N°", "Origen", "Fuente (qué se usó)", "Enlace"], start=1):
+        x = fz.cell(row=3, column=i, value=t)
+        x.font, x.fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="1F4E78")
+    r = 4
+    for grupo, items in FUENTES:
+        for texto, url in items:
+            fz.cell(row=r, column=1, value=r - 3)
+            fz.cell(row=r, column=2, value=grupo)
+            fz.cell(row=r, column=3, value=texto).alignment = Alignment(wrap_text=True, vertical="top")
+            if url:
+                x = fz.cell(row=r, column=4, value=url)
+                x.hyperlink, x.font = url, Font(color="0563C1", underline="single")
+            for col in (1, 2, 4):
+                fz.cell(row=r, column=col).alignment = Alignment(wrap_text=col == 2, vertical="top")
+            r += 1
+    for col, w in zip("ABCD", [5, 26, 70, 80]):
+        fz.column_dimensions[col].width = w
     wb.save(ruta)
 
 
@@ -757,7 +817,8 @@ def construir_word(ruta):
     p.alignment = CENTRO
     r = p.add_run("\nTRABAJO DE INVESTIGACIÓN\nCAMBIO DE SUJETO DE IVA:\nPRODUCTOS SILVESTRES\n")
     r.bold, r.font.size = True, Pt(18)
-    for linea in ("Integrantes:", *INTEGRANTES, "", f"Profesor: {PROFESOR}", "Chillán, 19 de octubre de 2026"):
+    etiqueta = "Integrante:" if len(INTEGRANTES) == 1 else "Integrantes:"
+    for linea in (etiqueta, *INTEGRANTES, "", f"Profesor: {PROFESOR}", "Chillán, 19 de octubre de 2026"):
         p = doc.add_paragraph(linea)
         p.alignment = CENTRO
     doc.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
@@ -888,11 +949,15 @@ def construir_word(ruta):
             "121 (código 596) suma las retenciones por cambio de sujeto, y ese total se agrega al total determinado (línea 133, código 547) "
             "y al total a pagar (línea 140, código 91). Vendedor retenido: línea 5 (códigos 515 y 587) si la retención es total, y líneas 6 "
             "(código 720) y 16 (códigos 516 y 517) si es parcial. Los productos silvestres tienen retención total.")
+    parrafo(f"PPM (línea 69). La empresa del ejemplo está en el régimen {REGIMEN} y sus ingresos del año anterior no superan las "
+            "50.000 UF. Su tasa permanente de PPM es 0,25 % de los ingresos brutos del mes, pero la Ley N° 21.755 la rebajó a la mitad "
+            f"durante los años 2025, 2026 y 2027 (Circular SII N° 53 de 2025): {pct(PPM)} × ${m(c['neto_v'])} = ${m(c['ppm'])}.")
 
     # ---- DJ ----
     seccion("Declaración jurada mensual de retenciones")
     parrafo("Corresponde la declaración jurada F3500, informe mensual de retenedores de cambio de sujeto de IVA. Se presenta cada mes, hasta el día 15 "
-            "del mes siguiente (si no es día hábil, el siguiente hábil), aunque no haya movimiento, informando operación por operación. "
+            "del mes siguiente (si no es día hábil, el siguiente hábil; los retenedores que cumplen el D.S. N° 1001 de 2006 tienen hasta el día 23), "
+            "aunque no haya movimiento, informando operación por operación. "
             "Los códigos de producto de los silvestres son: 3101 rosa mosqueta, 3102 mora, 3103 hongos, 3104 frutos de espino y 3105 hojas de boldo. "
             "Los códigos 3106 a 3115 corresponden a los demás silvestres (tilo, manzanilla, llantén, toronjil, cedrón, hierbas pectorales, romero, quillay, "
             "hierba de hipérico y cera de abeja). Unidad de medida: código 1 (kilogramo); documento 46 (factura de compra electrónica). "
@@ -909,12 +974,47 @@ def construir_word(ruta):
             f"Como ese mismo IVA es crédito fiscal, lo restó de su débito: IVA determinado ${m(c['determinado'])}. En el F29 pagó ese IVA, el PPM "
             f"(${m(c['ppm'])}) y el IVA retenido: ${m(c['total_f29'])} en total. El proveedor cobra solo el neto y no necesita emitir factura. "
             "La factura de compra respalda cada operación, y la declaración jurada F3500 informa cada mes al SII las retenciones practicadas.")
-    parrafo(f"Como grupo concluimos que el cambio de sujeto traslada al comprador la obligación de declarar el IVA, pero no le quita su "
+    parrafo(f"Concluimos que el cambio de sujeto traslada al comprador la obligación de declarar el IVA, pero no le quita su "
             f"derecho a crédito fiscal: en el F29 el mismo IVA aparece como crédito (línea 28, código 520) y como retención (línea 117, código 39). "
             f"Por eso, en total la empresa pagó en IVA el mismo monto de su débito fiscal (${m(c['iva_v'])}): ${m(c['determinado'])} de IVA "
             f"propio más ${m(c['retenido'])} retenido a sus proveedores. También aprendimos que cada documento tiene su forma de registro: "
             "en el libro de compras el total de la factura de compra es el neto, porque el IVA retenido se descuenta, y cada operación se "
             "identifica con el código 31 y con su código de producto en la declaración jurada F3500.")
+    # ---- Fuentes consultadas (todas oficiales y con https) ----
+    def enlace(par, url, tam=10):
+        """Enlace que funciona en el PDF y se lee impreso."""
+        r_id = par.part.relate_to(url, "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink", is_external=True)
+        h = nodo(par._p, "w:hyperlink", {"r:id": r_id})
+        r = nodo(h, "w:r")
+        rpr = nodo(r, "w:rPr")
+        nodo(rpr, "w:rFonts", {"w:ascii": "Arial", "w:hAnsi": "Arial"})
+        nodo(rpr, "w:color", {"w:val": "1F4E78"})
+        nodo(rpr, "w:sz", {"w:val": tam * 2})
+        nodo(rpr, "w:u", {"w:val": "single"})
+        nodo(r, "w:t").text = url
+
+    seccion("Fuentes consultadas", nueva_pagina=True)
+    parrafo("Todas las fuentes son oficiales (Servicio de Impuestos Internos y Biblioteca del Congreso Nacional) y sus enlaces usan "
+            f"conexión segura (https). Enlaces revisados el {REVISION_FUENTES}.")
+    k = 0
+    for grupo, items in FUENTES:
+        g = doc.add_paragraph()
+        g.paragraph_format.keep_with_next = True
+        g.paragraph_format.space_before = Pt(6)
+        r = g.add_run(grupo)
+        r.bold, r.font.size = True, Pt(11)
+        for texto, url in items:
+            k += 1
+            par = doc.add_paragraph()
+            par.paragraph_format.line_spacing = 1.15
+            par.paragraph_format.left_indent, par.paragraph_format.first_line_indent = Cm(0.7), Cm(-0.7)
+            par.paragraph_format.space_after = Pt(6)
+            par.paragraph_format.keep_together = True
+            r = par.add_run(f"{k}.	{texto}")
+            r.font.size = Pt(10)
+            if url:
+                r.add_break()
+                enlace(par, url)
     doc.save(ruta)
 
 if __name__ == "__main__":

@@ -332,7 +332,8 @@ class TestProyectos(unittest.TestCase):
 class TestTrabajoJuanCastillo(unittest.TestCase):
     def test_numeros_y_libro_diario_cuadran(self):
         c = trabajo_juan_castillo.calculos()
-        self.assertEqual((c["neto_c"], c["retenido"], c["determinado"], c["total_f29"]), (5_650_000, 1_073_500, 256_500, 1_400_000))
+        self.assertEqual((c["neto_c"], c["retenido"], c["determinado"], c["total_f29"]), (5_650_000, 1_073_500, 256_500, 1_338_750))
+        self.assertEqual(c["ppm"], 8_750)          # 0,125 % de 7.000.000: Pro Pyme General con la rebaja de la Ley 21.755 (2025-2027)
         self.assertEqual((len(c["compras"]), len(c["ventas"])), (5, 5))     # la consigna pide 5 compras y 5 ventas
         d = LibroDiario(PlanDeCuentas.desde_csv())
         for fecha, glosa, lineas in trabajo_juan_castillo.asientos(c):
@@ -361,6 +362,9 @@ class TestTrabajoJuanCastillo(unittest.TestCase):
             doc = Document(ruta)
         textos = [p.text for p in doc.paragraphs]
         self.assertIn(f"Profesor: {trabajo_juan_castillo.PROFESOR}", textos)       # portada sin datos inventados
+        i = textos.index("Integrante:")
+        self.assertEqual(textos[i + 1:i + 3], ["Joaquín Verdejo", ""])             # solo el alumno en la portada
+        self.assertTrue(all(url.startswith("https://") for _, items in trabajo_juan_castillo.FUENTES for _, url in items if url))
         self.assertTrue(any(trabajo_juan_castillo.MODULO in t for t in textos))     # el ramo de este trabajo
         celdas = {celda.text for t in doc.tables for fila in t.rows for celda in fila.cells}
         self.assertIn("SUMAS IGUALES", celdas)                                     # el libro diario cierra con sumas iguales

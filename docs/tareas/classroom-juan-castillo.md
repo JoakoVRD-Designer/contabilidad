@@ -46,6 +46,6 @@ Curso: "2026 CALCULO Y REGISTROS DE IMUESTOS" (así está escrito), Cuarto C Con
 ## ¿Contradice lo que hay?
 1. **Números de línea:** el "F29 Actualizado" reemplaza a la plantilla antigua (hoja FORMULARIO 29 de la plantilla de compras y ventas). 519/520 pasa de la línea 25 a la 28; 516/517 de la 14 a la 16; 538 de la 20 a la 23; 537 de la 42 a la 49; 89 de la 43 a la 50; PPM de la 52 a la 69; 595 de la 59 a la 79. Las líneas 5, 6 y 7 no cambian. **Gana el profesor.**
 2. **Reverso:** el F29 del profesor pone el código 39 en la línea 117 y el 596 en la 121; las instrucciones SII del 12-11-2024 los ponen en la 118 y la 122. **Gana el profesor:** se usan 117 y 121.
-3. **Tasa de PPM:** la plantilla de libros del profesor usa 1 % (L. VENTAS, celda A81) y el F29 Actualizado trae 0,25 % en su ejemplo. Se mantiene 1 %. ⚠️ Confirmar con el profesor. Con 0,25 % el PPM bajaría de 70.000 a 17.500 y el total del F29 de 1.400.000 a 1.347.500.
+3. **Tasa de PPM:** la plantilla de libros del profesor usa 1 % (L. VENTAS, celda A81) y el F29 Actualizado trae 0,25 % en su ejemplo (de otro año). **Resuelto el 18-10-2026 con la norma vigente**, como pidió el alumno: Pro Pyme General con la rebaja de la Ley N° 21.755 = 0,125 % (Circular SII N° 53 de 2025). PPM 8.750; total del F29 1.338.750.
 
 **Aplicado al trabajo el 18-10-2026:** tabla del F29 y conclusiones del Word con las líneas del F29 Actualizado; hoja nueva F29 ACTUALIZADO en el Excel (el asiento del F29 del libro diario sale de ella). La hoja FORMULARIO 29 (plantilla antigua) se mantiene rellena.

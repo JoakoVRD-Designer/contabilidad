@@ -723,6 +723,7 @@ def construir_word(ruta, paginas_f29=()):
     sec.top_margin, sec.bottom_margin, sec.left_margin, sec.right_margin = Cm(2.5), Cm(2.0), Cm(3.0), Cm(2.0)
     CENTRO, DERECHA = WD_ALIGN_PARAGRAPH.CENTER, WD_ALIGN_PARAGRAPH.RIGHT
     ROJO, GRIS = RGBColor(0xC0, 0x00, 0x00), RGBColor(0x80, 0x80, 0x80)
+    AZUL = RGBColor(0x1F, 0x4E, 0x78)
 
     def fuente(estilo, tam=12, negrita=None):
         estilo.font.name = "Arial"
@@ -848,6 +849,24 @@ def construir_word(ruta, paginas_f29=()):
                         run.font.name, run.font.size = "Arial", Pt(tam)
                         if k < 0 or k in negritas:
                             run.font.bold = True
+        doc.add_paragraph()
+
+    def en_simple(texto):
+        """Recuadro «En simple»: la idea de la sección explicada para alguien que no es contador."""
+        caja = doc.add_table(rows=1, cols=1)
+        bordes(caja, "9DB9D3", 6, interiores=False)
+        anchos_de(caja, [16])
+        nodo(caja.rows[0]._tr.get_or_add_trPr(), "w:cantSplit")
+        celda = caja.cell(0, 0)
+        sombra(celda, "EEF4FA")
+        par = celda.paragraphs[0]
+        par.paragraph_format.line_spacing = 1.15
+        par.paragraph_format.space_after = Pt(0)
+        for texto_run, negrita in (("En simple: ", True), (texto, False)):
+            r = par.add_run(texto_run)
+            r.font.name, r.font.size, r.font.bold = "Arial", Pt(12), negrita
+            if negrita:
+                r.font.color.rgb = AZUL
         doc.add_paragraph()
 
     def factura(titulo, folio, receptor, cab_det, fila_det, anchos_det, der_det, totales, leyenda=None):
@@ -980,6 +999,26 @@ def construir_word(ruta, paginas_f29=()):
     parrafo("Este trabajo presenta la resolución, el diseño de las facturas, el registro de cinco compras y cinco ventas en los libros, "
             "su contabilización en el libro diario, el Formulario 29 y la declaración jurada. Los datos de la empresa son de ejemplo.")
 
+    # ---- Conceptos clave, para quien no es contador ----
+    seccion("Conceptos clave, en simple")
+    tabla(["Concepto", "Qué significa"],
+          [("IVA", "Impuesto de 19 % que se suma al precio de lo que se vende. Las empresas lo cobran y se lo entregan al Estado."),
+           ("Precio neto", "El precio sin IVA."),
+           ("Débito fiscal", "El IVA que la empresa cobra en sus ventas: es plata que le debe al fisco."),
+           ("Crédito fiscal", "El IVA que la empresa paga en sus compras: lo puede descontar de su débito."),
+           ("Cambio de sujeto", "Cuando la ley hace que sea el comprador, y no el vendedor, quien entregue el IVA al fisco."),
+           ("Retención total", "El comprador se queda con el 100 % del IVA de la compra y lo paga él directamente al SII."),
+           ("Agente retenedor", "La empresa obligada a retener el IVA; en este trabajo, la que compra los productos silvestres."),
+           ("Factura de compra (DTE 46)", "Factura que emite el comprador cuando el vendedor no emite factura. DTE = documento tributario electrónico."),
+           ("Libro de compras y ventas", "Lista de todas las facturas de compra y de venta del mes."),
+           ("Libro diario", "Registro de cada operación en orden de fecha, en dos columnas (Debe y Haber) que siempre suman lo mismo."),
+           ("F29", "Formulario que se presenta cada mes al SII para declarar y pagar el IVA, el PPM y las retenciones."),
+           ("PPM", "Pago provisional mensual: un pequeño porcentaje de las ventas que se adelanta a cuenta del impuesto a la renta del año."),
+           ("DJ F3500", "Declaración jurada mensual en que la empresa informa al SII cada retención de IVA que hizo."),
+           ("Pro Pyme General", "Régimen de impuestos para pymes: empresas con ventas promedio de hasta 75.000 UF al año."),
+           ("SII", "Servicio de Impuestos Internos: el organismo del Estado que administra y fiscaliza los impuestos.")],
+          anchos=[3.8, 12.2], grupos=set(range(15)))
+
     # ---- Resolución ----
     seccion("Resolución del cambio de sujeto")
     parrafo("La Resolución Exenta SII N° 4095 del 25 de agosto de 2000 dispone el cambio de sujeto de derecho del IVA en los productos silvestres "
@@ -1047,9 +1086,17 @@ def construir_word(ruta, paginas_f29=()):
             [("Monto neto", f"${m(x['neto'])}"), ("IVA 19 %", f"${m(x['iva'])}"), ("Subtotal", f"${m(x['neto'] + x['iva'])}"),
              ("Menos: IVA retenido 19 % (cód. 31)", f"${m(x['retenido'])}"), ("TOTAL", f"${m(x['pago'])}")],
             leyenda="Se retiene el 19 % del IVA sobre el total de la compra por cambio de sujeto total (Res. Ex. SII N° 4095 de 2000).")
-    parrafo(f"El proveedor recibe solo el neto (${m(x['pago'])}). Los ${m(x['retenido'])} de IVA los retiene la empresa: los paga en su F29 "
-            "(línea 117, código 39) y, a la vez, los usa como crédito fiscal (línea 28, código 520). El código 31 identifica la retención de "
-            "productos silvestres.")
+    parrafo("Qué pasa con el dinero en esta compra, paso a paso:", junto=True)
+    pasos = [f"{x['proveedor'].split(' (')[0]}, recolector, vende {m(x['kg'])} kg de {x['producto'].lower()} a ${m(x['precio'])} el kilo: "
+             f"${m(x['neto'])} netos.",
+             f"El IVA de esa venta es 19 %: ${m(x['iva'])}.",
+             f"Por el cambio de sujeto, la empresa no le paga el IVA al recolector: lo retiene y le paga solo ${m(x['pago'])}.",
+             f"La empresa entrega esos ${m(x['retenido'])} al SII en su F29 (línea 117, código 39).",
+             f"Al mismo tiempo, la empresa descuenta esos ${m(x['retenido'])} del IVA de sus ventas, porque son crédito fiscal (línea 28, "
+             "código 520). Por eso la retención no le cuesta plata: solo cambia quién entrega el IVA al fisco."]
+    for k, texto_paso in enumerate(pasos, start=1):
+        p = parrafo(f"{k}.\t{texto_paso}")
+        p.paragraph_format.left_indent, p.paragraph_format.first_line_indent = Cm(0.7), Cm(-0.7)
     # Factura de venta (DTE 33): la empresa revende con IVA normal (débito fiscal, F29 línea 7, código 502)
     v = c["ventas"][0]
     producto, kilos = DETALLE_VENTA_MODELO
@@ -1063,6 +1110,8 @@ def construir_word(ruta, paginas_f29=()):
             ["Descripción", "Cantidad", "Precio unitario", "Valor"],
             [producto, f"{m(kilos)} kg", f"${m(redondear(D(v['neto']) / kilos))}", f"${m(v['neto'])}"], [7.6, 2.4, 2.8, 2.8], {1, 2, 3},
             [("Monto neto", f"${m(v['neto'])}"), ("IVA 19 %", f"${m(v['iva'])}"), ("TOTAL", f"${m(v['total'])}")])
+    en_simple(f"cuando la empresa vende, emite una factura normal y le cobra el IVA a su cliente. Esos ${m(v['iva'])} son su débito "
+              "fiscal: plata que después entrega al SII, descontando el IVA de sus compras.")
 
     # ---- Libros ----
     seccion("Registro en el libro de compras y ventas", nueva_pagina=True)
@@ -1081,6 +1130,8 @@ def construir_word(ruta, paginas_f29=()):
           [(y["fecha"].strftime("%d-%m"), y["folio"], y["cliente"], y["rut"], m(y["neto"]), m(y["iva"]), m(y["total"])) for y in c["ventas"]] +
           [("", "", "SUMAS", "", m(c["neto_v"]), m(c["iva_v"]), m(c["total_v"]))],
           anchos=[1.4, 1.2, 5.5, 2.3, 1.9, 1.8, 1.9], derecha={4, 5, 6}, negritas={len(c["ventas"])})
+    en_simple("el libro de compras es la lista de las facturas de compra del mes y el de ventas, la de las facturas de venta. Sus totales "
+              "pasan al F29: el IVA de las compras como crédito fiscal y el de las ventas como débito fiscal.")
 
     # ---- Libro diario: los asientos no se cortan entre páginas y termina con sumas iguales ----
     seccion("Contabilización en el libro diario", nueva_pagina=True)
@@ -1098,11 +1149,15 @@ def construir_word(ruta, paginas_f29=()):
     parrafo(f"Costo de ventas (asiento 11): se supone un margen de {pct(MARGEN)} sobre el costo, así que ventas netas "
             f"${m(c['neto_v'])} ÷ {str(1 + MARGEN).replace('.', ',')} = ${m(c['costo_ventas'])}. El inventario de mercaderías queda en "
             f"${m(c['neto_c'] - c['costo_ventas'])} (compras ${m(c['neto_c'])} menos costo de ventas).")
+    en_simple("cada operación se anota en dos columnas. En el Debe va lo que aumenta lo que la empresa tiene (mercaderías, IVA a favor, "
+              "lo que le deben los clientes) y en el Haber lo que aumenta lo que debe o lo que gana (proveedores, IVA por pagar, ventas), o "
+              f"la plata que sale del banco. Por eso las dos columnas siempre suman lo mismo: ${m(total_debe)}.")
 
     # ---- F29 ----
     seccion("Declaración de impuestos en el F29", nueva_pagina=True)
-    parrafo("Líneas del Formulario 29 según el «F29 Actualizado» del profesor (planilla adjunta, hoja F29 ACTUALIZADO). "
-            "En amarillo, las líneas del IVA retenido, total o parcial:", junto=True)
+    parrafo("El F29 es el formulario que la empresa presenta cada mes al SII: suma el IVA de sus ventas, resta el de sus compras, agrega "
+            "el PPM y el IVA retenido, y paga el total. Sus líneas, según el «F29 Actualizado» del profesor; en amarillo, las del IVA "
+            "retenido:", junto=True)
     nc, nv = len(c["compras"]), len(c["ventas"])
     filas29 = [(5, "515 / 587", "Vendedor retenido: compras con retención total", "0"),
                (6, "720", "Vendedor retenido: retención parcial, total neto", "0"),
@@ -1126,16 +1181,16 @@ def construir_word(ruta, paginas_f29=()):
             "total y línea 118 (código 554) si es parcial; la línea 121 (código 596) las suma y ese total pasa al total determinado "
             "(línea 133) y al total a pagar (línea 140). Vendedor retenido: línea 5 si la retención es total y líneas 6 y 16 si es parcial. "
             "Los productos silvestres tienen retención total.")
-    parrafo(f"PPM (línea 69). La empresa del ejemplo está en el régimen {REGIMEN} y sus ingresos del año anterior no superan las "
-            "50.000 UF. Su tasa permanente de PPM es 0,25 % de los ingresos brutos del mes, pero la Ley N° 21.755 la rebajó a la mitad "
-            f"durante los años 2025, 2026 y 2027 (Circular SII N° 53 de 2025): {pct(PPM)} × ${m(c['neto_v'])} = ${m(c['ppm'])}.")
+    parrafo("PPM (línea 69): la empresa es Pro Pyme General (art. 14 D N° 3 de la LIR) y vendió menos de 50.000 UF el año anterior. "
+            "Su tasa normal es 0,25 %, pero la Ley N° 21.755 la rebajó a la mitad para 2025 a 2027 (Circular SII N° 53 de 2025): "
+            f"{pct(PPM)} × ${m(c['neto_v'])} = ${m(c['ppm'])}.")
     parrafo(f"Declaración y pago: el F29 de {PERIODO.split()[0].lower()} se presenta y paga por Internet en www.sii.cl. Como la empresa es facturadora "
             f"electrónica, vence el día 20 de {MES_SIGUIENTE} (sin factura electrónica vence el día 12). Se pagó el {PAGO_F29.strftime('%d-%m-%Y')} desde el banco "
             f"(asiento 13 del libro diario): ${m(c['total_f29'])}.")
     for k, png in enumerate(paginas_f29):      # el formulario del profesor relleno (pauta: «Adjuntar formulario 29»)
         if k == 0:
-            parrafo("Formulario 29 del profesor («F29 Actualizado»), relleno con los datos del trabajo. En amarillo, las líneas "
-                    "donde se registra el IVA retenido, total o parcial.", junto=True, nueva_pagina=True)
+            parrafo("F29 del profesor («F29 Actualizado») relleno: las casillas con números son las que usó la empresa; en amarillo, "
+                    "las líneas del IVA retenido.", junto=True, nueva_pagina=True)
             p = doc.add_paragraph()
         else:
             p = doc.add_paragraph()
@@ -1143,7 +1198,7 @@ def construir_word(ruta, paginas_f29=()):
         p.alignment = CENTRO
         p.paragraph_format.line_spacing = 1.0
         ancho, alto = struct.unpack(">II", Path(png).read_bytes()[16:24])      # tamaño del PNG (cabecera IHDR)
-        disponible = 21.3 if k == 0 else 23.0                                  # alto útil de la página (cm), menos el título
+        disponible = 20.6 if k == 0 else 23.0                                  # alto útil de la página (cm), menos el título
         if 16 * alto / ancho <= disponible:
             p.add_run().add_picture(str(png), width=Cm(16))
         else:
@@ -1166,6 +1221,8 @@ def construir_word(ruta, paginas_f29=()):
            for y in c["compras"]] +
           [("", "TOTAL", "", "", "", "", m(c["neto_c"]), m(c["retenido"]))], anchos=[2.3, 3.5, 1.2, 1.2, 1.9, 1.6, 2.0, 2.3],
           derecha={4, 6, 7}, negritas={len(c["compras"])})
+    en_simple("además del F29, la empresa le informa al SII a quién le retuvo el IVA, qué producto le compró, cuántos kilos y cuánto le "
+              "retuvo. Así el SII puede revisar que cada recolector y cada retención estén en regla.")
 
     # ---- Conclusiones ----
     seccion("Conclusiones", nueva_pagina=True)
@@ -1179,6 +1236,15 @@ def construir_word(ruta, paginas_f29=()):
             f"propio más ${m(c['retenido'])} retenido a sus proveedores. También aprendimos que cada documento tiene su forma de registro: "
             "en el libro de compras el total de la factura de compra es el neto, porque el IVA retenido se descuenta, y cada operación se "
             "identifica con el código 31 y con su código de producto en la declaración jurada F3500.")
+    parrafo("Lo más importante, en tres ideas:", junto=True)
+    for k, idea in enumerate(["En los productos silvestres, el comprador retiene todo el IVA y lo paga al SII; el recolector recibe solo el "
+                              "precio neto.",
+                              "Para la empresa ese IVA también es crédito fiscal, así que no le cuesta plata: solo cambia quién lo entrega al "
+                              "fisco.",
+                              "Todo queda respaldado: factura de compra, libro de compras (código 31), F29 (códigos 39 y 596) y declaración "
+                              "jurada F3500."], start=1):
+        p = parrafo(f"{k}.\t{idea}")
+        p.paragraph_format.left_indent, p.paragraph_format.first_line_indent = Cm(0.7), Cm(-0.7)
     # ---- Anexo: respaldo de cada tasa, código y plazo, cuadratura entre documentos y fórmulas ----
     def nf(clave):
         """Número de la fuente (como en «Fuentes consultadas») que contiene la clave."""
@@ -1303,13 +1369,20 @@ def construir_word(ruta, paginas_f29=()):
 
 if __name__ == "__main__":
     RAIZ.mkdir(exist_ok=True)
-    construir_excel(RAIZ / "cambio_sujeto_silvestres.xlsx")
-    recalcular(RAIZ / "cambio_sujeto_silvestres.xlsx")          # guarda los resultados de las fórmulas en el archivo
+    try:
+        construir_excel(RAIZ / "cambio_sujeto_silvestres.xlsx")
+        recalcular(RAIZ / "cambio_sujeto_silvestres.xlsx")      # guarda los resultados de las fórmulas en el archivo
+    except PermissionError:
+        print("Aviso: cambio_sujeto_silvestres.xlsx está abierto; ciérralo y vuelve a correr el programa para actualizarlo.")
     f29_relleno = RAIZ / "F29_actualizado_relleno.xlsx"
     paginas = []
-    if construir_f29_profesor(f29_relleno):
-        recalcular(f29_relleno)
-        paginas = paginas_f29_profesor(f29_relleno)
+    try:
+        if construir_f29_profesor(f29_relleno):
+            recalcular(f29_relleno)
+            paginas = paginas_f29_profesor(f29_relleno)
+    except PermissionError:                                      # el archivo está abierto: se usan las imágenes ya generadas
+        paginas = sorted(RAIZ.glob("f29_profesor_p*.png"))
+        print("Aviso: F29_actualizado_relleno.xlsx está abierto; se usan las imágenes del F29 ya generadas.")
     construir_word(RAIZ / "cambio_sujeto_silvestres.docx", paginas)
     print("F29 del profesor relleno:", f"{len(paginas)} página(s) adjuntas al Word" if paginas else "no (falta base/F29 Actualizado.xlsx o LibreOffice)")
     c = calculos()

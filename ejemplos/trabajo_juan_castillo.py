@@ -516,6 +516,7 @@ def construir_excel(ruta):
     d.cell(row=fila, column=4, value="SUMAS IGUALES").font = Font(bold=True)
     d[f"E{fila}"], d[f"F{fila}"] = f"=SUM(E2:E{fila - 1})", f"=SUM(F2:F{fila - 1})"
     d[f"G{fila}"] = f'=IF(E{fila}=F{fila},"Cuadra","NO CUADRA")'
+    fila_sumas = fila
     d[f"E{fila}"].number_format = d[f"F{fila}"].number_format = FMT
     for col, w in zip("ABCDEFG", [8, 12, 34, 56, 14, 14, 12]):
         d.column_dimensions[col].width = w
@@ -550,6 +551,35 @@ def construir_excel(ruta):
                        "compras y ventas no están obligados a presentarla; aquí se presenta porque el profesor la pide. ⚠️ Verificar el formato vigente en sii.cl.")
     for col, w in zip("ABCDEFGHIJ", [20, 14, 20, 30, 12, 12, 10, 14, 14, 16]):
         j.column_dimensions[col].width = w
+    # ---- Validación: los mismos montos en libros, F29 y DJ (fórmulas que comprueban la cuadratura) ----
+    v = wb.create_sheet("Validación")
+    v["A1"] = "VALIDACIÓN: cada monto se compara entre los libros, el F29 y la DJ F3500 (si algo no cuadra, aparece «NO CUADRA»)"
+    v["A1"].font = Font(bold=True)
+    for i, titulo in enumerate(["Monto", "Libros de compras y ventas", "F29 (hoja F29 ACTUALIZADO)", "DJ F3500", "Resultado"], start=1):
+        x = v.cell(row=3, column=i, value=titulo)
+        x.font, x.fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="1F4E78")
+        x.alignment = Alignment(horizontal="center", wrap_text=True)
+    f29a = "'F29 ACTUALIZADO'!"
+    tot_dj = nc + 5
+    filas_v = [("IVA retenido (cód. 31 = 39 = 596 = [250])", "='L. COMPRAS'!K31", f"={f29a}{ref['39']}", f"='DJ F3500'!J{tot_dj}",
+                f"AND(B{{r}}=C{{r}},C{{r}}=D{{r}},{f29a}{ref['596']}=C{{r}})"),
+               ("IVA crédito fiscal (cód. 520 y 537)", "='L. COMPRAS'!I31", f"={f29a}{ref['537']}", "", "B{r}=C{r}"),
+               ("IVA débito fiscal (cód. 502 y 538)", "='L. VENTAS'!I34", f"={f29a}{ref['538']}", "", "B{r}=C{r}"),
+               ("Compras netas (DJ [235])", "='L. COMPRAS'!H31", "", f"='DJ F3500'!I{tot_dj}", "B{r}=D{r}"),
+               ("Ventas netas (base del PPM, cód. 563)", "='L. VENTAS'!H34", f"={f29a}{ref['563']}", "", "B{r}=C{r}"),
+               ("Total a pagar: 89 + 62 + 596 = 91", f"={f29a}{ref['89']}+{f29a}{ref['62']}+{f29a}{ref['596']}", f"={f29a}{ref['91']}", "",
+                "B{r}=C{r}"),
+               ("Libro diario: debe = haber", f"='Libro diario'!E{fila_sumas}", f"='Libro diario'!F{fila_sumas}", "", "B{r}=C{r}")]
+    for k, (concepto, libros, f29v, djv, prueba) in enumerate(filas_v):
+        r = 4 + k
+        v[f"A{r}"], v[f"B{r}"], v[f"C{r}"], v[f"D{r}"] = concepto, libros, f29v or None, djv or None
+        v[f"E{r}"] = "=IF(" + prueba.format(r=r) + ',"Cuadra","NO CUADRA")'
+        for col in "BCD":
+            v[f"{col}{r}"].number_format = FMT
+        v[f"E{r}"].font = Font(bold=True, color="2E7D4F")
+    v[f"A{4 + len(filas_v) + 1}"] = "Las tasas, códigos y plazos usados, con su fuente oficial, están en el anexo del informe y en la hoja Fuentes."
+    for col, w in zip("ABCDE", [44, 24, 26, 14, 14]):
+        v.column_dimensions[col].width = w
     # ---- Fuentes (todas oficiales y con https) ----
     fz = wb.create_sheet("Fuentes")
     fz["A1"] = f"FUENTES CONSULTADAS: todas oficiales y con conexión segura (https). Enlaces revisados el {REVISION_FUENTES}."
@@ -571,7 +601,7 @@ def construir_excel(ruta):
             r += 1
     for col, w in zip("ABCD", [5, 26, 70, 80]):
         fz.column_dimensions[col].width = w
-    for nombre in ("Parámetros", "Facturas de compra", "Libro diario", "DJ F3500", "Fuentes"):   # al imprimir: todo el ancho en una hoja
+    for nombre in ("Parámetros", "Facturas de compra", "Libro diario", "DJ F3500", "Validación", "Fuentes"):   # al imprimir: todo el ancho en una hoja
         ws = wb[nombre]
         ws.page_setup.orientation = "landscape"
         ws.sheet_properties.pageSetUpPr.fitToPage = True
@@ -1149,6 +1179,92 @@ def construir_word(ruta, paginas_f29=()):
             f"propio más ${m(c['retenido'])} retenido a sus proveedores. También aprendimos que cada documento tiene su forma de registro: "
             "en el libro de compras el total de la factura de compra es el neto, porque el IVA retenido se descuenta, y cada operación se "
             "identifica con el código 31 y con su código de producto en la declaración jurada F3500.")
+    # ---- Anexo: respaldo de cada tasa, código y plazo, cuadratura entre documentos y fórmulas ----
+    def nf(clave):
+        """Número de la fuente (como en «Fuentes consultadas») que contiene la clave."""
+        k = 0
+        for _, items in FUENTES:
+            for texto, url in items:
+                k += 1
+                if clave in texto + (url or ""):
+                    return k
+        raise KeyError(clave)
+
+    seccion("Anexo: respaldo y validación de los datos", nueva_pagina=True)
+    parrafo("Cada tasa, código y plazo del trabajo sale de una fuente oficial revisada el 18-10-2026; entre paréntesis va su número en "
+            "«Fuentes consultadas». Los montos son de ejemplo, como permite la pauta del profesor.", junto=True)
+    x = c["compras"][0]
+    tabla(["Dato", "Valor usado en el trabajo", "Respaldo (fuente)"],
+          [("Tasa del IVA", "19 %", f"D.L. 825, artículo 14 ({nf('idNorma=6369')})"),
+           ("Retención en productos silvestres", "Total: 100 % del IVA", f"Res. Ex. SII N° 4095 de 2000, N° 2 y 3 ({nf('reso4095')})"),
+           ("IVA de la factura de compra", "Es crédito fiscal del comprador", f"Res. 4095, N° 6 ({nf('reso4095')})"),
+           ("Documento del comprador", "Factura de compra electrónica (DTE 46)",
+            f"Res. 4095, N° 3; instrucciones F3500 ({nf('reso4095')} y {nf('instrucciones_f3500')})"),
+           ("Agente retenedor", "Compra $50.000.000 o más al año en silvestres", f"Res. 4095, N° 2 ({nf('reso4095')})"),
+           ("Código en el libro de compras", "31: IVA retenido silvestres",
+            f"Tabla de códigos de otros impuestos y retenciones del SII ({nf('cod_otros_imp_retenc')})"),
+           ("Total de la factura en el libro", "Neto + IVA − IVA retenido",
+            f"Instrucciones de compras y ventas del SII ({nf('instrucciones_llenado_comp_vtas')})"),
+           ("Líneas del F29", "7, 23, 28, 49, 50, 69, 79, 117, 121, 133 y 140",
+            f"«F29 Actualizado» del profesor ({nf('F29 Actualizado')}); instrucciones del F29 ({nf('instrucciones_f29')})"),
+           ("IVA retenido en el F29", "Código 39 (línea 117) y total en el 596 (línea 121)",
+            f"Res. 4095, N° 4 ({nf('reso4095')}); F29 del profesor ({nf('F29 Actualizado')})"),
+           ("Régimen de la empresa", "Pro Pyme General (art. 14 D N° 3 de la LIR)",
+            f"SII, tipos de regímenes ({nf('tipos_regimenes')}); D.L. 824 ({nf('idNorma=6368')})"),
+           ("Tasa de PPM", f"{pct(PPM)} de los ingresos brutos (años 2025 a 2027)",
+            f"Ley N° 21.755, art. 25 ({nf('idNorma=1214890')}); Circular SII N° 53 de 2025 ({nf('circu53')})"),
+           ("Plazo del F29", "Día 20 del mes siguiente (facturador electrónico)", f"SII, preguntas frecuentes ({nf('001_130_1060')})"),
+           ("Declaración jurada", "F3500, hasta el día 15 del mes siguiente",
+            f"Instrucciones F3500 ({nf('instrucciones_f3500')}); preguntas frecuentes ({nf('001_135_6150')})"),
+           ("Códigos de producto", "3101 a 3105 (los demás silvestres, 3106 a 3115)", f"Instrucciones F3500 ({nf('instrucciones_f3500')})"),
+           ("Margen para el costo de ventas", f"{pct(MARGEN)} sobre el costo", "Dato del ejemplo (la pauta permite inventar los montos)")],
+          anchos=[3.8, 5.4, 6.8])
+    # cuadratura: se suma cada cuenta en el libro diario y se compara con los libros, el F29 y la DJ
+    suma = {}
+    for _, _, lineas in asientos(c):
+        for cuenta, debe, haber in lineas:
+            d_, h_ = suma.get(cuenta, (0, 0))
+            suma[cuenta] = (d_ + debe, h_ + haber)
+    total_debe = sum(d_ for d_, _ in suma.values())
+    total_haber = sum(h_ for _, h_ in suma.values())
+    dj_ret = sum(y["retenido"] for y in c["compras"])
+    dj_neto = sum(y["neto"] for y in c["compras"])
+    compras_inv = sum(lin[1] for _, g, lineas in asientos(c) if g.startswith("Factura de compra") for lin in lineas if lin[0] == "1.1.13")
+    f29 = {"39": c["retenido"], "596": c["retenido"], "520": c["iva_c"], "537": c["creditos"], "502": c["iva_v"], "538": c["debitos"],
+           "563": c["neto_v"], "91": c["determinado"] + c["ppm"] + c["retenido"]}
+    banco_f29 = next(lin[2] for _, g, lineas in asientos(c) if g.startswith("F29") for lin in lineas if lin[0] == "1.1.02")
+
+    def ok(*valores):
+        return "Sí" if len(set(valores)) == 1 else "NO"
+
+    parrafo("Cuadratura: el mismo monto en todos los documentos.", junto=True)
+    tabla(["Monto", "Libros", "Libro diario", "F29", "DJ F3500", "¿Cuadra?"],
+          [("IVA retenido", f"Cód. 31: {m(c['retenido'])}", f"IVA retenido por pagar: {m(suma['2.1.09'][1])}",
+            f"Cód. 39 y 596: {m(f29['39'])}", f"[250]: {m(dj_ret)}", ok(c["retenido"], suma["2.1.09"][1], f29["39"], f29["596"], dj_ret)),
+           ("IVA crédito fiscal", f"IVA compras: {m(c['iva_c'])}", f"IVA crédito fiscal: {m(suma['1.1.04'][0])}",
+            f"Cód. 520 y 537: {m(f29['520'])}", "—", ok(c["iva_c"], suma["1.1.04"][0], f29["520"], f29["537"])),
+           ("IVA débito fiscal", f"IVA ventas: {m(c['iva_v'])}", f"IVA débito fiscal: {m(suma['2.1.02'][1])}",
+            f"Cód. 502 y 538: {m(f29['502'])}", "—", ok(c["iva_v"], suma["2.1.02"][1], f29["502"], f29["538"])),
+           ("Compras netas", f"Neto compras: {m(c['neto_c'])}", f"Inventario (compras): {m(compras_inv)}", "—", f"[235]: {m(dj_neto)}",
+            ok(c["neto_c"], compras_inv, dj_neto)),
+           ("Ventas netas", f"Neto ventas: {m(c['neto_v'])}", f"Ventas: {m(suma['4.1.01'][1])}", f"Cód. 563: {m(f29['563'])}", "—",
+            ok(c["neto_v"], suma["4.1.01"][1], f29["563"])),
+           ("Total pagado en el F29", "—", f"Banco, asiento 13: {m(banco_f29)}", f"Cód. 91: {m(f29['91'])}", "—",
+            ok(banco_f29, f29["91"], c["total_f29"])),
+           ("Libro diario", "—", f"Debe {m(total_debe)} = haber {m(total_haber)}", "—", "—", ok(total_debe, total_haber))],
+          tam=8, anchos=[2.6, 2.8, 3.6, 2.9, 2.3, 1.8])
+    parrafo("Fórmulas usadas (ejemplo con la factura de compra N° 201 y los totales del mes):", junto=True)
+    tabla(["Cálculo", "Fórmula", "Resultado"],
+          [("IVA de la factura", f"{m(x['neto'])} × 19 %", f"${m(x['iva'])}"),
+           ("IVA retenido (total)", f"{m(x['iva'])} × 100 %", f"${m(x['retenido'])}"),
+           ("Total de la factura de compra", f"{m(x['neto'])} + {m(x['iva'])} − {m(x['retenido'])}", f"${m(x['pago'])}"),
+           ("IVA determinado (cód. 89)", f"débitos {m(c['debitos'])} − créditos {m(c['creditos'])}", f"${m(c['determinado'])}"),
+           ("PPM (cód. 62)", f"{m(c['neto_v'])} × {pct(PPM)}", f"${m(c['ppm'])}"),
+           ("Total a pagar (cód. 91)", f"{m(c['determinado'])} + {m(c['ppm'])} + {m(c['retenido'])}", f"${m(c['total_f29'])}"),
+           ("Costo de ventas", f"{m(c['neto_v'])} ÷ {str(1 + MARGEN).replace('.', ',')}", f"${m(c['costo_ventas'])}")],
+          anchos=[4.6, 8.0, 3.4], derecha={2})
+    parrafo("La misma cuadratura se comprueba con fórmulas en la hoja «Validación» de la planilla Excel.")
+
     # ---- Fuentes consultadas (todas oficiales y con https) ----
     def enlace(par, url, tam=10):
         """Enlace que funciona en el PDF y se lee impreso."""

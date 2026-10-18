@@ -6,8 +6,9 @@ y (2) el informe Word con el formato pedido: Arial 12, interlineado 1,5, márgen
 El profesor no dio datos: solo se inventan los MONTOS (kilos y precios) y los nombres de las personas; lo demás sigue la norma:
   · Res. Ex. SII N° 4095 del 25-08-2000: productos silvestres, retención TOTAL del IVA (el comprador emite factura de compra DTE 46).
   · El IVA de la factura de compra SÍ es crédito fiscal del comprador (Res. 4095, N° 6); el retenido se paga aparte (N° 4, código 39).
-  · F29 (plantilla del profesor): factura de compra en la línea 25 (519 / 520, "Facturas de compra emitidas", con derecho a crédito);
-    reverso código 39 (línea 118 en las instrucciones SII de nov-2024) y 596 (línea 122). Libro de compras: código 31 "IVA retenido silvestres".
+  · F29 = el "F29 Actualizado" que el profesor subió a Classroom el 15-10-2026: factura de compra en la línea 28 (519 / 520,
+    "Facturas de compra emitidas", con derecho a crédito; línea 25 en la plantilla antigua); reverso código 39 en la línea 117 y
+    596 en la 121 (118 y 122 en las instrucciones SII de nov-2024; gana el profesor). Libro de compras: código 31 "IVA retenido silvestres".
   · DJ F3500 (informe mensual de retenedores de cambio de sujeto): códigos de producto 3101 rosa mosqueta, 3102 mora, 3103 hongos,
     3104 frutos de espino, 3105 hojas de boldo; plazo: día 15 del mes siguiente.
 Verificado el 16-10-2026 contra sii.cl (textos en docs/normativa/fuentes/): Res. 4095, instrucciones F29 (12-11-2024),
@@ -80,7 +81,7 @@ INTEGRANTES = ([x.strip() for x in _ARCHIVO_INTEGRANTES.read_text(encoding="utf-
                if _ARCHIVO_INTEGRANTES.exists() else ["Joaquín Verdejo", "Integrante 2", "Integrante 3"])
 PERIODO = "Octubre 2026"
 RETENCION = D("1")          # Res. Ex. SII N° 4095/2000: productos silvestres = retención TOTAL (100 % del IVA)
-PPM = D("0.01")             # tasa de PPM de la plantilla del profesor (celda A81)
+PPM = D("0.01")             # tasa de PPM de la plantilla del profesor (celda A81); ⚠️ el ejemplo del F29 Actualizado usa 0,25 %
 MARGEN = D("0.40")          # ganancia sobre el costo para calcular el costo de ventas
 # (fecha, folio, proveedor, rut, producto, código F3500, kilos, precio por kilo)
 COMPRAS = [(date(2026, 10, 2), 201, "Juan Pérez (recolector)", rut(11111111), "Rosa mosqueta", 3101, 1200, 1500),
@@ -155,6 +156,11 @@ def m(n):
     return f"{int(n):,}".replace(",", ".")
 
 
+def pct(tasa):
+    """0.01 → '1 %'; 0.0025 → '0,25 %'."""
+    return str((D(tasa) * 100).normalize()).replace(".", ",") + " %"
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Excel: se rellena la plantilla del profesor
 # ----------------------------------------------------------------------------------------------------------------------
@@ -169,6 +175,7 @@ def _celda(ws, ref):
 
 
 def construir_excel(ruta):
+    import re
     from copy import copy
     from openpyxl import load_workbook
     from openpyxl.styles import Alignment, Font, PatternFill
@@ -238,7 +245,7 @@ def construir_excel(ruta):
     lc["H64"], lc["I64"] = "=H31+H47-H62", "=I31+I47-I62"
     lc["H64"].number_format = lc["I64"].number_format = FMT
     lc["A66"] = ("Las facturas de compra (DTE 46) las emite el comprador; su IVA es crédito fiscal (Res. 4095, N° 6) y el IVA retenido "
-                 "se paga en el F29 (reverso, código 39). Código 31 = IVA retenido silvestres (se informa como retención total).")
+                 "se paga en el F29 (reverso, línea 117, código 39). Código 31 = IVA retenido silvestres (se informa como retención total).")
 
     # ---- L. VENTAS ----
     lv["C3"] = "2026"
@@ -273,6 +280,7 @@ def construir_excel(ruta):
     lv["D78"] = "=E94"
     lv["D79"] = "=MAX(D75+D78-D73,0)"
     lv["D80"] = "=D76"
+    lv["A81"] = float(PPM)                     # misma tasa que el Word (la plantilla trae 0,01)
     lv["D81"] = "=ROUND(C81*A81,0)"
     lv["D82"], lv["D83"] = 0, 0
     lv["D84"] = "=D80+D81+D82+D83"
@@ -304,9 +312,9 @@ def construir_excel(ruta):
     _celda(f29, "AC74").number_format = "0.00%"
     f29["B96"] = "REVERSO: CAMBIO DE SUJETO (agente retenedor)"
     f29["B96"].font = Font(bold=True)
-    f29["B97"] = "[39] Retenciones de IVA a terceros con retención total (línea 118 en las instrucciones SII del 12-11-2024)"
-    f29["B98"] = "[554] Retenciones de IVA a terceros con retención parcial"
-    f29["B99"] = "[596] Total retenciones por cambio de sujeto (suma de los códigos 39, 554, 597 y 555, menos 736)"
+    f29["B97"] = "[39] Retenciones de IVA a terceros con retención total (línea 117 del F29 Actualizado)"
+    f29["B98"] = "[554] Retenciones de IVA a terceros con retención parcial (línea 118 del F29 Actualizado)"
+    f29["B99"] = "[596] Total retenciones por cambio de sujeto: 39 + 554 + 597 + 555 − 736 (línea 121 del F29 Actualizado)"
     f29["AP97"], f29["AP98"], f29["AP99"] = "='L. COMPRAS'!K31", 0, "=AP97+AP98"
     f29["B100"] = "Se suma al IVA determinado y al PPM para obtener el total a pagar (código 91)"
     for fila in (97, 98, 99):                 # como en la plantilla: los montos van en AP:AR combinadas (AP sola es angosta)
@@ -319,7 +327,83 @@ def construir_excel(ruta):
             f29.cell(row=fila, column=col).fill = amarillo
     f29["B102"] = ("Amarillo: línea 5 (retención total, vendedor retenido), líneas 6 y 14 (retención parcial, vendedor retenido) "
                    "y línea 25 (facturas de compra emitidas por el agente retenedor, con derecho a crédito: códigos 519 y 520). "
-                   "En las instrucciones SII del 12-11-2024 estas líneas son la 5, 6, 16 y 28.")
+                   "Esta hoja es la plantilla antigua: en el F29 Actualizado del profesor (hoja F29 ACTUALIZADO) estas líneas son la 5, 6, 16 y 28.")
+
+    # ---- F29 ACTUALIZADO: líneas y códigos del "F29 Actualizado" que el profesor subió a Classroom el 15-10-2026 ----
+    n = wb.create_sheet("F29 ACTUALIZADO", wb.sheetnames.index("FORMULARIO 29") + 1)
+    n["A1"] = "FORMULARIO 29: DECLARACIÓN MENSUAL Y PAGO SIMULTÁNEO DE IMPUESTOS"
+    n["A1"].font = Font(bold=True)
+    n["A2"] = f"Contribuyente: {EMPRESA['razon']} · RUT {EMPRESA['rut']} · Período: {PERIODO}"
+    n["A3"] = ("Líneas y códigos del «F29 Actualizado» del profesor (Classroom, 15-10-2026). "
+               "Solo las líneas que usa el ejercicio; las demás van en 0.")
+    for i, t in enumerate(["Línea", "Código", "Concepto", "Valor"], start=1):
+        x = n.cell(row=5, column=i, value=t)
+        x.font, x.fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="1F4E78")
+        x.alignment = Alignment(horizontal="center")
+    ref = {}                                  # código → celda del valor (la usa el libro diario)
+    # (línea, código, concepto, valor o fórmula con {código}, formato, amarillo); línea None = título de sección
+    filas29 = [
+        (None, "DÉBITOS Y VENTAS"),
+        (5, "515 / 587", "Facturas de compra recibidas con retención total (contribuyentes retenidos) y factura de inicio emitida", 0, FMT, True),
+        (6, "720", "Facturas de compras recibidas con retención parcial (total neto según línea 16)", 0, FMT, True),
+        (7, "503", "Facturas emitidas por ventas y servicios del giro: cantidad de documentos", "=COUNT('L. VENTAS'!C6:C33)", "0", False),
+        (7, "502", "Facturas emitidas por ventas y servicios del giro: débito fiscal", "='L. VENTAS'!I34", FMT, False),
+        (16, "516 / 517", "Facturas de compra recibidas con retención parcial (contribuyentes retenidos)", 0, FMT, True),
+        (23, "538", "TOTAL DÉBITOS (en este ejercicio, solo la línea 7)", "={502}", FMT, False),
+        (None, "CRÉDITOS Y COMPRAS"),
+        (28, "519", "Facturas recibidas del giro y facturas de compra emitidas: cantidad de documentos", "=COUNT('L. COMPRAS'!B7:B30)", "0", True),
+        (28, "520", "Facturas recibidas del giro y facturas de compra emitidas: crédito fiscal (con derecho a crédito)", "='L. COMPRAS'!I31", FMT, True),
+        (49, "537", "TOTAL CRÉDITOS (en este ejercicio, solo la línea 28)", "={520}", FMT, False),
+        (50, "77", "Remanente de crédito fiscal (si los créditos superan a los débitos)", "=MAX({537}-{538},0)", FMT, False),
+        (50, "89", "IVA determinado (débitos − créditos)", "=MAX({538}-{537},0)", FMT, False),
+        (None, "PAGOS PROVISIONALES MENSUALES"),
+        (69, "563", "PPM 1ª categoría (art. 84 a): base imponible (ventas netas)", "='L. VENTAS'!C81", FMT, False),
+        (69, "115", "PPM: tasa", "='L. VENTAS'!A81", "0.00%", False),
+        (69, "62", "PPM neto determinado", "='L. VENTAS'!D81", FMT, False),
+        (79, "595", "SUBTOTAL IMPUESTO DETERMINADO ANVERSO (89 + 62)", "={89}+{62}", FMT, False),
+        (None, "REVERSO: RETENCIÓN DE IVA POR CAMBIO DE SUJETO (agente retenedor)"),
+        (117, "39", "IVA total retenido a terceros (tasa art. 14 DL 825): productos silvestres, retención total", "='L. COMPRAS'!K31", FMT, True),
+        (118, "554", "IVA parcial retenido a terceros (según tasa)", 0, FMT, True),
+        (119, "736", "IVA retenido por notas de crédito emitidas", 0, FMT, False),
+        (120, "597", "Retención de margen de comercialización", 0, FMT, False),
+        (121, "555", "Retención anticipo de cambio de sujeto", 0, FMT, False),
+        (121, "596", "Retención cambio de sujeto: 39 + 554 + 597 + 555 − 736", "={39}+{554}+{597}+{555}-{736}", FMT, True),
+        (None, "TOTALES"),
+        (133, "547", "TOTAL DETERMINADO (595 + 596)", "={595}+{596}", FMT, False),
+        (140, "91", "TOTAL A PAGAR DENTRO DEL PLAZO LEGAL", "={547}", FMT, False),
+    ]
+    gris = PatternFill("solid", fgColor="DDEBF7")
+    for r, x in enumerate(filas29, start=6):
+        if x[0] is None:
+            n.merge_cells(f"A{r}:D{r}")
+            n[f"A{r}"] = x[1]
+            n[f"A{r}"].font, n[f"A{r}"].fill = Font(bold=True), gris
+            continue
+        linea, codigo, concepto, valor, formato, resaltar = x
+        ref[codigo] = f"D{r}"
+        n[f"A{r}"], n[f"B{r}"], n[f"C{r}"] = linea, codigo, concepto
+        n[f"D{r}"] = re.sub(r"\{(\d+)\}", lambda k: ref[k.group(1)], valor) if isinstance(valor, str) else valor
+        n[f"D{r}"].number_format = formato
+        n[f"A{r}"].alignment = n[f"B{r}"].alignment = Alignment(horizontal="center", vertical="top")
+        n[f"C{r}"].alignment = Alignment(wrap_text=True, vertical="top")
+        n[f"D{r}"].alignment = Alignment(vertical="top")
+        if resaltar:
+            for col in "ABCD":
+                n[f"{col}{r}"].fill = amarillo
+        if codigo in ("538", "537", "595", "547", "91"):
+            n[f"C{r}"].font = n[f"D{r}"].font = Font(bold=True)
+    r += 2
+    n[f"A{r}"] = ("Amarillo: líneas donde se registra el IVA retenido total o parcial. Agente retenedor (esta empresa): línea 28 "
+                  "(facturas de compra emitidas, con derecho a crédito) y reverso: línea 117 (retención total, código 39), línea 118 "
+                  "(retención parcial, código 554) y línea 121 (total, código 596). Vendedor retenido: línea 5 (retención total) y "
+                  "líneas 6 y 16 (retención parcial). Las mismas cifras están en la hoja FORMULARIO 29 (plantilla antigua, con otros números de línea).")
+    n.merge_cells(f"A{r}:D{r}")
+    n[f"A{r}"].alignment = Alignment(wrap_text=True, vertical="top")
+    n.row_dimensions[r].height = 62
+    for col, w in zip("ABCD", [7, 11, 72, 15]):
+        n.column_dimensions[col].width = w
+    n.sheet_properties.pageSetUpPr.fitToPage = True   # al imprimir: todo en una hoja (si no, el concepto y el valor salen en otras páginas)
+    n.page_setup.fitToWidth = n.page_setup.fitToHeight = 1
 
     # ---- Facturas de compra (detalle) ----
     f = wb.create_sheet("Facturas de compra")
@@ -377,9 +461,8 @@ def construir_excel(ruta):
                 v = "='L. VENTAS'!P19"
             elif origen == "pago":
                 v = "='L. COMPRAS'!O16"
-            else:
-                v = {"2.1.02": "='FORMULARIO 29'!AP16", "2.1.09": "='FORMULARIO 29'!AP97", "1.1.05": "='FORMULARIO 29'!AP74", "1.1.04": "='FORMULARIO 29'!AP58",
-                     "1.1.02": "='FORMULARIO 29'!AP92"}[cuenta]
+            else:                                 # ligadas al F29 Actualizado: 502 débito, 39 retenido, 62 PPM, 537 créditos, 91 total
+                v = "='F29 ACTUALIZADO'!" + ref[{"2.1.02": "502", "2.1.09": "39", "1.1.05": "62", "1.1.04": "537", "1.1.02": "91"}[cuenta]]
             d.cell(row=fila, column=col, value=v).number_format = FMT
             fila += 1
     d.cell(row=fila, column=4, value="SUMAS IGUALES").font = Font(bold=True)
@@ -595,20 +678,26 @@ def construir_word(ruta):
 
     # ---- F29 ----
     doc.add_heading("Declaración de impuestos en el F29", 1)
-    doc.add_paragraph("Líneas del formulario 29 según la plantilla del profesor (planilla adjunta, hoja FORMULARIO 29):")
+    doc.add_paragraph("Líneas del Formulario 29 según el «F29 Actualizado» entregado por el profesor (planilla adjunta, hoja F29 ACTUALIZADO):")
+    nc, nv = len(c["compras"]), len(c["ventas"])
     tabla(["Línea", "Código", "Concepto", "Monto"],
-          [(7, "503 / 502", "Facturas emitidas (cantidad 5 / débito)", m(c["debitos"])), (20, "538", "Total débitos", m(c["debitos"])),
-           (25, "519 / 520", "Facturas de compra emitidas, con derecho a crédito (cantidad 5 / crédito fiscal)", m(c["creditos"])),
-           (42, "537", "Total créditos", m(c["creditos"])), (43, "89", "IVA determinado (débitos − créditos)", m(c["determinado"])),
-           (52, "62", "PPM (1 % de la venta neta)", m(c["ppm"])), ("Reverso", "39", "IVA retenido a terceros con retención total (línea 118 en las instrucciones SII)", m(c["retenido"])), ("Reverso", "596", "Total retenciones por cambio de sujeto", m(c["retenido"])),
-           ("", "91", "TOTAL A PAGAR", m(c["total_f29"]))], anchos=[1.7, 2.2, 9.1, 3.0], derecha={3})
+          [(7, "503 / 502", f"Facturas emitidas por ventas y servicios del giro (cantidad {nv} / débito fiscal)", m(c["debitos"])),
+           (23, "538", "Total débitos", m(c["debitos"])),
+           (28, "519 / 520", f"Facturas recibidas del giro y facturas de compra emitidas, con derecho a crédito (cantidad {nc} / crédito fiscal)",
+            m(c["creditos"])),
+           (49, "537", "Total créditos", m(c["creditos"])), (50, "89", "IVA determinado (débitos − créditos)", m(c["determinado"])),
+           (69, "62", f"PPM ({pct(PPM)} de la venta neta)", m(c["ppm"])),
+           (79, "595", "Subtotal impuesto determinado anverso (89 + 62)", m(c["determinado"] + c["ppm"])),
+           (117, "39", "Reverso: IVA total retenido a terceros (retención total)", m(c["retenido"])),
+           (121, "596", "Reverso: retención cambio de sujeto (39 + 554 + 597 + 555 − 736)", m(c["retenido"])),
+           (133, "547", "Total determinado (595 + 596)", m(c["total_f29"])),
+           (140, "91", "TOTAL A PAGAR dentro del plazo legal", m(c["total_f29"]))], anchos=[1.5, 2.2, 9.3, 3.0], derecha={3})
     doc.add_paragraph("Dónde se registra el IVA retenido total o parcial. Agente retenedor (la empresa compradora): las facturas de compra van en la "
-                      "línea 25, «Facturas recibidas del giro y Facturas de compra emitidas» (códigos 519 y 520), con derecho a crédito fiscal; el IVA retenido "
-                      "se declara en el reverso, sección de cambio de sujeto: código 39 si la retención es total y código 554 si es parcial; el código 596 suma las "
-                      "retenciones y ese total se agrega al total a pagar (código 91). Vendedor retenido: línea 5 (códigos 515 y 587) si la retención es total, "
-                      "y líneas 6 (código 720) y 14 (códigos 516 y 517) si es parcial. Los productos silvestres tienen retención total. Los números de línea "
-                      "son los de la plantilla del profesor; en las instrucciones del SII del 12-11-2024 son: 516/517 línea 16, 519/520 línea 28, "
-                      "39 línea 118 y 596 línea 122 (las líneas 5 y 6 no cambian).")
+                      "línea 28, «Facturas recibidas del giro y Facturas de compra emitidas» (códigos 519 y 520), con derecho a crédito fiscal; el IVA "
+                      "retenido se declara en el reverso: línea 117, código 39, si la retención es total, y línea 118, código 554, si es parcial. La línea "
+                      "121 (código 596) suma las retenciones por cambio de sujeto, y ese total se agrega al total determinado (línea 133, código 547) "
+                      "y al total a pagar (línea 140, código 91). Vendedor retenido: línea 5 (códigos 515 y 587) si la retención es total, y líneas 6 "
+                      "(código 720) y 16 (códigos 516 y 517) si es parcial. Los productos silvestres tienen retención total.")
 
     # ---- DJ ----
     doc.add_heading("Declaración jurada mensual de retenciones", 1)
@@ -620,16 +709,16 @@ def construir_word(ruta):
                       "Los facturadores electrónicos que documentan todo por ese medio y envían su libro de compras y ventas no están obligados a presentarla.")
     tabla(["RUT vendedor", "Cód. producto", "Producto", "Doc.", "N°", "Cantidad (kg)", "IVA retenido"],
           [(y["rut"], y["codigo"], y["producto"], 46, y["folio"], m(y["kg"]), m(y["retenido"])) for y in c["compras"]] +
-          [("", "", "TOTAL", "", "", "", m(c["retenido"]))], anchos=[2.6, 1.6, 3.4, 1.2, 1.2, 2.4, 3.6], derecha={5, 6})
+          [("", "", "TOTAL", "", "", "", m(c["retenido"]))], anchos=[2.6, 2.1, 3.4, 1.2, 1.2, 2.4, 3.1], derecha={5, 6})
 
     # ---- Conclusiones ----
     doc.add_heading("Conclusiones", 1)
-    doc.add_paragraph(f"Con el cambio de sujeto, la empresa compradora retuvo ${m(c['retenido'])} de IVA y lo pagó íntegro al fisco (código 39). "
+    doc.add_paragraph(f"Con el cambio de sujeto, la empresa compradora retuvo ${m(c['retenido'])} de IVA y lo pagó íntegro al fisco (línea 117, código 39). "
                       f"Como ese mismo IVA es crédito fiscal, lo restó de su débito: IVA determinado ${m(c['determinado'])}. En el F29 pagó ese IVA, el PPM "
                       f"(${m(c['ppm'])}) y el IVA retenido: ${m(c['total_f29'])} en total. El proveedor cobra solo el neto y no necesita emitir factura. "
                       "La factura de compra respalda cada operación, y la declaración jurada F3500 informa cada mes al SII las retenciones practicadas.")
     doc.add_paragraph(f"Como grupo concluimos que el cambio de sujeto traslada al comprador la obligación de declarar el IVA, pero no le quita su "
-                      f"derecho a crédito fiscal: en el F29 el mismo IVA aparece como crédito (línea 25, código 520) y como retención (código 39). "
+                      f"derecho a crédito fiscal: en el F29 el mismo IVA aparece como crédito (línea 28, código 520) y como retención (línea 117, código 39). "
                       f"Por eso, en total la empresa pagó en IVA el mismo monto de su débito fiscal (${m(c['iva_v'])}): ${m(c['determinado'])} de IVA "
                       f"propio más ${m(c['retenido'])} retenido a sus proveedores. También aprendimos que cada documento tiene su forma de registro: "
                       "en el libro de compras el total de la factura de compra es el neto, porque el IVA retenido se descuenta, y cada operación se "

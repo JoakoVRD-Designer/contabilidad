@@ -45,7 +45,7 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 
 ### Discrepancias encontradas (gana la fuente oficial / el profesor)
 1. **"Sin derecho a crédito fiscal" era un ERROR.** Venía del resumen en PDF, no del profesor. La resolución (N° 6) y la plantilla del profesor (línea 25) dicen que sí hay crédito. Corregido: el F29 baja de 2.473.500 a **1.400.000**.
-2. La factura de compra va en la **línea 25 (519 / 520)**, no en la 22 (564 / 521).
+2. La factura de compra va en la línea de los códigos **519 / 520** (**28** en el F29 Actualizado, 25 en la plantilla antigua), no en la de 564 / 521.
 3. Libro de compras: **código 31**, no 15.
 4. La resolución nombra el formulario 3290; hoy es la F3500.
 5. Los números de línea de la plantilla antigua eran de un F29 viejo. **El 15-10 el profesor subió el "F29 Actualizado" (leído el 17-10): se usan sus líneas** (tabla de abajo).
@@ -75,7 +75,7 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 
 ## Archivos generados (datos de ejemplo, editables)
 
-- `trabajo_juan_castillo/cambio_sujeto_silvestres.xlsx`: **la plantilla del profesor rellena** (L. COMPRAS, L. VENTAS, FORMULARIO 29) con 5 compras y 5 ventas, más hojas Parámetros, Facturas de compra, Libro diario y DJ F3500. Todo con fórmulas.
+- `trabajo_juan_castillo/cambio_sujeto_silvestres.xlsx`: **la plantilla del profesor rellena** (L. COMPRAS, L. VENTAS, FORMULARIO 29) con 5 compras y 5 ventas, más hojas **F29 ACTUALIZADO** (las líneas y códigos del F29 nuevo del profesor, con amarillo donde va el IVA retenido; el asiento del F29 en el libro diario sale de aquí), Parámetros, Facturas de compra, Libro diario y DJ F3500. Todo con fórmulas.
 - `trabajo_juan_castillo/cambio_sujeto_silvestres.docx`: informe con el formato pedido (Arial 12, 1,5, márgenes) y las 9 secciones.
 - Se regeneran con `python3 ejemplos/trabajo_juan_castillo.py`.
 - Resultado del ejemplo: compras netas 5.650.000 · IVA de compras 1.073.500 (crédito fiscal y también retenido) · ventas netas 7.000.000 (IVA 1.330.000) · IVA determinado 256.500 · PPM 70.000 · IVA retenido 1.073.500 · **total F29 1.400.000**; el libro diario cuadra (lo verifica el test).
@@ -85,9 +85,11 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 
 1. ~~Resolución~~ ✔ adjunta en el Word (texto oficial). ~~Líneas del F29~~ ✔ verificadas. ~~Código 15/31~~ ✔ 31.
 2. ~~Logo~~ ✔ en la portada: `trabajo_juan_castillo/base/logo.png`, renderizado del SVG oficial de insucochillan.cl (ver `logo-fuente.txt`).
-3. ~~Classroom~~ ✔ leído el 17-10 con la cuenta del liceo (`classroom-juan-castillo.md`): las instrucciones no cambian; el adjunto nuevo es el **"F29 Actualizado"**, y el trabajo debe pasarse a ese F29. Para rellenarlo hay que descargar el archivo (se hace con tu permiso).
+3. ~~Classroom~~ ✔ leído el 17-10 con la cuenta del liceo (`classroom-juan-castillo.md`): las instrucciones no cambian; el adjunto nuevo es el **"F29 Actualizado"**. ✔ El 18-10 el trabajo se pasó a sus líneas (tabla del F29 y conclusiones del Word; hoja F29 ACTUALIZADO del Excel). Opcional: rellenar el archivo original del profesor (hay que descargarlo, con tu permiso).
 4. ~~Revisión visual~~ ✔ (17-10-2026, LibreOffice): Word de 13 páginas, todo en Arial (títulos incluidos), tablas con anchos a la medida y montos a la derecha, texto oficial de la resolución en párrafos con su tabla de ejemplo. Excel recalculado sin errores de fórmula: F29 = 1.400.000, libro diario cuadra (28.177.000), DJ = 1.073.500. Se corrigieron: fechas `###` en los libros (columna angosta) y montos ocultos del reverso del F29 (ahora en AP:AR combinadas; el 596 quedó en su fila, AP99).
 5. Período del ejemplo: octubre 2026 (algunas fechas son posteriores a la entrega del 19-10; si el profesor lo objeta, se cambia a septiembre).
+6. ⚠️ **Tasa de PPM:** preguntar al profesor si es 1 % (su plantilla de libros) o 0,25 % (ejemplo de su F29 Actualizado). Si es 0,25 %: cambiar `PPM` en `ejemplos/trabajo_juan_castillo.py` y regenerar (PPM 17.500; total F29 1.347.500); el Word y el Excel se actualizan solos.
+7. Revisión del 18-10-2026 (LibreOffice): Word de 13 páginas; Excel sin errores de fórmula; hoja F29 ACTUALIZADO en una sola página al imprimir; F29 = 1.400.000; libro diario 28.177.000 = 28.177.000.
 
 ## Otro material de la carpeta
 

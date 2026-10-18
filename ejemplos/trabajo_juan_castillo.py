@@ -202,7 +202,7 @@ def m(n):
 
 def pct(tasa):
     """0.01 → '1 %'; 0.0025 → '0,25 %'."""
-    return str((D(tasa) * 100).normalize()).replace(".", ",") + " %"
+    return f"{(D(tasa) * 100).normalize():f}".replace(".", ",") + " %"     # :f evita la notación 4E+1
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -528,8 +528,8 @@ def construir_excel(ruta):
     j["A2"] = (f"Contribuyente: {EMPRESA['razon']}, RUT {EMPRESA['rut']} · Período: {PERIODO} · "
                f"Plazo: hasta el día 15 del mes siguiente ({PLAZO_DJ.strftime('%d-%m-%Y')}; si no es hábil, el día hábil siguiente; los retenedores que cumplen el "
                "D.S. N° 1001 de 2006 tienen hasta el día 23). Se presenta aunque no haya movimiento.")
-    cab = ["RUT del vendedor (retenido)", "Código de producto (F3500)", "Producto", "Tipo de documento", "N° documento", "Fecha",
-           "Cantidad", "Unidad de medida (cód. 1)", "IVA retenido total"]
+    cab = ["[205] RUT del vendedor (retenido)", "[200] Código de producto", "Producto", "[210] Tipo de documento", "[215] N° documento",
+           "Fecha", "[225] Cantidad", "[230] Unidad de medida (cód. 1)", "[235] Monto neto", "[250] IVA retenido total"]
     for i, t in enumerate(cab, start=1):
         x = j.cell(row=4, column=i, value=t)
         x.font, x.fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="1F4E78")
@@ -538,15 +538,17 @@ def construir_excel(ruta):
         r = 5 + i
         j[f"A{r}"], j[f"B{r}"], j[f"C{r}"] = f"='L. COMPRAS'!D{7 + i}", x["codigo"], x["producto"]
         j[f"D{r}"], j[f"E{r}"], j[f"F{r}"] = "46 Factura de compra electrónica", f"='L. COMPRAS'!B{7 + i}", f"='L. COMPRAS'!A{7 + i}"
-        j[f"G{r}"], j[f"H{r}"], j[f"I{r}"] = f"='Facturas de compra'!F{5 + i}", 1, f"='L. COMPRAS'!K{7 + i}"
+        j[f"G{r}"], j[f"H{r}"] = f"='Facturas de compra'!F{5 + i}", 1
+        j[f"I{r}"], j[f"J{r}"] = f"='L. COMPRAS'!H{7 + i}", f"='L. COMPRAS'!K{7 + i}"
         j[f"F{r}"].number_format = "dd-mm-yyyy"
-        j[f"G{r}"].number_format = j[f"I{r}"].number_format = FMT
+        j[f"G{r}"].number_format = j[f"I{r}"].number_format = j[f"J{r}"].number_format = FMT
     j[f"A{nc + 5}"] = "TOTAL"
-    j[f"I{nc + 5}"] = f"=SUM(I5:I{nc + 4})"
-    j[f"I{nc + 5}"].number_format = FMT
+    for col in "IJ":
+        j[f"{col}{nc + 5}"] = f"=SUM({col}5:{col}{nc + 4})"
+        j[f"{col}{nc + 5}"].number_format = FMT
     j[f"A{nc + 7}"] = ("Se informa operación por operación. Los facturadores electrónicos que documentan todo por ese medio y envían su libro de "
                        "compras y ventas no están obligados a presentarla; aquí se presenta porque el profesor la pide. ⚠️ Verificar el formato vigente en sii.cl.")
-    for col, w in zip("ABCDEFGHI", [20, 16, 20, 30, 12, 12, 10, 14, 16]):
+    for col, w in zip("ABCDEFGHIJ", [20, 14, 20, 30, 12, 12, 10, 14, 14, 16]):
         j.column_dimensions[col].width = w
     # ---- Fuentes (todas oficiales y con https) ----
     fz = wb.create_sheet("Fuentes")
@@ -958,7 +960,7 @@ def construir_word(ruta, paginas_f29=()):
             junto=True)
     factura(["FACTURA DE COMPRA", "ELECTRÓNICA"], x["folio"],
             [("Señor(es):", x["proveedor"]), ("R.U.T.:", x["rut"]), ("Giro:", "Recolección de productos silvestres"),
-             ("Fecha de emisión:", x["fecha"].strftime("%d-%m-%Y"))],
+             ("Fecha de emisión:", x["fecha"].strftime("%d-%m-%Y")), ("Dirección:", "Sector rural (ficticia)"), ("Comuna:", "Chillán")],
             ["Código", "Descripción", "Cantidad", "Precio unitario", "Valor"],
             [str(x["codigo"]), x["producto"], f"{m(x['kg'])} kg", f"${m(x['precio'])}", f"${m(x['neto'])}"], [1.8, 5.8, 2.4, 2.8, 2.8], {2, 3, 4},
             [("Monto neto", f"${m(x['neto'])}"), ("IVA 19 %", f"${m(x['iva'])}"), ("Subtotal", f"${m(x['neto'] + x['iva'])}"),
@@ -975,7 +977,8 @@ def construir_word(ruta, paginas_f29=()):
             "cambio de sujeto (Res. 4095, N° 2). El IVA lo cobra la empresa y es su débito fiscal (F29, línea 7, código 502).",
             junto=True, nueva_pagina=True)
     factura(["FACTURA", "ELECTRÓNICA"], v["folio"],
-            [("Señor(es):", v["cliente"]), ("R.U.T.:", v["rut"]), ("Fecha de emisión:", v["fecha"].strftime("%d-%m-%Y"))],
+            [("Señor(es):", v["cliente"]), ("R.U.T.:", v["rut"]), ("Dirección:", "Dirección ficticia"), ("Comuna:", "Chillán"),
+             ("Fecha de emisión:", v["fecha"].strftime("%d-%m-%Y"))],
             ["Descripción", "Cantidad", "Precio unitario", "Valor"],
             [producto, f"{m(kilos)} kg", f"${m(redondear(D(v['neto']) / kilos))}", f"${m(v['neto'])}"], [7.6, 2.4, 2.8, 2.8], {1, 2, 3},
             [("Monto neto", f"${m(v['neto'])}"), ("IVA 19 %", f"${m(v['iva'])}"), ("TOTAL", f"${m(v['total'])}")])
@@ -1011,6 +1014,9 @@ def construir_word(ruta, paginas_f29=()):
     filas.append(("", "", "SUMAS IGUALES", m(total_debe), m(total_haber)))
     tabla(["N°", "Fecha", "Cuenta / glosa", "Debe", "Haber"], filas, tam=8, anchos=[0.9, 2.1, 8.6, 2.2, 2.2], derecha={3, 4},
           grupos=fin_asiento, negritas={len(filas) - 1})
+    parrafo(f"Costo de ventas (asiento 11): se supone un margen de {pct(MARGEN)} sobre el costo, así que ventas netas "
+            f"${m(c['neto_v'])} ÷ {str(1 + MARGEN).replace('.', ',')} = ${m(c['costo_ventas'])}. El inventario de mercaderías queda en "
+            f"${m(c['neto_c'] - c['costo_ventas'])} (compras ${m(c['neto_c'])} menos costo de ventas).")
 
     # ---- F29 ----
     seccion("Declaración de impuestos en el F29", nueva_pagina=True)
@@ -1072,10 +1078,13 @@ def construir_word(ruta, paginas_f29=()):
             "hierba de hipérico y cera de abeja). Unidad de medida: código 1 (kilogramo); documento 46 (factura de compra electrónica). "
             "Los facturadores electrónicos que documentan todo por ese medio y envían su libro de compras y ventas no están obligados a presentarla; "
             "aunque la empresa del ejemplo emite documentos electrónicos, la presentamos para mostrar cómo se informa cada retención.", junto=True)
-    tabla(["RUT vendedor", "Cód. producto", "Producto", "Doc.", "N°", "Cantidad (kg)", "IVA retenido"],
-          [(y["rut"], y["codigo"], y["producto"], 46, y["folio"], m(y["kg"]), m(y["retenido"])) for y in c["compras"]] +
-          [("", "", "TOTAL", "", "", "", m(c["retenido"]))], anchos=[2.6, 2.1, 3.4, 1.2, 1.2, 2.4, 3.1], derecha={5, 6},
-          negritas={len(c["compras"])})
+    parrafo("Detalle de la declaración (entre corchetes, el código de cada columna del formulario F3500):", junto=True)
+    tabla(["RUT retenido [205]", "Producto [200]", "Doc. [210]", "Folio [215]", "Cantidad [225]", "Unidad [230]", "Neto [235]",
+           "IVA retenido [250]"],
+          [(y["rut"], f"{y['codigo']} {y['producto']}", 46, y["folio"], m(y["kg"]), "1 (kg)", m(y["neto"]), m(y["retenido"]))
+           for y in c["compras"]] +
+          [("", "TOTAL", "", "", "", "", m(c["neto_c"]), m(c["retenido"]))], anchos=[2.3, 3.5, 1.2, 1.2, 1.9, 1.6, 2.0, 2.3],
+          derecha={4, 6, 7}, negritas={len(c["compras"])})
 
     # ---- Conclusiones ----
     seccion("Conclusiones", nueva_pagina=True)

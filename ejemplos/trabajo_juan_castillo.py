@@ -1006,21 +1006,21 @@ def construir_word(ruta, paginas_f29=()):
     # ---- Conceptos clave, para quien no es contador ----
     seccion("Conceptos clave, en simple")
     tabla(["Concepto", "Qué significa"],
-          [("IVA", "Impuesto de 19 % que se suma al precio de lo que se vende. Las empresas lo cobran y se lo entregan al Estado."),
+          [("IVA", "Impuesto de 19 % sobre las ventas; la empresa lo cobra y lo entrega al Estado."),
            ("Precio neto", "El precio sin IVA."),
            ("Débito fiscal", "El IVA que la empresa cobra en sus ventas: es plata que le debe al fisco."),
            ("Crédito fiscal", "El IVA que la empresa paga en sus compras: lo puede descontar de su débito."),
-           ("Cambio de sujeto", "Cuando la ley hace que sea el comprador, y no el vendedor, quien entregue el IVA al fisco."),
+           ("Cambio de sujeto", "Cuando el comprador, y no el vendedor, entrega el IVA al fisco."),
            ("Retención total", "El comprador se queda con el 100 % del IVA de la compra y lo paga él directamente al SII."),
-           ("Agente retenedor", "La empresa obligada a retener el IVA; en este trabajo, la que compra los productos silvestres."),
+           ("Agente retenedor", "La empresa que debe retener el IVA; aquí, la que compra los silvestres."),
            ("Factura de compra (DTE 46)", "Factura que emite el comprador cuando el vendedor no emite factura. DTE = documento tributario electrónico."),
            ("Libro de compras y ventas", "Lista de todas las facturas de compra y de venta del mes."),
-           ("Libro diario", "Registro de cada operación en orden de fecha, en dos columnas (Debe y Haber) que siempre suman lo mismo."),
+           ("Libro diario", "Cada operación por fecha, en dos columnas (Debe y Haber) que suman lo mismo."),
            ("F29", "Formulario que se presenta cada mes al SII para declarar y pagar el IVA, el PPM y las retenciones."),
-           ("PPM", "Pago provisional mensual: un pequeño porcentaje de las ventas que se adelanta a cuenta del impuesto a la renta del año."),
-           ("DJ F3500", "Declaración jurada mensual en que la empresa informa al SII cada retención de IVA que hizo."),
-           ("Pro Pyme General", "Régimen de impuestos para pymes: empresas con ventas promedio de hasta 75.000 UF al año."),
-           ("SII", "Servicio de Impuestos Internos: el organismo del Estado que administra y fiscaliza los impuestos.")],
+           ("PPM", "Pago mensual (un % de las ventas) a cuenta del impuesto a la renta del año."),
+           ("DJ F3500", "Declaración jurada mensual que informa al SII cada retención de IVA."),
+           ("Pro Pyme General", "Régimen de impuestos para pymes (ventas promedio de hasta 75.000 UF al año)."),
+           ("SII", "Servicio de Impuestos Internos, que administra y fiscaliza los impuestos.")],
           anchos=[3.8, 12.2], grupos=set(range(15)))
 
     # ---- Resolución ----
@@ -1036,6 +1036,21 @@ def construir_word(ruta, paginas_f29=()):
             "imputándolo a otros débitos o pidiendo devolución (N° 7). La retención es total (100 % del IVA; la resolución dice 18 % porque esa "
             "era la tasa del año 2000, hoy 19 %). El N° 16 pedía informar cada mes en el formulario 3290; hoy ese informe es la declaración "
             "jurada F3500. La empresa del ejemplo compra más de $50.000.000 al año, por lo que es agente retenedor.")
+    # cálculo de la retención con el ejemplo de la resolución (N° 3: 100 kg de rosa mosqueta a $150) y la tasa de hoy
+    kg_ej, precio_ej = 100, 150
+    neto_ej = kg_ej * precio_ej
+    iva_ej = neto_ej * 19 // 100
+    parrafo("Cálculo de la retención, con el mismo ejemplo de la resolución (N° 3) y la tasa actual de 19 %:", junto=True)
+    tabla(["Concepto", "Cálculo", "Monto"],
+          [("Precio neto", f"{kg_ej} kg × ${precio_ej}", f"${m(neto_ej)}"),
+           ("IVA 19 %", f"${m(neto_ej)} × 19 %", f"${m(iva_ej)}"),
+           ("Subtotal de la factura de compra", f"${m(neto_ej)} + ${m(iva_ej)}", f"${m(neto_ej + iva_ej)}"),
+           ("Menos: IVA retenido (retención total, 100 %)", f"${m(iva_ej)} × 100 %", f"−${m(iva_ej)}"),
+           ("Total que recibe el vendedor", f"${m(neto_ej + iva_ej)} − ${m(iva_ej)}", f"${m(neto_ej)}")],
+          tam=10, anchos=[6.6, 5.6, 3.8], derecha={2}, negritas={4})
+    parrafo(f"El comprador paga los ${m(iva_ej)} retenidos al SII en su F29 (código 39) y, a la vez, los usa como crédito fiscal. "
+            "Si la retención fuera parcial, como en el trigo (11 %, según la clase), el comprador retendría solo esa parte del IVA y "
+            "el vendedor cobraría el resto.")
     parrafo("Texto oficial de la resolución (fuente: www.sii.cl/documentos/resoluciones/2000b/reso4095.htm, consultado el 16-10-2026). "
             "Entre corchetes y en cursiva van nuestras notas con los valores actuales; por ejemplo, el IVA era 18 % en el año 2000 "
             "y hoy es 19 % (artículo 14 del D.L. 825):", junto=True)

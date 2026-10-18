@@ -28,6 +28,7 @@ from contabilidad.impuestos import redondear
 
 RAIZ = Path(__file__).resolve().parent.parent / "trabajo_juan_castillo"
 RESOLUCION = RAIZ.parent / "docs" / "normativa" / "fuentes" / "reso4095_2000.htm"   # descargada de sii.cl el 16-10-2026
+F29_PROFESOR = RAIZ / "base" / "F29 Actualizado.xlsx"   # descargado de Classroom el 18-10-2026; queda solo en el PC
 LOGO = RAIZ / "base" / "logo.png"           # logo institucional; si no existe, la portada deja el espacio marcado
 
 
@@ -76,7 +77,11 @@ def rut(numero):
 EMPRESA = {"razon": "Silvestres del Ñuble SpA (ficticia)", "rut": rut(76123456), "rut_num": 76123456,
            "giro": "Compra y venta de productos silvestres", "direccion": "Chillán (dirección ficticia)"}
 INTEGRANTES = ["Joaquín Verdejo"]               # en la portada va solo el alumno (lo pidió él, 18-10-2026)
-PERIODO = "Octubre 2026"
+PERIODO = "Septiembre 2026"          # mes del ejemplo: todo queda antes de la entrega (19-10-2026)
+MES, MES_SIGUIENTE = 9, "octubre"
+FIN_MES = date(2026, 9, 30)          # costo de ventas y pago a proveedores
+PAGO_F29 = date(2026, 10, 9)         # vence el 20-10 (facturador electrónico; el 12-10 es feriado)
+PLAZO_DJ = date(2026, 10, 15)        # DJ F3500: día 15 del mes siguiente (jueves)
 CURSO = "Cuarto Medio C"
 MODULO = "Cálculo y Registros de Impuestos"     # nombre del curso en Classroom (el trabajo es de este ramo)
 PROFESOR = "Juan Castillo"                      # así aparece en Classroom (no hay fuente para el segundo apellido)
@@ -88,17 +93,17 @@ REGIMEN = "Pro Pyme General (art. 14 letra D N° 3 de la Ley sobre Impuesto a la
 PPM = D("0.00125")
 MARGEN = D("0.40")          # ganancia sobre el costo para calcular el costo de ventas
 # (fecha, folio, proveedor, rut, producto, código F3500, kilos, precio por kilo)
-COMPRAS = [(date(2026, 10, 2), 201, "Juan Pérez (recolector)", rut(11111111), "Rosa mosqueta", 3101, 1200, 1500),
-           (date(2026, 10, 6), 202, "María Soto (recolectora)", rut(12222222), "Hongos", 3103, 300, 4000),
-           (date(2026, 10, 12), 203, "Pedro Núñez (recolector)", rut(13333333), "Mora", 3102, 500, 1600),
-           (date(2026, 10, 19), 204, "Rosa Muñoz (recolectora)", rut(14444444), "Hojas de boldo", 3105, 400, 1250),
-           (date(2026, 10, 26), 205, "Luis Araya (recolector)", rut(15555555), "Frutos de espino", 3104, 900, 1500)]
+COMPRAS = [(date(2026, 9, 2), 201, "Juan Pérez (recolector)", rut(11111111), "Rosa mosqueta", 3101, 1200, 1500),
+           (date(2026, 9, 7), 202, "María Soto (recolectora)", rut(12222222), "Hongos", 3103, 300, 4000),
+           (date(2026, 9, 11), 203, "Pedro Núñez (recolector)", rut(13333333), "Mora", 3102, 500, 1600),
+           (date(2026, 9, 22), 204, "Rosa Muñoz (recolectora)", rut(14444444), "Hojas de boldo", 3105, 400, 1250),
+           (date(2026, 9, 28), 205, "Luis Araya (recolector)", rut(15555555), "Frutos de espino", 3104, 900, 1500)]
 # (fecha, folio, cliente, rut ficticio, neto)
-VENTAS = [(date(2026, 10, 5), 101, "Exportadora Andes SpA", rut(76200100), 1_900_000),
-          (date(2026, 10, 9), 102, "Agroindustrial Sur Ltda.", rut(76200200), 1_500_000),
-          (date(2026, 10, 14), 103, "Hierbas del Valle S.A.", rut(76200300), 1_400_000),
-          (date(2026, 10, 21), 104, "Comercial Maule SpA", rut(76200400), 900_000),
-          (date(2026, 10, 28), 105, "Distribuidora Bío Bío Ltda.", rut(76200500), 1_300_000)]
+VENTAS = [(date(2026, 9, 4), 101, "Exportadora Andes SpA", rut(76200100), 1_900_000),
+          (date(2026, 9, 9), 102, "Agroindustrial Sur Ltda.", rut(76200200), 1_500_000),
+          (date(2026, 9, 15), 103, "Hierbas del Valle S.A.", rut(76200300), 1_400_000),
+          (date(2026, 9, 24), 104, "Comercial Maule SpA", rut(76200400), 900_000),
+          (date(2026, 9, 29), 105, "Distribuidora Bío Bío Ltda.", rut(76200500), 1_300_000)]
 DETALLE_VENTA_MODELO = ("Rosa mosqueta", 760)   # producto y kilos de la factura de venta modelo (la primera venta); precio = neto ÷ kilos
 # Fuentes del trabajo: todas oficiales y con https (enlaces revisados el 18-10-2026; los de bcn.cl, abiertos en el navegador)
 REVISION_FUENTES = "18 de octubre de 2026"
@@ -172,10 +177,10 @@ def _asientos(c):
     for i, x in enumerate(c["ventas"]):
         a.append((x["fecha"], f"Factura de venta N°{x['folio']} a {x['cliente']}",
                   [("1.1.03", x["total"], 0), ("4.1.01", 0, x["neto"]), ("2.1.02", 0, x["iva"])], ("venta", i)))
-    a.append((date(2026, 10, 31), "Costo de las ventas del mes", [("5.1.01", c["costo_ventas"], 0), ("1.1.13", 0, c["costo_ventas"])],
+    a.append((FIN_MES, "Costo de las ventas del mes", [("5.1.01", c["costo_ventas"], 0), ("1.1.13", 0, c["costo_ventas"])],
               ("costo", None)))
-    a.append((date(2026, 10, 31), "Pago a los proveedores", [("2.1.01", c["pagos"], 0), ("1.1.02", 0, c["pagos"])], ("pago", None)))
-    a.append((date(2026, 11, 12), "F29: débito menos crédito, IVA retenido y PPM",
+    a.append((FIN_MES, "Pago a los proveedores", [("2.1.01", c["pagos"], 0), ("1.1.02", 0, c["pagos"])], ("pago", None)))
+    a.append((PAGO_F29, "F29: débito menos crédito, IVA retenido y PPM",
               [("2.1.02", c["iva_v"], 0), ("2.1.09", c["retenido"], 0), ("1.1.05", c["ppm"], 0),
                ("1.1.04", 0, c["iva_c"]), ("1.1.02", 0, c["total_f29"])], ("f29", None)))
     return sorted(a, key=lambda x: x[0])      # el libro diario va por fecha (sort estable: mismo día mantiene el orden)
@@ -248,7 +253,7 @@ def construir_excel(ruta):
     lc["L2"] = EMPRESA["razon"]
     lc["A3"] = f"MES: {PERIODO.upper()}"
     lc.column_dimensions["A"].width = 11      # la fecha dd-mm-aaaa no cabía (se veía ###)
-    lc["H3"] = 10
+    lc["H3"] = MES
     lc["K5"] = "IVA RETENIDO TOTAL (cód. 31 silvestres)"
     lc["K5"]._style = copy(lc["J5"]._style)
     lc["K5"].alignment = Alignment(wrap_text=True, horizontal="center")
@@ -338,7 +343,7 @@ def construir_excel(ruta):
         lv[ref].number_format = FMT
 
     # ---- FORMULARIO 29 (solo las líneas que usa el ejemplo) ----
-    _celda(f29, "M6").value = 10
+    _celda(f29, "M6").value = MES
     _celda(f29, "T6").value = 2026
     _celda(f29, "X6").value = EMPRESA["rut_num"]
     _celda(f29, "D88").value = EMPRESA["razon"]
@@ -521,7 +526,7 @@ def construir_excel(ruta):
     j["A1"] = "DECLARACIÓN JURADA F3500: informe mensual de retenedores de cambio de sujeto de IVA"
     j["A1"].font = Font(bold=True)
     j["A2"] = (f"Contribuyente: {EMPRESA['razon']}, RUT {EMPRESA['rut']} · Período: {PERIODO} · "
-               "Plazo: hasta el día 15 del mes siguiente (si no es hábil, el día hábil siguiente: 16-11-2026; los retenedores que cumplen el "
+               f"Plazo: hasta el día 15 del mes siguiente ({PLAZO_DJ.strftime('%d-%m-%Y')}; si no es hábil, el día hábil siguiente; los retenedores que cumplen el "
                "D.S. N° 1001 de 2006 tienen hasta el día 23). Se presenta aunque no haya movimiento.")
     cab = ["RUT del vendedor (retenido)", "Código de producto (F3500)", "Producto", "Tipo de documento", "N° documento", "Fecha",
            "Cantidad", "Unidad de medida (cód. 1)", "IVA retenido total"]
@@ -573,9 +578,83 @@ def construir_excel(ruta):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
+# F29 del profesor ("F29 Actualizado", Classroom 15-10-2026): se rellena con los datos del trabajo
+# ----------------------------------------------------------------------------------------------------------------------
+def construir_f29_profesor(ruta):
+    """Rellena una copia del «F29 Actualizado» del profesor. Devuelve False si el archivo no está en base/."""
+    if not F29_PROFESOR.exists():
+        return False
+    from openpyxl import load_workbook
+    from openpyxl.styles import PatternFill
+    c = calculos()
+    wb = load_workbook(F29_PROFESOR)
+    ws = wb["Hoja1"]
+    _celda(ws, "L82").value = None            # su ejemplo marcaba "postergación del IVA" (dejaba el código 89 en cero)
+    datos = {"D4": MES, "E4": 2026, "J3": EMPRESA["rut"], "C9": EMPRESA["razon"],
+             "N23": len(c["ventas"]), "S23": int(c["iva_v"]),            # línea 7: 503 cantidad / 502 débito
+             "N53": len(c["compras"]), "S53": int(c["iva_c"]),           # línea 28: 519 cantidad / 520 crédito
+             "J111": int(c["neto_v"]), "N111": float(PPM * 100),         # línea 69: 563 base / 115 tasa en % (reemplaza su ejemplo)
+             "S176": int(c["retenido"]),                                 # línea 117: código 39
+             "S197": "=S196"}                                            # línea 133: 547 estaba vacía (sin ella el 91 omitía el reverso)
+    for ref, valor in datos.items():
+        _celda(ws, ref).value = valor
+    amarillo = PatternFill("solid", fgColor="FFF2CC")
+    for fila in (20, 21, 32, 53, 176, 177, 180):   # líneas 5, 6, 16, 28, 117, 118 y 121: IVA retenido total o parcial
+        for col in range(2, 21):
+            celda = ws.cell(row=fila, column=col)
+            if type(celda).__name__ != "MergedCell":
+                celda.fill = amarillo
+    sin_color = PatternFill(fill_type=None)     # la línea 60 venía en amarillo fuerte en su plantilla (otro tema) y se confundiría
+    for fila in (f for f in range(85, 115) if ws.cell(row=f, column=2).value == 60):     # con las líneas del IVA retenido
+        for col in range(2, 21):
+            celda = ws.cell(row=fila, column=col)
+            if type(celda).__name__ != "MergedCell":
+                celda.fill = sin_color
+    wb["Hoja2"].sheet_state = "hidden"          # sus notas de remuneraciones no van impresas en este trabajo
+    ws.page_setup.orientation = "portrait"
+    ws.sheet_properties.pageSetUpPr.fitToPage = True
+    ws.page_setup.fitToWidth, ws.page_setup.fitToHeight = 1, 3
+    wb.save(ruta)
+    return True
+
+
+def paginas_f29_profesor(ruta_xlsx):
+    """Imágenes PNG de las páginas del F29 relleno (con LibreOffice y PyMuPDF). Lista vacía si falta alguno."""
+    import shutil
+    import subprocess
+    import tempfile
+    try:
+        import pymupdf
+    except ImportError:
+        return []
+    soffice = shutil.which("soffice") or next((x for x in (r"C:\Program Files\LibreOffice\program\soffice.com",
+                                                          "/Applications/LibreOffice.app/Contents/MacOS/soffice") if Path(x).exists()), None)
+    if not soffice:
+        return []
+    salida = []
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run([soffice, "--headless", "--convert-to", "pdf", "--outdir", tmp, str(ruta_xlsx)], check=True, capture_output=True, timeout=300)
+        pdf = pymupdf.open(Path(tmp) / (Path(ruta_xlsx).stem + ".pdf"))
+        for i, pagina in enumerate(pdf):
+            if pagina.get_text().strip():
+                caja = pymupdf.Rect()               # solo el formulario, sin los márgenes blancos de la hoja
+                for b in pagina.get_text("blocks"):
+                    caja |= pymupdf.Rect(b[:4])
+                for d in pagina.get_drawings():
+                    caja |= d["rect"]
+                caja = (caja + (-4, -4, 4, 4)) & pagina.rect
+                png = RAIZ / f"f29_profesor_p{i + 1}.png"
+                pagina.get_pixmap(dpi=220, clip=caja).save(png)
+                salida.append(png)
+        pdf.close()
+    return salida
+
+
+# ----------------------------------------------------------------------------------------------------------------------
 # Word: formato pedido por el profesor
 # ----------------------------------------------------------------------------------------------------------------------
-def construir_word(ruta):
+def construir_word(ruta, paginas_f29=()):
+    import struct
     from docx import Document
     from docx.enum.table import WD_TABLE_ALIGNMENT
     from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
@@ -963,12 +1042,28 @@ def construir_word(ruta):
     parrafo(f"PPM (línea 69). La empresa del ejemplo está en el régimen {REGIMEN} y sus ingresos del año anterior no superan las "
             "50.000 UF. Su tasa permanente de PPM es 0,25 % de los ingresos brutos del mes, pero la Ley N° 21.755 la rebajó a la mitad "
             f"durante los años 2025, 2026 y 2027 (Circular SII N° 53 de 2025): {pct(PPM)} × ${m(c['neto_v'])} = ${m(c['ppm'])}.")
-    parrafo("Declaración y pago: el F29 de octubre se presenta y paga por Internet en www.sii.cl. Como la empresa es facturadora "
-            "electrónica, vence el día 20 de noviembre (sin factura electrónica vence el día 12). Se pagó el 12-11-2026 desde el banco "
+    parrafo(f"Declaración y pago: el F29 de {PERIODO.split()[0].lower()} se presenta y paga por Internet en www.sii.cl. Como la empresa es facturadora "
+            f"electrónica, vence el día 20 de {MES_SIGUIENTE} (sin factura electrónica vence el día 12). Se pagó el {PAGO_F29.strftime('%d-%m-%Y')} desde el banco "
             f"(asiento 13 del libro diario): ${m(c['total_f29'])}.")
+    for k, png in enumerate(paginas_f29):      # el formulario del profesor relleno (pauta: «Adjuntar formulario 29»)
+        if k == 0:
+            parrafo("Formulario 29 del profesor («F29 Actualizado»), relleno con los datos del trabajo. En amarillo, las líneas "
+                    "donde se registra el IVA retenido, total o parcial.", junto=True, nueva_pagina=True)
+            p = doc.add_paragraph()
+        else:
+            p = doc.add_paragraph()
+            p.paragraph_format.page_break_before = True
+        p.alignment = CENTRO
+        p.paragraph_format.line_spacing = 1.0
+        ancho, alto = struct.unpack(">II", Path(png).read_bytes()[16:24])      # tamaño del PNG (cabecera IHDR)
+        disponible = 21.3 if k == 0 else 23.0                                  # alto útil de la página (cm), menos el título
+        if 16 * alto / ancho <= disponible:
+            p.add_run().add_picture(str(png), width=Cm(16))
+        else:
+            p.add_run().add_picture(str(png), height=Cm(disponible))
 
     # ---- DJ ----
-    seccion("Declaración jurada mensual de retenciones")
+    seccion("Declaración jurada mensual de retenciones", nueva_pagina=bool(paginas_f29))
     parrafo("Corresponde la declaración jurada F3500, informe mensual de retenedores de cambio de sujeto de IVA. Se presenta cada mes, hasta el día 15 "
             "del mes siguiente (si no es día hábil, el siguiente hábil; los retenedores que cumplen el D.S. N° 1001 de 2006 tienen hasta el día 23), "
             "aunque no haya movimiento, informando operación por operación. "
@@ -1033,6 +1128,9 @@ def construir_word(ruta):
 if __name__ == "__main__":
     RAIZ.mkdir(exist_ok=True)
     construir_excel(RAIZ / "cambio_sujeto_silvestres.xlsx")
-    construir_word(RAIZ / "cambio_sujeto_silvestres.docx")
+    f29_relleno = RAIZ / "F29_actualizado_relleno.xlsx"
+    paginas = paginas_f29_profesor(f29_relleno) if construir_f29_profesor(f29_relleno) else []
+    construir_word(RAIZ / "cambio_sujeto_silvestres.docx", paginas)
+    print("F29 del profesor relleno:", f"{len(paginas)} página(s) adjuntas al Word" if paginas else "no (falta base/F29 Actualizado.xlsx o LibreOffice)")
     c = calculos()
     print("Neto compras", m(c["neto_c"]), "· IVA retenido", m(c["retenido"]), "· F29 a pagar", m(c["total_f29"]))

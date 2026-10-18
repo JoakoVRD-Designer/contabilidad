@@ -94,6 +94,7 @@ VENTAS = [(date(2026, 10, 5), 101, "Exportadora Andes SpA", rut(76200100), 1_900
           (date(2026, 10, 14), 103, "Hierbas del Valle S.A.", rut(76200300), 1_400_000),
           (date(2026, 10, 21), 104, "Comercial Maule SpA", rut(76200400), 900_000),
           (date(2026, 10, 28), 105, "Distribuidora Bío Bío Ltda.", rut(76200500), 1_300_000)]
+DETALLE_VENTA_MODELO = ("Rosa mosqueta", 760)   # producto y kilos de la factura de venta modelo (la primera venta); precio = neto ÷ kilos
 
 
 def calculos(retencion=RETENCION, ppm=PPM, margen=MARGEN):
@@ -549,10 +550,21 @@ def construir_word(ruta):
     tabla(["Totales", ""], [("Monto neto", f"${m(x['neto'])}"), ("IVA 19 %", f"${m(x['iva'])}"),
                             ("IVA retenido total (código 31, silvestres)", f"${m(x['retenido'])}"), ("IVA que cobra el proveedor", f"${m(x['no_retenido'])}"),
                             ("TOTAL A PAGAR AL PROVEEDOR", f"${m(x['pago'])}")], tam=10, anchos=[10, 6], derecha={1})
-    doc.add_paragraph("Texto al pie: «Factura de compra por cambio de sujeto de IVA, Res. Ex. SII N° 4095 de 2000». "
-                      "La factura de venta de la empresa a sus clientes lleva el neto, el IVA 19 % y el total, como una factura normal (ejemplo: "
-                      f"N° {c['ventas'][0]['folio']} a {c['ventas'][0]['cliente']}, neto ${m(c['ventas'][0]['neto'])}, IVA ${m(c['ventas'][0]['iva'])}, "
-                      f"total ${m(c['ventas'][0]['total'])}).")
+    doc.add_paragraph("Texto al pie: «Factura de compra por cambio de sujeto de IVA, Res. Ex. SII N° 4095 de 2000».")
+    # Factura de venta (DTE 33): la empresa revende a sus clientes con IVA normal (débito fiscal, F29 línea 7, código 502)
+    v = c["ventas"][0]
+    producto, kilos = DETALLE_VENTA_MODELO
+    doc.add_paragraph("Factura de venta electrónica (DTE 33) que la empresa emite a sus clientes cuando revende los productos. "
+                      "Es una factura normal: el IVA lo cobra la empresa y es su débito fiscal.")
+    tabla(None, [(f"{EMPRESA['razon']}\nRUT {EMPRESA['rut']}\nGiro: {EMPRESA['giro']}\n{EMPRESA['direccion']}",
+                  f"R.U.T.: {EMPRESA['rut']}\nFACTURA ELECTRÓNICA\nN° {v['folio']}\nS.I.I. - CHILLÁN")], tam=10, anchos=[9, 7])
+    tabla(["Datos del cliente", ""], [("Señor(es)", v["cliente"]), ("R.U.T.", v["rut"]), ("Fecha de emisión", v["fecha"].strftime("%d-%m-%Y"))],
+          tam=10, anchos=[6, 10])
+    tabla(["Detalle", "Cantidad", "Precio unitario", "Valor"],
+          [(producto, f"{m(kilos)} kg", f"${m(redondear(D(v['neto']) / kilos))}", f"${m(v['neto'])}")], tam=10,
+          anchos=[7, 3, 3, 3], derecha={1, 2, 3})
+    tabla(["Totales", ""], [("Monto neto", f"${m(v['neto'])}"), ("IVA 19 %", f"${m(v['iva'])}"), ("TOTAL", f"${m(v['total'])}")],
+          tam=10, anchos=[10, 6], derecha={1})
 
     # ---- Libros ----
     doc.add_heading("Registro en el libro de compras y ventas", 1)

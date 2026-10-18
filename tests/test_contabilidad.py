@@ -347,6 +347,11 @@ class TestTrabajoJuanCastillo(unittest.TestCase):
         c = trabajo_juan_castillo.calculos(retencion=D("0.5"))
         self.assertEqual(c["retenido"], 536_750)
 
+    def test_factura_de_venta_modelo_cuadra(self):
+        # kilos × precio unitario debe dar el neto de la primera venta (la factura modelo del Word)
+        _, kilos = trabajo_juan_castillo.DETALLE_VENTA_MODELO
+        self.assertEqual(trabajo_juan_castillo.VENTAS[0][4] % kilos, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

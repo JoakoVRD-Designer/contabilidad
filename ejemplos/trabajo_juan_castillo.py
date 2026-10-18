@@ -112,6 +112,8 @@ FUENTES = [
          "https://www.sii.cl/declaraciones_juradas/instrucciones_f3500.html"),
         ("Preguntas frecuentes: plazo de la Declaración Jurada 3500 (día 15 de cada mes; día 23 con el D.S. N° 1001 de 2006).",
          "https://www.sii.cl/preguntas_frecuentes/ddjj/001_135_6150.htm"),
+        ("Preguntas frecuentes: plazos para presentar el Formulario 29 (día 12; día 20 para los facturadores electrónicos).",
+         "https://www.sii.cl/preguntas_frecuentes/impuestos_mensuales/001_130_1060.htm"),
         ("Tabla de códigos de otros impuestos y retenciones (código 31, IVA retenido silvestres).",
          "https://www.sii.cl/declaraciones_juradas/ddjj_3327_3328/cod_otros_imp_retenc.pdf"),
         ("Instrucciones de llenado de la información de compras y ventas (monto total de las facturas con retención).",
@@ -933,8 +935,8 @@ def construir_word(ruta):
 
     # ---- F29 ----
     seccion("Declaración de impuestos en el F29", nueva_pagina=True)
-    parrafo("Líneas del Formulario 29 según el «F29 Actualizado» entregado por el profesor (planilla adjunta, hoja F29 ACTUALIZADO). "
-            "En amarillo, las líneas donde se registra el IVA retenido, total o parcial:", junto=True)
+    parrafo("Líneas del Formulario 29 según el «F29 Actualizado» del profesor (planilla adjunta, hoja F29 ACTUALIZADO). "
+            "En amarillo, las líneas del IVA retenido, total o parcial:", junto=True)
     nc, nv = len(c["compras"]), len(c["ventas"])
     filas29 = [(5, "515 / 587", "Vendedor retenido: compras con retención total", "0"),
                (6, "720", "Vendedor retenido: retención parcial, total neto", "0"),
@@ -953,15 +955,17 @@ def construir_word(ruta):
                (140, "91", "TOTAL A PAGAR dentro del plazo legal", m(c["total_f29"]))]
     tabla(["Línea", "Código", "Concepto", "Monto"], filas29, anchos=[1.3, 1.9, 10.2, 2.6], derecha={3}, negritas={len(filas29) - 1},
           amarillas={i for i, f in enumerate(filas29) if f[0] in (5, 6, 16, 28, 117, 118, 121)})
-    parrafo("Dónde se registra el IVA retenido total o parcial. Agente retenedor (la empresa compradora): las facturas de compra van en la "
-            "línea 28, «Facturas recibidas del giro y Facturas de compra emitidas» (códigos 519 y 520), con derecho a crédito fiscal; el IVA "
-            "retenido se declara en el reverso: línea 117, código 39, si la retención es total, y línea 118, código 554, si es parcial. La línea "
-            "121 (código 596) suma las retenciones por cambio de sujeto, y ese total se agrega al total determinado (línea 133, código 547) "
-            "y al total a pagar (línea 140, código 91). Vendedor retenido: línea 5 (códigos 515 y 587) si la retención es total, y líneas 6 "
-            "(código 720) y 16 (códigos 516 y 517) si es parcial. Los productos silvestres tienen retención total.")
+    parrafo("Dónde se registra el IVA retenido. Agente retenedor (la empresa compradora): las facturas de compra van en la línea 28 "
+            "(códigos 519 y 520), con derecho a crédito fiscal, y el IVA retenido en el reverso: línea 117 (código 39) si la retención es "
+            "total y línea 118 (código 554) si es parcial; la línea 121 (código 596) las suma y ese total pasa al total determinado "
+            "(línea 133) y al total a pagar (línea 140). Vendedor retenido: línea 5 si la retención es total y líneas 6 y 16 si es parcial. "
+            "Los productos silvestres tienen retención total.")
     parrafo(f"PPM (línea 69). La empresa del ejemplo está en el régimen {REGIMEN} y sus ingresos del año anterior no superan las "
             "50.000 UF. Su tasa permanente de PPM es 0,25 % de los ingresos brutos del mes, pero la Ley N° 21.755 la rebajó a la mitad "
             f"durante los años 2025, 2026 y 2027 (Circular SII N° 53 de 2025): {pct(PPM)} × ${m(c['neto_v'])} = ${m(c['ppm'])}.")
+    parrafo("Declaración y pago: el F29 de octubre se presenta y paga por Internet en www.sii.cl. Como la empresa es facturadora "
+            "electrónica, vence el día 20 de noviembre (sin factura electrónica vence el día 12). Se pagó el 12-11-2026 desde el banco "
+            f"(asiento 13 del libro diario): ${m(c['total_f29'])}.")
 
     # ---- DJ ----
     seccion("Declaración jurada mensual de retenciones")
@@ -1004,21 +1008,20 @@ def construir_word(ruta):
         nodo(r, "w:t").text = url
 
     seccion("Fuentes consultadas", nueva_pagina=True)
-    parrafo("Todas las fuentes son oficiales (Servicio de Impuestos Internos y Biblioteca del Congreso Nacional) y sus enlaces usan "
-            f"conexión segura (https). Enlaces revisados el {REVISION_FUENTES}.")
+    parrafo(f"Todas son fuentes oficiales con conexión segura (https), revisadas el {REVISION_FUENTES}.")
     k = 0
     for grupo, items in FUENTES:
         g = doc.add_paragraph()
         g.paragraph_format.keep_with_next = True
-        g.paragraph_format.space_before = Pt(6)
+        g.paragraph_format.space_before = Pt(4)
         r = g.add_run(grupo)
         r.bold, r.font.size = True, Pt(11)
         for texto, url in items:
             k += 1
             par = doc.add_paragraph()
-            par.paragraph_format.line_spacing = 1.15
+            par.paragraph_format.line_spacing = 1.0
             par.paragraph_format.left_indent, par.paragraph_format.first_line_indent = Cm(0.7), Cm(-0.7)
-            par.paragraph_format.space_after = Pt(6)
+            par.paragraph_format.space_after = Pt(3)
             par.paragraph_format.keep_together = True
             r = par.add_run(f"{k}.	{texto}")
             r.font.size = Pt(10)

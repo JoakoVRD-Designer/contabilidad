@@ -677,11 +677,11 @@ def construir_word(ruta):
         if nueva_pagina:
             h.paragraph_format.page_break_before = True
 
-    def tabla(cab, filas, tam=9, anchos=None, derecha=(), grupos=None, negritas=()):
+    def tabla(cab, filas, tam=9, anchos=None, derecha=(), grupos=None, negritas=(), amarillas=()):
         """Tabla con bordes. cab=None: sin fila de títulos. anchos: cm por columna (suman 16 = ancho útil). derecha: columnas de montos.
         Al imprimir ninguna fila se corta, los títulos se repiten en cada página y la tabla va completa en una página; si es larga,
         grupos = índices de las filas donde termina cada bloque (ej. cada asiento), para cortar solo entre bloques.
-        negritas: índices de las filas en negrita (ej. sumas)."""
+        negritas: índices de las filas en negrita (ej. sumas). amarillas: filas resaltadas en amarillo."""
         t = doc.add_table(rows=0, cols=len(cab) if cab else len(filas[0]))
         t.style = "Table Grid"
         for fila in ([cab] if cab else []) + list(filas):
@@ -699,6 +699,8 @@ def construir_word(ruta):
                 nodo(trPr, "w:tblHeader")
             seguir = r < len(t.rows) - 1 and (grupos is None or k not in grupos)
             for i, cell in enumerate(row.cells):
+                if k in amarillas:
+                    sombra(cell, "FFF2CC")
                 for par in cell.paragraphs:
                     par.paragraph_format.line_spacing = 1.0
                     if seguir:
@@ -830,19 +832,16 @@ def construir_word(ruta):
 
     # ---- Introducción (media página) ----
     seccion("Introducción")
+    # media página, como pide la pauta (se mide en la revisión del PDF)
     parrafo("Normalmente, el vendedor cobra el IVA en sus facturas y lo declara en el Formulario 29. Sin embargo, el artículo 3° del "
-            "Decreto Ley 825 faculta al Servicio de Impuestos Internos para trasladar esa obligación al comprador en ciertos bienes, "
-            "que llamamos cambio de sujeto. En estos casos el comprador emite una factura de compra, retiene el IVA total o parcial "
-            "y lo declara y paga al fisco.")
-    parrafo("En los productos silvestres, la Resolución Exenta SII N° 4095 de 2000 establece un cambio de sujeto total: el comprador "
-            "retiene el 100 % del IVA. Según la propia resolución, la medida busca cautelar los intereses fiscales, porque el impuesto "
-            "lo declara y paga una empresa con contabilidad completa y no cada uno de los vendedores. Para el comprador, el IVA de la "
-            "factura de compra igual es crédito fiscal, por lo que la retención no se transforma en un costo, pero sí lo obliga a cumplir "
-            "formalidades: emitir la factura de compra, declarar la retención en el Formulario 29 e informarla en una declaración jurada mensual.")
-    parrafo("Este trabajo investiga la retención de IVA en los productos silvestres, como la rosa mosqueta, los hongos, la mora y el "
-            "boldo. Presentamos la resolución que lo establece, el diseño de una factura de compra, el registro de cinco compras y "
-            "cinco ventas en el libro de compras y ventas, su contabilización en el libro diario, el Formulario 29 con las líneas "
-            "donde se registra el IVA retenido y la declaración jurada correspondiente. Los datos de la empresa son de ejemplo.")
+            "Decreto Ley 825 permite al Servicio de Impuestos Internos trasladar esa obligación al comprador en ciertos bienes: es el "
+            "cambio de sujeto. El comprador emite una factura de compra, retiene el IVA total o parcial y lo paga al fisco.")
+    parrafo("En los productos silvestres, como la rosa mosqueta, los hongos, la mora y el boldo, la Resolución Exenta SII N° 4095 de 2000 "
+            "establece un cambio de sujeto total: el comprador retiene el 100 % del IVA, para cautelar los intereses fiscales. Para el "
+            "comprador ese IVA sigue siendo crédito fiscal, así que no es un costo, pero debe emitir la factura de compra, declarar la "
+            "retención en el Formulario 29 e informarla cada mes en una declaración jurada.")
+    parrafo("Este trabajo presenta la resolución, el diseño de las facturas, el registro de cinco compras y cinco ventas en los libros, "
+            "su contabilización en el libro diario, el Formulario 29 y la declaración jurada. Los datos de la empresa son de ejemplo.")
 
     # ---- Resolución ----
     seccion("Resolución del cambio de sujeto")
@@ -934,20 +933,26 @@ def construir_word(ruta):
 
     # ---- F29 ----
     seccion("Declaración de impuestos en el F29", nueva_pagina=True)
-    parrafo("Líneas del Formulario 29 según el «F29 Actualizado» entregado por el profesor (planilla adjunta, hoja F29 ACTUALIZADO):", junto=True)
+    parrafo("Líneas del Formulario 29 según el «F29 Actualizado» entregado por el profesor (planilla adjunta, hoja F29 ACTUALIZADO). "
+            "En amarillo, las líneas donde se registra el IVA retenido, total o parcial:", junto=True)
     nc, nv = len(c["compras"]), len(c["ventas"])
-    tabla(["Línea", "Código", "Concepto", "Monto"],
-          [(7, "503 / 502", f"Facturas emitidas por ventas y servicios del giro (cantidad {nv} / débito fiscal)", m(c["debitos"])),
-           (23, "538", "Total débitos", m(c["debitos"])),
-           (28, "519 / 520", f"Facturas recibidas del giro y facturas de compra emitidas, con derecho a crédito (cantidad {nc} / crédito fiscal)",
-            m(c["creditos"])),
-           (49, "537", "Total créditos", m(c["creditos"])), (50, "89", "IVA determinado (débitos − créditos)", m(c["determinado"])),
-           (69, "62", f"PPM ({pct(PPM)} de la venta neta)", m(c["ppm"])),
-           (79, "595", "Subtotal impuesto determinado anverso (89 + 62)", m(c["determinado"] + c["ppm"])),
-           (117, "39", "Reverso: IVA total retenido a terceros (retención total)", m(c["retenido"])),
-           (121, "596", "Reverso: retención cambio de sujeto (39 + 554 + 597 + 555 − 736)", m(c["retenido"])),
-           (133, "547", "Total determinado (595 + 596)", m(c["total_f29"])),
-           (140, "91", "TOTAL A PAGAR dentro del plazo legal", m(c["total_f29"]))], anchos=[1.5, 2.2, 9.3, 3.0], derecha={3}, negritas={10})
+    filas29 = [(5, "515 / 587", "Vendedor retenido: compras con retención total", "0"),
+               (6, "720", "Vendedor retenido: retención parcial, total neto", "0"),
+               (7, "503 / 502", f"Facturas emitidas del giro (cantidad {nv} / débito fiscal)", m(c["debitos"])),
+               (16, "516 / 517", "Vendedor retenido: compras con retención parcial", "0"),
+               (23, "538", "Total débitos", m(c["debitos"])),
+               (28, "519 / 520", f"Facturas recibidas del giro y facturas de compra emitidas (cantidad {nc} / crédito fiscal)",
+                m(c["creditos"])),
+               (49, "537", "Total créditos", m(c["creditos"])), (50, "89", "IVA determinado (débitos − créditos)", m(c["determinado"])),
+               (69, "62", f"PPM ({pct(PPM)} de la venta neta)", m(c["ppm"])),
+               (79, "595", "Subtotal impuesto determinado anverso (89 + 62)", m(c["determinado"] + c["ppm"])),
+               (117, "39", "IVA total retenido a terceros (reverso)", m(c["retenido"])),
+               (118, "554", "IVA parcial retenido a terceros (reverso)", "0"),
+               (121, "596", "Retención cambio de sujeto: 39 + 554 + 597 + 555 − 736", m(c["retenido"])),
+               (133, "547", "Total determinado (595 + 596)", m(c["total_f29"])),
+               (140, "91", "TOTAL A PAGAR dentro del plazo legal", m(c["total_f29"]))]
+    tabla(["Línea", "Código", "Concepto", "Monto"], filas29, anchos=[1.3, 1.9, 10.2, 2.6], derecha={3}, negritas={len(filas29) - 1},
+          amarillas={i for i, f in enumerate(filas29) if f[0] in (5, 6, 16, 28, 117, 118, 121)})
     parrafo("Dónde se registra el IVA retenido total o parcial. Agente retenedor (la empresa compradora): las facturas de compra van en la "
             "línea 28, «Facturas recibidas del giro y Facturas de compra emitidas» (códigos 519 y 520), con derecho a crédito fiscal; el IVA "
             "retenido se declara en el reverso: línea 117, código 39, si la retención es total, y línea 118, código 554, si es parcial. La línea "

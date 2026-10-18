@@ -96,6 +96,7 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 7. Revisión del 18-10-2026 (LibreOffice): Excel sin errores de fórmula; hoja F29 ACTUALIZADO en una sola página al imprimir; F29 = 1.338.750; libro diario 28.115.750 = 28.115.750.
 8. **Revisión para imprimir (18-10-2026):** 17 páginas tamaño carta (16 + fuentes), con número de página (la portada sin número). Cada factura va completa en su página, con recuadro rojo (RUT, tipo y folio), timbre electrónico y, en la de compra, la leyenda de retención que pide el N° 3. Libros, libro diario, F29, DJ y conclusiones empiezan en página nueva. El libro diario no corta asientos entre páginas, repite los títulos y cierra con sumas iguales. Ninguna tabla queda separada de su título.
 9. **Fuentes (18-10-2026):** página final «Fuentes consultadas» en el Word y hoja «Fuentes» en el Excel: 11 enlaces oficiales con https (8 de sii.cl, revisados con respuesta 200 y certificado válido, y 3 de bcn.cl, abiertos en el navegador) más el material del profesor. El Word queda de 17 páginas.
+10. **Revisión de exigencias (18-10-2026, medida en el PDF):** solo Arial (ArialMT y Arial-BoldMT); texto en 12 con interlineado 1,5; márgenes 2,5 / 2,0 / 3,0 / 2,0 cm; introducción acortada a media página (49 % del alto útil); tabla del F29 con todas las líneas donde va el IVA retenido total o parcial (5, 6, 16, 28, 117, 118 y 121) en amarillo. Excepciones a Arial 12 / 1,5: tablas (8-9), texto oficial de la resolución (10, sencillo), facturas y lista de fuentes (10).
 
 ## Otro material de la carpeta
 

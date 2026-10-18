@@ -80,6 +80,9 @@ _ARCHIVO_INTEGRANTES = Path(__file__).resolve().parent.parent / "trabajo_juan_ca
 INTEGRANTES = ([x.strip() for x in _ARCHIVO_INTEGRANTES.read_text(encoding="utf-8").splitlines() if x.strip()]
                if _ARCHIVO_INTEGRANTES.exists() else ["Joaquín Verdejo", "Integrante 2", "Integrante 3"])
 PERIODO = "Octubre 2026"
+CURSO = "Cuarto Medio C"
+MODULO = "Cálculo y Registros de Impuestos"     # nombre del curso en Classroom (el trabajo es de este ramo)
+PROFESOR = "Juan Castillo"                      # así aparece en Classroom (no hay fuente para el segundo apellido)
 RETENCION = D("1")          # Res. Ex. SII N° 4095/2000: productos silvestres = retención TOTAL (100 % del IVA)
 PPM = D("0.01")             # tasa de PPM de la plantilla del profesor (celda A81); ⚠️ el ejemplo del F29 Actualizado usa 0,25 %
 MARGEN = D("0.40")          # ganancia sobre el costo para calcular el costo de ventas
@@ -507,13 +510,17 @@ def construir_excel(ruta):
 # ----------------------------------------------------------------------------------------------------------------------
 def construir_word(ruta):
     from docx import Document
+    from docx.enum.table import WD_TABLE_ALIGNMENT
     from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
+    from docx.oxml import OxmlElement
     from docx.oxml.ns import qn
-    from docx.shared import Cm, Pt
+    from docx.shared import Cm, Pt, RGBColor
     c = calculos()
     doc = Document()
     sec = doc.sections[0]
     sec.top_margin, sec.bottom_margin, sec.left_margin, sec.right_margin = Cm(2.5), Cm(2.0), Cm(3.0), Cm(2.0)
+    CENTRO, DERECHA = WD_ALIGN_PARAGRAPH.CENTER, WD_ALIGN_PARAGRAPH.RIGHT
+    ROJO, GRIS = RGBColor(0xC0, 0x00, 0x00), RGBColor(0x80, 0x80, 0x80)
 
     def fuente(estilo, tam=12, negrita=None):
         estilo.font.name = "Arial"
@@ -531,9 +538,85 @@ def construir_word(ruta):
     for nombre in ("Heading 1", "Title"):
         fuente(doc.styles[nombre], 12 if nombre == "Heading 1" else 16, True)
         doc.styles[nombre].font.color.rgb = None
+    doc.styles["Heading 1"].paragraph_format.keep_with_next = True     # un título nunca queda solo al pie de una página
 
-    def tabla(cab, filas, tam=9, anchos=None, derecha=()):
-        """Tabla con bordes. cab=None: sin fila de títulos. anchos: cm por columna (suman 16 = ancho útil). derecha: columnas de montos."""
+    # ---- utilidades para imprimir bien: bordes, sombreado, filas que no se cortan ----
+    ORDEN = {"w:tblPr": ["w:tblStyle", "w:tblpPr", "w:tblOverlap", "w:bidiVisual", "w:tblStyleRowBandSize", "w:tblStyleColBandSize",
+                         "w:tblW", "w:jc", "w:tblCellSpacing", "w:tblInd", "w:tblBorders", "w:shd", "w:tblLayout", "w:tblCellMar", "w:tblLook"],
+             "w:tcPr": ["w:cnfStyle", "w:tcW", "w:gridSpan", "w:hMerge", "w:vMerge", "w:tcBorders", "w:shd", "w:noWrap", "w:tcMar",
+                        "w:textDirection", "w:tcFitText", "w:vAlign", "w:hideMark"]}
+
+    def nodo(padre, tag, attrs=None, orden=None):
+        """Agrega <tag> a padre en el orden del esquema (Word no abre el archivo si van fuera de orden)."""
+        e = OxmlElement(tag)
+        for k, v in (attrs or {}).items():
+            e.set(qn(k), str(v))
+        despues = {qn(t) for t in orden[orden.index(tag) + 1:]} if orden else set()
+        sig = next((h for h in padre if h.tag in despues), None)
+        if sig is None:
+            padre.append(e)
+        else:
+            sig.addprevious(e)
+        return e
+
+    def bordes(t, color="000000", sz=4, interiores=True):
+        """Bordes de toda la tabla (sz en octavos de punto)."""
+        b = nodo(t._tbl.tblPr, "w:tblBorders", orden=ORDEN["w:tblPr"])
+        for lado in ("top", "left", "bottom", "right") + (("insideH", "insideV") if interiores else ()):
+            nodo(b, f"w:{lado}", {"w:val": "single", "w:sz": sz, "w:space": 0, "w:color": color})
+
+    def sombra(celda, color="E7E6E6"):
+        nodo(celda._tc.get_or_add_tcPr(), "w:shd", {"w:val": "clear", "w:color": "auto", "w:fill": color}, ORDEN["w:tcPr"])
+
+    def anchos_de(t, anchos):
+        t.autofit = False
+        for i, ancho in enumerate(anchos):
+            t.columns[i].width = Cm(ancho)
+            for cell in t.columns[i].cells:
+                cell.width = Cm(ancho)
+
+    def escribir(celda, lineas, tam=9, negrita=False, alinear=None, color=None):
+        """Una línea por párrafo, Arial, interlineado simple. Una línea puede ser (texto, negrita)."""
+        for k, linea in enumerate(lineas):
+            par = celda.paragraphs[0] if k == 0 else celda.add_paragraph()
+            par.paragraph_format.line_spacing = 1.0
+            par.paragraph_format.space_after = Pt(0)
+            if alinear is not None:
+                par.alignment = alinear
+            texto, neg = linea if isinstance(linea, tuple) else (linea, negrita)
+            run = par.add_run(texto)
+            run.font.name, run.font.size, run.font.bold = "Arial", Pt(tam), neg
+            if color is not None:
+                run.font.color.rgb = color
+
+    def espaciador(par, alto=4):
+        par.paragraph_format.line_spacing = Pt(alto)
+        par.paragraph_format.space_after = Pt(0)
+
+    def quitar_primer_parrafo(celda):
+        """Quita el párrafo vacío que queda antes de una tabla anidada (python-docx lo deja al crear la celda)."""
+        p = celda.paragraphs[0]._p
+        p.getparent().remove(p)
+
+    def parrafo(texto, junto=False, nueva_pagina=False):
+        """junto=True: no se separa de lo que sigue (la tabla que presenta)."""
+        par = doc.add_paragraph(texto)
+        if junto:
+            par.paragraph_format.keep_with_next = True
+        if nueva_pagina:
+            par.paragraph_format.page_break_before = True
+        return par
+
+    def seccion(titulo, nueva_pagina=False):
+        h = doc.add_heading(titulo, 1)
+        if nueva_pagina:
+            h.paragraph_format.page_break_before = True
+
+    def tabla(cab, filas, tam=9, anchos=None, derecha=(), grupos=None, negritas=()):
+        """Tabla con bordes. cab=None: sin fila de títulos. anchos: cm por columna (suman 16 = ancho útil). derecha: columnas de montos.
+        Al imprimir ninguna fila se corta, los títulos se repiten en cada página y la tabla va completa en una página; si es larga,
+        grupos = índices de las filas donde termina cada bloque (ej. cada asiento), para cortar solo entre bloques.
+        negritas: índices de las filas en negrita (ej. sumas)."""
         t = doc.add_table(rows=0, cols=len(cab) if cab else len(filas[0]))
         t.style = "Table Grid"
         for fila in ([cab] if cab else []) + list(filas):
@@ -541,74 +624,174 @@ def construir_word(ruta):
             for i, x in enumerate(fila):
                 cel[i].text = str(x)
         if anchos:
-            t.autofit = False
-            for i, ancho in enumerate(anchos):
-                t.columns[i].width = Cm(ancho)
-                for cell in t.columns[i].cells:
-                    cell.width = Cm(ancho)
+            anchos_de(t, anchos)
+        desfase = 1 if cab else 0
         for r, row in enumerate(t.rows):
+            k = r - desfase                       # índice dentro de filas (-1 = fila de títulos)
+            trPr = row._tr.get_or_add_trPr()
+            nodo(trPr, "w:cantSplit")
+            if k < 0:
+                nodo(trPr, "w:tblHeader")
+            seguir = r < len(t.rows) - 1 and (grupos is None or k not in grupos)
             for i, cell in enumerate(row.cells):
                 for par in cell.paragraphs:
                     par.paragraph_format.line_spacing = 1.0
+                    if seguir:
+                        par.paragraph_format.keep_with_next = True
                     if i in derecha:
-                        par.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+                        par.alignment = DERECHA
                     for run in par.runs:
                         run.font.name, run.font.size = "Arial", Pt(tam)
-                        if cab and r == 0:
+                        if k < 0 or k in negritas:
                             run.font.bold = True
         doc.add_paragraph()
 
-    # ---- Portada (diseño individual: pega aquí el logo institucional) ----
+    def factura(titulo, folio, receptor, cab_det, fila_det, anchos_det, der_det, totales, leyenda=None):
+        """Representación impresa de un documento electrónico: emisor y recuadro (RUT, tipo y folio), receptor, detalle,
+        timbre electrónico y totales, todo dentro de un marco que no se corta entre páginas."""
+        marco = doc.add_table(rows=1, cols=1)
+        bordes(marco, "808080", 8, interiores=False)
+        anchos_de(marco, [16])
+        nodo(marco.rows[0]._tr.get_or_add_trPr(), "w:cantSplit")
+        hoja = marco.cell(0, 0)
+        espaciador(hoja.paragraphs[0])
+        # emisor (izquierda) y recuadro con RUT, tipo de documento y folio (derecha)
+        cabeza = hoja.add_table(rows=1, cols=2)
+        anchos_de(cabeza, [9.4, 6.2])
+        escribir(cabeza.cell(0, 0), [(EMPRESA["razon"], True), f"Giro: {EMPRESA['giro']}", f"Dirección: {EMPRESA['direccion']}"], tam=10)
+        der = cabeza.cell(0, 1)
+        caja = der.add_table(rows=1, cols=1)
+        caja.alignment = WD_TABLE_ALIGNMENT.CENTER
+        bordes(caja, "C00000", 18, interiores=False)
+        anchos_de(caja, [5.6])
+        escribir(caja.cell(0, 0), [f"R.U.T.: {EMPRESA['rut']}", *titulo, f"N° {folio}"], tam=11, negrita=True, alinear=CENTRO, color=ROJO)
+        quitar_primer_parrafo(der)
+        escribir(der, [("S.I.I. - CHILLÁN", True)], tam=9, alinear=CENTRO, color=ROJO)
+        espaciador(hoja.paragraphs[-1], 8)
+        # receptor: dos datos por fila
+        rec = hoja.add_table(rows=0, cols=4)
+        rec.style = "Table Grid"
+        for i in range(0, len(receptor), 2):
+            cel = rec.add_row().cells
+            for j, (etiqueta, valor) in enumerate(receptor[i:i + 2]):
+                escribir(cel[2 * j], [(etiqueta, True)])
+                escribir(cel[2 * j + 1], [valor])
+        anchos_de(rec, [3.2, 5.6, 3.2, 3.6])
+        if len(receptor) % 2:                     # dato impar: su valor ocupa el resto de la fila (sin celdas vacías)
+            ultima = rec.rows[-1].cells
+            ultima[1].merge(ultima[3])
+        espaciador(hoja.paragraphs[-1], 8)
+        # detalle
+        det = hoja.add_table(rows=2, cols=len(cab_det))
+        det.style = "Table Grid"
+        for i, (titulo_col, valor) in enumerate(zip(cab_det, fila_det)):
+            alin = DERECHA if i in der_det else None
+            escribir(det.cell(0, i), [(titulo_col, True)], alinear=alin)
+            sombra(det.cell(0, i))
+            escribir(det.cell(1, i), [valor], alinear=alin)
+        anchos_de(det, anchos_det)
+        espaciador(hoja.paragraphs[-1], 8)
+        # timbre electrónico (izquierda) y totales (derecha)
+        pie = hoja.add_table(rows=1, cols=2)
+        anchos_de(pie, [7.0, 8.6])
+        izq, dch = pie.cell(0, 0), pie.cell(0, 1)
+        timbre = izq.add_table(rows=1, cols=1)
+        timbre.alignment = WD_TABLE_ALIGNMENT.CENTER
+        bordes(timbre, "000000", 4, interiores=False)
+        anchos_de(timbre, [5.0])
+        timbre.rows[0].height = Cm(1.8)
+        escribir(timbre.cell(0, 0), ["", "Código de barras PDF417", "(timbre electrónico)"], tam=8, alinear=CENTRO, color=GRIS)
+        quitar_primer_parrafo(izq)
+        escribir(izq, [("Timbre Electrónico SII", True), "Verifique documento: www.sii.cl"], tam=8, alinear=CENTRO)
+        tot = dch.add_table(rows=0, cols=2)
+        tot.style = "Table Grid"
+        tot.alignment = WD_TABLE_ALIGNMENT.RIGHT
+        for k, (etiqueta, valor) in enumerate(totales):
+            ultima = k == len(totales) - 1
+            cel = tot.add_row().cells
+            escribir(cel[0], [(etiqueta, ultima)])
+            escribir(cel[1], [(valor, ultima)], alinear=DERECHA)
+            if ultima:
+                sombra(cel[0])
+                sombra(cel[1])
+        anchos_de(tot, [5.6, 2.6])
+        quitar_primer_parrafo(dch)
+        espaciador(dch.paragraphs[-1])
+        final = hoja.paragraphs[-1]               # el párrafo que python-docx deja después del pie
+        if leyenda:                               # Res. 4095, N° 3: la factura deja constancia expresa de la retención
+            final.paragraph_format.line_spacing = 1.0
+            final.paragraph_format.space_before = Pt(6)
+            run = final.add_run(leyenda)
+            run.font.name, run.font.size, run.font.bold = "Arial", Pt(9), True
+            final = hoja.add_paragraph()
+        espaciador(final)
+        doc.add_paragraph()
+
+    # ---- números de página al pie (la portada va sin número) ----
+    sec.different_first_page_header_footer = True
+    pie_pagina = sec.footer.paragraphs[0]
+    pie_pagina.alignment = DERECHA
+    pie_pagina.paragraph_format.line_spacing = 1.0
+    run = pie_pagina.add_run()
+    run.font.name, run.font.size = "Arial", Pt(10)
+    nodo(run._r, "w:fldChar", {"w:fldCharType": "begin"})
+    nodo(run._r, "w:instrText", {"xml:space": "preserve"}).text = " PAGE "
+    nodo(run._r, "w:fldChar", {"w:fldCharType": "separate"})
+    nodo(run._r, "w:t").text = "2"
+    nodo(run._r, "w:fldChar", {"w:fldCharType": "end"})
+
+    # ---- Portada (diseño individual con el logo institucional) ----
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.alignment = CENTRO
     if LOGO.exists():
         p.add_run().add_picture(str(LOGO), height=Cm(3.5))
     else:
         p.add_run("[PEGAR AQUÍ EL LOGO INSTITUCIONAL]")
     for linea, tam in (("LICEO BICENTENARIO DE EXCELENCIA INSUCO CHILLÁN", 14), ("DEPARTAMENTO TÉCNICO PROFESIONAL", 12),
-                       ("Cuarto Medio · Contabilidad · Procesamiento de información contable", 12)):
+                       (f"{CURSO} · Contabilidad · {MODULO}", 12)):
         p = doc.add_paragraph()
         r = p.add_run(linea)
         r.bold, r.font.size = True, Pt(tam)
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.alignment = CENTRO
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.alignment = CENTRO
     r = p.add_run("\nTRABAJO DE INVESTIGACIÓN\nCAMBIO DE SUJETO DE IVA:\nPRODUCTOS SILVESTRES\n")
     r.bold, r.font.size = True, Pt(18)
-    for linea in ("Integrantes:", *INTEGRANTES, "", "Profesor: Juan Castillo Araya", "Chillán, 19 de octubre de 2026"):
+    for linea in ("Integrantes:", *INTEGRANTES, "", f"Profesor: {PROFESOR}", "Chillán, 19 de octubre de 2026"):
         p = doc.add_paragraph(linea)
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.alignment = CENTRO
     doc.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
 
     # ---- Introducción (media página) ----
-    doc.add_heading("Introducción", 1)
-    doc.add_paragraph("Normalmente, el vendedor cobra el IVA en sus facturas y lo declara en el Formulario 29. Sin embargo, el artículo 3° del "
-                      "Decreto Ley 825 faculta al Servicio de Impuestos Internos para trasladar esa obligación al comprador en ciertos bienes, "
-                      "que llamamos cambio de sujeto. En estos casos el comprador emite una factura de compra, retiene el IVA total o parcial "
-                      "y lo declara y paga al fisco.")
-    doc.add_paragraph("En los productos silvestres, la Resolución Exenta SII N° 4095 de 2000 establece un cambio de sujeto total: el comprador "
-                      "retiene el 100 % del IVA. Según la propia resolución, la medida busca cautelar los intereses fiscales, porque el impuesto "
-                      "lo declara y paga una empresa con contabilidad completa y no cada uno de los vendedores. Para el comprador, el IVA de la "
-                      "factura de compra igual es crédito fiscal, por lo que la retención no se transforma en un costo, pero sí lo obliga a cumplir "
-                      "formalidades: emitir la factura de compra, declarar la retención en el Formulario 29 e informarla en una declaración jurada mensual.")
-    doc.add_paragraph("Este trabajo investiga la retención de IVA en los productos silvestres, como la rosa mosqueta, los hongos, la mora y el "
-                      "boldo. Presentamos la resolución que lo establece, el diseño de una factura de compra, el registro de cinco compras y "
-                      "cinco ventas en el libro de compras y ventas, su contabilización en el libro diario, el Formulario 29 con las líneas "
-                      "donde se registra el IVA retenido y la declaración jurada correspondiente. Los datos de la empresa son de ejemplo.")
+    seccion("Introducción")
+    parrafo("Normalmente, el vendedor cobra el IVA en sus facturas y lo declara en el Formulario 29. Sin embargo, el artículo 3° del "
+            "Decreto Ley 825 faculta al Servicio de Impuestos Internos para trasladar esa obligación al comprador en ciertos bienes, "
+            "que llamamos cambio de sujeto. En estos casos el comprador emite una factura de compra, retiene el IVA total o parcial "
+            "y lo declara y paga al fisco.")
+    parrafo("En los productos silvestres, la Resolución Exenta SII N° 4095 de 2000 establece un cambio de sujeto total: el comprador "
+            "retiene el 100 % del IVA. Según la propia resolución, la medida busca cautelar los intereses fiscales, porque el impuesto "
+            "lo declara y paga una empresa con contabilidad completa y no cada uno de los vendedores. Para el comprador, el IVA de la "
+            "factura de compra igual es crédito fiscal, por lo que la retención no se transforma en un costo, pero sí lo obliga a cumplir "
+            "formalidades: emitir la factura de compra, declarar la retención en el Formulario 29 e informarla en una declaración jurada mensual.")
+    parrafo("Este trabajo investiga la retención de IVA en los productos silvestres, como la rosa mosqueta, los hongos, la mora y el "
+            "boldo. Presentamos la resolución que lo establece, el diseño de una factura de compra, el registro de cinco compras y "
+            "cinco ventas en el libro de compras y ventas, su contabilización en el libro diario, el Formulario 29 con las líneas "
+            "donde se registra el IVA retenido y la declaración jurada correspondiente. Los datos de la empresa son de ejemplo.")
 
     # ---- Resolución ----
-    doc.add_heading("Resolución del cambio de sujeto", 1)
-    doc.add_paragraph("La Resolución Exenta SII N° 4095 del 25 de agosto de 2000 dispone el cambio de sujeto de derecho del IVA en los productos silvestres "
-                      "(rige desde el 1 de septiembre de 2000, por tiempo indefinido). Productos: rosa mosqueta, mora, hongos, frutos de espino, hojas de "
-                      "boldo, tilo, manzanilla, llantén, toronjil, cedrón, hierbas pectorales, romero, hojas y corteza de quillay, hierba de hipérico y cera "
-                      "de abeja. Retienen el IVA los compradores que venden a exportadores y los compradores nacionales de Primera Categoría con contabilidad "
-                      "completa con compras anuales de productos silvestres de $50.000.000 o más (o capital propio de $50.000.000 o más). El comprador emite "
-                      "una factura de compra (DTE 46), recarga el IVA y lo retiene; lo declara y paga íntegro en el F29, código 39, sin imputación ni deducción "
-                      "(N° 4). A la vez, ese IVA puede usarlo como crédito fiscal (N° 6). El vendedor no emite factura y recupera su propio crédito fiscal "
-                      "imputándolo a otros débitos o pidiendo devolución (N° 7). La retención es total (100 % del IVA; la resolución dice 18 % porque esa "
-                      "era la tasa del año 2000, hoy 19 %). El N° 16 pedía informar cada mes en el formulario 3290; hoy ese informe es la declaración "
-                      "jurada F3500. La empresa del ejemplo compra más de $50.000.000 al año, por lo que es agente retenedor.")
-    doc.add_paragraph("Texto oficial de la resolución (fuente: www.sii.cl/documentos/resoluciones/2000b/reso4095.htm, consultado el 16-10-2026):")
+    seccion("Resolución del cambio de sujeto")
+    parrafo("La Resolución Exenta SII N° 4095 del 25 de agosto de 2000 dispone el cambio de sujeto de derecho del IVA en los productos silvestres "
+            "(rige desde el 1 de septiembre de 2000, por tiempo indefinido). Productos: rosa mosqueta, mora, hongos, frutos de espino, hojas de "
+            "boldo, tilo, manzanilla, llantén, toronjil, cedrón, hierbas pectorales, romero, hojas y corteza de quillay, hierba de hipérico y cera "
+            "de abeja. Retienen el IVA (N° 2) los exportadores que compran productos silvestres y los compradores nacionales de Primera Categoría "
+            "con contabilidad completa con compras anuales de productos silvestres de $50.000.000 o más (o capital propio de $50.000.000 o más); "
+            "las ventas entre estos compradores no tienen cambio de sujeto. El comprador emite "
+            "una factura de compra (DTE 46), recarga el IVA y lo retiene; lo declara y paga íntegro en el F29, código 39, sin imputación ni deducción "
+            "(N° 4). A la vez, ese IVA puede usarlo como crédito fiscal (N° 6). El vendedor no emite factura y recupera su propio crédito fiscal "
+            "imputándolo a otros débitos o pidiendo devolución (N° 7). La retención es total (100 % del IVA; la resolución dice 18 % porque esa "
+            "era la tasa del año 2000, hoy 19 %). El N° 16 pedía informar cada mes en el formulario 3290; hoy ese informe es la declaración "
+            "jurada F3500. La empresa del ejemplo compra más de $50.000.000 al año, por lo que es agente retenedor.")
+    parrafo("Texto oficial de la resolución (fuente: www.sii.cl/documentos/resoluciones/2000b/reso4095.htm, consultado el 16-10-2026):", junto=True)
     titulos = ("RESOLUCION EXENTA", "MATERIA", "C O N S I D E R A N D O", "S E R E S U E L V E", "ANOTESE Y PUBLIQUESE")
     for tipo, x in texto_resolucion():
         if tipo == "tabla":                       # el ejemplo de factura de compra que trae la resolución
@@ -616,69 +799,76 @@ def construir_word(ruta):
             continue
         par = doc.add_paragraph(x)
         par.paragraph_format.line_spacing = 1.0
+        if x.startswith(titulos) or x.endswith(":"):      # títulos y frases que presentan lo que sigue (ej. "Por ejemplo:")
+            par.paragraph_format.keep_with_next = True
         for run in par.runs:
             run.font.size = Pt(10)
             run.font.bold = x.startswith(titulos)
 
-    # ---- Factura de compra ----
-    doc.add_heading("Diseño y ejemplo de factura de cambio de sujeto de IVA", 1)
+    # ---- Facturas: cada una en su página ----
+    seccion("Diseño y ejemplo de factura de cambio de sujeto de IVA", nueva_pagina=True)
     x = c["compras"][0]
-    doc.add_paragraph("Factura de compra electrónica (DTE 46) emitida por el comprador, que es quien retiene el IVA.")
-    tabla(None, [(f"{EMPRESA['razon']}\nRUT {EMPRESA['rut']}\nGiro: {EMPRESA['giro']}\n{EMPRESA['direccion']}",
-                      f"R.U.T.: {EMPRESA['rut']}\nFACTURA DE COMPRA ELECTRÓNICA\nN° {x['folio']}\nS.I.I. - CHILLÁN")], tam=10, anchos=[9, 7])
-    tabla(["Datos del proveedor", ""], [("Señor(es)", x["proveedor"]), ("R.U.T.", x["rut"]), ("Giro", "Recolección de productos silvestres"),
-                                       ("Fecha de emisión", x["fecha"].strftime("%d-%m-%Y")), ("Código de producto (F3500)", f"{x['codigo']} {x['producto']}")], tam=10, anchos=[6, 10])
-    tabla(["Detalle", "Cantidad", "Precio unitario", "Valor"], [(x["producto"], f"{m(x['kg'])} kg", f"${m(x['precio'])}", f"${m(x['neto'])}")], tam=10,
-          anchos=[7, 3, 3, 3], derecha={1, 2, 3})
-    tabla(["Totales", ""], [("Monto neto", f"${m(x['neto'])}"), ("IVA 19 %", f"${m(x['iva'])}"),
-                            ("IVA retenido total (código 31, silvestres)", f"${m(x['retenido'])}"), ("IVA que cobra el proveedor", f"${m(x['no_retenido'])}"),
-                            ("TOTAL A PAGAR AL PROVEEDOR", f"${m(x['pago'])}")], tam=10, anchos=[10, 6], derecha={1})
-    doc.add_paragraph("Texto al pie: «Factura de compra por cambio de sujeto de IVA, Res. Ex. SII N° 4095 de 2000».")
-    # Factura de venta (DTE 33): la empresa revende a sus clientes con IVA normal (débito fiscal, F29 línea 7, código 502)
+    parrafo("Factura de compra electrónica (DTE 46). La emite el comprador, que es quien retiene el IVA; el vendedor (recolector) no emite factura.",
+            junto=True)
+    factura(["FACTURA DE COMPRA", "ELECTRÓNICA"], x["folio"],
+            [("Señor(es):", x["proveedor"]), ("R.U.T.:", x["rut"]), ("Giro:", "Recolección de productos silvestres"),
+             ("Fecha de emisión:", x["fecha"].strftime("%d-%m-%Y"))],
+            ["Código", "Descripción", "Cantidad", "Precio unitario", "Valor"],
+            [str(x["codigo"]), x["producto"], f"{m(x['kg'])} kg", f"${m(x['precio'])}", f"${m(x['neto'])}"], [1.8, 5.8, 2.4, 2.8, 2.8], {2, 3, 4},
+            [("Monto neto", f"${m(x['neto'])}"), ("IVA 19 %", f"${m(x['iva'])}"), ("Subtotal", f"${m(x['neto'] + x['iva'])}"),
+             ("Menos: IVA retenido 19 % (cód. 31)", f"${m(x['retenido'])}"), ("TOTAL", f"${m(x['pago'])}")],
+            leyenda="Se retiene el 19 % del IVA sobre el total de la compra por cambio de sujeto total (Res. Ex. SII N° 4095 de 2000).")
+    parrafo(f"El proveedor recibe solo el neto (${m(x['pago'])}). Los ${m(x['retenido'])} de IVA los retiene la empresa: los paga en su F29 "
+            "(línea 117, código 39) y, a la vez, los usa como crédito fiscal (línea 28, código 520). El código 31 identifica la retención de "
+            "productos silvestres.")
+    # Factura de venta (DTE 33): la empresa revende con IVA normal (débito fiscal, F29 línea 7, código 502)
     v = c["ventas"][0]
     producto, kilos = DETALLE_VENTA_MODELO
-    doc.add_paragraph("Factura de venta electrónica (DTE 33) que la empresa emite a sus clientes cuando revende los productos. "
-                      "Es una factura normal: el IVA lo cobra la empresa y es su débito fiscal.")
-    tabla(None, [(f"{EMPRESA['razon']}\nRUT {EMPRESA['rut']}\nGiro: {EMPRESA['giro']}\n{EMPRESA['direccion']}",
-                  f"R.U.T.: {EMPRESA['rut']}\nFACTURA ELECTRÓNICA\nN° {v['folio']}\nS.I.I. - CHILLÁN")], tam=10, anchos=[9, 7])
-    tabla(["Datos del cliente", ""], [("Señor(es)", v["cliente"]), ("R.U.T.", v["rut"]), ("Fecha de emisión", v["fecha"].strftime("%d-%m-%Y"))],
-          tam=10, anchos=[6, 10])
-    tabla(["Detalle", "Cantidad", "Precio unitario", "Valor"],
-          [(producto, f"{m(kilos)} kg", f"${m(redondear(D(v['neto']) / kilos))}", f"${m(v['neto'])}")], tam=10,
-          anchos=[7, 3, 3, 3], derecha={1, 2, 3})
-    tabla(["Totales", ""], [("Monto neto", f"${m(v['neto'])}"), ("IVA 19 %", f"${m(v['iva'])}"), ("TOTAL", f"${m(v['total'])}")],
-          tam=10, anchos=[10, 6], derecha={1})
+    parrafo("Factura de venta electrónica (DTE 33) que la empresa emite cuando revende los productos. Es una factura normal, sin retención: "
+            "la empresa también es agente retenedor, y las ventas entre compradores obligados a retener, como la exportadora, no tienen "
+            "cambio de sujeto (Res. 4095, N° 2). El IVA lo cobra la empresa y es su débito fiscal (F29, línea 7, código 502).",
+            junto=True, nueva_pagina=True)
+    factura(["FACTURA", "ELECTRÓNICA"], v["folio"],
+            [("Señor(es):", v["cliente"]), ("R.U.T.:", v["rut"]), ("Fecha de emisión:", v["fecha"].strftime("%d-%m-%Y"))],
+            ["Descripción", "Cantidad", "Precio unitario", "Valor"],
+            [producto, f"{m(kilos)} kg", f"${m(redondear(D(v['neto']) / kilos))}", f"${m(v['neto'])}"], [7.6, 2.4, 2.8, 2.8], {1, 2, 3},
+            [("Monto neto", f"${m(v['neto'])}"), ("IVA 19 %", f"${m(v['iva'])}"), ("TOTAL", f"${m(v['total'])}")])
 
     # ---- Libros ----
-    doc.add_heading("Registro en el libro de compras y ventas", 1)
-    doc.add_paragraph("Libro de compras (cinco facturas de compra; el IVA es crédito fiscal y el IVA retenido total se informa con el código 31, "
-                      "«IVA retenido silvestres»):")
+    seccion("Registro en el libro de compras y ventas", nueva_pagina=True)
+    parrafo("Libro de compras (cinco facturas de compra; el IVA es crédito fiscal y el IVA retenido total se informa con el código 31, "
+            "«IVA retenido silvestres»):", junto=True)
     # SII (instrucciones de la Información de Compras, nota 5): con retención total o parcial, el monto total RESTA lo retenido
     tabla(["Fecha", "N° doc.", "Proveedor", "RUT", "Neto", "IVA", "Cód. 31 IVA retenido", "Total"],
-          [(y["fecha"].strftime("%d-%m"), y["folio"], y["proveedor"], y["rut"], m(y["neto"]), m(y["iva"]), m(y["retenido"]),
+          [(y["fecha"].strftime("%d-%m"), y["folio"], y["proveedor"].split(" (")[0], y["rut"], m(y["neto"]), m(y["iva"]), m(y["retenido"]),
             m(y["neto"] + y["iva"] - y["retenido"])) for y in c["compras"]] +
           [("", "", "SUMAS", "", m(c["neto_c"]), m(c["iva_c"]), m(c["retenido"]), m(c["neto_c"] + c["iva_c"] - c["retenido"]))],
-          anchos=[1.3, 1.2, 3.4, 2.4, 2.0, 1.8, 2.0, 1.9], derecha={4, 5, 6, 7})
-    doc.add_paragraph("El total de cada factura de compra es neto + IVA − IVA retenido; con retención total queda igual al neto, que es lo que "
-                      "se paga al proveedor.")
-    doc.add_paragraph("Libro de ventas (cinco facturas afectas):")
+          anchos=[1.4, 1.2, 3.5, 2.3, 1.8, 1.8, 2.2, 1.8], derecha={4, 5, 6, 7}, negritas={len(c["compras"])})
+    parrafo("El total de cada factura de compra es neto + IVA − IVA retenido; con retención total queda igual al neto, que es lo que "
+            "se paga al proveedor.")
+    parrafo("Libro de ventas (cinco facturas afectas):", junto=True)
     tabla(["Fecha", "N° doc.", "Cliente", "RUT", "Neto", "IVA", "Total"],
           [(y["fecha"].strftime("%d-%m"), y["folio"], y["cliente"], y["rut"], m(y["neto"]), m(y["iva"]), m(y["total"])) for y in c["ventas"]] +
           [("", "", "SUMAS", "", m(c["neto_v"]), m(c["iva_v"]), m(c["total_v"]))],
-          anchos=[1.3, 1.5, 3.9, 2.5, 2.3, 2.0, 2.5], derecha={4, 5, 6})
+          anchos=[1.4, 1.2, 5.5, 2.3, 1.9, 1.8, 1.9], derecha={4, 5, 6}, negritas={len(c["ventas"])})
 
-    # ---- Libro diario ----
-    doc.add_heading("Contabilización en el libro diario", 1)
-    filas = []
+    # ---- Libro diario: los asientos no se cortan entre páginas y termina con sumas iguales ----
+    seccion("Contabilización en el libro diario", nueva_pagina=True)
+    filas, fin_asiento, total_debe, total_haber = [], set(), 0, 0
     for k, (fecha, glosa, lineas) in enumerate(asientos(c), start=1):
         filas.append((k, fecha.strftime("%d-%m-%Y"), glosa, "", ""))
         for cuenta, debe, haber in lineas:
             filas.append(("", "", ("      " if haber else "") + f"{cuenta} {NOMBRES[cuenta]}", m(debe) if debe else "", m(haber) if haber else ""))
-    tabla(["N°", "Fecha", "Cuenta / glosa", "Debe", "Haber"], filas, tam=8, anchos=[0.9, 2.1, 8.6, 2.2, 2.2], derecha={3, 4})
+            total_debe, total_haber = total_debe + debe, total_haber + haber
+        fin_asiento.add(len(filas) - 1)
+    fin_asiento.discard(len(filas) - 1)           # el último asiento va junto a las sumas
+    filas.append(("", "", "SUMAS IGUALES", m(total_debe), m(total_haber)))
+    tabla(["N°", "Fecha", "Cuenta / glosa", "Debe", "Haber"], filas, tam=8, anchos=[0.9, 2.1, 8.6, 2.2, 2.2], derecha={3, 4},
+          grupos=fin_asiento, negritas={len(filas) - 1})
 
     # ---- F29 ----
-    doc.add_heading("Declaración de impuestos en el F29", 1)
-    doc.add_paragraph("Líneas del Formulario 29 según el «F29 Actualizado» entregado por el profesor (planilla adjunta, hoja F29 ACTUALIZADO):")
+    seccion("Declaración de impuestos en el F29", nueva_pagina=True)
+    parrafo("Líneas del Formulario 29 según el «F29 Actualizado» entregado por el profesor (planilla adjunta, hoja F29 ACTUALIZADO):", junto=True)
     nc, nv = len(c["compras"]), len(c["ventas"])
     tabla(["Línea", "Código", "Concepto", "Monto"],
           [(7, "503 / 502", f"Facturas emitidas por ventas y servicios del giro (cantidad {nv} / débito fiscal)", m(c["debitos"])),
@@ -691,40 +881,41 @@ def construir_word(ruta):
            (117, "39", "Reverso: IVA total retenido a terceros (retención total)", m(c["retenido"])),
            (121, "596", "Reverso: retención cambio de sujeto (39 + 554 + 597 + 555 − 736)", m(c["retenido"])),
            (133, "547", "Total determinado (595 + 596)", m(c["total_f29"])),
-           (140, "91", "TOTAL A PAGAR dentro del plazo legal", m(c["total_f29"]))], anchos=[1.5, 2.2, 9.3, 3.0], derecha={3})
-    doc.add_paragraph("Dónde se registra el IVA retenido total o parcial. Agente retenedor (la empresa compradora): las facturas de compra van en la "
-                      "línea 28, «Facturas recibidas del giro y Facturas de compra emitidas» (códigos 519 y 520), con derecho a crédito fiscal; el IVA "
-                      "retenido se declara en el reverso: línea 117, código 39, si la retención es total, y línea 118, código 554, si es parcial. La línea "
-                      "121 (código 596) suma las retenciones por cambio de sujeto, y ese total se agrega al total determinado (línea 133, código 547) "
-                      "y al total a pagar (línea 140, código 91). Vendedor retenido: línea 5 (códigos 515 y 587) si la retención es total, y líneas 6 "
-                      "(código 720) y 16 (códigos 516 y 517) si es parcial. Los productos silvestres tienen retención total.")
+           (140, "91", "TOTAL A PAGAR dentro del plazo legal", m(c["total_f29"]))], anchos=[1.5, 2.2, 9.3, 3.0], derecha={3}, negritas={10})
+    parrafo("Dónde se registra el IVA retenido total o parcial. Agente retenedor (la empresa compradora): las facturas de compra van en la "
+            "línea 28, «Facturas recibidas del giro y Facturas de compra emitidas» (códigos 519 y 520), con derecho a crédito fiscal; el IVA "
+            "retenido se declara en el reverso: línea 117, código 39, si la retención es total, y línea 118, código 554, si es parcial. La línea "
+            "121 (código 596) suma las retenciones por cambio de sujeto, y ese total se agrega al total determinado (línea 133, código 547) "
+            "y al total a pagar (línea 140, código 91). Vendedor retenido: línea 5 (códigos 515 y 587) si la retención es total, y líneas 6 "
+            "(código 720) y 16 (códigos 516 y 517) si es parcial. Los productos silvestres tienen retención total.")
 
     # ---- DJ ----
-    doc.add_heading("Declaración jurada mensual de retenciones", 1)
-    doc.add_paragraph("Corresponde la declaración jurada F3500, informe mensual de retenedores de cambio de sujeto de IVA. Se presenta cada mes, hasta el día 15 "
-                      "del mes siguiente (si no es día hábil, el siguiente hábil), aunque no haya movimiento, informando operación por operación. "
-                      "Los códigos de producto de los silvestres son: 3101 rosa mosqueta, 3102 mora, 3103 hongos, 3104 frutos de espino y 3105 hojas de boldo. "
-                      "Los códigos 3106 a 3115 corresponden a los demás silvestres (tilo, manzanilla, llantén, toronjil, cedrón, hierbas pectorales, romero, quillay, "
-                      "hierba de hipérico y cera de abeja). Unidad de medida: código 1 (kilogramo); documento 46 (factura de compra electrónica). "
-                      "Los facturadores electrónicos que documentan todo por ese medio y envían su libro de compras y ventas no están obligados a presentarla.")
+    seccion("Declaración jurada mensual de retenciones")
+    parrafo("Corresponde la declaración jurada F3500, informe mensual de retenedores de cambio de sujeto de IVA. Se presenta cada mes, hasta el día 15 "
+            "del mes siguiente (si no es día hábil, el siguiente hábil), aunque no haya movimiento, informando operación por operación. "
+            "Los códigos de producto de los silvestres son: 3101 rosa mosqueta, 3102 mora, 3103 hongos, 3104 frutos de espino y 3105 hojas de boldo. "
+            "Los códigos 3106 a 3115 corresponden a los demás silvestres (tilo, manzanilla, llantén, toronjil, cedrón, hierbas pectorales, romero, quillay, "
+            "hierba de hipérico y cera de abeja). Unidad de medida: código 1 (kilogramo); documento 46 (factura de compra electrónica). "
+            "Los facturadores electrónicos que documentan todo por ese medio y envían su libro de compras y ventas no están obligados a presentarla; "
+            "aunque la empresa del ejemplo emite documentos electrónicos, la presentamos para mostrar cómo se informa cada retención.", junto=True)
     tabla(["RUT vendedor", "Cód. producto", "Producto", "Doc.", "N°", "Cantidad (kg)", "IVA retenido"],
           [(y["rut"], y["codigo"], y["producto"], 46, y["folio"], m(y["kg"]), m(y["retenido"])) for y in c["compras"]] +
-          [("", "", "TOTAL", "", "", "", m(c["retenido"]))], anchos=[2.6, 2.1, 3.4, 1.2, 1.2, 2.4, 3.1], derecha={5, 6})
+          [("", "", "TOTAL", "", "", "", m(c["retenido"]))], anchos=[2.6, 2.1, 3.4, 1.2, 1.2, 2.4, 3.1], derecha={5, 6},
+          negritas={len(c["compras"])})
 
     # ---- Conclusiones ----
-    doc.add_heading("Conclusiones", 1)
-    doc.add_paragraph(f"Con el cambio de sujeto, la empresa compradora retuvo ${m(c['retenido'])} de IVA y lo pagó íntegro al fisco (línea 117, código 39). "
-                      f"Como ese mismo IVA es crédito fiscal, lo restó de su débito: IVA determinado ${m(c['determinado'])}. En el F29 pagó ese IVA, el PPM "
-                      f"(${m(c['ppm'])}) y el IVA retenido: ${m(c['total_f29'])} en total. El proveedor cobra solo el neto y no necesita emitir factura. "
-                      "La factura de compra respalda cada operación, y la declaración jurada F3500 informa cada mes al SII las retenciones practicadas.")
-    doc.add_paragraph(f"Como grupo concluimos que el cambio de sujeto traslada al comprador la obligación de declarar el IVA, pero no le quita su "
-                      f"derecho a crédito fiscal: en el F29 el mismo IVA aparece como crédito (línea 28, código 520) y como retención (línea 117, código 39). "
-                      f"Por eso, en total la empresa pagó en IVA el mismo monto de su débito fiscal (${m(c['iva_v'])}): ${m(c['determinado'])} de IVA "
-                      f"propio más ${m(c['retenido'])} retenido a sus proveedores. También aprendimos que cada documento tiene su forma de registro: "
-                      "en el libro de compras el total de la factura de compra es el neto, porque el IVA retenido se descuenta, y cada operación se "
-                      "identifica con el código 31 y con su código de producto en la declaración jurada F3500.")
+    seccion("Conclusiones", nueva_pagina=True)
+    parrafo(f"Con el cambio de sujeto, la empresa compradora retuvo ${m(c['retenido'])} de IVA y lo pagó íntegro al fisco (línea 117, código 39). "
+            f"Como ese mismo IVA es crédito fiscal, lo restó de su débito: IVA determinado ${m(c['determinado'])}. En el F29 pagó ese IVA, el PPM "
+            f"(${m(c['ppm'])}) y el IVA retenido: ${m(c['total_f29'])} en total. El proveedor cobra solo el neto y no necesita emitir factura. "
+            "La factura de compra respalda cada operación, y la declaración jurada F3500 informa cada mes al SII las retenciones practicadas.")
+    parrafo(f"Como grupo concluimos que el cambio de sujeto traslada al comprador la obligación de declarar el IVA, pero no le quita su "
+            f"derecho a crédito fiscal: en el F29 el mismo IVA aparece como crédito (línea 28, código 520) y como retención (línea 117, código 39). "
+            f"Por eso, en total la empresa pagó en IVA el mismo monto de su débito fiscal (${m(c['iva_v'])}): ${m(c['determinado'])} de IVA "
+            f"propio más ${m(c['retenido'])} retenido a sus proveedores. También aprendimos que cada documento tiene su forma de registro: "
+            "en el libro de compras el total de la factura de compra es el neto, porque el IVA retenido se descuenta, y cada operación se "
+            "identifica con el código 31 y con su código de producto en la declaración jurada F3500.")
     doc.save(ruta)
-
 
 if __name__ == "__main__":
     RAIZ.mkdir(exist_ok=True)

@@ -2,7 +2,7 @@
 
 Fuente: carpeta de Classroom "Cálculo y registros de impuestos (4° C Contabilidad)".
 
-- **Publicado:** 5 oct · **Entrega: 19 de octubre de 2026** · **100 puntos** (el .docx trae "31 julio 2025", es una copia vieja).
+- **Publicado:** 5 oct · **Entrega: 19 de octubre de 2026, IMPRESO** (no se sube a Classroom) · **100 puntos** (el .docx trae "31 julio 2025", es una copia vieja).
 - **Grupo 9, productos silvestres:** Joaquín Verdejo y otros dos integrantes.
 - **Actividad:** grupo de 3; investigar la retención de IVA (parcial o total) en el producto asignado; buscar la resolución en el SII; hacer el modelo de factura; averiguar cómo se contabiliza; presentar el **F29 con 5 compras y 5 ventas** (incluido el libro de compras y ventas); declaración jurada de retenciones que deba presentar al SII.
 
@@ -33,7 +33,7 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 
 ## Normativa de productos silvestres (VERIFICADA en sii.cl el 16-10-2026; textos en `docs/normativa/fuentes/`)
 
-- **Res. Ex. SII N° 4095 (25-08-2000)** (`reso4095_2000.htm`): retienen (N° 2) los compradores que venden a **exportadores** y los de Primera Categoría con contabilidad completa y compras anuales de silvestres de **$50.000.000 o más** (o capital propio ≥ $50.000.000). Retención **total**; la resolución dice 18 % (tasa del año 2000), hoy 19 %. El comprador emite **factura de compra** y el vendedor no emite factura (N° 3).
+- **Res. Ex. SII N° 4095 (25-08-2000)** (`reso4095_2000.htm`): retienen (N° 2) los **exportadores** que compran productos silvestres y los de Primera Categoría con contabilidad completa y compras anuales de silvestres de **$50.000.000 o más** (o capital propio ≥ $50.000.000). Las ventas entre estos compradores no tienen cambio de sujeto: por eso la empresa del ejemplo vende con factura normal (DTE 33). Retención **total**; la resolución dice 18 % (tasa del año 2000), hoy 19 %. El comprador emite **factura de compra** y el vendedor no emite factura (N° 3).
 - **N° 4:** el IVA retenido se paga íntegro en el F29, **código 39**, sin imputación ni deducción.
 - **N° 6: el IVA de la factura de compra SÍ es crédito fiscal del comprador.** El F29 del profesor lo confirma: línea 28 del "F29 Actualizado" (25 en la plantilla antigua), "Facturas recibidas del giro y Facturas de compra emitidas" (519 / 520), con derecho a crédito.
 - **N° 16:** informe mensual hasta el día 15, aunque no haya movimiento; la resolución dice formulario **3290**, hoy reemplazado por la **DJ F3500**.
@@ -53,6 +53,9 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 7. **Libro diario en orden cronológico (17-10-2026):** antes iban las 5 compras y después las 5 ventas.
 8. **Reverso (17-10-2026):** el F29 Actualizado del profesor pone el 39 en la línea 117 y el 596 en la 121; las instrucciones SII 2024, en la 118 y la 122. Gana el profesor.
 9. **Tasa de PPM:** 1 % en la plantilla de libros del profesor (L. VENTAS, A81) y 0,25 % en el ejemplo del F29 Actualizado. Se mantiene 1 %. ⚠️ Confirmar con el profesor (con 0,25 %: PPM 17.500 y total F29 1.347.500).
+10. **Resumen de la resolución (18-10-2026):** decía «retienen los compradores que venden a exportadores»; el N° 2 dice que retienen los **exportadores que compran**. Corregido en el Word.
+11. **Portada (18-10-2026):** el ramo es «Cálculo y Registros de Impuestos» (así se llama el curso en Classroom), no «Procesamiento de información contable». El segundo apellido del profesor no tenía fuente y se quitó (en Classroom aparece como «juan castillo»).
+12. **DJ F3500 (18-10-2026):** el Word decía que los facturadores electrónicos no la presentan, y la empresa del ejemplo lo es; ahora explica que se presenta para mostrar cómo se informa cada retención.
 
 ## F29: líneas usadas ("F29 Actualizado" del profesor; al lado, plantilla antigua e instrucciones SII 2024)
 
@@ -77,7 +80,8 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 
 - `trabajo_juan_castillo/cambio_sujeto_silvestres.xlsx`: **la plantilla del profesor rellena** (L. COMPRAS, L. VENTAS, FORMULARIO 29) con 5 compras y 5 ventas, más hojas **F29 ACTUALIZADO** (las líneas y códigos del F29 nuevo del profesor, con amarillo donde va el IVA retenido; el asiento del F29 en el libro diario sale de aquí), Parámetros, Facturas de compra, Libro diario y DJ F3500. Todo con fórmulas.
 - `trabajo_juan_castillo/cambio_sujeto_silvestres.docx`: informe con el formato pedido (Arial 12, 1,5, márgenes) y las 9 secciones.
-- Se regeneran con `python3 ejemplos/trabajo_juan_castillo.py`.
+- `trabajo_juan_castillo/cambio_sujeto_silvestres.pdf`: **el informe listo para imprimir** (16 páginas tamaño carta). Conviene imprimir este PDF: sale igual que en pantalla, aunque el PC de la imprenta tenga otro Word.
+- Se regeneran con `python ejemplos/trabajo_juan_castillo.py`; el PDF, con `soffice --headless --convert-to pdf --outdir trabajo_juan_castillo trabajo_juan_castillo/cambio_sujeto_silvestres.docx` (LibreOffice).
 - Resultado del ejemplo: compras netas 5.650.000 · IVA de compras 1.073.500 (crédito fiscal y también retenido) · ventas netas 7.000.000 (IVA 1.330.000) · IVA determinado 256.500 · PPM 70.000 · IVA retenido 1.073.500 · **total F29 1.400.000**; el libro diario cuadra (lo verifica el test).
 - Inventados: montos (kilos y precios) y nombres de personas. Los RUT son ficticios pero con dígito verificador válido. La retención total sale de la norma.
 
@@ -89,7 +93,8 @@ Solo se inventan **los montos** (y los nombres de personas). Todo lo demás sigu
 4. ~~Revisión visual~~ ✔ (17-10-2026, LibreOffice): Word de 13 páginas, todo en Arial (títulos incluidos), tablas con anchos a la medida y montos a la derecha, texto oficial de la resolución en párrafos con su tabla de ejemplo. Excel recalculado sin errores de fórmula: F29 = 1.400.000, libro diario cuadra (28.177.000), DJ = 1.073.500. Se corrigieron: fechas `###` en los libros (columna angosta) y montos ocultos del reverso del F29 (ahora en AP:AR combinadas; el 596 quedó en su fila, AP99).
 5. Período del ejemplo: octubre 2026 (algunas fechas son posteriores a la entrega del 19-10; si el profesor lo objeta, se cambia a septiembre).
 6. ⚠️ **Tasa de PPM:** preguntar al profesor si es 1 % (su plantilla de libros) o 0,25 % (ejemplo de su F29 Actualizado). Si es 0,25 %: cambiar `PPM` en `ejemplos/trabajo_juan_castillo.py` y regenerar (PPM 17.500; total F29 1.347.500); el Word y el Excel se actualizan solos.
-7. Revisión del 18-10-2026 (LibreOffice): Word de 13 páginas; Excel sin errores de fórmula; hoja F29 ACTUALIZADO en una sola página al imprimir; F29 = 1.400.000; libro diario 28.177.000 = 28.177.000.
+7. Revisión del 18-10-2026 (LibreOffice): Excel sin errores de fórmula; hoja F29 ACTUALIZADO en una sola página al imprimir; F29 = 1.400.000; libro diario 28.177.000 = 28.177.000.
+8. **Revisión para imprimir (18-10-2026):** 16 páginas tamaño carta, con número de página (la portada sin número). Cada factura va completa en su página, con recuadro rojo (RUT, tipo y folio), timbre electrónico y, en la de compra, la leyenda de retención que pide el N° 3. Libros, libro diario, F29, DJ y conclusiones empiezan en página nueva. El libro diario no corta asientos entre páginas, repite los títulos y cierra con sumas iguales. Ninguna tabla queda separada de su título.
 
 ## Otro material de la carpeta
 

@@ -19,7 +19,7 @@
 - `data/plan_de_cuentas.csv` plan de cuentas.
 - `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (57 pruebas).
+- `tests/test_contabilidad.py` (58 pruebas).
 
 ## Fórmulas confirmadas
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
@@ -38,7 +38,7 @@
 
 ## Profesores
 - Carmen: guía INSUCO (balance de comprobación y saldos, libro mayor) → resuelta, tema claro.
-- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (grupo de 3; solo consta Joaquín Verdejo), entrega 19-10-2026, 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Regla del profe: solo se inventan los montos; lo demás sigue la norma (Res. 4095/2000 retención total; el IVA de la factura de compra SÍ es crédito fiscal (N° 6); F29 = el "F29 Actualizado" que el profe subió a Classroom el 15-10: línea 28 519/520 y reverso cód. 39 (lín. 117) / 596 (lín. 121) (en SII 2024 son 118/122; gana el profe); libro de compras cód. 31; DJ F3500. Verificado en sii.cl el 16-10-2026, fuentes en `docs/normativa/fuentes/`). Classroom leído el 17-10 (`docs/tareas/classroom-juan-castillo.md`). Word y Excel ya usan sus líneas (18-10, hoja F29 ACTUALIZADO); opcional: rellenar el archivo original (descargarlo con permiso del alumno). ⚠️ PPM 1 % (plantilla) vs 0,25 % (F29 Actualizado): preguntar al profe. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
+- Juan Castillo (Classroom "Cálculo y registros de impuestos"): trabajo grupal cambio de sujeto de IVA, productos silvestres (grupo de 3; solo consta Joaquín Verdejo), entrega 19-10-2026 IMPRESA (no por Classroom; imprimir el PDF), 100 pts, Arial 12/1,5, 5 compras y 5 ventas, F29. Detalle en `docs/tareas/trabajo-juan-castillo.md`. Regla del profe: solo se inventan los montos; lo demás sigue la norma (Res. 4095/2000 retención total; el IVA de la factura de compra SÍ es crédito fiscal (N° 6); F29 = el "F29 Actualizado" que el profe subió a Classroom el 15-10: línea 28 519/520 y reverso cód. 39 (lín. 117) / 596 (lín. 121) (en SII 2024 son 118/122; gana el profe); libro de compras cód. 31; DJ F3500. Verificado en sii.cl el 16-10-2026, fuentes en `docs/normativa/fuentes/`). Classroom leído el 17-10 (`docs/tareas/classroom-juan-castillo.md`). Word y Excel ya usan sus líneas (18-10, hoja F29 ACTUALIZADO); opcional: rellenar el archivo original (descargarlo con permiso del alumno). ⚠️ PPM 1 % (plantilla) vs 0,25 % (F29 Actualizado): preguntar al profe. Otro trabajo suyo: contabilizar un mes (Joaquín en Grupo 3, OCTUBRE) = quizá el de Rafael: confirmar.
 - Rafael: trabajo en grupo en Excel (libro diario, libro mayor, balance, estado de resultados y demás) → viene después de Juan Castillo.
 
 ## Clases cubiertas

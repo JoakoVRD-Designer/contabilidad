@@ -352,6 +352,20 @@ class TestTrabajoJuanCastillo(unittest.TestCase):
         _, kilos = trabajo_juan_castillo.DETALLE_VENTA_MODELO
         self.assertEqual(trabajo_juan_castillo.VENTAS[0][4] % kilos, 0)
 
+    def test_word_listo_para_imprimir(self):
+        import tempfile
+        from docx import Document
+        with tempfile.TemporaryDirectory() as tmp:
+            ruta = Path(tmp) / "informe.docx"
+            trabajo_juan_castillo.construir_word(ruta)
+            doc = Document(ruta)
+        textos = [p.text for p in doc.paragraphs]
+        self.assertIn(f"Profesor: {trabajo_juan_castillo.PROFESOR}", textos)       # portada sin datos inventados
+        self.assertTrue(any(trabajo_juan_castillo.MODULO in t for t in textos))     # el ramo de este trabajo
+        celdas = {celda.text for t in doc.tables for fila in t.rows for celda in fila.cells}
+        self.assertIn("SUMAS IGUALES", celdas)                                     # el libro diario cierra con sumas iguales
+        self.assertIn("PAGE", doc.sections[0].footer._element.xml)                  # números de página
+
 
 if __name__ == "__main__":
     unittest.main()

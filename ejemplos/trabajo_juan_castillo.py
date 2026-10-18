@@ -562,6 +562,11 @@ def construir_excel(ruta):
             r += 1
     for col, w in zip("ABCD", [5, 26, 70, 80]):
         fz.column_dimensions[col].width = w
+    for nombre in ("Parámetros", "Facturas de compra", "Libro diario", "DJ F3500", "Fuentes"):   # al imprimir: todo el ancho en una hoja
+        ws = wb[nombre]
+        ws.page_setup.orientation = "landscape"
+        ws.sheet_properties.pageSetUpPr.fitToPage = True
+        ws.page_setup.fitToWidth, ws.page_setup.fitToHeight = 1, 0
     wb.save(ruta)
 
 

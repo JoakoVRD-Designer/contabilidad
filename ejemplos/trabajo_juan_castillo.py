@@ -576,6 +576,7 @@ def construir_excel(ruta):
         ws.page_setup.orientation = "landscape"
         ws.sheet_properties.pageSetUpPr.fitToPage = True
         ws.page_setup.fitToWidth, ws.page_setup.fitToHeight = 1, 0
+    wb.calculation.fullCalcOnLoad = True
     wb.save(ruta)
 
 
@@ -616,21 +617,43 @@ def construir_f29_profesor(ruta):
     ws.page_setup.orientation = "portrait"
     ws.sheet_properties.pageSetUpPr.fitToPage = True
     ws.page_setup.fitToWidth, ws.page_setup.fitToHeight = 1, 3
+    wb.calculation.fullCalcOnLoad = True
     wb.save(ruta)
+    return True
+
+
+def _soffice():
+    """Ruta de LibreOffice (o None si no está instalado)."""
+    import shutil
+    return shutil.which("soffice") or next((x for x in (r"C:\Program Files\LibreOffice\program\soffice.com",
+                                                       "/Applications/LibreOffice.app/Contents/MacOS/soffice") if Path(x).exists()), None)
+
+
+def recalcular(ruta_xlsx):
+    """LibreOffice abre el xlsx, calcula las fórmulas y lo vuelve a guardar con los resultados: así los números se ven en
+    cualquier visor (Excel en vista protegida, vista previa de Windows, celular), no solo en los que recalculan."""
+    import shutil
+    import subprocess
+    import tempfile
+    soffice = _soffice()
+    if not soffice:
+        return False
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run([soffice, "--headless", "--convert-to", "xlsx:Calc MS Excel 2007 XML", "--outdir", tmp, str(ruta_xlsx)],
+                       check=True, capture_output=True, timeout=300)
+        shutil.move(str(Path(tmp) / Path(ruta_xlsx).name), str(ruta_xlsx))
     return True
 
 
 def paginas_f29_profesor(ruta_xlsx):
     """Imágenes PNG de las páginas del F29 relleno (con LibreOffice y PyMuPDF). Lista vacía si falta alguno."""
-    import shutil
     import subprocess
     import tempfile
     try:
         import pymupdf
     except ImportError:
         return []
-    soffice = shutil.which("soffice") or next((x for x in (r"C:\Program Files\LibreOffice\program\soffice.com",
-                                                          "/Applications/LibreOffice.app/Contents/MacOS/soffice") if Path(x).exists()), None)
+    soffice = _soffice()
     if not soffice:
         return []
     salida = []
@@ -1165,8 +1188,12 @@ def construir_word(ruta, paginas_f29=()):
 if __name__ == "__main__":
     RAIZ.mkdir(exist_ok=True)
     construir_excel(RAIZ / "cambio_sujeto_silvestres.xlsx")
+    recalcular(RAIZ / "cambio_sujeto_silvestres.xlsx")          # guarda los resultados de las fórmulas en el archivo
     f29_relleno = RAIZ / "F29_actualizado_relleno.xlsx"
-    paginas = paginas_f29_profesor(f29_relleno) if construir_f29_profesor(f29_relleno) else []
+    paginas = []
+    if construir_f29_profesor(f29_relleno):
+        recalcular(f29_relleno)
+        paginas = paginas_f29_profesor(f29_relleno)
     construir_word(RAIZ / "cambio_sujeto_silvestres.docx", paginas)
     print("F29 del profesor relleno:", f"{len(paginas)} página(s) adjuntas al Word" if paginas else "no (falta base/F29 Actualizado.xlsx o LibreOffice)")
     c = calculos()

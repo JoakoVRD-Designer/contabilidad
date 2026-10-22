@@ -2,13 +2,21 @@
 
 Objetivo de la hoja: calcular presupuestos, interpretar resultados y justificar decisiones con el proceso administrativo.
 **Supuestos de la hoja:** pesos chilenos, sin IVA, todo lo producido se vende en el mes. La utilidad es antes de impuestos (la hoja no menciona impuesto) ⚠️.
-Verificación: `python3 ejemplos/decisiones_empresariales.py`.
+Verificación: `python3 ejemplos/decisiones_empresariales.py`. PDF: `python3 ejemplos/pdf_decisiones_empresariales.py`.
 
 Fórmulas: margen de contribución = ingresos − costos variables · utilidad = margen de contribución − costos fijos · saldo final de caja = saldo inicial + cobros − pagos.
 
 ---
 
 ## Caso 1. Textiles Ñuble: pedido especial
+
+**Datos**
+- Capacidad: 1.500 bolsas al mes.
+- Ventas habituales: 1.000 bolsas a $3.000.
+- Costo variable por bolsa: materiales $900 + mano de obra $500 + otros $100.
+- Costos fijos: $900.000 al mes.
+- Pedido adicional: 400 bolsas a $2.200, con despacho adicional total de $60.000.
+- El pedido no cambia los costos fijos ni afecta las ventas habituales.
 
 Costo variable por bolsa = 900 + 500 + 100 = **$1.500**.
 
@@ -42,6 +50,14 @@ Capacidad: 1.000 + 400 = 1.400 bolsas, menor que 1.500 ✓.
 
 ## Caso 2. Comercial Cordillera: utilidad y dinero disponible (noviembre)
 
+**Datos**
+- Ventas: 800 productos a $10.000.
+- Costo de compra: $6.000 por producto, comprado y pagado todo en noviembre.
+- Gastos del mes: $1.200.000, al contado.
+- Caja inicial: $500.000. Cobros de octubre que entran en noviembre: $1.000.000.
+- Cobro de las ventas de noviembre: 40 % en noviembre y 60 % en diciembre.
+- No hay inventario inicial ni final.
+
 **1. Presupuesto de resultados**
 
 | Concepto | Cálculo | $ |
@@ -72,6 +88,20 @@ Capacidad: 1.000 + 400 = 1.400 bolsas, menor que 1.500 ✓.
 ---
 
 ## Caso 3. Muebles del Sur: desviaciones del presupuesto (septiembre)
+
+**Datos**
+
+| | Presupuesto | Real |
+|---|---:|---:|
+| Unidades vendidas | 100 | 90 |
+| Precio unitario | 80.000 | 80.000 |
+| Costo variable por unidad | 45.000 | 50.000 |
+| Costos fijos | 2.000.000 | 2.100.000 |
+
+- Problemas: desperdicio y descoordinación.
+- Próximo mes: 90 unidades a $80.000 y costos fijos base de $2.100.000.
+- Alternativa A: capacitación adicional de $200.000, con costo variable de $46.000 por unidad.
+- Alternativa B: otro proveedor, costo variable de $47.000 por unidad, sin cargo extra y entrega incierta.
 
 **1. Utilidad presupuestada y real**
 

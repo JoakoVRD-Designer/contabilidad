@@ -106,16 +106,29 @@ El precio no cambió ($80.000), así que no explica nada.
 
 ---
 
-## Preguntas 4 y 5 (en los tres casos). Propuesta ⚠️
+## Preguntas 4 y 5: se responden en cada caso por separado ⚠️ (propuestas mías)
 
-**4. Una acción por función del proceso administrativo** (con responsable e indicador):
+**4. Una acción de planificación, organización, dirección y control, con responsable e indicador**
 
 | Caso | Planificación | Organización | Dirección | Control |
 |---|---|---|---|---|
-| 1 Ñuble | Programar la producción de las 1.400 bolsas del mes | Asignar turnos para el pedido sin tocar el despacho habitual | El jefe de producción coordina al equipo | Medir costo real por bolsa vs $1.650 (resp.: contador) |
-| 2 Cordillera | Hacer el presupuesto de caja todos los meses | Gerente de finanzas define plazos con proveedores | Jefe de ventas empuja el cobro anticipado | Revisar semanalmente el saldo de caja (indicador: saldo ≥ 0) |
-| 3 Muebles del Sur | Fijar un estándar de materiales por mueble | Una persona responsable de compras y bodega | Jefe de taller capacita y supervisa | Comparar presupuesto vs real cada mes (indicador: % de desperdicio) |
+| 1 Ñuble | Programar la producción de 1.400 bolsas en el mes | Asignar turnos al pedido sin tocar el despacho habitual | El jefe de producción coordina y motiva al equipo | Medir el costo real por bolsa contra $1.650 |
+| 2 Cordillera | Hacer el presupuesto de caja cada mes | El gerente de finanzas define los plazos con proveedores | El jefe de ventas impulsa el cobro anticipado | Revisar la caja cada semana |
+| 3 Muebles del Sur | Fijar un estándar de materiales por mueble | Una persona responsable de compras y bodega | El jefe de taller capacita y supervisa | Comparar presupuesto y real cada mes |
 
-**5. Qué aporta cada contabilidad**
-- **Administrativa (de gestión, interna):** costo por unidad, presupuesto, margen de contribución, presupuesto de caja, análisis de desviaciones y comparación entre alternativas (A vs B, aceptar el pedido). Incluye estimaciones del futuro.
-- **Financiera (externa):** solo registra e informa lo ya ocurrido en formato estándar (estado de resultados, balance, flujo de efectivo) para bancos, SII y dueños. No decide si aceptar el pedido ni entre A y B.
+Responsable e indicador de cada acción:
+- **Caso 1:** responsable, el jefe de producción. Indicador: costo por bolsa ≤ $1.650.
+- **Caso 2:** responsable, el gerente de finanzas. Indicador: saldo de caja ≥ 0.
+- **Caso 3:** responsable, el jefe de taller. Indicador: costo variable ≤ $46.000 por unidad.
+
+**5. Qué aporta la contabilidad administrativa a la decisión y qué registra o informa la financiera**
+
+- **Caso 1 (Ñuble):**
+  - Administrativa: el costo por bolsa ($1.650), el margen del pedido ($550 por bolsa, 220.000 en total) y la capacidad libre. Con eso se decide aceptar.
+  - Financiera: registra la venta del pedido, y el estado de resultados informa la utilidad del mes, 820.000.
+- **Caso 2 (Cordillera):**
+  - Administrativa: el presupuesto de caja que muestra el −1.300.000 antes de que ocurra. Con eso se decide negociar plazos o pedir crédito.
+  - Financiera: registra ventas, compras y gastos; informa la utilidad (2.000.000) en el estado de resultados y el efectivo en el flujo de efectivo.
+- **Caso 3 (Muebles del Sur):**
+  - Administrativa: la comparación presupuesto vs real (−900.000), sus tres causas y la utilidad de A (760.000) y B (870.000). Con eso se elige.
+  - Financiera: solo registra la utilidad real del mes (600.000); no explica por qué bajó ni elige entre alternativas.

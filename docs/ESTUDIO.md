@@ -44,3 +44,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Ejercicio ABC S.A.: activos corrientes y variación](contabilidad/ejercicio-abc-activos-corrientes.md)
 - [Taller: decisiones empresariales, tres casos (pedido especial, caja, desviaciones)](tareas/decisiones-empresariales.md)
 - [Mapa de la contabilidad en Chile: libros, DTE, IVA, NIIF, cierre (investigación ampliada)](normativa/mapa-contabilidad-chile.md)
+- [Laboral: sueldo mínimo, gratificación y finiquito](normativa/laboral-finiquito-gratificacion.md)

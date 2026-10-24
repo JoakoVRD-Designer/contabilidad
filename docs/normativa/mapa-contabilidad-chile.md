@@ -61,7 +61,9 @@ Complementa `leyes-y-normas.md`, `regimenes-tributarios.md` y `leyes-y-porcentaj
 |---|---:|---|
 | UF 21-10-2026 | $41.194,55 | [Rankia](https://www.rankia.cl/noticias/fiscalidad/7519687-valor-uf-hoy-21-octubre-2026-41-194-55) (cita la tabla del SII) |
 | UTM octubre | $72.151 | [Calcular.cl](https://www.calcular.cl/valor-utm-2026) |
+| UTA octubre = UTM × 12 | $865.812 | Calculada: 72.151 × 12 |
 
+- **UTA (unidad tributaria anual) = UTM × 12.** Comprobación con el dato de Previred del repo: UTM de septiembre $71.721 × 12 = **$860.652**, que es el valor de la UTA de septiembre en `leyes-y-porcentajes-oct2026.md` ✓.
 - Variación acumulada 2026: UF cerca de +3,7 %, UTM +3,44 % (enero $69.751 a octubre $72.151).
 - ⚠️ Las dos son de sitios secundarios; la UF y la UTM oficiales están en sii.cl y Banco Central.
 

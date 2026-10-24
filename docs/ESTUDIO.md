@@ -43,3 +43,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Tarea de ratios con AFP Capital 2025 resuelta](tareas/ratios-afp-capital.md)
 - [Ejercicio ABC S.A.: activos corrientes y variación](contabilidad/ejercicio-abc-activos-corrientes.md)
 - [Taller: decisiones empresariales, tres casos (pedido especial, caja, desviaciones)](tareas/decisiones-empresariales.md)
+- [Mapa de la contabilidad en Chile: libros, DTE, IVA, NIIF, cierre (investigación ampliada)](normativa/mapa-contabilidad-chile.md)

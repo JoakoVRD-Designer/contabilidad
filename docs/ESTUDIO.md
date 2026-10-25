@@ -1,5 +1,7 @@
 # Ruta de estudio
 
+**Consulta rápida: [FORMULAS.md](FORMULAS.md)** (todas las fórmulas con ejemplo).
+
 Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres pasos:
 **Leer** (la explicación) → **Hacer** (resuelve tú primero, sin mirar la solución) → **Comprobar** (compara con el programa y entiende la diferencia).
 

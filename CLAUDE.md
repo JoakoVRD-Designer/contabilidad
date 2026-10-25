@@ -13,6 +13,7 @@
 6. **Nunca escribir nombres de personas que no sean profesores** (compañeros, listas de curso, etc.) en archivos, código, documentos ni commits; esos nombres solo se usan en el chat. Solo consta el nombre del alumno (Joaquín Verdejo) y de los profesores.
 7. **Nunca borrar plantillas, guías ni fotos de hojas del profesor** del repo: son el material de clase del alumno.
 8. Cada clase nueva → un archivo en `docs/` + línea en `docs/ESTUDIO.md`.
+9. **`docs/FORMULAS.md` es el cuaderno de fórmulas del alumno**: cuando pregunte "¿cuál es la fórmula de X?", respóndela desde ahí con un ejemplo verificado; toda fórmula nueva o corrección del profesor se agrega ahí en el mismo commit.
 
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores, proyectos (anual/mensual, periodo de recuperación).

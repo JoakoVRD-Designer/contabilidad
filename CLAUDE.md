@@ -20,7 +20,7 @@
 - `data/plan_de_cuentas.csv` plan de cuentas.
 - `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (58 pruebas).
+- `tests/test_contabilidad.py` (62 pruebas).
 
 ## Fórmulas confirmadas
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.

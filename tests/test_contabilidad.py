@@ -373,5 +373,30 @@ class TestTrabajoJuanCastillo(unittest.TestCase):
         self.assertIn("PAGE", doc.sections[0].footer._element.xml)                  # números de página
 
 
+class TestGuiasDeCostos(unittest.TestCase):
+    """Los ejemplos de las guías comprueban sus propios resultados con assert al importarse."""
+
+    def test_guia_industrial(self):
+        from ejemplos import guia_industrial as g
+        self.assertEqual((g.cif, g.adm, g.ven), (22_400_000, 16_400_000, 12_900_000))
+        self.assertEqual((g.costo_ventas, g.uai, g.neta), (70_000_000, 20_000_000, 14_600_000))
+
+    def test_guia_01_costos(self):
+        from ejemplos import guia_costos as g
+        self.assertEqual((g.costo_primo, g.costo_conversion, g.costo_total_fabricacion), (590_000, 540_000, 890_000))
+        self.assertEqual(g.margen_contribucion, 560_000)
+
+    def test_prueba_de_costos(self):
+        from ejemplos import prueba_costos_desarrollo as p
+        self.assertEqual((p.costo_conversion, p.costo_fabricacion, p.costo_ventas1), (1_485_000, 2_115_000, 1_935_225))
+        self.assertEqual((p.costo_ventas, p.neta), (1_121_000, 2_117_000))
+
+    def test_decisiones_empresariales(self):
+        import contextlib, io
+        with contextlib.redirect_stdout(io.StringIO()):
+            from ejemplos import decisiones_empresariales as d
+        self.assertEqual((d.util_hab, d.util_ped, d.saldo, d.real - d.pres), (600_000, 220_000, -1_300_000, -900_000))
+
+
 if __name__ == "__main__":
     unittest.main()

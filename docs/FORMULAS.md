@@ -115,6 +115,10 @@ Ejemplo: sueldo 800.000 → 800.000 ÷ 30 × 28 ÷ 168 = $4.444,44 por hora ordi
 | IVA | 19 % |
 | Impuesto de primera categoría (clases) | 27 %; Pro Pyme General 12,5 % hasta 2027 |
 | PPM Pro Pyme General | 0,125 % (hasta dic-2027) |
+| IVA a pagar (F29) | débito (ventas netas × 19 %) − crédito (compras netas × 19 %); si es negativo, remanente |
+| Retención de honorarios (F29, cód. 151) | honorario bruto × 15,25 % (2026) |
+| PPM (F29, cód. 62) | ventas netas × tasa del régimen (ej. 5.000.000 × 0,125 % = 6.250) |
+| Total F29 (cód. 91) | IVA determinado + retención de honorarios + impuesto único + PPM; plazo día 12 (o 20 por internet); ver [obligaciones mensuales](contabilidad/obligaciones-tributarias-mensuales.md) |
 | UTA | UTM × 12 (oct-2026: 72.151 × 12 = 865.812) |
 | Cambio de sujeto (productos silvestres) | retención 100 % del IVA, factura de compra DTE 46, el IVA retenido es crédito fiscal del comprador |
 | Corrección monetaria | ⚠️ ver [mapa de normativa](normativa/mapa-contabilidad-chile.md) |

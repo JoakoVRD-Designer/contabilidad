@@ -414,6 +414,12 @@ class TestObligacionesMensuales(unittest.TestCase):
         self.assertEqual(impuestos.impuesto_unico(974_038.5, 72_151)[5], 0)          # 13,5 UTM justo: exento
         self.assertGreater(impuestos.impuesto_unico(974_100, 72_151)[5], 0)
 
+    def test_base_y_calculo_del_ppm(self):
+        base = impuestos.base_ppm(10_000_000, 1_000_000, 400_000, 500_000, 200_000)
+        self.assertEqual(base, 11_700_000)
+        self.assertEqual(impuestos.ppm(base), 14_625)
+        self.assertEqual(impuestos.ppm(2_000_000), 2_500)
+
     def test_tabla_impuesto_unico_es_continua(self):
         t = impuestos.TABLA_IMPUESTO_UNICO
         for (lim, f1, r1), (_, f2, r2) in zip(t, t[1:]):
@@ -421,7 +427,7 @@ class TestObligacionesMensuales(unittest.TestCase):
 
     def test_ejemplo_obligaciones_mensuales(self):
         from ejemplos import obligaciones_mensuales as o
-        self.assertEqual((o.iva_pagar, o.retencion, o.unico, o.ppm, o.total_f29), (380_000, 61_000, 115_331, 6_250, 562_581))
+        self.assertEqual((o.iva_pagar, o.retencion, o.unico, o.ppm, o.total_f29), (1_045_000, 61_000, 115_331, 14_625, 1_235_956))
 
 
 if __name__ == "__main__":

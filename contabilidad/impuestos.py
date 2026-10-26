@@ -57,6 +57,17 @@ def iva_determinado(debito, credito):
     return max(debito - credito, 0), max(credito - debito, 0)
 
 
+def base_ppm(neto_facturas, neto_boletas=0, ventas_exentas=0, neto_notas_debito=0, neto_notas_credito=0):
+    """Base del PPM del mes (clase del 26-10-2026): neto de facturas + neto de boletas + ventas exentas
+    + notas de débito − notas de crédito (todo neto, sin IVA)."""
+    return neto_facturas + neto_boletas + ventas_exentas + neto_notas_debito - neto_notas_credito
+
+
+def ppm(base, tasa="0.00125"):
+    """PPM = base × tasa. La tasa la fija el SII según la empresa; la de la clase es 0,125 % (Pro Pyme General)."""
+    return redondear(Decimal(base) * Decimal(tasa))
+
+
 # Impuesto único de segunda categoría (art. 43 N°1 LIR): (hasta UTM, factor, rebaja en UTM).
 # La tabla se expresa en UTM: sirve todos los meses, solo cambia el valor de la UTM. ⚠️ Verificar en sii.cl.
 TABLA_IMPUESTO_UNICO = [

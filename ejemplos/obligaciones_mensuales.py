@@ -11,10 +11,17 @@ from decimal import Decimal as D
 from contabilidad import LibroDiario, PlanDeCuentas, impuestos
 from contabilidad.impuestos import redondear
 
-# --- 1. IVA del mes con notas de débito y de crédito (cifras mías) ---
-debito = impuestos.debito_fiscal(1_900_000, iva_boletas=190_000, iva_notas_debito_emitidas=95_000,
-                                 iva_notas_credito_emitidas=38_000)
-credito = impuestos.credito_fiscal(1_140_000, iva_notas_debito_recibidas=19_000, iva_notas_credito_recibidas=57_000)
+# --- 1. IVA del mes con notas de débito y de crédito (cifras mías, netos) ---
+neto_fv, neto_bol, exentas, neto_nd_e, neto_nc_e = 10_000_000, 1_000_000, 400_000, 500_000, 200_000   # ventas
+neto_fc, neto_nd_r, neto_nc_r = 6_000_000, 100_000, 300_000                                          # compras
+
+
+def iva(neto):
+    return redondear(D(neto) * impuestos.IVA)
+
+
+debito = impuestos.debito_fiscal(iva(neto_fv), iva(neto_bol), iva(neto_nd_e), iva(neto_nc_e))   # las exentas no llevan IVA
+credito = impuestos.credito_fiscal(iva(neto_fc), iva(neto_nd_r), iva(neto_nc_r))
 assert (debito, credito) == (2_147_000, 1_102_000)
 assert impuestos.iva_determinado(debito, credito) == (1_045_000, 0)      # más ventas que compras: paga
 assert impuestos.iva_determinado(credito, debito) == (0, 1_045_000)      # al revés: remanente de crédito
@@ -47,14 +54,16 @@ for (lim, f1, r1), (_, f2, r2) in zip(t, t[1:]):
     assert lim * f1 - r1 == lim * f2 - r2
 
 # --- 4. PPM (0,125 % Pro Pyme General, el que usa la clase) y planilla del F29 ---
-ventas_netas, compras_netas = 5_000_000, 3_000_000
-iva_pagar, _ = impuestos.iva_determinado(redondear(D(ventas_netas) * impuestos.IVA), redondear(D(compras_netas) * impuestos.IVA))
-ppm = redondear(D(ventas_netas) * D("0.00125"))
+base = impuestos.base_ppm(neto_fv, neto_bol, exentas, neto_nd_e, neto_nc_e)    # 10.000.000 + 1.000.000 + 400.000 + 500.000 − 200.000
+assert base == 11_700_000
+ppm = impuestos.ppm(base)
+iva_pagar = impuestos.iva_determinado(debito, credito)[0]
 total_f29 = iva_pagar + retencion + unico + ppm
-assert (iva_pagar, ppm, total_f29) == (380_000, 6_250, 562_581)
+assert (ppm, iva_pagar, total_f29) == (14_625, 1_045_000, 1_235_956)
 
 if __name__ == "__main__":
     print(f"IVA con notas: débito {debito:,} − crédito {credito:,} = {debito - credito:,}")
     print(f"Honorarios {bruto:,}: retención {retencion:,}, líquido {liquido:,}")
     print(f"Impuesto único julio: {ingreso} UTM, factor {factor}, determinado {determinado:,.2f} − rebaja {rebaja:,.2f} = {unico_a:,}")
+    print(f"PPM: base {base:,} × 0,125 % = {ppm:,}")
     print(f"F29: IVA {iva_pagar:,} + honorarios {retencion:,} + único {unico:,} + PPM {ppm:,} = {total_f29:,}")

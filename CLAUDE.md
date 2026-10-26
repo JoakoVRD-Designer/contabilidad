@@ -20,7 +20,7 @@
 - `data/plan_de_cuentas.csv` plan de cuentas.
 - `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (66 pruebas).
+- `tests/test_contabilidad.py` (67 pruebas).
 
 ## Fórmulas confirmadas
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
@@ -30,7 +30,7 @@
 - Hora extra (DT): sueldo ÷ 30 × 28 ÷ (jornada × 4) × 1,5; jornada 42 h desde 26-04-2026. IMM $553.553 desde el 1-05-2026 (Ley 21.830; de enero a abril fue $539.000).
 - Depreciación lineal = (costo − residual) ÷ vida; suma de dígitos: factor (n−k+1) ÷ [n(n+1)/2].
 - Activo con naturaleza acreedora (depreciación acumulada) RESTA del activo.
-- Impuesto único 2.ª categoría: renta afecta ÷ UTM → tabla (factor, rebaja en UTM) → renta × factor − rebaja × UTM; exento hasta 13,5 UTM (julio 2026, UTM 71.649: 3.000.000 → 115.331). PPM de la clase = 0,125 %. Detalle en `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
+- Impuesto único 2.ª categoría: renta afecta ÷ UTM → tabla (factor, rebaja en UTM) → renta × factor − rebaja × UTM; exento hasta 13,5 UTM (julio 2026, UTM 71.649: 3.000.000 → 115.331). PPM de la clase = base × 0,125 % (base = neto facturas + boletas + exentas + ND − NC). Detalle en `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
 - UTA = UTM × 12 (sept 2026: 71.721 × 12 = 860.652; oct 2026: 72.151 × 12 = 865.812).
 
 ## Datos de clase (confirmados por el usuario)
@@ -57,4 +57,4 @@ Tarea de ratios con AFP Capital: RESUELTA con el estado financiero real, ver `do
 
 ## Pendientes
 Actividades 6 y 7 del taller (enunciados guardados) · datos para la plantilla de liquidación de sueldos · 4 páginas de la rúbrica del pitch (faltan criterios hasta 52 puntos) · confirmar versión de la planilla de camisas (`docs/tareas/camisas-planilla-manuscrita.md`) · dudas de lectura ⚠️ en `comercio-exterior.md` y `apuntes-depreciacion-reajuste.md`.
-Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota. · asiento de pago de impuestos de la clase del 26-10 (el dictado se cortó en «débito fiscal»); tabla del impuesto único a verificar en sii.cl ⚠️.
+Actividad de impuestos mensuales: el 27-10-2026 (falta el enunciado) · Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota. · asiento de pago de impuestos de la clase del 26-10 (el dictado se cortó en «débito fiscal»); tabla del impuesto único a verificar en sii.cl ⚠️.

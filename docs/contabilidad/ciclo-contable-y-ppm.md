@@ -21,7 +21,7 @@ En el paquete: `LibroDiario.registrar()` → `libro_mayor()` → `balance_compro
 
 ## PPM (pago provisional mensual)
 
-Anticipo de impuesto a la renta que se paga cada mes en el F29 sobre las **ventas netas**: `PPM = base × tasa`.
+Anticipo de impuesto a la renta que se paga cada mes en el F29 sobre las **ventas netas**: `PPM = base × tasa`. Base y tasa según la clase del 26-10-2026 (neto de facturas + boletas + exentas + notas de débito − notas de crédito; 0,125 %): ver [obligaciones mensuales](obligaciones-tributarias-mensuales.md).
 Según fuentes de terceros: 1 % en el primer año de una empresa de primera categoría; Pro Pyme General 0,25 % (0,5 % si los ingresos
 pasan de 50.000 UF); Pro Pyme Transparente 0,2 % (0,5 % sobre 50.000 UF). **Verifica la tasa en el SII.** Se contabiliza como un activo
 (**PPM por recuperar**) que se descuenta del impuesto a la renta anual.

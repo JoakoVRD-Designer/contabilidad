@@ -1,7 +1,7 @@
 # Obligaciones tributarias mensuales de la empresa (clase del 26-10-2026)
 
 Dictado del profesor, ordenado. Confirmado por el alumno: el tramo exento es **13,5 UTM** y la clase usa **PPM 0,125 %**.
-El dictado se cortó al final (justo al empezar «la siguiente estructura» de contabilización: «Entonces, débito fiscal…»): ver el pendiente al final.
+Dictado en dos partes (26-10-2026). Cortó justo al empezar «la siguiente estructura» de contabilización («Entonces, débito fiscal…»): ver el pendiente al final. **La actividad con estos 4 procedimientos es mañana (27-10-2026).**
 Código verificado: `contabilidad/impuestos.py` y `python3 -m ejemplos.obligaciones_mensuales`.
 
 ## Idea central
@@ -14,7 +14,7 @@ Al dueño le interesa saber **cuanto antes** cuánto impuesto debe pagar: el con
 | IVA | débito fiscal − crédito fiscal (si el débito es mayor) | 538 débitos, 537 créditos, 89 IVA determinado, 77 remanente |
 | Retención de honorarios | honorario bruto × 15,25 % (2026) | 151 |
 | Impuesto único 2.ª categoría | renta afecta × factor − rebaja (tabla en UTM) | 48 |
-| PPM | ventas netas × 0,125 % | 62 |
+| PPM | base de ventas netas × 0,125 % (ver sección 4) | 62 |
 
 **Total a pagar** (cód. 91) = IVA determinado + retención + impuesto único + PPM. Plazo: **día 12** (efectivo o cheque) o **día 20** (internet en sii.cl).
 
@@ -32,7 +32,15 @@ Efecto de las notas (lo que dijo el profesor; el comienzo de la frase se cortó 
 - **Impuesto determinado** (hay que pagar): débito > crédito → `débito − crédito`. En la práctica, más ventas que compras → pago IVA.
 - **Remanente de crédito**: crédito > débito → `crédito − débito`. No se paga IVA y el remanente pasa al mes siguiente.
 
-Ejemplo (cifras mías ⚠️): débito = 1.900.000 + 190.000 (boletas) + 95.000 (ND emitidas) − 38.000 (NC emitidas) = **2.147.000**; crédito = 1.140.000 + 19.000 (ND recibidas) − 57.000 (NC recibidas) = **1.102.000** → IVA a pagar **1.045.000**. Si fuera al revés, remanente de 1.045.000.
+Ejemplo (cifras mías ⚠️, netos): ventas con factura 10.000.000, con boleta 1.000.000, exentas 400.000, notas de débito emitidas 500.000, notas de crédito emitidas 200.000; compras con factura 6.000.000, ND recibidas 100.000, NC recibidas 300.000.
+
+| | Cálculo | IVA |
+|---|---|---:|
+| Débito fiscal | 1.900.000 + 190.000 (boletas) + 95.000 (ND) − 38.000 (NC); las ventas exentas no llevan IVA | 2.147.000 |
+| Crédito fiscal | 1.140.000 + 19.000 (ND) − 57.000 (NC) | 1.102.000 |
+| **IVA a pagar** | 2.147.000 − 1.102.000 | **1.045.000** |
+
+Si fuera al revés (crédito 2.147.000 y débito 1.102.000), no se paga y queda un remanente de 1.045.000.
 
 ## 2. Retención de honorarios
 
@@ -84,21 +92,32 @@ Tabla (en UTM; sirve todos los meses, solo cambia el valor de la UTM) ⚠️ com
 
 **Trabajador B:** gana **12,51 UTM** ⚠️ (en pesos ≈ 896.329): es menos de 13,5 UTM, **está exento** y no paga nada. Por eso la empresa paga solo **115.331** (así lo entiendo del dictado, que decía «no está exento» pero concluía «solamente tengo que pagar 115.331»; confirmar).
 
-## 4. PPM
+## 4. PPM (pagos provisionales mensuales)
 
-`PPM = ventas netas × 0,125 %` (Pro Pyme General; confirmado por el alumno que es el que usa la clase). Se paga en el F29 (cód. 62) y se contabiliza como **PPM por recuperar** (activo).
+**Base** (todo **neto**, sin IVA; lo que dijo el profesor):
+
+`base = neto de ventas con factura + neto de ventas con boleta + ventas exentas + notas de débito − notas de crédito`
+
+`PPM = base × % de PPM que tenga la empresa` (la clase usa **0,125 %**, Pro Pyme General; confirmado por el alumno). Se paga en el F29 (cód. 62) y se contabiliza como **PPM por recuperar** (activo): es un anticipo del impuesto a la renta.
+
+Lo que explicó sobre el porcentaje:
+- Antes era habitual un porcentaje fijo alto: dictado «un 9 %, un 9,5 %, hasta un 3 %» ⚠️ (sin sentido como está dictado; no lo corrijo, confirmar).
+- **Ahora el SII fija automáticamente** cuánto PPM paga cada empresa, **según si paga impuestos o no**.
+- Si la empresa **no paga impuestos o paga muy poco**, le exige **poco** PPM (para no tener que devolverle mucha plata). Ejemplo de un cliente suyo con 0,125 %.
+- Si paga **mucho**, le exige un PPM mayor: el SII sabe que esa empresa tiende a tener ganancias, y con ganancias hay impuesto a la renta, que el Estado va recibiendo mes a mes («va haciendo caja») para financiar el gasto público.
+- ⚠️ Dijo que con 2 millones de ventas se pagarían «como 500 pesos, 1000 pesos»; con 0,125 % son **2.500** (2.000.000 × 0,00125). Lo dijo aproximado («no sé»).
 
 ## 5. Planilla informal: cuánto reservar para el F29
 
-Cifras mías salvo el impuesto único, que es el de la clase ⚠️. Ventas netas 5.000.000, compras netas 3.000.000, honorarios 400.000.
+Los **cuatro procedimientos** para informar a quien corresponda cuánto impuesto hay que pagar. Mismas cifras de los ejemplos anteriores (mías, salvo el impuesto único que es el de la clase ⚠️):
 
 | Obligación | Cálculo | Monto |
 |---|---|---:|
-| IVA | 5.000.000 × 19 % − 3.000.000 × 19 % = 950.000 − 570.000 | 380.000 |
+| IVA | 2.147.000 − 1.102.000 | 1.045.000 |
 | Retención de honorarios | 400.000 × 15,25 % | 61.000 |
 | Impuesto único | trabajador A 115.331 + trabajador B exento 0 | 115.331 |
-| PPM | 5.000.000 × 0,125 % | 6.250 |
-| **Total a reservar** | | **562.581** |
+| PPM | base 10.000.000 + 1.000.000 + 400.000 + 500.000 − 200.000 = 11.700.000 × 0,125 % | 14.625 |
+| **Total a reservar** | | **1.235.956** |
 
 ## Pendiente: contabilización del pago de los impuestos
 

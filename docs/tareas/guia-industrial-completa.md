@@ -3,6 +3,8 @@
 Hoja del profesor con 3 partes (gastos del período, inventarios y compras, ventas y datos financieros) y las planillas **Detalle del gasto**, **Hoja de costos de ventas industriales** y **Hoja cálculo estado de resultados** (impuesto 27 %). Los valores del enunciado se leyeron de fotos: confírmalos con tu hoja. **Verificado con** `python3 ejemplos/guia_industrial.py` (los assert comprueban cada total).
 Fotos: [enunciado](imagenes/guia-industrial-enunciado.jpg) · [detalle del gasto](imagenes/guia-industrial-detalle-del-gasto.jpg) · [hoja de costos](imagenes/guia-industrial-hoja-de-costos.jpg) · [estado de resultados](imagenes/guia-industrial-hoja-estado-de-resultados.jpg).
 
+**Fotos de tus planillas ya respondidas:** [detalle del gasto](imagenes/respondidas/1-detalle-del-gasto-respondido.jpg) · [hoja de costos](imagenes/respondidas/2-hoja-de-costos-respondida.jpg) · [estado de resultados](imagenes/respondidas/3-estado-de-resultados-respondido.jpg). Están escritas sobre tus fotos; los nombres de las partidas del detalle del gasto van abreviados para que quepan. PDF con los cálculos: `guia-industrial-entrega.pdf`.
+
 ## 1. Planilla "Detalle del gasto"
 Regla: lo de la **fábrica** va a **CIF**; lo de oficinas a **gastos de administración**; lo de venta, reparto y promoción a **gastos de ventas**. Los que traen porcentaje se reparten (arriendo 50/30/20; seguro 60 % producción y el saldo mitad y mitad; energía: fábrica 2.100.000, ventas 500.000 y administración por diferencia = 3.000.000 − 2.100.000 − 500.000 = 400.000).
 

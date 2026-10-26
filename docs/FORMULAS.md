@@ -46,6 +46,8 @@ Ejemplo (Muebles Sur): 4.234.000 − 1.121.000 = 3.113.000 − 213.000 = 2.900.0
 | Producción equivalente | unidades en proceso × % de avance ⚠️ |
 | Costo unitario promedio (procesos) | costos acumulados ÷ producción efectiva |
 | Los gastos de administración y ventas | **no** se suman al costo de fabricación |
+| Reparto de gastos por área | lo de fábrica → CIF; oficinas → administración; venta, reparto y promoción → ventas; los porcentajes del enunciado se aplican a cada uno |
+| FIFO | lo primero que se compra es lo primero que se vende: la salida usa el precio de las compras más antiguas |
 
 ## Costos fijos, variables y decisiones
 | Qué | Fórmula |

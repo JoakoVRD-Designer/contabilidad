@@ -58,5 +58,6 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Prueba de costos corregida: selección múltiple, pareados y desarrollo 1 y 2 con solución](tareas/prueba-costos-desarrollo.md)
 - [Evaluación Unidad 1 (nota 3,0) y libros de compras y ventas completados](tareas/evaluacion-unidad-1-libros-compras-ventas.md)
 - [Guía Costos y decisiones de emprendimiento (enunciados, sin resolver)](tareas/guia-costos-y-decisiones-emprendimiento.md)
+- [Guía industrial resuelta: detalle del gasto, hoja de costos y estado de resultados](tareas/guia-industrial-completa.md)
 - [Planillas de cotizaciones de AFP en blanco (Provida y Uno)](previred/planillas-afp-en-blanco.md)
 - [Planillas de monedas extranjeras en blanco](tareas/planilla-monedas-extranjeras.md)

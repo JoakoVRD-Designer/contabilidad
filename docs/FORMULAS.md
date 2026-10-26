@@ -115,9 +115,12 @@ Ejemplo: sueldo 800.000 → 800.000 ÷ 30 × 28 ÷ 168 = $4.444,44 por hora ordi
 | IVA | 19 % |
 | Impuesto de primera categoría (clases) | 27 %; Pro Pyme General 12,5 % hasta 2027 |
 | PPM Pro Pyme General | 0,125 % (hasta dic-2027) |
-| IVA a pagar (F29) | débito (ventas netas × 19 %) − crédito (compras netas × 19 %); si es negativo, remanente |
+| Débito fiscal del mes | IVA facturas de venta + IVA boletas + IVA notas de débito emitidas − IVA notas de crédito emitidas |
+| Crédito fiscal del mes | IVA facturas de compra + IVA notas de débito recibidas − IVA notas de crédito recibidas |
+| IVA a pagar (F29) | débito − crédito si el débito es mayor; si el crédito es mayor, no se paga y queda **remanente** (crédito − débito) |
 | Retención de honorarios (F29, cód. 151) | honorario bruto × 15,25 % (2026) |
-| PPM (F29, cód. 62) | ventas netas × tasa del régimen (ej. 5.000.000 × 0,125 % = 6.250) |
+| PPM (F29, cód. 62) | ventas netas × 0,125 % (el que usa la clase; ej. 5.000.000 × 0,125 % = 6.250) |
+| Impuesto único 2.ª categoría (F29, cód. 48) | ingreso en UTM = renta afecta ÷ UTM; con la tabla (factor, rebaja en UTM): impuesto = renta × factor − rebaja × UTM. Exento hasta 13,5 UTM. Ej. julio 2026: 3.000.000 × 0,08 − 1,74 × 71.649 = **115.331** (tabla en [obligaciones mensuales](contabilidad/obligaciones-tributarias-mensuales.md)) |
 | Total F29 (cód. 91) | IVA determinado + retención de honorarios + impuesto único + PPM; plazo día 12 (o 20 por internet); ver [obligaciones mensuales](contabilidad/obligaciones-tributarias-mensuales.md) |
 | UTA | UTM × 12 (oct-2026: 72.151 × 12 = 865.812) |
 | Cambio de sujeto (productos silvestres) | retención 100 % del IVA, factura de compra DTE 46, el IVA retenido es crédito fiscal del comprador |

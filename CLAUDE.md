@@ -18,9 +18,9 @@
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores, proyectos (anual/mensual, periodo de recuperación).
 - `data/plan_de_cuentas.csv` plan de cuentas.
-- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
+- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (62 pruebas).
+- `tests/test_contabilidad.py` (66 pruebas).
 
 ## Fórmulas confirmadas
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
@@ -30,6 +30,7 @@
 - Hora extra (DT): sueldo ÷ 30 × 28 ÷ (jornada × 4) × 1,5; jornada 42 h desde 26-04-2026. IMM $553.553 desde el 1-05-2026 (Ley 21.830; de enero a abril fue $539.000).
 - Depreciación lineal = (costo − residual) ÷ vida; suma de dígitos: factor (n−k+1) ÷ [n(n+1)/2].
 - Activo con naturaleza acreedora (depreciación acumulada) RESTA del activo.
+- Impuesto único 2.ª categoría: renta afecta ÷ UTM → tabla (factor, rebaja en UTM) → renta × factor − rebaja × UTM; exento hasta 13,5 UTM (julio 2026, UTM 71.649: 3.000.000 → 115.331). PPM de la clase = 0,125 %. Detalle en `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
 - UTA = UTM × 12 (sept 2026: 71.721 × 12 = 860.652; oct 2026: 72.151 × 12 = 865.812).
 
 ## Datos de clase (confirmados por el usuario)
@@ -50,9 +51,10 @@
 Variación porcentual entre dos años (año antiguo = 100 %; positiva >100, negativa <100), grupos del activo corriente, ratios de endeudamiento total y patrimonial, margen neto y ROE (utilidad neta ÷ patrimonio neto × 100). Costos y estado de resultados (camisas), Loyola y Rubilar, cuatro estados financieros, características de la información, liquidez, contabilidad financiera vs administrativa, balance tributario (8 columnas) vs financiero.
 Costos: guía N° 01 del 14-08-2026 (30/30 selección múltiple, 23/24 pareados, ejercicios 1 a 3 con `ejemplos/guia_costos.py`): `docs/tareas/guia-01-costos.md`; margen de contribución = ventas − costos variables (revisar el 440.000 de la hoja del ejercicio 2). Prueba de costos corregida (SM 20/20, pareados 1/8, desarrollo 1 0/19, desarrollo 2 03/12): `docs/tareas/prueba-costos-desarrollo.md` con la solución (CIF = variables + fijos; conversión = MOD + CIF; costo de ventas = unidades vendidas × costo unitario). Hojas en blanco guardadas: liquidación de sueldos, planillas AFP (Provida y Uno), monedas extranjeras y ventas de divisas (faltan los datos).
 Cierre del semestre (4 notas: token, informe del proyecto grupal = estudio de prefactibilidad con valores ANUALES, nota acumulativa, currículum individual; informe y CV por correo): ver `docs/tareas/prefactibilidad-y-curriculum.md`; falta pauta del informe y fecha exacta.
+Obligaciones mensuales (26-10-2026): IVA con notas de débito/crédito, retención de honorarios 15,25 %, impuesto único, PPM 0,125 %: `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
 Próxima nota: trabajo en grupo en Excel con libro diario, mayor y balance.
 Tarea de ratios con AFP Capital: RESUELTA con el estado financiero real, ver `docs/tareas/ratios-afp-capital.md` (razón corriente 0,92; ROE 25,27 %; confirmar con el profesor qué partida toma como ventas).
 
 ## Pendientes
 Actividades 6 y 7 del taller (enunciados guardados) · datos para la plantilla de liquidación de sueldos · 4 páginas de la rúbrica del pitch (faltan criterios hasta 52 puntos) · confirmar versión de la planilla de camisas (`docs/tareas/camisas-planilla-manuscrita.md`) · dudas de lectura ⚠️ en `comercio-exterior.md` y `apuntes-depreciacion-reajuste.md`.
-Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota.
+Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota. · asiento de pago de impuestos de la clase del 26-10 (el dictado se cortó en «débito fiscal»); tabla del impuesto único a verificar en sii.cl ⚠️.

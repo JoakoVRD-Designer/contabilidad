@@ -42,6 +42,53 @@ def retencion_honorarios(bruto, anio):
     return bruto, ret, bruto - ret
 
 
+def debito_fiscal(iva_facturas_venta, iva_boletas=0, iva_notas_debito_emitidas=0, iva_notas_credito_emitidas=0):
+    """Débito fiscal del mes: facturas de venta + boletas + notas de débito emitidas − notas de crédito emitidas."""
+    return iva_facturas_venta + iva_boletas + iva_notas_debito_emitidas - iva_notas_credito_emitidas
+
+
+def credito_fiscal(iva_facturas_compra, iva_notas_debito_recibidas=0, iva_notas_credito_recibidas=0):
+    """Crédito fiscal del mes: facturas de compra + notas de débito recibidas − notas de crédito recibidas."""
+    return iva_facturas_compra + iva_notas_debito_recibidas - iva_notas_credito_recibidas
+
+
+def iva_determinado(debito, credito):
+    """Devuelve (impuesto a pagar, remanente de crédito fiscal para el mes siguiente)."""
+    return max(debito - credito, 0), max(credito - debito, 0)
+
+
+# Impuesto único de segunda categoría (art. 43 N°1 LIR): (hasta UTM, factor, rebaja en UTM).
+# La tabla se expresa en UTM: sirve todos los meses, solo cambia el valor de la UTM. ⚠️ Verificar en sii.cl.
+TABLA_IMPUESTO_UNICO = [
+    (Decimal("13.5"), Decimal("0"), Decimal("0")),       # exento hasta 13,5 UTM
+    (Decimal("30"), Decimal("0.04"), Decimal("0.54")),
+    (Decimal("50"), Decimal("0.08"), Decimal("1.74")),
+    (Decimal("70"), Decimal("0.135"), Decimal("4.49")),
+    (Decimal("90"), Decimal("0.23"), Decimal("11.14")),
+    (Decimal("120"), Decimal("0.304"), Decimal("17.80")),
+    (Decimal("310"), Decimal("0.35"), Decimal("23.32")),
+    (None, Decimal("0.40"), Decimal("38.82")),
+]
+
+
+def impuesto_unico(renta_afecta, utm):
+    """Impuesto único de 2.ª categoría sobre la renta afecta (sueldo ya sin descuentos legales).
+
+    Procedimiento de la clase: ingreso en UTM = renta ÷ UTM → tramo (factor y rebaja) →
+    determinado = renta × factor; rebaja = rebaja en UTM × UTM; impuesto = determinado − rebaja.
+    Devuelve (ingreso_utm con 2 decimales, factor, rebaja_utm, determinado, rebaja, impuesto en pesos).
+    """
+    renta, utm = Decimal(renta_afecta), Decimal(utm)
+    ingreso = renta / utm
+    for hasta, factor, rebaja_utm in TABLA_IMPUESTO_UNICO:
+        if hasta is None or ingreso <= hasta:
+            break
+    determinado = renta * factor
+    rebaja = rebaja_utm * utm
+    return (ingreso.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP), factor, rebaja_utm,
+            determinado, rebaja, max(redondear(determinado - rebaja), 0))
+
+
 def impuesto_primera_categoria(utilidad_tributaria, regimen="14A"):
     return redondear(Decimal(max(utilidad_tributaria, 0)) * TASA_PRIMERA_CATEGORIA[regimen])
 

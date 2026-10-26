@@ -398,5 +398,31 @@ class TestGuiasDeCostos(unittest.TestCase):
         self.assertEqual((d.util_hab, d.util_ped, d.saldo, d.real - d.pres), (600_000, 220_000, -1_300_000, -900_000))
 
 
+class TestObligacionesMensuales(unittest.TestCase):
+    def test_iva_con_notas_de_credito_y_debito(self):
+        deb = impuestos.debito_fiscal(1_900_000, 190_000, 95_000, 38_000)
+        cred = impuestos.credito_fiscal(1_140_000, 19_000, 57_000)
+        self.assertEqual((deb, cred), (2_147_000, 1_102_000))
+        self.assertEqual(impuestos.iva_determinado(deb, cred), (1_045_000, 0))
+        self.assertEqual(impuestos.iva_determinado(cred, deb), (0, 1_045_000))
+
+    def test_impuesto_unico_ejemplo_de_clase(self):
+        # julio 2026: UTM 71.649, renta afecta 3.000.000 -> 41,87 UTM, factor 0,08, rebaja 1,74 UTM -> 115.331
+        r = impuestos.impuesto_unico(3_000_000, 71_649)
+        self.assertEqual((str(r[0]), str(r[1]), str(r[2]), r[5]), ("41.87", "0.08", "1.74", 115_331))
+        self.assertEqual(impuestos.impuesto_unico(896_329, 71_649)[5], 0)            # 12,51 UTM: exento
+        self.assertEqual(impuestos.impuesto_unico(974_038.5, 72_151)[5], 0)          # 13,5 UTM justo: exento
+        self.assertGreater(impuestos.impuesto_unico(974_100, 72_151)[5], 0)
+
+    def test_tabla_impuesto_unico_es_continua(self):
+        t = impuestos.TABLA_IMPUESTO_UNICO
+        for (lim, f1, r1), (_, f2, r2) in zip(t, t[1:]):
+            self.assertEqual(lim * f1 - r1, lim * f2 - r2)
+
+    def test_ejemplo_obligaciones_mensuales(self):
+        from ejemplos import obligaciones_mensuales as o
+        self.assertEqual((o.iva_pagar, o.retencion, o.unico, o.ppm, o.total_f29), (380_000, 61_000, 115_331, 6_250, 562_581))
+
+
 if __name__ == "__main__":
     unittest.main()

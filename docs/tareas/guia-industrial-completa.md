@@ -67,6 +67,24 @@ Reparto calculado: arriendo 10.000.000 × 50 % = 5.000.000 · × 30 % = 3.000.00
 | − Impuesto a la renta 27 % | 20.000.000 × 0,27 | 5.400.000 |
 | **Utilidad neta** | 20.000.000 − 5.400.000 | **14.600.000** |
 
+### Hoja corregida por el profesor (foto del 26-10-2026) ⚠️ sin aclarar
+
+Foto: [hoja de estado de resultados corregida](imagenes/guia-industrial-hoja-er-corregida.jpg). Lo que se ve (letra a mano, cifras con dudas de lectura):
+
+| Línea | Tu hoja | Marca del profesor |
+|---|---:|---|
+| Ventas | 125.000.000 | ✗ |
+| − Devoluciones | 5.000.000 | sin marca |
+| = Ventas netas | 120.000.000 | ✗ |
+| − Costos de ventas | 70.000.000 (¿40/70?) | sin marca |
+| = Margen de contribución | 50.000.000 | ✗ |
+| − Gastos de administración · − de ventas · + ingresos financieros · − gastos financieros | 16.400.000 · 12.900.000 · 2.500.000 · 3.200.000 | sin marca |
+| = Utilidad bruta | 20.000.000 | ✗ |
+| − Impuesto renta 27 % | 5.400.000 | ✗ |
+| Utilidad neta | 14.600.000 | ✓ |
+
+Las cifras de la hoja coinciden con la solución de arriba y la aritmética cuadra. En la prueba anterior el profesor marcó los aciertos con un 1 encerrado y los errores con ✗, así que la ✗ sería error; pero **no calza**: si la utilidad bruta y el impuesto estuvieran malos, la utilidad neta (20.000.000 − 27 %) no podría estar buena. Falta saber qué escribió el profesor y cuál es la pauta. **Hasta entonces no cambio la solución.**
+
 ## Otras planillas de la misma entrega (en blanco: faltan los datos)
 - **FIFO** ("lo primero que se compra es lo primero en venderse"): columnas fecha, detalle de la transacción, unidades (entrada, salida, saldo), precio de compra y valores (entrada, salida, saldo). Se sale primero a precio de las compras más antiguas. Foto: [FIFO](imagenes/guia-industrial-fifo-en-blanco.jpg). Si quieres practicarlo, dame un ejercicio con compras y ventas.
 - **Planilla de cotizaciones de la Mutual** (tasa de cotización, reajustes, interés penal, multas, total): [foto](imagenes/planilla-cotizaciones-mutual-en-blanco.jpg).

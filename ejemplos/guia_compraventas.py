@@ -3,7 +3,8 @@ Actividad del 27-10-2026: transacciones de septiembre de 2026, PPM 0,55 %.
 
 Planillas: compras con facturas y crédito fiscal, ventas con facturas / boletas / exentas y débito fiscal,
 PPM, retención de honorarios, impuesto único de dos trabajadores y asiento de pago de impuestos mensuales.
-Lecturas dudosas ⚠️: UTM de agosto ($71.649, confirmada con el SII por el alumno el 27-10), renta afecta 2 = 1.296.321 (la foto; el dictado decía 1.296.320),
+UTM de septiembre ($71.721, SII): la hoja 1 dice que las transacciones son «durante el mes de septiembre 2026» (con la de agosto, $71.649, daría 68.573 y 13.162).
+Lecturas dudosas ⚠️: renta afecta 2 = 1.296.321 (la foto; el dictado decía 1.296.320),
 nota de débito recibida 15.236 (la diapositiva; el dictado decía 15.036) y la compra a la Cía. Chilena de Tabacos
 tomada como compra exenta (solo va al F29).
 Uso: python3 -m ejemplos.guia_compraventas   (los assert comprueban los resultados)
@@ -14,7 +15,7 @@ from contabilidad import impuestos
 from contabilidad.impuestos import redondear
 
 PPM = D("0.0055")
-UTM_AGOSTO = 71_649          # SII: UTM de agosto 2026. Las remuneraciones son del 31 de agosto (septiembre: 71.721 ⚠️ confirmar cuál usa el profesor)
+UTM_MES = 71_721             # SII: UTM de septiembre 2026 (agosto: 71.649); la hoja 1 dice «durante el mes de septiembre»
 
 
 def iva(neto):
@@ -71,19 +72,19 @@ assert (base_ppm, ppm) == (4_950_139, 27_226)
 honorario, retencion, liquido = impuestos.retencion_honorarios(320_000, 2026)
 assert (retencion, liquido) == (48_800, 271_200)
 
-# --- Impuesto único de los dos trabajadores (UTM de agosto) ---
-t1 = impuestos.impuesto_unico(2_415_525, UTM_AGOSTO)
-t2 = impuestos.impuesto_unico(1_296_321, UTM_AGOSTO)
-assert [str(x) for x in t1[:3]] == ["33.71", "0.08", "1.74"] and t1[5] == 68_573
-assert [str(x) for x in t2[:3]] == ["18.09", "0.04", "0.54"] and t2[5] == 13_162
+# --- Impuesto único de los dos trabajadores (UTM de septiembre) ---
+t1 = impuestos.impuesto_unico(2_415_525, UTM_MES)
+t2 = impuestos.impuesto_unico(1_296_321, UTM_MES)
+assert [str(x) for x in t1[:3]] == ["33.68", "0.08", "1.74"] and t1[5] == 68_447
+assert [str(x) for x in t2[:3]] == ["18.07", "0.04", "0.54"] and t2[5] == 13_124   # 13.123,50 redondea a 13.124
 unico = t1[5] + t2[5]
-assert unico == 81_735
+assert unico == 81_571
 
 # --- Asiento: pago de impuestos mensuales (la planilla no trae línea de crédito fiscal: va el IVA a pagar) ---
 banco = iva_pagar + unico + retencion + ppm
 asiento = [("Débito fiscal (IVA a pagar)", iva_pagar, 0), ("Impuesto único", unico, 0),
            ("Impuesto retenido", retencion, 0), ("PPM", ppm, 0), ("Banco", 0, banco)]
-assert banco == 641_327 and sum(d for _, d, _ in asiento) == sum(h for _, _, h in asiento)
+assert banco == 641_163 and sum(d for _, d, _ in asiento) == sum(h for _, _, h in asiento)
 
 if __name__ == "__main__":
     print(f"Compras: neto {tot_compras[0]:,} IVA {tot_compras[1]:,} total {tot_compras[2]:,}; crédito fiscal {credito:,}")

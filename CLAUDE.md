@@ -57,4 +57,4 @@ Tarea de ratios con AFP Capital: RESUELTA con el estado financiero real, ver `do
 
 ## Pendientes
 Actividades 6 y 7 del taller (enunciados guardados) · datos para la plantilla de liquidación de sueldos · 4 páginas de la rúbrica del pitch (faltan criterios hasta 52 puntos) · confirmar versión de la planilla de camisas (`docs/tareas/camisas-planilla-manuscrita.md`) · dudas de lectura ⚠️ en `comercio-exterior.md` y `apuntes-depreciacion-reajuste.md`.
-Guía de compraventas del 27-10: resuelta (`docs/tareas/guia-registro-compraventas-impuestos-mensuales.md`); falta el F29 en blanco y confirmar UTM (agosto $71.649) con el profesor · Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota. · tabla del impuesto único a verificar en sii.cl ⚠️.
+Guía de compraventas del 27-10: resuelta (`docs/tareas/guia-registro-compraventas-impuestos-mensuales.md`); falta el F29 en blanco; usa UTM de septiembre $71.721 (la hoja 1 dice septiembre): impuesto único 68.447 + 13.124, banco 641.163 · Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota. · tabla del impuesto único a verificar en sii.cl ⚠️.

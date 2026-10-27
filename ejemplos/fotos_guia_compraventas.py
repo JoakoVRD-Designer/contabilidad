@@ -179,8 +179,8 @@ def hoja3(im, sc):
 
 
 def hoja4(im, sc):
-    escribir(im, "Agosto 2026", 222 * sc, 184 * sc, 36 * sc, 1.5, "l")
-    escribir(im, "$ 71.649", 232 * sc, 241 * sc, 36 * sc, 1.5, "l")
+    escribir(im, "Septiembre 2026", 222 * sc, 184 * sc, 36 * sc, 1.5, "l")
+    escribir(im, f"$ {f(g.UTM_MES)}", 232 * sc, 241 * sc, 36 * sc, 1.5, "l")
     bloques = [
         (Tabla(160, 1030, [322, 418, 493], [341, 426, 494], [134, 395, 622, 838, 1075]),
          Tabla(160, 1035, [549, 716, 820], [545, 696, 796], [144, 401, 626, 841, 1076], [162, 415, 634, 845, 1080]),
@@ -198,7 +198,7 @@ def hoja4(im, sc):
         t2.poner(im, sc, 0, 2, coma(factor), "c")
         t2.poner(im, sc, 0, 3, f2(determinado), "c")
         t2.poner(im, sc, 1, 1, coma(rebaja_utm), "c")
-        t2.poner(im, sc, 1, 2, f(g.UTM_AGOSTO), "c")
+        t2.poner(im, sc, 1, 2, f(g.UTM_MES), "c")
         t2.poner(im, sc, 1, 3, f2(rebaja), "c")
         caja.poner(im, sc, 0, 0, f(impuesto), "c", negrita=True)
 

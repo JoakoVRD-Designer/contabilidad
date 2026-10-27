@@ -132,7 +132,7 @@ La planilla del profesor (guía de compraventas) trae las líneas **Débito fisc
 | Banco | | suma de los cuatro |
 | Glosa | Por pago impuestos | |
 
-Resuelto con cifras en [la guía de compraventas](../tareas/guia-registro-compraventas-impuestos-mensuales.md) (IVA a pagar 483.566 + único 81.735 + retenido 48.800 + PPM 27.226 = banco 641.327). ⚠️ Confirmar con el profesor que «Débito fiscal» lleva el IVA a pagar y no el débito completo (la planilla no trae línea de crédito fiscal).
+Resuelto con cifras en [la guía de compraventas](../tareas/guia-registro-compraventas-impuestos-mensuales.md) (IVA a pagar 483.566 + único 81.571 + retenido 48.800 + PPM 27.226 = banco 641.163, con la UTM de septiembre). ⚠️ Confirmar con el profesor que «Débito fiscal» lleva el IVA a pagar y no el débito completo (la planilla no trae línea de crédito fiscal).
 
 ## Esquema reducido para el dueño (dictado del 27-10, audio con ruido ⚠️)
 
@@ -141,9 +141,9 @@ Ese último audio llegó cortado y con «¿Qué pasa?» repetido; solo se entien
 | Impuesto del mes (septiembre 2026) | A reservar |
 |---|---:|
 | IVA (débito 860.822 − crédito 377.256) | 483.566 |
-| Impuesto único (2 trabajadores) | 81.735 |
+| Impuesto único (2 trabajadores, UTM septiembre) | 81.571 |
 | Retención de honorarios | 48.800 |
 | PPM (0,55 %) | 27.226 |
-| **Total a tener en el banco** | **641.327** |
+| **Total a tener en el banco** | **641.163** |
 
 Se paga en el F29 (día 12 en efectivo o cheque, día 20 por internet). ⚠️ Confirmar con el profesor qué formato pide para este esquema.

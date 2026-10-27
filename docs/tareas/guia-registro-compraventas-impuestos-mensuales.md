@@ -2,7 +2,7 @@
 
 Asignatura **Cálculo y registro de impuestos**, 100 puntos, lápiz de pasta (sin borrones ni corrector), 40 minutos, sin celular. Transacciones de **septiembre de 2026**, **PPM 0,55 %**.
 Fotos: [enunciado](imagenes/compraventas-enunciado.jpg) · [hoja 2: compras, crédito fiscal, retención y asiento](imagenes/compraventas-hoja2-compras-credito-fiscal-asiento.jpg) · [datos que faltaban (notas)](imagenes/compraventas-datos-faltantes-notas.jpg) · [hoja 3: ventas, débito fiscal y PPM](imagenes/compraventas-hoja3-ventas-debito-ppm.jpg) · [hoja 4: impuesto único](imagenes/compraventas-hoja4-impuesto-unico.jpg).
-**Respuestas escritas sobre las fotos de las hojas del profesor** (no son planillas nuevas): [hoja 1 (enunciado: IVA y total de las ventas con facturas)](imagenes/respondidas/compraventas-hoja1-enunciado-respondida.jpg) · [hoja 2](imagenes/respondidas/compraventas-hoja2-respondida.jpg) · [hoja 3](imagenes/respondidas/compraventas-hoja3-respondida.jpg) · [hoja 4](imagenes/respondidas/compraventas-hoja4-respondida.jpg) · PDF con las 4 fotos y los cálculos: [guia-compraventas-fotos-respondidas.pdf](guia-compraventas-fotos-respondidas.pdf) (se regenera con `python3 -m ejemplos.fotos_guia_compraventas` y `python3 -m ejemplos.pdf_fotos_guia_compraventas`; el primero también acepta las 4 fotos sueltas: `python3 -m ejemplos.fotos_guia_compraventas foto1.jpg foto2.jpg foto3.jpg foto4.jpg salida/`). En la hoja 3 se tapó el 0 impreso de la fila de totales de ventas con facturas. En la hoja 2 quedó sin llenar la fecha del asiento y en la hoja 4 se escribió «Agosto 2026» y la UTM.
+**Respuestas escritas sobre las fotos de las hojas del profesor** (no son planillas nuevas): [hoja 1 (enunciado: IVA y total de las ventas con facturas)](imagenes/respondidas/compraventas-hoja1-enunciado-respondida.jpg) · [hoja 2](imagenes/respondidas/compraventas-hoja2-respondida.jpg) · [hoja 3](imagenes/respondidas/compraventas-hoja3-respondida.jpg) · [hoja 4](imagenes/respondidas/compraventas-hoja4-respondida.jpg) · PDF con las 4 fotos y los cálculos: [guia-compraventas-fotos-respondidas.pdf](guia-compraventas-fotos-respondidas.pdf) (se regenera con `python3 -m ejemplos.fotos_guia_compraventas` y `python3 -m ejemplos.pdf_fotos_guia_compraventas`; el primero también acepta las 4 fotos sueltas: `python3 -m ejemplos.fotos_guia_compraventas foto1.jpg foto2.jpg foto3.jpg foto4.jpg salida/`). En la hoja 3 se tapó el 0 impreso de la fila de totales de ventas con facturas. En la hoja 2 quedó sin llenar la fecha del asiento y en la hoja 4 se escribió «Septiembre 2026» y la UTM.
 Resuelta y comprobada con `python3 -m ejemplos.guia_compraventas` (los `assert` verifican cada cifra; IVA redondeado al peso en cada fila). Los cálculos paso a paso (no son plantillas) están en [guia-compraventas-respuestas.pdf](guia-compraventas-respuestas.pdf).
 
 ## Datos (leídos de las fotos y del dictado ⚠️)
@@ -47,18 +47,18 @@ Resuelta y comprobada con `python3 -m ejemplos.guia_compraventas` (los `assert` 
 **Proceso de cálculo de PPM:** + facturas 1.836.290 + boletas 2.679.706 + exentas 419.500 + notas de débito 25.166 − notas de crédito 10.523 = **total ventas netas 4.950.139**; × 0,55 % = **PPM por pagar 27.226**.
 
 ## Hoja 4: impuesto único de segunda categoría
-Mes: **agosto 2026** (las remuneraciones se procesan el 31 de agosto), UTM **$71.649** (SII: captura del alumno del 27-10, UTA 859.788; también [calcular.cl](https://www.calcular.cl/valor-utm-agosto-2026)). La de septiembre es $71.721 (UTA 860.652). ⚠️ Falta confirmar con el profesor cuál mes usa la planilla.
+Mes: **septiembre 2026** (la hoja 1 dice que las transacciones son «durante el mes de septiembre 2026»; las remuneraciones se anotan «el día 31 de agosto»), UTM **$71.721** (SII: captura del alumno del 27-10, UTA 860.652). La de agosto fue $71.649 (UTA 859.788).
 
 | | Trabajador 1 | Trabajador 2 |
 |---|---:|---:|
 | Renta afecta | 2.415.525 | 1.296.321 |
-| Ingreso en UTM | 33,71 | 18,09 |
+| Ingreso en UTM | 33,68 | 18,07 |
 | Factor · rebaja (UTM) | 0,08 · 1,74 | 0,04 · 0,54 |
 | Impuesto determinado (renta × factor) | 193.242,00 | 51.852,84 |
-| Rebaja al impuesto (rebaja × UTM) | 124.669,26 | 38.690,46 |
-| **Impuesto único** | **68.573** | **13.162** |
+| Rebaja al impuesto (rebaja × UTM) | 124.794,54 | 38.729,34 |
+| **Impuesto único** | **68.447** | **13.124** |
 
-Total impuesto único: **81.735**. **Si el profesor pide la UTM de septiembre ($71.721):** trabajador 1 = 33,68 UTM, rebaja 124.794,54 → **68.447**; trabajador 2 = 18,07 UTM, rebaja 38.729,34 → **13.124**; total único 81.571 y banco del asiento **641.163** (el resto no cambia).
+Total impuesto único: **81.571** (el 13.124 sale de 51.852,84 − 38.729,34 = 13.123,50, que redondea a 13.124). Con la UTM de agosto ($71.649) daría 68.573 y 13.162 (total 81.735, banco 641.327).
 
 ## Contabilización del pago de impuestos mensuales
 La planilla trae las líneas Débito fiscal, Impuesto único, Impuesto retenido, PPM, Banco y «Por pago impuestos»; el profesor dijo «si pagamos IVA, ahí el valor del IVA que hay que pagar».
@@ -66,16 +66,16 @@ La planilla trae las líneas Débito fiscal, Impuesto único, Impuesto retenido,
 | Fecha | Cuenta | Debe | Haber |
 |---|---|---:|---:|
 | ⚠️ falta | Débito fiscal (IVA a pagar) | 483.566 | |
-| | Impuesto único | 81.735 | |
+| | Impuesto único | 81.571 | |
 | | Impuesto retenido | 48.800 | |
 | | PPM | 27.226 | |
-| | &nbsp;&nbsp;Banco | | 641.327 |
+| | &nbsp;&nbsp;Banco | | 641.163 |
 | | *Por pago impuestos* | | |
 
 Falta la **fecha**: el profesor dijo que «falta que le pongan la fecha». El F29 de septiembre se paga en octubre (día 12 en efectivo o cheque, día 20 por internet): confirmar cuál.
 
 ## Dudas ⚠️ para el profesor
-1. UTM: ¿agosto ($71.649) o septiembre ($71.721)?
+1. UTM: usé septiembre ($71.721) porque la hoja 1 dice septiembre; la planilla de remuneraciones dice «31 de agosto» (agosto: $71.649).
 2. ¿La compra a la Cía. Chilena de Tabacos (300.000) es la compra exenta que solo va al F29?
 3. ¿El «Débito fiscal» del asiento lleva el IVA a pagar (483.566), sin línea de crédito fiscal?
 4. Un peso de diferencia posible por el redondeo del IVA (por fila o sobre el total).

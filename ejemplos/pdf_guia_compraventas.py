@@ -64,9 +64,9 @@ h.append(tabla(["", "Neto"], [("+ Ventas con facturas", g.tot_ventas[0]), ("+ Ve
                               ("+ Notas de débito", g.nd_emitida[0]), ("− Notas de crédito", g.nc_emitida[0])], ("TOTAL VENTAS NETAS", g.base_ppm)))
 h.append(f"<p>% PPM <b>0,55 %</b> · PPM por pagar = {f(g.base_ppm)} × 0,0055 = <b>{f(g.ppm)}</b></p>")
 
-h.append(f"<h2>Hoja 4: impuesto único de segunda categoría (agosto 2026, UTM {f(g.UTM_AGOSTO)}) ⚠️</h2>")
-h.append(un_trabajador(1, 2_415_525, g.t1, g.UTM_AGOSTO) + un_trabajador(2, 1_296_321, g.t2, g.UTM_AGOSTO))
-h.append("<p class='s'>⚠️ Las remuneraciones se procesan el 31 de agosto: usé la UTM de agosto ($71.649, valor del SII). Con la UTM de septiembre ($71.721) daría 68.447 y 13.124 (total único 81.571; banco 641.163).</p>")
+h.append(f"<h2>Hoja 4: impuesto único de segunda categoría (septiembre 2026, UTM {f(g.UTM_MES)})</h2>")
+h.append(un_trabajador(1, 2_415_525, g.t1, g.UTM_MES) + un_trabajador(2, 1_296_321, g.t2, g.UTM_MES))
+h.append("<p class='s'>La hoja 1 dice que las transacciones son del mes de septiembre: usé la UTM de septiembre ($71.721, valor del SII). Con la de agosto ($71.649) daría 68.573 y 13.162 (total único 81.735; banco 641.327).</p>")
 
 h.append("<h2>Contabilización: pago de impuestos mensuales</h2>")
 h.append(f"<p>IVA a pagar = débito {f(g.debito)} − crédito {f(g.credito)} = <b>{f(g.iva_pagar)}</b></p>")

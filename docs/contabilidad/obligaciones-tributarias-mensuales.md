@@ -133,3 +133,17 @@ La planilla del profesor (guía de compraventas) trae las líneas **Débito fisc
 | Glosa | Por pago impuestos | |
 
 Resuelto con cifras en [la guía de compraventas](../tareas/guia-registro-compraventas-impuestos-mensuales.md) (IVA a pagar 483.566 + único 81.735 + retenido 48.800 + PPM 27.226 = banco 641.327). ⚠️ Confirmar con el profesor que «Débito fiscal» lleva el IVA a pagar y no el débito completo (la planilla no trae línea de crédito fiscal).
+
+## Esquema reducido para el dueño (dictado del 27-10, audio con ruido ⚠️)
+
+Ese último audio llegó cortado y con «¿Qué pasa?» repetido; solo se entiende que se habló de un **esquema reducido** para hacerle llegar información al dueño, para que sepa **cuánta plata necesita para pagar los impuestos**. Con las cifras de la guía de compraventas sería:
+
+| Impuesto del mes (septiembre 2026) | A reservar |
+|---|---:|
+| IVA (débito 860.822 − crédito 377.256) | 483.566 |
+| Impuesto único (2 trabajadores) | 81.735 |
+| Retención de honorarios | 48.800 |
+| PPM (0,55 %) | 27.226 |
+| **Total a tener en el banco** | **641.327** |
+
+Se paga en el F29 (día 12 en efectivo o cheque, día 20 por internet). ⚠️ Confirmar con el profesor qué formato pide para este esquema.

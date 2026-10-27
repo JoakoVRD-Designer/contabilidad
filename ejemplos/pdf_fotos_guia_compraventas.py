@@ -1,10 +1,11 @@
-"""Genera docs/tareas/guia-compraventas-fotos-respondidas.pdf: las 3 fotos respondidas y, después, los cálculos.
+"""Genera docs/tareas/guia-compraventas-fotos-respondidas.pdf: las 4 fotos respondidas y, después, los cálculos.
 Uso: python3 -m ejemplos.pdf_fotos_guia_compraventas   (antes: python3 -m ejemplos.pdf_guia_compraventas y python3 -m ejemplos.fotos_guia_compraventas)"""
 import pymupdf
 
 CARPETA = "docs/tareas/imagenes/respondidas/"
 SALIDA = "docs/tareas/guia-compraventas-fotos-respondidas.pdf"
-FOTOS = [("compraventas-hoja2-respondida.jpg", "Hoja 2: compras, crédito fiscal, impuesto retenido y asiento"),
+FOTOS = [("compraventas-hoja1-enunciado-respondida.jpg", "Hoja 1 (enunciado): ventas con facturas, IVA y total"),
+         ("compraventas-hoja2-respondida.jpg", "Hoja 2: compras, crédito fiscal, impuesto retenido y asiento"),
          ("compraventas-hoja3-respondida.jpg", "Hoja 3: ventas, débito fiscal y PPM"),
          ("compraventas-hoja4-respondida.jpg", "Hoja 4: impuesto único de segunda categoría (dos trabajadores)")]
 

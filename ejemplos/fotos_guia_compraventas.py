@@ -3,7 +3,9 @@
 Las coordenadas están medidas sobre las fotos reducidas a 1500 px de ancho; el script escala a cualquier resolución.
 Cada tabla se describe con las líneas de la foto: y de cada fila en el borde izquierdo (xL) y en el derecho (xR), y x de cada
 columna arriba y abajo (la hoja está inclinada y curva, así que cada línea lleva su propia pendiente).
-Uso: python3 -m ejemplos.fotos_guia_compraventas [carpeta_con_fotos] [carpeta_de_salida]
+Uso (en el repo): python3 -m ejemplos.fotos_guia_compraventas [carpeta_con_fotos] [carpeta_de_salida]
+Con fotos sueltas:  python3 -m ejemplos.fotos_guia_compraventas foto_hoja1.jpg foto_hoja2.jpg foto_hoja3.jpg foto_hoja4.jpg [carpeta_de_salida]
+Necesita Pillow y numpy. Las coordenadas sirven solo para las fotos de esta guía (4 hojas, hechas con el celular en vertical).
 """
 import math
 import sys
@@ -14,9 +16,19 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 from ejemplos import guia_compraventas as g
 
-FUENTE = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-NEGRITA = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+FUENTES = {False: ["/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "DejaVuSans.ttf", "arial.ttf", "Arial.ttf"],
+           True: ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "DejaVuSans-Bold.ttf", "arialbd.ttf", "Arial Bold.ttf"]}
 TINTA = (25, 55, 150, 235)
+
+
+def fuente(tam, negrita=False):
+    """Primera fuente disponible en el equipo (Linux, Windows o Mac); si no hay ninguna, la que trae Pillow."""
+    for nombre in FUENTES[negrita]:
+        try:
+            return ImageFont.truetype(nombre, int(tam))
+        except OSError:
+            continue
+    return ImageFont.load_default(int(tam))
 
 
 def f(n):
@@ -53,13 +65,13 @@ class Tabla:
     def y_en(self, r, x):
         return (self.fila_y(r, x) + self.fila_y(r + 1, x)) / 2
 
-    def poner(self, im, sc, r, c, texto, alinear="r", tam=26, negrita=False):
+    def poner(self, im, sc, r, c, texto, alinear="r", tam=26, negrita=False, dy=0):
         x0, x1, ang = self.celda(r, c)
         ancho = x1 - x0
-        letra = ImageFont.truetype(NEGRITA if negrita else FUENTE, 100)
+        letra = fuente(100, negrita)
         tam = min(tam, (ancho - 16) * 100 / max(letra.getlength(texto), 1))
         ax = {"r": x1 - 9, "c": (x0 + x1) / 2, "l": x0 + 9}[alinear]
-        escribir(im, texto, ax * sc, self.y_en(r, ax) * sc, tam * sc, ang, alinear, negrita)
+        escribir(im, texto, ax * sc, (self.y_en(r, ax) + dy) * sc, tam * sc, ang, alinear, negrita)
 
     def borrar(self, im, sc, r, c):
         """Tapa con el color del papel lo impreso dentro de la celda (un 0), sin tocar los bordes."""
@@ -76,7 +88,7 @@ class Tabla:
 
 def escribir(im, texto, ax, ay, tam, ang, alinear="r", negrita=False):
     """Texto rotado alrededor del punto de anclaje (ax, ay)."""
-    letra = ImageFont.truetype(NEGRITA if negrita else FUENTE, max(int(round(tam)), 8))
+    letra = fuente(max(int(round(tam)), 8), negrita)
     R = int(letra.getlength(texto) + tam * 2)
     capa = Image.new("RGBA", (2 * R, 2 * R), (0, 0, 0, 0))
     ImageDraw.Draw(capa).text((R, R), texto, font=letra, fill=TINTA, anchor={"r": "rm", "c": "mm", "l": "lm"}[alinear])
@@ -90,6 +102,14 @@ def cargar(ruta):
 
 def terna(t):
     return [f(t[0]), f(t[1]), f(t[2])]
+
+
+def hoja1(im, sc):
+    """Enunciado: la tabla «Ventas con facturas» trae el neto impreso; se completan el IVA y el total."""
+    t = Tabla(400, 1200, [1486, 1515, 1544, 1574, 1605], [1492, 1522, 1555, 1587, 1620], [101, 540, 969, 1441], [84, 523, 975, 1456])
+    for r, fila in enumerate(g.ventas, 2):
+        t.poner(im, sc, r, 1, f(fila[1]), "l", tam=20, dy=1.5)
+        t.poner(im, sc, r, 2, f(fila[2]), "l", tam=20, dy=1.5)
 
 
 def hoja2(im, sc):
@@ -183,20 +203,37 @@ def hoja4(im, sc):
         caja.poner(im, sc, 0, 0, f(impuesto), "c", negrita=True)
 
 
-HOJAS = [("compraventas-hoja2-compras-credito-fiscal-asiento", hoja2, "compraventas-hoja2-respondida"),
+HOJAS = [("compraventas-enunciado", hoja1, "compraventas-hoja1-enunciado-respondida"),
+         ("compraventas-hoja2-compras-credito-fiscal-asiento", hoja2, "compraventas-hoja2-respondida"),
          ("compraventas-hoja3-ventas-debito-ppm", hoja3, "compraventas-hoja3-respondida"),
          ("compraventas-hoja4-impuesto-unico", hoja4, "compraventas-hoja4-respondida")]
 
 
+def escribir_hoja(ruta, funcion, destino, salida):
+    im = cargar(ruta)
+    funcion(im, im.width / 1500)
+    archivo = Path(salida) / (destino + ".jpg")
+    im.convert("RGB").save(archivo, quality=90)
+    print("listo:", archivo)
+
+
 def run(entrada="docs/tareas/imagenes", salida="docs/tareas/imagenes/respondidas"):
+    """Busca en `entrada` las tres fotos del repo por su nombre."""
     Path(salida).mkdir(parents=True, exist_ok=True)
     for origen, funcion, destino in HOJAS:
-        ruta = next(Path(entrada).glob(origen + ".*"))
-        im = cargar(ruta)
-        funcion(im, im.width / 1500)
-        im.convert("RGB").save(Path(salida) / (destino + ".jpg"), quality=90)
-        print("listo:", destino)
+        escribir_hoja(next(Path(entrada).glob(origen + ".*")), funcion, destino, salida)
+
+
+def run_archivos(hoja1, hoja2, hoja3, hoja4, salida="respondidas"):
+    """Usa cuatro fotos con cualquier nombre, en el orden hoja 1 (enunciado), hoja 2, hoja 3 y hoja 4."""
+    Path(salida).mkdir(parents=True, exist_ok=True)
+    for ruta, (_, funcion, destino) in zip((hoja1, hoja2, hoja3, hoja4), HOJAS):
+        escribir_hoja(ruta, funcion, destino, salida)
 
 
 if __name__ == "__main__":
-    run(*sys.argv[1:3])
+    args = sys.argv[1:]
+    if len(args) >= 4 and Path(args[0]).is_file():
+        run_archivos(*args[:5])
+    else:
+        run(*args[:2])

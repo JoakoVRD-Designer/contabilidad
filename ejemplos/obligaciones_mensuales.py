@@ -2,7 +2,7 @@
 impuesto único de 2.ª categoría y PPM, con la planilla informal que suma todo para el F29.
 
 Las cifras de IVA y honorarios son mías (la clase no dio datos); el impuesto único es el ejemplo de la clase
-(julio de 2026, UTM $71.649 ⚠️ deducida del resultado 115.331 y de la tabla de calcular.cl).
+(el profesor dijo «mes de julio»; UTM $71.649 ⚠️ deducida del resultado 115.331: es la UTM de agosto 2026 según el SII).
 Uso: python3 -m ejemplos.obligaciones_mensuales   (los assert comprueban los resultados)
 """
 from datetime import date
@@ -38,14 +38,14 @@ diferido.registrar(date(2026, 7, 10), "Recepción de la boleta de honorarios",
                    [("6.1.06", bruto, 0), ("2.1.04", 0, retencion), ("2.1.05", 0, liquido)])
 diferido.registrar(date(2026, 8, 10), "Pago del honorario", [("2.1.05", liquido, 0), ("1.1.02", 0, liquido)])
 
-# --- 3. Impuesto único de 2.ª categoría: ejemplo de la clase (julio de 2026) ---
-UTM_JULIO = 71_649
-ingreso, factor, rebaja_utm, determinado, rebaja, unico_a = impuestos.impuesto_unico(3_000_000, UTM_JULIO)
+# --- 3. Impuesto único de 2.ª categoría: ejemplo de la clase (UTM 71.649) ---
+UTM_EJEMPLO = 71_649
+ingreso, factor, rebaja_utm, determinado, rebaja, unico_a = impuestos.impuesto_unico(3_000_000, UTM_EJEMPLO)
 assert (ingreso, factor, rebaja_utm) == (D("41.87"), D("0.08"), D("1.74"))
-assert determinado == 240_000 and rebaja == D("1.74") * UTM_JULIO                      # 124.669,26
+assert determinado == 240_000 and rebaja == D("1.74") * UTM_EJEMPLO                      # 124.669,26
 assert unico_a == 115_331                                                              # lo que dijo el profesor
-renta_b = redondear(D("12.51") * UTM_JULIO)                                            # 896.329
-assert impuestos.impuesto_unico(renta_b, UTM_JULIO)[1:] == (D("0"), D("0"), 0, 0, 0)   # 12,51 UTM < 13,5: exento
+renta_b = redondear(D("12.51") * UTM_EJEMPLO)                                            # 896.329
+assert impuestos.impuesto_unico(renta_b, UTM_EJEMPLO)[1:] == (D("0"), D("0"), 0, 0, 0)   # 12,51 UTM < 13,5: exento
 unico = unico_a                                                                        # el trabajador B está exento
 
 # Las tablas de la hoja encadenan: en cada límite de tramo los dos tramos dan el mismo impuesto.
@@ -64,6 +64,6 @@ assert (ppm, iva_pagar, total_f29) == (14_625, 1_045_000, 1_235_956)
 if __name__ == "__main__":
     print(f"IVA con notas: débito {debito:,} − crédito {credito:,} = {debito - credito:,}")
     print(f"Honorarios {bruto:,}: retención {retencion:,}, líquido {liquido:,}")
-    print(f"Impuesto único julio: {ingreso} UTM, factor {factor}, determinado {determinado:,.2f} − rebaja {rebaja:,.2f} = {unico_a:,}")
+    print(f"Impuesto único (ejemplo de la clase): {ingreso} UTM, factor {factor}, determinado {determinado:,.2f} − rebaja {rebaja:,.2f} = {unico_a:,}")
     print(f"PPM: base {base:,} × 0,125 % = {ppm:,}")
     print(f"F29: IVA {iva_pagar:,} + honorarios {retencion:,} + único {unico:,} + PPM {ppm:,} = {total_f29:,}")

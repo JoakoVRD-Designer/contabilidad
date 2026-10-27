@@ -407,7 +407,7 @@ class TestObligacionesMensuales(unittest.TestCase):
         self.assertEqual(impuestos.iva_determinado(cred, deb), (0, 1_045_000))
 
     def test_impuesto_unico_ejemplo_de_clase(self):
-        # julio 2026: UTM 71.649, renta afecta 3.000.000 -> 41,87 UTM, factor 0,08, rebaja 1,74 UTM -> 115.331
+        # ejemplo de la clase: UTM 71.649, renta afecta 3.000.000 -> 41,87 UTM, factor 0,08, rebaja 1,74 UTM -> 115.331
         r = impuestos.impuesto_unico(3_000_000, 71_649)
         self.assertEqual((str(r[0]), str(r[1]), str(r[2]), r[5]), ("41.87", "0.08", "1.74", 115_331))
         self.assertEqual(impuestos.impuesto_unico(896_329, 71_649)[5], 0)            # 12,51 UTM: exento

@@ -120,7 +120,7 @@ Ejemplo: sueldo 800.000 → 800.000 ÷ 30 × 28 ÷ 168 = $4.444,44 por hora ordi
 | IVA a pagar (F29) | débito − crédito si el débito es mayor; si el crédito es mayor, no se paga y queda **remanente** (crédito − débito) |
 | Retención de honorarios (F29, cód. 151) | honorario bruto × 15,25 % (2026) |
 | PPM (F29, cód. 62) | base × 0,125 % (el de la clase); base = neto facturas + neto boletas + ventas exentas + notas de débito − notas de crédito. Ej. base 11.700.000 × 0,125 % = **14.625**. El SII fija el % según si la empresa paga impuestos |
-| Impuesto único 2.ª categoría (F29, cód. 48) | ingreso en UTM = renta afecta ÷ UTM; con la tabla (factor, rebaja en UTM): impuesto = renta × factor − rebaja × UTM. Exento hasta 13,5 UTM. Ej. julio 2026: 3.000.000 × 0,08 − 1,74 × 71.649 = **115.331** (tabla en [obligaciones mensuales](contabilidad/obligaciones-tributarias-mensuales.md)) |
+| Impuesto único 2.ª categoría (F29, cód. 48) | ingreso en UTM = renta afecta ÷ UTM; con la tabla (factor, rebaja en UTM): impuesto = renta × factor − rebaja × UTM. Exento hasta 13,5 UTM. Ej. de clase (UTM 71.649): 3.000.000 × 0,08 − 1,74 × 71.649 = **115.331** (tabla en [obligaciones mensuales](contabilidad/obligaciones-tributarias-mensuales.md)) |
 | Asiento de pago de impuestos mensuales | Debe: Débito fiscal (IVA a pagar), Impuesto único, Impuesto retenido, PPM · Haber: Banco (suma) · glosa «Por pago impuestos» (planilla del 27-10; ver [guía de compraventas](tareas/guia-registro-compraventas-impuestos-mensuales.md)) |
 | Total F29 (cód. 91) | IVA determinado + retención de honorarios + impuesto único + PPM; plazo día 12 (o 20 por internet); ver [obligaciones mensuales](contabilidad/obligaciones-tributarias-mensuales.md) |
 | UTA | UTM × 12 (oct-2026: 72.151 × 12 = 865.812) |

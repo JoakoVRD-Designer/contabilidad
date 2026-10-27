@@ -13,6 +13,10 @@ Resuelta y comprobada con `python3 -m ejemplos.guia_compraventas` (los `assert` 
 - **Honorarios:** día 15, boleta por 320.000 brutos, retención 2026.
 - **Remuneraciones** del 31 de agosto: rentas afectas 2.415.525 y 1.296.321 (el dictado decía 1.296.320: gana la hoja).
 
+## Confirmaciones de clase del 27-10 (audio con ruido ⚠️)
+- **Boletas:** se anota el **valor bruto** de cada venta, se suma, de la suma se saca el **neto** y después el IVA; la venta de cigarrillos va aparte, en **exentas** («la de tabaco va…», el final del audio no se entiende).
+- **IVA:** «comparo mis ventas con las compras: si las ventas son mayores, pago IVA; en caso contrario, no» (queda remanente de crédito). Aquí: débito 860.822 > crédito 377.256 → se paga **483.566**.
+
 ## Hoja 2: compras y crédito fiscal
 | Factura | Neto | IVA 19 % | Total |
 |---|---:|---:|---:|
@@ -43,7 +47,7 @@ Resuelta y comprobada con `python3 -m ejemplos.guia_compraventas` (los `assert` 
 **Proceso de cálculo de PPM:** + facturas 1.836.290 + boletas 2.679.706 + exentas 419.500 + notas de débito 25.166 − notas de crédito 10.523 = **total ventas netas 4.950.139**; × 0,55 % = **PPM por pagar 27.226**.
 
 ## Hoja 4: impuesto único de segunda categoría
-Mes: **agosto 2026** (las remuneraciones se procesan el 31 de agosto), UTM **$71.649** ⚠️ (sitio de terceros, [calcular.cl](https://www.calcular.cl/valor-utm-agosto-2026); confirmar con el profesor).
+Mes: **agosto 2026** (las remuneraciones se procesan el 31 de agosto), UTM **$71.649** (SII: captura del alumno del 27-10, UTA 859.788; también [calcular.cl](https://www.calcular.cl/valor-utm-agosto-2026)). La de septiembre es $71.721 (UTA 860.652). ⚠️ Falta confirmar con el profesor cuál mes usa la planilla.
 
 | | Trabajador 1 | Trabajador 2 |
 |---|---:|---:|
@@ -54,7 +58,7 @@ Mes: **agosto 2026** (las remuneraciones se procesan el 31 de agosto), UTM **$71
 | Rebaja al impuesto (rebaja × UTM) | 124.669,26 | 38.690,46 |
 | **Impuesto único** | **68.573** | **13.162** |
 
-Total impuesto único: **81.735**. Con la UTM de septiembre ($71.721) daría 68.447 y 13.124.
+Total impuesto único: **81.735**. **Si el profesor pide la UTM de septiembre ($71.721):** trabajador 1 = 33,68 UTM, rebaja 124.794,54 → **68.447**; trabajador 2 = 18,07 UTM, rebaja 38.729,34 → **13.124**; total único 81.571 y banco del asiento **641.163** (el resto no cambia).
 
 ## Contabilización del pago de impuestos mensuales
 La planilla trae las líneas Débito fiscal, Impuesto único, Impuesto retenido, PPM, Banco y «Por pago impuestos»; el profesor dijo «si pagamos IVA, ahí el valor del IVA que hay que pagar».

@@ -30,8 +30,8 @@
 - Hora extra (DT): sueldo ÷ 30 × 28 ÷ (jornada × 4) × 1,5; jornada 42 h desde 26-04-2026. IMM $553.553 desde el 1-05-2026 (Ley 21.830; de enero a abril fue $539.000).
 - Depreciación lineal = (costo − residual) ÷ vida; suma de dígitos: factor (n−k+1) ÷ [n(n+1)/2].
 - Activo con naturaleza acreedora (depreciación acumulada) RESTA del activo.
-- Impuesto único 2.ª categoría: renta afecta ÷ UTM → tabla (factor, rebaja en UTM) → renta × factor − rebaja × UTM; exento hasta 13,5 UTM (julio 2026, UTM 71.649: 3.000.000 → 115.331). PPM de la clase = base × 0,125 % (base = neto facturas + boletas + exentas + ND − NC). Detalle en `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
-- UTA = UTM × 12 (sept 2026: 71.721 × 12 = 860.652; oct 2026: 72.151 × 12 = 865.812).
+- Impuesto único 2.ª categoría: renta afecta ÷ UTM → tabla (factor, rebaja en UTM) → renta × factor − rebaja × UTM; exento hasta 13,5 UTM (ejemplo de clase con UTM 71.649: 3.000.000 → 115.331; UTM ago 2026 = 71.649 y sept 2026 = 71.721, confirmadas con el SII por el alumno). PPM de la clase = base × 0,125 % (base = neto facturas + boletas + exentas + ND − NC). Detalle en `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
+- UTA = UTM × 12 (ago 2026: 71.649 × 12 = 859.788; sept 2026: 71.721 × 12 = 860.652; oct 2026: 72.151 × 12 = 865.812).
 
 ## Datos de clase (confirmados por el usuario)
 - Balance 1: AC 861.294.191 · inv 113.382.245 · PC 459.498.307 → 1,87 / 1,63 / 401.795.884 / 46,65 %.

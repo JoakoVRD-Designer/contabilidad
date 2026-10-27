@@ -29,7 +29,7 @@ Efecto de las notas (lo que dijo el profesor; el comienzo de la frase se cortó 
 
 - **Crédito fiscal del mes** = IVA de facturas de compra **+** IVA de notas de débito recibidas **−** IVA de notas de crédito recibidas.
 - **Débito fiscal del mes** = IVA de facturas de venta emitidas **+** IVA de ventas con boleta **+** IVA de notas de débito emitidas **−** IVA de notas de crédito emitidas.
-- **Impuesto determinado** (hay que pagar): débito > crédito → `débito − crédito`. En la práctica, más ventas que compras → pago IVA.
+- **Impuesto determinado** (hay que pagar): débito > crédito → `débito − crédito`. En la práctica, más ventas que compras → pago IVA (el profesor lo repitió el 27-10: «comparo mis ventas con las compras; si las ventas son mayores, pago IVA; en caso contrario, no» ⚠️ audio con ruido al final).
 - **Remanente de crédito**: crédito > débito → `crédito − débito`. No se paga IVA y el remanente pasa al mes siguiente.
 
 Ejemplo (cifras mías ⚠️, netos): ventas con factura 10.000.000, con boleta 1.000.000, exentas 400.000, notas de débito emitidas 500.000, notas de crédito emitidas 200.000; compras con factura 6.000.000, ND recibidas 100.000, NC recibidas 300.000.
@@ -79,7 +79,7 @@ Tabla (en UTM; sirve todos los meses, solo cambia el valor de la UTM) ⚠️ com
 | 120 a 310 | 0,35 | 23,32 |
 | más de 310 | 0,40 | 38,82 |
 
-**Ejemplo de la clase (julio 2026).** La UTM no se alcanzó a leer en el dictado («la UTM vale tanto»): usé **$71.649** ⚠️ porque con ese valor el resultado calza exacto con el 115.331 que dijo el profesor y coincide con [calcular.cl](https://www.calcular.cl/valor-utm-julio-2026) (fuente de terceros; el valor oficial está en sii.cl).
+**Ejemplo de la clase (dictado: «en el mes de julio»).** La UTM no se alcanzó a leer en el dictado («la UTM vale tanto»): usé **$71.649** ⚠️ porque con ese valor el resultado calza exacto con el 115.331 que dijo el profesor. Según el SII (captura del alumno, 27-10-2026) **$71.649 es la UTM de agosto de 2026** (septiembre: $71.721); la de julio no la verifiqué, así que no sé si el profesor usó la de julio o la de agosto.
 
 | Paso | Cálculo | Resultado |
 |---|---|---:|

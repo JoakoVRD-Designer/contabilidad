@@ -3,7 +3,7 @@ Actividad del 27-10-2026: transacciones de septiembre de 2026, PPM 0,55 %.
 
 Planillas: compras con facturas y crédito fiscal, ventas con facturas / boletas / exentas y débito fiscal,
 PPM, retención de honorarios, impuesto único de dos trabajadores y asiento de pago de impuestos mensuales.
-Lecturas dudosas ⚠️: UTM de agosto ($71.649, sitio de terceros), renta afecta 2 = 1.296.321 (la foto; el dictado decía 1.296.320),
+Lecturas dudosas ⚠️: UTM de agosto ($71.649, confirmada con el SII por el alumno el 27-10), renta afecta 2 = 1.296.321 (la foto; el dictado decía 1.296.320),
 nota de débito recibida 15.236 (la diapositiva; el dictado decía 15.036) y la compra a la Cía. Chilena de Tabacos
 tomada como compra exenta (solo va al F29).
 Uso: python3 -m ejemplos.guia_compraventas   (los assert comprueban los resultados)
@@ -14,7 +14,7 @@ from contabilidad import impuestos
 from contabilidad.impuestos import redondear
 
 PPM = D("0.0055")
-UTM_AGOSTO = 71_649          # las remuneraciones se procesan el 31 de agosto ⚠️
+UTM_AGOSTO = 71_649          # SII: UTM de agosto 2026. Las remuneraciones son del 31 de agosto (septiembre: 71.721 ⚠️ confirmar cuál usa el profesor)
 
 
 def iva(neto):

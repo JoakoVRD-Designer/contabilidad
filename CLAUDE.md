@@ -18,9 +18,9 @@
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores, proyectos (anual/mensual, periodo de recuperación).
 - `data/plan_de_cuentas.csv` plan de cuentas.
-- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
+- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), guia_compraventas (27-10), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (67 pruebas).
+- `tests/test_contabilidad.py` (68 pruebas).
 
 ## Fórmulas confirmadas
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
@@ -51,10 +51,10 @@
 Variación porcentual entre dos años (año antiguo = 100 %; positiva >100, negativa <100), grupos del activo corriente, ratios de endeudamiento total y patrimonial, margen neto y ROE (utilidad neta ÷ patrimonio neto × 100). Costos y estado de resultados (camisas), Loyola y Rubilar, cuatro estados financieros, características de la información, liquidez, contabilidad financiera vs administrativa, balance tributario (8 columnas) vs financiero.
 Costos: guía N° 01 del 14-08-2026 (30/30 selección múltiple, 23/24 pareados, ejercicios 1 a 3 con `ejemplos/guia_costos.py`): `docs/tareas/guia-01-costos.md`; margen de contribución = ventas − costos variables (revisar el 440.000 de la hoja del ejercicio 2). Prueba de costos corregida (SM 20/20, pareados 1/8, desarrollo 1 0/19, desarrollo 2 03/12): `docs/tareas/prueba-costos-desarrollo.md` con la solución (CIF = variables + fijos; conversión = MOD + CIF; costo de ventas = unidades vendidas × costo unitario). Hojas en blanco guardadas: liquidación de sueldos, planillas AFP (Provida y Uno), monedas extranjeras y ventas de divisas (faltan los datos).
 Cierre del semestre (4 notas: token, informe del proyecto grupal = estudio de prefactibilidad con valores ANUALES, nota acumulativa, currículum individual; informe y CV por correo): ver `docs/tareas/prefactibilidad-y-curriculum.md`; falta pauta del informe y fecha exacta.
-Obligaciones mensuales (26-10-2026): IVA con notas de débito/crédito, retención de honorarios 15,25 %, impuesto único, PPM 0,125 %: `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
+Obligaciones mensuales (26-10-2026; actividad resuelta el 27-10, PPM 0,55 % en esa guía): IVA con notas de débito/crédito, retención de honorarios 15,25 %, impuesto único, PPM 0,125 %: `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
 Próxima nota: trabajo en grupo en Excel con libro diario, mayor y balance.
 Tarea de ratios con AFP Capital: RESUELTA con el estado financiero real, ver `docs/tareas/ratios-afp-capital.md` (razón corriente 0,92; ROE 25,27 %; confirmar con el profesor qué partida toma como ventas).
 
 ## Pendientes
 Actividades 6 y 7 del taller (enunciados guardados) · datos para la plantilla de liquidación de sueldos · 4 páginas de la rúbrica del pitch (faltan criterios hasta 52 puntos) · confirmar versión de la planilla de camisas (`docs/tareas/camisas-planilla-manuscrita.md`) · dudas de lectura ⚠️ en `comercio-exterior.md` y `apuntes-depreciacion-reajuste.md`.
-Actividad de impuestos mensuales: el 27-10-2026 (falta el enunciado) · Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota. · asiento de pago de impuestos de la clase del 26-10 (el dictado se cortó en «débito fiscal»); tabla del impuesto único a verificar en sii.cl ⚠️.
+Guía de compraventas del 27-10: resuelta (`docs/tareas/guia-registro-compraventas-impuestos-mensuales.md`); falta el F29 en blanco y confirmar UTM (agosto $71.649) con el profesor · Cifras CMPC/Copec ⚠️ · plantilla Excel para la última nota. · tabla del impuesto único a verificar en sii.cl ⚠️.

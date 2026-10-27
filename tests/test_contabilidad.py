@@ -420,6 +420,11 @@ class TestObligacionesMensuales(unittest.TestCase):
         self.assertEqual(impuestos.ppm(base), 14_625)
         self.assertEqual(impuestos.ppm(2_000_000), 2_500)
 
+    def test_guia_compraventas(self):
+        from ejemplos import guia_compraventas as g
+        self.assertEqual((g.credito, g.debito, g.iva_pagar), (377_256, 860_822, 483_566))
+        self.assertEqual((g.base_ppm, g.ppm, g.retencion, g.unico, g.banco), (4_950_139, 27_226, 48_800, 81_735, 641_327))
+
     def test_tabla_impuesto_unico_es_continua(self):
         t = impuestos.TABLA_IMPUESTO_UNICO
         for (lim, f1, r1), (_, f2, r2) in zip(t, t[1:]):

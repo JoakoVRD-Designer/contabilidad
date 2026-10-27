@@ -59,6 +59,7 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Evaluación Unidad 1 (nota 3,0) y libros de compras y ventas completados](tareas/evaluacion-unidad-1-libros-compras-ventas.md)
 - [Guía Costos y decisiones de emprendimiento (enunciados, sin resolver)](tareas/guia-costos-y-decisiones-emprendimiento.md)
 - [Obligaciones tributarias mensuales: IVA con notas, honorarios, impuesto único (tabla y ejemplo) y PPM](contabilidad/obligaciones-tributarias-mensuales.md)
+- [Guía Registro de compraventas (Juan Castillo, 27-10-2026): compras, ventas, PPM 0,55 %, honorarios, impuesto único y asiento, resuelta](tareas/guia-registro-compraventas-impuestos-mensuales.md)
 - [Guía industrial resuelta: detalle del gasto, hoja de costos y estado de resultados](tareas/guia-industrial-completa.md)
 - [Planillas de cotizaciones de AFP en blanco (Provida y Uno)](previred/planillas-afp-en-blanco.md)
 - [Planillas de monedas extranjeras en blanco](tareas/planilla-monedas-extranjeras.md)

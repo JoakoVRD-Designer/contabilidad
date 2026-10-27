@@ -119,13 +119,17 @@ Los **cuatro procedimientos** para informar a quien corresponda cuánto impuesto
 | PPM | base 10.000.000 + 1.000.000 + 400.000 + 500.000 − 200.000 = 11.700.000 × 0,125 % | 14.625 |
 | **Total a reservar** | | **1.235.956** |
 
-## Pendiente: contabilización del pago de los impuestos
+## Contabilización del pago de impuestos mensuales (planilla del 27-10-2026)
 
-El profesor dijo que el cálculo sirve para **contabilizar el pago de los impuestos con una estructura** y empezó «Entonces, débito fiscal…», pero el dictado termina ahí. Mi propuesta, que viene del repo (`ejemplos/situaciones.py`, situación 13) y **no del profesor** ⚠️:
+La planilla del profesor (guía de compraventas) trae las líneas **Débito fiscal, Impuesto único, Impuesto retenido, PPM, Banco** y la glosa **«Por pago impuestos»**; dijo que si se paga IVA va ahí «el valor del IVA que hay que pagar» (débito − crédito) y que falta poner la fecha y los valores.
 
-| Asiento | Debe | Haber |
+| Cuenta | Debe | Haber |
 |---|---|---|
-| Determinación del IVA | IVA débito fiscal | IVA crédito fiscal · IVA por pagar (F29) |
-| Pago del F29 | IVA por pagar · PPM por recuperar · Retenciones por pagar | Banco |
+| Débito fiscal (con el IVA a pagar) | IVA a pagar | |
+| Impuesto único | impuesto único del mes | |
+| Impuesto retenido | retención de honorarios | |
+| PPM | PPM del mes | |
+| Banco | | suma de los cuatro |
+| Glosa | Por pago impuestos | |
 
-Manda el resto del dictado o la foto de la estructura y la dejo tal cual la mostró el profesor.
+Resuelto con cifras en [la guía de compraventas](../tareas/guia-registro-compraventas-impuestos-mensuales.md) (IVA a pagar 483.566 + único 81.735 + retenido 48.800 + PPM 27.226 = banco 641.327). ⚠️ Confirmar con el profesor que «Débito fiscal» lleva el IVA a pagar y no el débito completo (la planilla no trae línea de crédito fiscal).

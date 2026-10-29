@@ -217,12 +217,12 @@ class TestQuizLiquidez(unittest.TestCase):
         self.assertEqual(quiz_liquidez.generar(5), quiz_liquidez.generar(5))
 
     def test_segundo_ejemplo_de_la_clase_y_porcentajes(self):
-        ac, inv, pc = 861_294_191, 93_370_770, 508_778_498
+        ac, inv, pc = 861_411_112, 93_170_776, 508_778_060
         self.assertEqual(str(indicadores.razon_corriente(ac, pc)), "1.69")
         self.assertEqual(str(indicadores.prueba_acida(ac, inv, pc)), "1.51")
-        self.assertEqual(indicadores.capital_de_trabajo(ac, pc), 352_515_693)
-        self.assertEqual(str(indicadores.porcentaje(352_515_693, ac)), "40.93")
-        self.assertEqual(str(indicadores.porcentaje(pc, ac)), "59.07")
+        self.assertEqual(indicadores.capital_de_trabajo(ac, pc), 352_633_052)
+        self.assertEqual(str(indicadores.porcentaje(352_633_052, ac)), "40.94")
+        self.assertEqual(str(indicadores.porcentaje(pc, ac)), "59.06")
         self.assertEqual(str(indicadores.porcentaje(401_795_884, 861_294_191)), "46.65")
 
     def test_ejemplo_de_la_clase(self):

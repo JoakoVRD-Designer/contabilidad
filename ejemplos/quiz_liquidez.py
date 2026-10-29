@@ -59,7 +59,7 @@ if __name__ == "__main__":
         print()
         print(solucion(ac, inv, pc))
     elif arg == "clase2":
-        ac, inv, pc = 861_294_191, 93_370_770, 508_778_498   # segundo balance de la clase (otro año)
+        ac, inv, pc = 861_411_112, 93_170_776, 508_778_060   # caso 2 de la clase (datos de la hoja del alumno, confirmados)
         d = I.diagnostico(ac, inv, pc)
         print(f"SEGUNDO EJEMPLO DE LA CLASE (otro año)\n  Activo corriente: ${m(ac)}\n  Inventarios: ${m(inv)}\n  Pasivo corriente: ${m(pc)}\n")
         print(solucion(ac, inv, pc))

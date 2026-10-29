@@ -36,6 +36,7 @@
 ## Datos de clase (confirmados por el usuario)
 - Balance 1: AC 861.294.191 · inv 113.382.245 · PC 459.498.307 → 1,87 / 1,63 / 401.795.884 / 46,65 %.
 - Balance 2 (otro año): AC 861.294.191 (se repite, confirmado) · inv 93.370.770 · PC 508.778.498 → 1,69 / 1,51 / 352.515.693 / 40,93 %.
+- ⚠️ Cuaderno ordenado del alumno (29-10): su caso 2 usa AC 861.411.112 · inv 93.170.776 · PC 508.778.060 → 1,69 / 1,51 / 352.633.052 / 40,94 %; falta confirmar cuál juego de datos dictó el profesor (ver `docs/tareas/liquidez.md`).
 - Loyola y Rubilar: ventas brutas = con IVA; utilidad neta 12.900.106.
 - Pendiente: consigna real de la tarea de liquidez (la armé por suposición).
 

@@ -57,6 +57,7 @@ Ejemplo (Muebles Sur): 4.234.000 − 1.121.000 = 3.113.000 − 213.000 = 2.900.0
 | Margen de contribución unitario | precio − costo variable unitario |
 | Margen de contribución total | ventas − costos variables (**no** ventas − costo total) |
 | Utilidad | margen de contribución − costos fijos |
+| Pedido especial (decisión) | margen unitario × unidades − costos extra (arriendo o compra a tercero); comparar con rechazar | EcoOrganiza: 250 × (10.000 − 7.000) − 350.000 = 400.000 |
 | Punto de equilibrio (unidades) | costos fijos ÷ margen de contribución unitario; redondear **hacia arriba** ⚠️ |
 | Punto de indiferencia entre A y B | fijos A + var. A × q = fijos B + var. B × q → q = (fijos A − fijos B) ÷ (var. B − var. A) |
 | Costo de oportunidad | valor de la mejor alternativa que se deja de elegir |

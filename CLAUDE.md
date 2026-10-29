@@ -20,7 +20,7 @@
 - `data/plan_de_cuentas.csv` plan de cuentas.
 - `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), guia_compraventas (27-10) y fotos_guia_compraventas (escribe las respuestas sobre las fotos de las hojas), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (68 pruebas).
+- `tests/test_contabilidad.py` (69 pruebas).
 
 ## Fórmulas confirmadas
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
@@ -52,6 +52,7 @@ Variación porcentual entre dos años (año antiguo = 100 %; positiva >100, nega
 Costos: guía N° 01 del 14-08-2026 (30/30 selección múltiple, 23/24 pareados, ejercicios 1 a 3 con `ejemplos/guia_costos.py`): `docs/tareas/guia-01-costos.md`; margen de contribución = ventas − costos variables (revisar el 440.000 de la hoja del ejercicio 2). Prueba de costos corregida (SM 20/20, pareados 1/8, desarrollo 1 0/19, desarrollo 2 03/12): `docs/tareas/prueba-costos-desarrollo.md` con la solución (CIF = variables + fijos; conversión = MOD + CIF; costo de ventas = unidades vendidas × costo unitario). Hojas en blanco guardadas: liquidación de sueldos, planillas AFP (Provida y Uno), monedas extranjeras y ventas de divisas (faltan los datos).
 Cierre del semestre (4 notas: token, informe del proyecto grupal = estudio de prefactibilidad con valores ANUALES, nota acumulativa, currículum individual; informe y CV por correo): ver `docs/tareas/prefactibilidad-y-curriculum.md`; falta pauta del informe y fecha exacta.
 Obligaciones mensuales (26-10-2026; actividad resuelta el 27-10, PPM 0,55 % en esa guía): IVA con notas de débito/crédito, retención de honorarios 15,25 %, impuesto único, PPM 0,125 %: `docs/contabilidad/obligaciones-tributarias-mensuales.md`.
+EcoOrganiza (TREE, Rafael Castro, 29-10, parejas, 100 pts): informe resuelto en `docs/tareas/ecoorganiza-pedido-especial.md` (A 1.200.000 / B 1.600.000 / C 1.850.000; recomendación C con muestra previa); falta el nombre de la pareja en el Word.
 Próxima nota: trabajo en grupo en Excel con libro diario, mayor y balance.
 Tarea de ratios con AFP Capital: RESUELTA con el estado financiero real, ver `docs/tareas/ratios-afp-capital.md` (razón corriente 0,92; ROE 25,27 %; confirmar con el profesor qué partida toma como ventas).
 

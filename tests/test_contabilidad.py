@@ -216,6 +216,10 @@ class TestQuizLiquidez(unittest.TestCase):
     def test_mismo_numero_mismo_ejercicio(self):
         self.assertEqual(quiz_liquidez.generar(5), quiz_liquidez.generar(5))
 
+    def test_ecoorganiza_alternativas(self):
+        from ejemplos import ecoorganiza as e
+        self.assertEqual((e.A["resultado"], e.B["resultado"], e.C["resultado"]), (1_200_000, 1_600_000, 1_850_000))
+
     def test_segundo_ejemplo_de_la_clase_y_porcentajes(self):
         ac, inv, pc = 861_411_112, 93_170_776, 508_778_060
         self.assertEqual(str(indicadores.razon_corriente(ac, pc)), "1.69")

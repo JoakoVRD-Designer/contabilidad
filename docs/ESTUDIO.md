@@ -63,3 +63,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Guía industrial resuelta: detalle del gasto, hoja de costos y estado de resultados](tareas/guia-industrial-completa.md)
 - [Planillas de cotizaciones de AFP en blanco (Provida y Uno)](previred/planillas-afp-en-blanco.md)
 - [Planillas de monedas extranjeras en blanco](tareas/planilla-monedas-extranjeras.md)
+- [EcoOrganiza (TREE, Rafael Castro): presupuesto y decisión de un pedido especial, resuelta](tareas/ecoorganiza-pedido-especial.md)

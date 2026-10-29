@@ -76,6 +76,8 @@ Fotos: [apuntes de clase](imagenes/liquidez-cuaderno-apuntes-clase.jpg) · [cuad
 - **Foto 1:** el caso 2 solo trae los datos, sin resultados. El último dígito del pasivo corriente se lee 3 (508.778.493), pero es el mismo trazo que el 8 de «508»: asumí 498, que ya estaba confirmado (con 493 el capital de trabajo sería 352.515.698 y lo demás no cambia).
 - **Foto 2:** el caso 2 está calculado con sus propios datos y las cuentas están bien; la última línea (el porcentaje) quedó sin terminar («… 100 %»).
 
+PDF para imprimir: `docs/tareas/liquidez-formulas-casos-1-y-2.pdf` (`/usr/bin/python3 -m ejemplos.pdf_liquidez`).
+
 ## Cómo comprobar con el programa
 
 ```bash

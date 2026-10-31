@@ -63,7 +63,7 @@ filas = [["", "Activo corriente", "Inventarios", "Pasivo corriente", "Razón", "
 for n, (a, i, p) in (("Caso 1", C1), ("Caso 2", C2)):
     filas.append([n, m(a), m(i), m(p), c(I.razon_corriente(a, p)), c(I.prueba_acida(a, i, p)), m(I.capital_de_trabajo(a, p)),
                   c(I.porcentaje(I.capital_de_trabajo(a, p), a)) + " %"])
-h += [tabla(filas, [1.4, 2.5, 2.2, 2.5, 1.6, 1.3, 2.6, 1.9]), Spacer(1, 3),
+h += [tabla(filas, [1.7, 2.4, 2.2, 2.4, 1.6, 1.3, 2.5, 1.8]), Spacer(1, 3),
       Paragraph("Caso 1: (861.294.191 − 113.382.245) ÷ 459.498.307 = 747.911.946 ÷ 459.498.307 = 1,63. "
                 "Caso 2: (861.411.112 − 93.170.776) ÷ 508.778.060 = 768.240.336 ÷ 508.778.060 = 1,51.", S),
       Paragraph("2. Variación porcentual (análisis horizontal)", H),

@@ -18,7 +18,7 @@
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores, proyectos (anual/mensual, periodo de recuperación).
 - `data/plan_de_cuentas.csv` plan de cuentas.
-- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), guia_compraventas (27-10) y fotos_guia_compraventas (escribe las respuestas sobre las fotos de las hojas), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
+- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), guia_compraventas (27-10) y fotos_guia_compraventas (escribe las respuestas sobre las fotos de las hojas), fotos_liquidez_cuaderno (completa la foto del cuaderno de liquidez), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
 - `tests/test_contabilidad.py` (69 pruebas).
 

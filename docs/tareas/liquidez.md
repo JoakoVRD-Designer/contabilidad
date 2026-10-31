@@ -54,6 +54,7 @@ Esto significa que podría pagar sus deudas de corto plazo **sin necesidad de ve
 ## Tus apuntes del cuaderno (fotos del 29-10-2026) ⚠️
 
 Fotos: [apuntes de clase](imagenes/liquidez-cuaderno-apuntes-clase.jpg) · [cuaderno ordenado](imagenes/liquidez-cuaderno-ordenado.jpg).
+Foto del cuaderno ordenado con lo que faltaba (porcentajes del caso 2 y valores de control del caso 1, bajo la foto porque en la hoja no queda espacio): [respondidas/liquidez-cuaderno-ordenado-completado.jpg](imagenes/respondidas/liquidez-cuaderno-ordenado-completado.jpg) (`/usr/bin/python3 -m ejemplos.fotos_liquidez_cuaderno`).
 
 **Caso 1:** las dos fotos coinciden con los cálculos de arriba (1,87 · 1,63 · $401.795.884 · 46,65 %). Para revisar en el cuaderno ordenado:
 (a) el resultado de la resta de la prueba ácida quedó tachado: 861.294.191 − 113.382.245 = **747.911.946**;

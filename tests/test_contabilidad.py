@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, saldo_decreciente, suma_digitos_decreciente, unidades_produccion
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import caso_panaderia, quiz_ratios, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones
+from ejemplos import caso_panaderia, quiz_ratios, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones, prueba_razones
 from contabilidad.remuneraciones import costo_empleador, hora_extra, liquidacion, valor_hora_ordinaria
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 from contabilidad import indicadores, proyectos
@@ -204,6 +204,38 @@ class TestIndicadoresLiquidez(unittest.TestCase):
         d, _, _ = situaciones.s02()                      # compra de mercaderías a crédito y pago al proveedor
         ac, inv, pc = indicadores.corrientes_desde_diario(d)
         self.assertEqual((ac, inv, pc), (3_200_000 + 608_000 - 3_808_000, 3_200_000, 0))
+
+
+class TestPruebaRazones(unittest.TestCase):
+    def test_mismo_numero_misma_prueba(self):
+        self.assertEqual(prueba_razones.generar(7), prueba_razones.generar(7))
+        self.assertNotEqual(prueba_razones.generar(7), prueba_razones.generar(8))
+
+    def test_datos_validos_en_30_pruebas(self):
+        for n in range(1, 31):
+            p = prueba_razones.generar(n)
+            for e in p["estado"].values():
+                self.assertEqual(e["pc"] + e["pnc"] + e["pat"], e["at"])                      # el balance cuadra
+                self.assertTrue(0 < e["ac"] < e["at"] and 0 < e["un"] < e["ventas"])
+            for ac, inv, pc in p["liquidez"]:
+                self.assertTrue(0 < inv < ac and pc > 0)
+            self.assertEqual(len(p["seleccion"]), 12)
+            for _, opciones, letra in p["seleccion"]:
+                self.assertEqual(len(set(opciones)), 4)
+                self.assertIn(letra, "abcd")
+            self.assertEqual(sorted(p["pareados"][2].values()), list("ABCDEFGH"))
+            self.assertIn("Total activos corrientes", prueba_razones.pauta(p))                 # la pauta se genera sin errores
+
+    def test_pauta_usa_los_indicadores(self):
+        p = prueba_razones.generar(1)
+        texto = prueba_razones.pauta(p)
+        ac, inv, pc = p["liquidez"][0]
+        self.assertIn(prueba_razones.num(indicadores.razon_corriente(ac, pc)), texto)
+        e = p["estado"][2025]
+        self.assertIn(prueba_razones.num(indicadores.roe(e["un"], e["pat"])) + " %", texto)
+
+    def test_puntaje_total_100(self):
+        self.assertEqual(sum(prueba_razones.PUNTAJE.values()), 100)
 
 
 class TestQuizLiquidez(unittest.TestCase):

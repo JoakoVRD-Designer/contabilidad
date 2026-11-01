@@ -1,8 +1,8 @@
-"""Genera docs/tareas/liquidez-formulas-casos-1-y-2.pdf: una hoja con las 6 fórmulas de cada caso de liquidez, escritas como en el cuaderno
-del alumno (fotos del 29-10): 3 fórmulas (razón corriente, prueba ácida, capital de trabajo), cada una con su fórmula en palabras y su
-cálculo con números = 6 líneas por caso. Al final, como extra, los porcentajes sobre el activo corriente.
-Uso: /usr/bin/python3 -m ejemplos.pdf_liquidez   (necesita reportlab)
-⚠️ Falta confirmar con el profesor si las "6 fórmulas" son estas 6 líneas o incluyen los porcentajes (el % de inventarios sale del ejercicio de la clase)."""
+"""Genera docs/tareas/liquidez-formulas-casos-1-y-2.pdf: una hoja con las fórmulas de los dos casos de liquidez, escritas como en el cuaderno
+del alumno (fotos del 29-10): razón corriente, prueba ácida y capital de trabajo, cada una con su fórmula en palabras y su cálculo con números.
+Al final, como extra, los porcentajes sobre el activo corriente (el % de inventarios sale del ejercicio de la clase: ⚠️ sin confirmar).
+Las «6 fórmulas» que pidió el alumno son otras: las 6 razones financieras (ver ejemplos/pdf_razones_financieras.py).
+Uso: /usr/bin/python3 -m ejemplos.pdf_liquidez   (necesita reportlab)"""
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
@@ -82,15 +82,14 @@ def bloque(nombre, ac, inv, pc):
                   f"pasivo corriente {m(pc)} ÷ {m(ac)} × 100 = <b>{c(pct_pc)} %</b> · inventarios {m(inv)} ÷ {m(ac)} × 100 = <b>{c(pct_inv)} %</b> ⚠️", S)])
 
 
-h = [Paragraph("Liquidez: las 6 fórmulas de cada caso", T),
+h = [Paragraph("Liquidez: fórmulas del caso 1 y del caso 2", T),
      Paragraph("Joaquín Verdejo · 4.° C · Instituto Superior de Comercio · datos de la clase (hoja del alumno). "
-               "Son las 3 fórmulas de tu cuaderno, cada una con su fórmula en palabras y su cálculo: 6 líneas por caso.", S)]
+               "Las 3 fórmulas de tu cuaderno (razón corriente, prueba ácida y capital de trabajo), cada una con su fórmula en palabras y su cálculo.", S)]
 h += [bloque(*caso) for caso in CASOS]
 h += [Paragraph("Cómo leerlas", H),
       Paragraph("• <b>Razón corriente:</b> pesos de activo corriente por cada $1 de deuda a corto plazo. Ideal: 1,5 a 2,0.", P),
       Paragraph("• <b>Prueba ácida:</b> lo mismo sin contar el inventario. Ideal: cerca de 1 (sobre 1,0 paga sus deudas sin vender mercadería).", P),
       Paragraph("• <b>Capital de trabajo:</b> margen en pesos para operar. Ideal: positivo y estable.", P),
-      Spacer(1, 6),
-      Paragraph("⚠️ Falta confirmar con el profesor si las «6 fórmulas» son estas 6 líneas o incluyen los porcentajes.", S)]
+]
 SimpleDocTemplate(SALIDA, pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.6 * cm, bottomMargin=1.3 * cm).build(h)
 print("PDF listo:", SALIDA)

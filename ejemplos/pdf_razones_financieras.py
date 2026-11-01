@@ -1,7 +1,7 @@
 """Genera docs/tareas/razones-financieras-6-formulas.pdf: las 6 razones financieras que han visto en clase (2 de liquidez,
 2 de endeudamiento y 2 de rentabilidad) con su fórmula, cómo se leen y un ejemplo de clase de cada una; aparte, lo demás que también vieron.
 Uso: /usr/bin/python3 -m ejemplos.pdf_razones_financieras   (necesita reportlab)
-⚠️ Falta confirmar con el profesor que estas sean las «6 fórmulas» (el alumno dice que van en un solo caso y que han visto más que los 2 casos de liquidez)."""
+Confirmado por el alumno (01-11-2026): estas son las 6 fórmulas (van en un solo caso; capital de trabajo, porcentaje y variación quedan como «también vimos»)."""
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
@@ -94,7 +94,7 @@ h = [Paragraph("Las 6 razones financieras: fórmulas para estudiar", T),
             ["Patrimonio neto", "«Total patrimonio neto»", "4 y 6"],
             ["Utilidad neta", "«Ganancia (pérdida)» del período", "5 y 6"],
             ["Ventas totales", "«Ingresos de actividades ordinarias»", "5"]], [3.4, 10.4, 3.2], pad=2),
-     Paragraph("También vimos (⚠️ por confirmar si cuentan entre las 6)", H),
+     Paragraph("También vimos (no son de las 6)", H),
      tabla([["Qué", "Fórmula", "Ejemplo de clase"],
             ["Capital de trabajo", "activo corriente − pasivo corriente (ideal: positivo)", f"Caso 1: {m(AC)} − {m(PC)} = <b>{m(AC - PC)}</b>"],
             ["Porcentaje", "parte ÷ total × 100", f"Caso 1: {m(AC - PC)} ÷ {m(AC)} × 100 = <b>46,65 %</b> del activo corriente"],
@@ -103,7 +103,6 @@ h = [Paragraph("Las 6 razones financieras: fórmulas para estudiar", T),
      KeepTogether([Paragraph("Errores típicos", H), Paragraph("• Usar el <b>activo total</b> en vez del activo corriente en la razón corriente. • En la prueba ácida se resta <b>solo</b> el inventario. "
                "• Los ratios con «× 100» se expresan en %; la razón corriente, la prueba ácida y el endeudamiento patrimonial son números (1,87; 1,63; 0,49). "
                "• Todos los datos en la <b>misma unidad</b> (pesos o miles de pesos). • Redondea al final, no en los pasos.", P)]),
-     Spacer(1, 4),
-     Paragraph("⚠️ Falta confirmar con el profesor que estas sean las «6 fórmulas» y si capital de trabajo o variación porcentual van entre ellas.", S)]
+]
 SimpleDocTemplate(SALIDA, pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.2 * cm, bottomMargin=1.0 * cm).build(h)
 print("PDF listo:", SALIDA)

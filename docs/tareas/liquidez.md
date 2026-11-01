@@ -14,7 +14,7 @@
 | % pasivo corriente | Pasivo corriente ÷ Activo corriente × 100 | % CT + % PC = 100 % |
 | % inventarios ⚠️ | Inventarios ÷ Activo corriente × 100 | por confirmar con el profesor |
 
-> El alumno dice que son **6 fórmulas que van en un solo caso** y aclaró que han visto más cosas que estos 2 casos de liquidez. En sus fotos de liquidez cada caso trae solo 3 fórmulas (razón corriente, prueba ácida y capital de trabajo), cada una con su fórmula en palabras y su cálculo (hoja `liquidez-formulas-casos-1-y-2.pdf`). ⚠️ Hipótesis para las 6: las 6 razones financieras (razón corriente, prueba ácida, endeudamiento total, endeudamiento patrimonial, margen neto y ROE), en `razones-financieras-6-formulas.pdf`; falta confirmarlo con el profesor.
+> Aclarado por el alumno el 01-11-2026: las **«6 fórmulas»** que van en un solo caso son las 6 razones financieras (razón corriente, prueba ácida, endeudamiento total, endeudamiento patrimonial, margen neto y ROE), en `razones-financieras-6-formulas.pdf`. Estos 2 casos de liquidez usan solo 3 (razón corriente, prueba ácida y capital de trabajo), cada una con su fórmula en palabras y su cálculo (hoja `liquidez-formulas-casos-1-y-2.pdf`).
 
 ## Datos
 

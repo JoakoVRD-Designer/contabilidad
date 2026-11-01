@@ -4,7 +4,9 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 from contabilidad import indicadores as I
 
@@ -29,16 +31,20 @@ assert I.variacion(800_000, 1_000_000) == (125, 25, 200_000) and I.variacion(1_0
 assert (c(I.endeudamiento_total(600_000, 1_000_000)), c(I.endeudamiento_patrimonial(600_000, 400_000))) == ("60,00", "1,50")
 assert (c(I.margen_neto(150_000, 1_000_000)), c(I.roe(150_000, 400_000))) == ("15,00", "37,50")
 
+pdfmetrics.registerFont(TTFont("DejaVu", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"))
+pdfmetrics.registerFont(TTFont("DejaVu-Bold", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"))
+pdfmetrics.registerFontFamily("DejaVu", normal="DejaVu", bold="DejaVu-Bold", italic="DejaVu", boldItalic="DejaVu-Bold")
 est = getSampleStyleSheet()
-H = ParagraphStyle("h", parent=est["Heading2"], textColor=colors.HexColor("#14456b"), spaceBefore=8, spaceAfter=3, fontSize=12.5)
-T = ParagraphStyle("t", parent=est["Title"], textColor=colors.HexColor("#14456b"), fontSize=17)
-P = ParagraphStyle("p", parent=est["BodyText"], fontSize=9.5, leading=12.5)
-S = ParagraphStyle("s", parent=P, fontSize=8.5, textColor=colors.HexColor("#444444"))
-CELDA = ParagraphStyle("c", parent=P, fontSize=9, leading=11)
+H = ParagraphStyle("h", parent=est["Heading2"], textColor=colors.HexColor("#14456b"), spaceBefore=8, spaceAfter=3, fontSize=12, fontName="DejaVu-Bold")
+T = ParagraphStyle("t", parent=est["Title"], textColor=colors.HexColor("#14456b"), fontSize=16, fontName="DejaVu-Bold")
+P = ParagraphStyle("p", parent=est["BodyText"], fontSize=9, leading=12.5, fontName="DejaVu")
+S = ParagraphStyle("s", parent=P, fontSize=8, textColor=colors.HexColor("#444444"))
+CELDA = ParagraphStyle("c", parent=P, fontSize=8.3, leading=10.8)
+CELDA_CHICA = ParagraphStyle("cc", parent=P, fontSize=7.8, leading=10)
 
 
-def tabla(filas, anchos):
-    datos = [[Paragraph(f"<b>{x}</b>" if i == 0 else x, CELDA) for x in fila] for i, fila in enumerate(filas)]
+def tabla(filas, anchos, estilo_celda=CELDA):
+    datos = [[Paragraph(f"<b>{x}</b>" if i == 0 else x, estilo_celda) for x in fila] for i, fila in enumerate(filas)]
     t = Table(datos, colWidths=[a * cm for a in anchos], repeatRows=1)
     t.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), .5, colors.grey), ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#dbe7f1")),
                            ("VALIGN", (0, 0), (-1, -1), "TOP"), ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 3)]))
@@ -63,7 +69,7 @@ filas = [["", "Activo corriente", "Inventarios", "Pasivo corriente", "Razón", "
 for n, (a, i, p) in (("Caso 1", C1), ("Caso 2", C2)):
     filas.append([n, m(a), m(i), m(p), c(I.razon_corriente(a, p)), c(I.prueba_acida(a, i, p)), m(I.capital_de_trabajo(a, p)),
                   c(I.porcentaje(I.capital_de_trabajo(a, p), a)) + " %"])
-h += [tabla(filas, [1.7, 2.4, 2.2, 2.4, 1.6, 1.3, 2.5, 1.8]), Spacer(1, 3),
+h += [tabla(filas, [1.5, 2.6, 2.5, 2.6, 1.5, 1.5, 2.6, 1.7], estilo_celda=CELDA_CHICA), Spacer(1, 3),
       Paragraph("Caso 1: (861.294.191 − 113.382.245) ÷ 459.498.307 = 747.911.946 ÷ 459.498.307 = 1,63. "
                 "Caso 2: (861.411.112 − 93.170.776) ÷ 508.778.060 = 768.240.336 ÷ 508.778.060 = 1,51.", S),
       Paragraph("2. Variación porcentual (análisis horizontal)", H),
@@ -72,6 +78,7 @@ h += [tabla(filas, [1.7, 2.4, 2.2, 2.4, 1.6, 1.3, 2.5, 1.8]), Spacer(1, 3),
              ["Variación %", "% del año nuevo − 100", "125 − 100 = +25 % (más de 100 % = positiva)"],
              ["Variación en pesos", "valor nuevo − valor antiguo", "1.000.000 − 800.000 = +200.000"],
              ["Variación negativa", "menos de 100 % = negativa", "800.000 ÷ 1.000.000 × 100 = 80 % → −20 %"]], [3.4, 7.0, 6.6]),
+      PageBreak(),
       Paragraph("3. Endeudamiento y rentabilidad", H),
       tabla([["Indicador", "Fórmula", "Ejemplo (práctica)", "Cómo leerlo"],
              ["Endeudamiento total", "pasivo total ÷ activo total × 100", "600.000 ÷ 1.000.000 × 100 = 60 %", "Qué parte de los activos financia deuda de terceros; el resto son recursos propios."],

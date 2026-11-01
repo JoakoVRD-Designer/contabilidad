@@ -14,7 +14,7 @@ Estado consolidado de situación financiera, cifras en **M$ (miles de pesos)**. 
 | Activos no corrientes disponibles para la venta | 17 | 403.217 | — |
 
 Control: la suma de las seis partidas da 266.687.842 (2025) y 282.498.164 (2024) ✓.
-⚠️ Las cifras de 2025 las leí de una foto borrosa: confirma que el total 2025 sea 266.687.842. La línea "disponibles para la venta" (403.217) aparece **debajo** del total; si el profesor la suma al activo corriente, el total 2025 sería 267.091.059 (variación −5,45 % en vez de −5,60 %).
+Confirmado con el cuaderno del alumno (21-10, marcado 6/6; foto: [variacion-abc-cuaderno-21-10.jpg](../tareas/imagenes/variacion-abc-cuaderno-21-10.jpg)): sus 7 porcentajes coinciden con la tabla y el total 2025 es 266.687.842 (94,40 % y −5,60 %), sin sumar la línea «disponibles para la venta» (403.217, que aparece **debajo** del total). ⚠️ Las cifras de cada partida las leí de una foto borrosa, pero los porcentajes del cuaderno las respaldan.
 
 ## Variación porcentual (2024 = 100 %): % = valor 2025 × 100 ÷ valor 2024
 

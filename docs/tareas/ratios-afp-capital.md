@@ -83,3 +83,13 @@ Código: `python3 ejemplos/quiz_ratios.py AC PC ACTIVO_TOTAL PASIVO_TOTAL PATRIM
 - Ventas: 215.168.560 × 100 ÷ 205.892.506 = 104,51 % → +4,51 %
 
 **Control:** activo total = pasivo total + patrimonio → 246.818.325 + 502.438.517 = 749.256.842 ✓
+
+## Tu cuaderno (14-10) revisado el 01-11-2026
+
+Fotos: [datos, razón corriente, capital de trabajo y endeudamiento total](imagenes/ratios-afp-cuaderno-1-datos-razon-capital-endeudamiento-total.jpg) · [endeudamiento patrimonial, margen neto y ROE](imagenes/ratios-afp-cuaderno-2-endeudamiento-patrimonial-margen-roe.jpg).
+
+Las **6 fórmulas** del caso (confirmadas por el alumno): razón corriente, capital de trabajo, endeudamiento total, endeudamiento patrimonial, margen neto y ROE; el pasivo total (pasivo corriente + pasivo no corriente) es un paso previo. Hoja para imprimir: [`razones-financieras-6-formulas.pdf`](razones-financieras-6-formulas.pdf).
+
+Revisión: los 12 resultados del cuaderno (6 fórmulas × 2025 y 2024) coinciden con los de este documento y los datos coinciden con el estado financiero original (`docs/normativa/fuentes/afp-capital-estados-financieros-2025.docx`). Detalles de lectura ⚠️:
+- En el título de «Endeudamiento total» se lee «÷ patrimonio neto»; la fórmula es ÷ **activo total** (los números del cuaderno sí usan el activo total).
+- Las ventas 2025 de la tabla se leen 215.168.539; el estado dice 215.168.560 (en el margen neto usó el correcto, así que el resultado no cambia).

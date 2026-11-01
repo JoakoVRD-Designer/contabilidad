@@ -21,16 +21,18 @@ def c(x):
     return str(x).replace(".", ",")
 
 
-# Ejemplos de clase (liquidez) y de práctica con números redondos (el resto)
+# Ejemplos de clase: liquidez (casos 1 y 2), variación (ABC S.A., 21-10) y endeudamiento/rentabilidad (AFP Capital 2025, en miles de pesos)
 C1, C2 = (861_294_191, 113_382_245, 459_498_307), (861_411_112, 93_170_776, 508_778_060)
 assert [c(I.razon_corriente(a, p)) for a, _, p in (C1, C2)] == ["1,87", "1,69"]
 assert [c(I.prueba_acida(a, i, p)) for a, i, p in (C1, C2)] == ["1,63", "1,51"]
 assert [I.capital_de_trabajo(a, p) for a, _, p in (C1, C2)] == [401_795_884, 352_633_052]
 assert [c(I.porcentaje(I.capital_de_trabajo(a, p), a)) for a, _, p in (C1, C2)] == ["46,65", "40,94"]
 assert [c(I.porcentaje(i, a)) for a, i, _ in (C1, C2)] == ["13,16", "10,82"]
-assert I.variacion(800_000, 1_000_000) == (125, 25, 200_000) and I.variacion(1_000_000, 800_000) == (80, -20, -200_000)
-assert (c(I.endeudamiento_total(600_000, 1_000_000)), c(I.endeudamiento_patrimonial(600_000, 400_000))) == ("60,00", "1,50")
-assert (c(I.margen_neto(150_000, 1_000_000)), c(I.roe(150_000, 400_000))) == ("15,00", "37,50")
+v1, v2 = I.variacion(3_568_085, 2_807_690), I.variacion(74_442_610, 77_832_900)          # efectivo e inventarios de ABC S.A.
+assert ([c(x) for x in v1[:2]], v1[2]) == (["78,69", "-21,31"], -760_395) and ([c(x) for x in v2[:2]], v2[2]) == (["104,55", "4,55"], 3_390_290)
+PT, AT, PAT, UN, VENTAS = 246_818_325, 749_256_842, 502_438_517, 126_980_727, 215_168_560      # AFP Capital 2025
+assert (c(I.endeudamiento_total(PT, AT)), c(I.endeudamiento_patrimonial(PT, PAT))) == ("32,94", "0,49")
+assert (c(I.margen_neto(UN, VENTAS)), c(I.roe(UN, PAT))) == ("59,01", "25,27")
 
 pdfmetrics.registerFont(TTFont("DejaVu", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"))
 pdfmetrics.registerFont(TTFont("DejaVu-Bold", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"))
@@ -76,23 +78,23 @@ h += [tabla(filas, [1.5, 2.6, 2.5, 2.6, 1.5, 1.5, 2.6, 1.7], estilo_celda=CELDA_
                 "Caso 2: (861.411.112 − 93.170.776) ÷ 508.778.060 = 768.240.336 ÷ 508.778.060 = 1,51. "
                 f"% inventarios: caso 1 = {c(I.porcentaje(C1[1], C1[0]))} %; caso 2 = {c(I.porcentaje(C2[1], C2[0]))} %.", S),
       Paragraph("2. Variación porcentual (análisis horizontal)", H),
-      tabla([["Qué", "Fórmula", "Ejemplo (práctica)"],
-             ["% del año nuevo", "valor nuevo × 100 ÷ valor antiguo (el año antiguo es el 100 %)", "1.000.000 × 100 ÷ 800.000 = 125 %"],
-             ["Variación %", "% del año nuevo − 100", "125 − 100 = +25 % (más de 100 % = positiva)"],
-             ["Variación en pesos", "valor nuevo − valor antiguo", "1.000.000 − 800.000 = +200.000"],
-             ["Variación negativa", "menos de 100 % = negativa", "800.000 ÷ 1.000.000 × 100 = 80 % → −20 %"]], [3.4, 7.0, 6.6]),
+      tabla([["Qué", "Fórmula", "Ejemplo de clase (ABC S.A., miles de pesos)"],
+             ["% del año nuevo", "valor 2025 × 100 ÷ valor 2024 (el año antiguo es el 100 %)", "Efectivo: 2.807.690 × 100 ÷ 3.568.085 = 78,69 %"],
+             ["Variación %", "% del año nuevo − 100", "78,69 − 100 = −21,31 % (menos de 100 % = negativa: bajó)"],
+             ["Variación en pesos", "valor 2025 − valor 2024", "2.807.690 − 3.568.085 = −760.395"],
+             ["Variación positiva", "más de 100 % = positiva", "Inventarios: 77.832.900 × 100 ÷ 74.442.610 = 104,55 % → +4,55 % (subió)"]], [3.4, 6.2, 7.4]),
       PageBreak(),
       Paragraph("3. Endeudamiento y rentabilidad", H),
-      tabla([["Indicador", "Fórmula", "Ejemplo (práctica)", "Cómo leerlo"],
-             ["Endeudamiento total", "pasivo total ÷ activo total × 100", "600.000 ÷ 1.000.000 × 100 = 60 %", "Qué parte de los activos financia deuda de terceros; el resto son recursos propios."],
-             ["Endeudamiento patrimonial", "pasivo total ÷ patrimonio neto", "600.000 ÷ 400.000 = 1,50", "Por cada $1 de los dueños se debe $1,50 a terceros."],
-             ["Margen neto", "utilidad neta ÷ ventas × 100", "150.000 ÷ 1.000.000 × 100 = 15 %", "De cada $100 que vende, $15 quedan de ganancia neta."],
-             ["ROE", "utilidad neta ÷ patrimonio neto × 100", "150.000 ÷ 400.000 × 100 = 37,5 %", "Ganancia que genera la inversión de los dueños en el período."]],
+      tabla([["Indicador", "Fórmula", "Ejemplo de clase (AFP Capital 2025)", "Cómo leerlo"],
+             ["Endeudamiento total", "pasivo total ÷ activo total × 100", "246.818.325 ÷ 749.256.842 × 100 = 32,94 %", "Qué parte de los activos financia deuda de terceros; el resto son recursos propios."],
+             ["Endeudamiento patrimonial", "pasivo total ÷ patrimonio neto", "246.818.325 ÷ 502.438.517 = 0,49", "Por cada $1 de los dueños se debe $0,49 a terceros."],
+             ["Margen neto", "utilidad neta ÷ ventas × 100", "126.980.727 ÷ 215.168.560 × 100 = 59,01 %", "De cada $100 que vende, $59 quedan de ganancia neta."],
+             ["ROE", "utilidad neta ÷ patrimonio neto × 100", "126.980.727 ÷ 502.438.517 × 100 = 25,27 %", "Ganancia que genera la inversión de los dueños en el período."]],
             [3.6, 4.4, 4.6, 4.4]),
       Paragraph("4. Ecuación y errores típicos", H),
       Paragraph("Activo = Pasivo + Patrimonio. Capital de trabajo = activo corriente − pasivo corriente (no se usa el activo total). "
                 "En la prueba ácida se resta SOLO el inventario. Los porcentajes siempre se dividen por el total (en liquidez, el activo corriente). "
                 "Al comparar dos años, el más antiguo es la base (100 %). Redondea al final, no en los pasos intermedios.", P),
-      Paragraph("⚠️ Los ejemplos de endeudamiento, margen, ROE y variación son de práctica con números redondos; los de liquidez son los de la clase.", S)]
+      Paragraph("Ejemplos de clase: liquidez = casos 1 y 2; variación = ejercicio ABC S.A. (21-10); endeudamiento, margen neto y ROE = AFP Capital 2025 (cifras en miles de pesos).", S)]
 SimpleDocTemplate(SALIDA, pagesize=A4, leftMargin=1.8 * cm, rightMargin=1.8 * cm, topMargin=1.5 * cm, bottomMargin=1.3 * cm).build(h)
 print("PDF listo:", SALIDA)

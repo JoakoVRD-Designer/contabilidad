@@ -14,7 +14,7 @@
 | % pasivo corriente | Pasivo corriente ÷ Activo corriente × 100 | % CT + % PC = 100 % |
 | % inventarios ⚠️ | Inventarios ÷ Activo corriente × 100 | por confirmar con el profesor |
 
-> Aclarado por el alumno el 01-11-2026: las **«6 fórmulas»** que van en un solo caso son las 6 razones financieras (razón corriente, prueba ácida, endeudamiento total, endeudamiento patrimonial, margen neto y ROE), en `razones-financieras-6-formulas.pdf`. Estos 2 casos de liquidez usan solo 3 (razón corriente, prueba ácida y capital de trabajo), cada una con su fórmula en palabras y su cálculo (hoja `liquidez-formulas-casos-1-y-2.pdf`).
+> Aclarado por el alumno el 01-11-2026: las **«6 fórmulas»** que van en un solo caso son las del caso AFP Capital de su cuaderno (14-10): razón corriente, capital de trabajo, endeudamiento total, endeudamiento patrimonial, margen neto y ROE (`razones-financieras-6-formulas.pdf`; ver `ratios-afp-capital.md`). Estos 2 casos de liquidez usan 3 (razón corriente, prueba ácida y capital de trabajo), cada una con su fórmula en palabras y su cálculo (hoja `liquidez-formulas-casos-1-y-2.pdf`).
 
 ## Datos
 

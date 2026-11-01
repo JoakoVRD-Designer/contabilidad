@@ -12,7 +12,9 @@
 | Capital de trabajo | Activo corriente − Pasivo corriente | positivo y estable |
 | % capital de trabajo | Capital de trabajo ÷ Activo corriente × 100 | |
 | % pasivo corriente | Pasivo corriente ÷ Activo corriente × 100 | % CT + % PC = 100 % |
-| % inventarios ⚠️ | Inventarios ÷ Activo corriente × 100 | por confirmar que sea la 6.ª fórmula |
+| % inventarios ⚠️ | Inventarios ÷ Activo corriente × 100 | por confirmar con el profesor |
+
+> El alumno dice que un caso tiene **6 fórmulas** y que están en sus fotos. En ellas cada caso trae 3 fórmulas (razón corriente, prueba ácida y capital de trabajo), cada una con su fórmula en palabras y su cálculo: **6 líneas por caso** (hoja `liquidez-formulas-casos-1-y-2.pdf`). ⚠️ Falta confirmar con el profesor si también cuentan los porcentajes.
 
 ## Datos
 

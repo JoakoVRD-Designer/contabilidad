@@ -26,7 +26,7 @@
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
 - Neto = bruto ÷ 1,19; IVA 19 %. Precio con 385 % sobre costo = costo × 4,85. Prorrateo 55/25/20.
 - Estado de resultados: ventas − devoluciones = ventas netas − costo ventas = margen contribución − G.adm − G.ventas + ing.fin − g.fin = UAI − 27 % = utilidad neta.
-- Razón corriente = AC ÷ PC (ideal 1,5–2,0). Prueba ácida = (AC − inventario) ÷ PC. Capital de trabajo = AC − PC. Porcentaje = parte ÷ total × 100. Las 6 fórmulas de UN caso de liquidez (el alumno lo confirmó: no son 3 por caso): razón corriente, prueba ácida, capital de trabajo, % capital de trabajo, % pasivo corriente y % inventarios (cada % = parte ÷ AC × 100); ⚠️ la 6.ª (% inventarios) es deducida, falta confirmarla.
+- Razón corriente = AC ÷ PC (ideal 1,5–2,0). Prueba ácida = (AC − inventario) ÷ PC. Capital de trabajo = AC − PC. Porcentaje = parte ÷ total × 100. Un caso de liquidez tiene «6 fórmulas» (dicho por el alumno, que dice que están en sus fotos): en las fotos son 3 fórmulas (razón corriente, prueba ácida, capital de trabajo), cada una con su fórmula en palabras y su cálculo = 6 líneas por caso; ⚠️ falta confirmar con el profesor si cuentan también los porcentajes (% capital de trabajo, % pasivo corriente, % inventarios = parte ÷ AC × 100).
 - Hora extra (DT): sueldo ÷ 30 × 28 ÷ (jornada × 4) × 1,5; jornada 42 h desde 26-04-2026. IMM $553.553 desde el 1-05-2026 (Ley 21.830; de enero a abril fue $539.000).
 - Depreciación lineal = (costo − residual) ÷ vida; suma de dígitos: factor (n−k+1) ÷ [n(n+1)/2].
 - Activo con naturaleza acreedora (depreciación acumulada) RESTA del activo.

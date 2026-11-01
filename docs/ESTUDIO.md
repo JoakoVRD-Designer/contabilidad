@@ -65,3 +65,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Planillas de monedas extranjeras en blanco](tareas/planilla-monedas-extranjeras.md)
 - [EcoOrganiza (TREE, Rafael Castro): presupuesto y decisión de un pedido especial, resuelta](tareas/ecoorganiza-pedido-especial.md)
 - [PDF para estudiar: fórmulas de liquidez (prueba ácida), variación, endeudamiento y rentabilidad](tareas/formulas-liquidez-y-ratios.pdf)
+- [PDF: las 6 razones financieras (liquidez, endeudamiento y rentabilidad), con ejemplos de clase](tareas/razones-financieras-6-formulas.pdf)

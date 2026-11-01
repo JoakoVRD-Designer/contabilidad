@@ -144,6 +144,8 @@ Ejemplo: sueldo 800.000 → 800.000 ÷ 30 × 28 ÷ 168 = $4.444,44 por hora ordi
 | Margen neto | utilidad neta ÷ ventas × 100 | |
 | ROE | utilidad neta ÷ patrimonio neto × 100 | |
 
+*Las 6 razones financieras (⚠️ por confirmar con el profesor): razón corriente, prueba ácida, endeudamiento total, endeudamiento patrimonial, margen neto y ROE. PDF: `tareas/razones-financieras-6-formulas.pdf`.*
+
 ## Proyectos
 | Qué | Fórmula |
 |---|---|

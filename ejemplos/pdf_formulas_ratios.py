@@ -27,6 +27,7 @@ assert [c(I.razon_corriente(a, p)) for a, _, p in (C1, C2)] == ["1,87", "1,69"]
 assert [c(I.prueba_acida(a, i, p)) for a, i, p in (C1, C2)] == ["1,63", "1,51"]
 assert [I.capital_de_trabajo(a, p) for a, _, p in (C1, C2)] == [401_795_884, 352_633_052]
 assert [c(I.porcentaje(I.capital_de_trabajo(a, p), a)) for a, _, p in (C1, C2)] == ["46,65", "40,94"]
+assert [c(I.porcentaje(i, a)) for a, i, _ in (C1, C2)] == ["13,16", "10,82"]
 assert I.variacion(800_000, 1_000_000) == (125, 25, 200_000) and I.variacion(1_000_000, 800_000) == (80, -20, -200_000)
 assert (c(I.endeudamiento_total(600_000, 1_000_000)), c(I.endeudamiento_patrimonial(600_000, 400_000))) == ("60,00", "1,50")
 assert (c(I.margen_neto(150_000, 1_000_000)), c(I.roe(150_000, 400_000))) == ("15,00", "37,50")
@@ -59,7 +60,8 @@ h = [Paragraph("Fórmulas de liquidez y ratios: para estudiar", T),
             ["Prueba ácida", "(activo corriente − inventarios) ÷ pasivo corriente", "cerca de 1 (sobre 1,0 está bien)", "Capacidad de pago SIN vender la mercadería."],
             ["Capital de trabajo", "activo corriente − pasivo corriente", "positivo y estable", "Margen en pesos para operar día a día."],
             ["% capital de trabajo", "capital de trabajo ÷ activo corriente × 100", "—", "Qué parte del activo corriente queda libre."],
-            ["% pasivo corriente", "pasivo corriente ÷ activo corriente × 100", "—", "Qué parte del activo corriente está comprometida. (% CT + % PC = 100 %)"]],
+            ["% pasivo corriente", "pasivo corriente ÷ activo corriente × 100", "—", "Qué parte del activo corriente está comprometida. (% CT + % PC = 100 %)"],
+            ["% inventarios ⚠️", "inventarios ÷ activo corriente × 100", "—", "Qué parte del activo corriente es mercadería."]],
            [3.2, 5.6, 3.0, 5.2]),
      Spacer(1, 4),
      Paragraph("Control: la razón corriente siempre es mayor que la prueba ácida si hay inventarios (el numerador de la ácida es más chico). "
@@ -71,7 +73,8 @@ for n, (a, i, p) in (("Caso 1", C1), ("Caso 2", C2)):
                   c(I.porcentaje(I.capital_de_trabajo(a, p), a)) + " %"])
 h += [tabla(filas, [1.5, 2.6, 2.5, 2.6, 1.5, 1.5, 2.6, 1.7], estilo_celda=CELDA_CHICA), Spacer(1, 3),
       Paragraph("Caso 1: (861.294.191 − 113.382.245) ÷ 459.498.307 = 747.911.946 ÷ 459.498.307 = 1,63. "
-                "Caso 2: (861.411.112 − 93.170.776) ÷ 508.778.060 = 768.240.336 ÷ 508.778.060 = 1,51.", S),
+                "Caso 2: (861.411.112 − 93.170.776) ÷ 508.778.060 = 768.240.336 ÷ 508.778.060 = 1,51. "
+                f"% inventarios: caso 1 = {c(I.porcentaje(C1[1], C1[0]))} %; caso 2 = {c(I.porcentaje(C2[1], C2[0]))} %.", S),
       Paragraph("2. Variación porcentual (análisis horizontal)", H),
       tabla([["Qué", "Fórmula", "Ejemplo (práctica)"],
              ["% del año nuevo", "valor nuevo × 100 ÷ valor antiguo (el año antiguo es el 100 %)", "1.000.000 × 100 ÷ 800.000 = 125 %"],

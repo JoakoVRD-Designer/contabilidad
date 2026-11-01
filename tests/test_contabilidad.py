@@ -228,6 +228,8 @@ class TestQuizLiquidez(unittest.TestCase):
         self.assertEqual(str(indicadores.porcentaje(352_633_052, ac)), "40.94")
         self.assertEqual(str(indicadores.porcentaje(pc, ac)), "59.06")
         self.assertEqual(str(indicadores.porcentaje(401_795_884, 861_294_191)), "46.65")
+        self.assertEqual(str(indicadores.porcentaje(inv, ac)), "10.82")                    # % inventarios (fórmula 6) ⚠️
+        self.assertEqual(str(indicadores.porcentaje(113_382_245, 861_294_191)), "13.16")
 
     def test_ejemplo_de_la_clase(self):
         self.assertEqual(str(indicadores.razon_corriente(861_294_191, 459_498_307)), "1.87")

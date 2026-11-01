@@ -10,7 +10,9 @@
 | Razón corriente | Activo corriente ÷ Pasivo corriente | 1,5 a 2,0 |
 | Prueba ácida | (Activo corriente − Inventarios) ÷ Pasivo corriente | cerca de 1,0 |
 | Capital de trabajo | Activo corriente − Pasivo corriente | positivo y estable |
-| Porcentaje | Parte ÷ Total × 100 (el total es el activo corriente) | |
+| % capital de trabajo | Capital de trabajo ÷ Activo corriente × 100 | |
+| % pasivo corriente | Pasivo corriente ÷ Activo corriente × 100 | % CT + % PC = 100 % |
+| % inventarios ⚠️ | Inventarios ÷ Activo corriente × 100 | por confirmar que sea la 6.ª fórmula |
 
 ## Datos
 
@@ -27,14 +29,18 @@
 1. **Razón corriente** = 861.294.191 ÷ 459.498.307 = **1,87** → dentro del ideal (1,5 a 2,0).
 2. **Prueba ácida** = (861.294.191 − 113.382.245) ÷ 459.498.307 = 747.911.946 ÷ 459.498.307 = **1,63** → sobre 1,0: paga sus deudas sin vender inventario.
 3. **Capital de trabajo** = 861.294.191 − 459.498.307 = **$401.795.884** → positivo.
-4. **Porcentaje**: capital de trabajo ÷ activo corriente × 100 = 401.795.884 ÷ 861.294.191 × 100 = **46,65 %**; pasivo corriente = **53,35 %**.
+4. **% capital de trabajo** = 401.795.884 ÷ 861.294.191 × 100 = **46,65 %**
+5. **% pasivo corriente** = 459.498.307 ÷ 861.294.191 × 100 = **53,35 %**
+6. **% inventarios** ⚠️ = 113.382.245 ÷ 861.294.191 × 100 = **13,16 %**
 
 ## Caso 2
 
 1. **Razón corriente** = 861.411.112 ÷ 508.778.060 = **1,69** → dentro del ideal.
 2. **Prueba ácida** = (861.411.112 − 93.170.776) ÷ 508.778.060 = 768.240.336 ÷ 508.778.060 = **1,51** → sobre 1,0.
 3. **Capital de trabajo** = 861.411.112 − 508.778.060 = **$352.633.052** → positivo.
-4. **Porcentaje**: 352.633.052 ÷ 861.411.112 × 100 = **40,94 %**; pasivo corriente = **59,06 %**.
+4. **% capital de trabajo** = 352.633.052 ÷ 861.411.112 × 100 = **40,94 %**
+5. **% pasivo corriente** = 508.778.060 ÷ 861.411.112 × 100 = **59,06 %**
+6. **% inventarios** ⚠️ = 93.170.776 ÷ 861.411.112 × 100 = **10,82 %**
 
 ## Comparación
 
@@ -44,6 +50,7 @@
 | Prueba ácida | 1,63 | 1,51 | baja |
 | Capital de trabajo | $401.795.884 | $352.633.052 | baja $49.162.832 |
 | Capital de trabajo ÷ activo corriente | 46,65 % | 40,94 % | baja 5,71 puntos |
+| Inventarios ÷ activo corriente ⚠️ | 13,16 % | 10,82 % | baja 2,34 puntos |
 
 ## Conclusión (para escribir)
 

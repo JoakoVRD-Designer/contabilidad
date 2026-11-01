@@ -51,6 +51,15 @@ def solucion(ac, inv, pc):
         "", "Control: la razón corriente es mayor que la prueba ácida siempre que haya inventarios (porque el numerador de la ácida es más chico)."])
 
 
+def porcentajes(ac, inv, pc):
+    """Las tres fórmulas de porcentaje de un caso (el activo corriente es el 100 %)."""
+    ct = I.capital_de_trabajo(ac, pc)
+    return "\n".join(["PORCENTAJES (parte ÷ total × 100, con el activo corriente como 100 %)",
+                      f"  Capital de trabajo ÷ Activo corriente × 100 = {m(ct)} ÷ {m(ac)} × 100 = {num(I.porcentaje(ct, ac))} %",
+                      f"  Pasivo corriente ÷ Activo corriente × 100 = {m(pc)} ÷ {m(ac)} × 100 = {num(I.porcentaje(pc, ac))} %",
+                      f"  Inventarios ÷ Activo corriente × 100 = {m(inv)} ÷ {m(ac)} × 100 = {num(I.porcentaje(inv, ac))} %  (⚠️ por confirmar con el profesor)"])
+
+
 if __name__ == "__main__":
     arg = sys.argv[1] if len(sys.argv) > 1 else "1"
     if arg == "calcular":
@@ -63,11 +72,7 @@ if __name__ == "__main__":
         d = I.diagnostico(ac, inv, pc)
         print(f"SEGUNDO EJEMPLO DE LA CLASE (otro año)\n  Activo corriente: ${m(ac)}\n  Inventarios: ${m(inv)}\n  Pasivo corriente: ${m(pc)}\n")
         print(solucion(ac, inv, pc))
-        ct = d["capital_de_trabajo"]
-        print("\nPORCENTAJES (parte ÷ total × 100, con el activo corriente como 100 %)")
-        print(f"  Capital de trabajo ÷ Activo corriente × 100 = {m(ct)} ÷ {m(ac)} × 100 = {num(I.porcentaje(ct, ac))} %")
-        print(f"  Pasivo corriente ÷ Activo corriente × 100 = {m(pc)} ÷ {m(ac)} × 100 = {num(I.porcentaje(pc, ac))} %")
-        print(f"  Inventarios ÷ Activo corriente × 100 = {m(inv)} ÷ {m(ac)} × 100 = {num(I.porcentaje(inv, ac))} %")
+        print("\n" + porcentajes(ac, inv, pc))
     elif arg == "clase":
         ac, pc = 861_294_191, 459_498_307   # datos confirmados por el alumno: al profesor le dio 1,87
         print(f"EJEMPLO DE LA CLASE\n  Activo corriente: ${m(ac)}\n  Pasivo corriente: ${m(pc)}\n")
@@ -76,6 +81,7 @@ if __name__ == "__main__":
         inv = 113_382_245   # inventarios dictados por el profesor
         print(f"2) Prueba ácida = (activo corriente − inventarios) ÷ pasivo corriente = ({m(ac)} − {m(inv)}) ÷ {m(pc)} = {m(ac - inv)} ÷ {m(pc)} = {num(I.prueba_acida(ac, inv, pc))}")
         print("   Al profesor le dio 1,63 → sobre 1,0: paga sus deudas sin vender inventario.")
+        print("\n" + porcentajes(ac, inv, pc))
     else:
         n = int(arg)
         ac, inv, pc = generar(n)

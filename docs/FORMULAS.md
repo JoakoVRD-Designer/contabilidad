@@ -134,6 +134,9 @@ Ejemplo: sueldo 800.000 → 800.000 ÷ 30 × 28 ÷ 168 = $4.444,44 por hora ordi
 | Razón corriente | activo corriente ÷ pasivo corriente | 1,5 a 2,0 |
 | Prueba ácida | (activo corriente − inventarios) ÷ pasivo corriente | cerca de 1 |
 | Capital de trabajo | activo corriente − pasivo corriente | positivo |
+| % capital de trabajo | capital de trabajo ÷ activo corriente × 100 | % CT + % PC = 100 % |
+| % pasivo corriente | pasivo corriente ÷ activo corriente × 100 | |
+| % inventarios ⚠️ | inventarios ÷ activo corriente × 100 | por confirmar (6.ª fórmula de un caso de liquidez) |
 | Variación porcentual | % = valor nuevo × 100 ÷ valor antiguo (el antiguo es 100 %); variación = % − 100 | |
 | Porcentaje de composición | parte ÷ total × 100 | |
 | Endeudamiento total | pasivo total ÷ activo total × 100 | |

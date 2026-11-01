@@ -26,7 +26,7 @@
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.
 - Neto = bruto ÷ 1,19; IVA 19 %. Precio con 385 % sobre costo = costo × 4,85. Prorrateo 55/25/20.
 - Estado de resultados: ventas − devoluciones = ventas netas − costo ventas = margen contribución − G.adm − G.ventas + ing.fin − g.fin = UAI − 27 % = utilidad neta.
-- Razón corriente = AC ÷ PC (ideal 1,5–2,0). Prueba ácida = (AC − inventario) ÷ PC. Capital de trabajo = AC − PC. Porcentaje = parte ÷ total × 100.
+- Razón corriente = AC ÷ PC (ideal 1,5–2,0). Prueba ácida = (AC − inventario) ÷ PC. Capital de trabajo = AC − PC. Porcentaje = parte ÷ total × 100. Las 6 fórmulas de UN caso de liquidez (el alumno lo confirmó: no son 3 por caso): razón corriente, prueba ácida, capital de trabajo, % capital de trabajo, % pasivo corriente y % inventarios (cada % = parte ÷ AC × 100); ⚠️ la 6.ª (% inventarios) es deducida, falta confirmarla.
 - Hora extra (DT): sueldo ÷ 30 × 28 ÷ (jornada × 4) × 1,5; jornada 42 h desde 26-04-2026. IMM $553.553 desde el 1-05-2026 (Ley 21.830; de enero a abril fue $539.000).
 - Depreciación lineal = (costo − residual) ÷ vida; suma de dígitos: factor (n−k+1) ÷ [n(n+1)/2].
 - Activo con naturaleza acreedora (depreciación acumulada) RESTA del activo.
@@ -34,8 +34,8 @@
 - UTA = UTM × 12 (ago 2026: 71.649 × 12 = 859.788; sept 2026: 71.721 × 12 = 860.652; oct 2026: 72.151 × 12 = 865.812).
 
 ## Datos de clase (confirmados por el usuario)
-- Balance 1: AC 861.294.191 · inv 113.382.245 · PC 459.498.307 → 1,87 / 1,63 / 401.795.884 / 46,65 %.
-- Caso 2 (confirmado por el alumno, datos de su hoja): AC 861.411.112 · inv 93.170.776 · PC 508.778.060 → 1,69 / 1,51 / 352.633.052 / 40,94 %.
+- Balance 1: AC 861.294.191 · inv 113.382.245 · PC 459.498.307 → 1,87 / 1,63 / 401.795.884 / 46,65 % / 53,35 % / 13,16 %.
+- Caso 2 (confirmado por el alumno, datos de su hoja): AC 861.411.112 · inv 93.170.776 · PC 508.778.060 → 1,69 / 1,51 / 352.633.052 / 40,94 % / 59,06 % / 10,82 %.
 - Loyola y Rubilar: ventas brutas = con IVA; utilidad neta 12.900.106.
 - Pendiente: consigna real de la tarea de liquidez (la armé por suposición).
 

@@ -18,9 +18,9 @@
 ## Mapa del repo
 - `contabilidad/` paquete: cuentas, asientos (LibroDiario.registrar valida debe=haber), libros, estados (estado_resultados, balance_general, flujo_efectivo, cambios_patrimonio), impuestos, depreciacion, remuneraciones, indicadores, proyectos (anual/mensual, periodo de recuperación).
 - `data/plan_de_cuentas.csv` plan de cuentas.
-- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), guia_compraventas (27-10) y fotos_guia_compraventas (escribe las respuestas sobre las fotos de las hojas), fotos_liquidez_cuaderno (completa la foto del cuaderno de liquidez), prueba_razones (prueba de práctica con pauta: `python3 ejemplos/prueba_razones.py N --pauta`; PDF con `/usr/bin/python3 -m ejemplos.pdf_prueba_razones N`), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
+- `ejemplos/`: ejercicio_camisas, loyola_rubilar, situaciones (15), practica (aleatorio), quiz_liquidez, quiz_ratios, caso_panaderia, obligaciones_mensuales (IVA, honorarios, impuesto único, PPM), guia_compraventas (27-10) y fotos_guia_compraventas (escribe las respuestas sobre las fotos de las hojas), fotos_liquidez_cuaderno (completa la foto del cuaderno de liquidez), prueba_razones (prueba de práctica con pauta: `python3 ejemplos/prueba_razones.py N --pauta`; PDF con `/usr/bin/python3 -m ejemplos.pdf_prueba_razones N`), prueba_casos (prueba tipo de Juan Castillo con casos tipo AFP: estados financieros completos donde hay que buscar los datos; `python3 ejemplos/prueba_casos.py N --pauta`; PDF con `/usr/bin/python3 -m ejemplos.pdf_prueba_casos N`), trabajo_juan_castillo (rellena la plantilla del profesor y genera el Word).
 - `docs/ESTUDIO.md` índice; `docs/contabilidad/*` apuntes; `docs/tareas/liquidez.md`; `docs/sii`, `docs/previred`, `docs/normativa`.
-- `tests/test_contabilidad.py` (73 pruebas).
+- `tests/test_contabilidad.py` (76 pruebas).
 
 ## Fórmulas confirmadas
 - Costo empleador: reforma 3,5 % TOTAL (incluye SIS 1,78 %) + mutual 0,93 % + AFC 2,4 %. Normativa de octubre 2026 en `docs/normativa/leyes-y-porcentajes-oct2026.md`.

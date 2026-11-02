@@ -67,3 +67,5 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [PDF para estudiar: fórmulas de liquidez (prueba ácida), variación, endeudamiento y rentabilidad](tareas/formulas-liquidez-y-ratios.pdf)
 - [PDF: las 6 fórmulas del caso AFP Capital (razón corriente, capital de trabajo, endeudamiento total y patrimonial, margen neto, ROE)](tareas/razones-financieras-6-formulas.pdf)
 - [Prueba de práctica N°1: liquidez, las 6 fórmulas, variación y conceptos (con pauta y PDF)](tareas/prueba-razones-practica.md)
+
+- [Prueba tipo de Juan Castillo con casos (buscar datos en estados financieros completos), con pauta](tareas/prueba-casos-juan-castillo.md)

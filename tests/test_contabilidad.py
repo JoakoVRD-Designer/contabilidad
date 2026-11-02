@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from contabilidad import LibroDiario, PlanDeCuentas, balance_comprobacion, balance_general, estado_resultados, impuestos
 from contabilidad.depreciacion import lineal, saldo_decreciente, suma_digitos_decreciente, unidades_produccion
 from ejemplos.ejercicio_camisas import construir
-from ejemplos import caso_panaderia, quiz_ratios, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones, prueba_razones
+from ejemplos import caso_panaderia, quiz_ratios, trabajo_juan_castillo, loyola_rubilar, practica, quiz_liquidez, situaciones, prueba_razones, prueba_casos
 from contabilidad.remuneraciones import costo_empleador, hora_extra, liquidacion, valor_hora_ordinaria
 from contabilidad.estados import cambios_patrimonio, flujo_efectivo
 from contabilidad import indicadores, proyectos
@@ -236,6 +236,31 @@ class TestPruebaRazones(unittest.TestCase):
 
     def test_puntaje_total_100(self):
         self.assertEqual(sum(prueba_razones.PUNTAJE.values()), 100)
+
+
+class TestPruebaCasos(unittest.TestCase):
+    def test_estados_cuadran_en_20_pruebas(self):
+        for n in range(1, 21):
+            p = prueba_casos.generar(n)
+            for año in (2025, 2024):
+                t = p["caso1"][año]["tot"]
+                self.assertEqual(t["ac"] + t["anc"], t["ta"])
+                self.assertEqual(t["pc"] + t["pnc"] + t["pat"], t["ta"])                    # activo = pasivo + patrimonio
+                self.assertEqual(sum(p["caso1"][año]["patrimonio"].values()), t["pat"])
+                er = dict(p["caso1"][año]["er"])
+                self.assertEqual(er["Ganancia bruta"], er["Ingresos de actividades ordinarias"] + er["Costo de ventas"])
+                self.assertGreater(er["Ganancia (pérdida)"], 0)
+            self.assertIn("Total activos corrientes", prueba_casos.pauta(p))
+
+    def test_mismo_numero_misma_prueba_y_puntaje_100(self):
+        self.assertEqual(prueba_casos.generar(3), prueba_casos.generar(3))
+        self.assertEqual(sum(prueba_casos.PUNTAJE.values()), 100)
+
+    def test_calculos_salen_de_los_indicadores(self):
+        p = prueba_casos.generar(1)
+        d = {k: v for k, _, v in prueba_casos.datos_caso1(p, 2025)}
+        roe = dict((n, v) for n, _, _, _, v in prueba_casos.calc_caso1(p, 2025))["ROE"]
+        self.assertEqual(roe, indicadores.roe(d["Utilidad neta"], d["Patrimonio neto"]))
 
 
 class TestQuizLiquidez(unittest.TestCase):

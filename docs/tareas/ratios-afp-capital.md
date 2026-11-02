@@ -1,5 +1,7 @@
 # Tarea: ratios con el estado financiero de AFP Capital S.A. (31-12-2025 y 31-12-2024)
 
+Profesor: **Juan Castillo** (dicho por el alumno el 02-11-2026).
+
 Fuente: estados financieros auditados de la administradora (`docs/normativa/fuentes/afp-capital-estados-financieros-2025.docx`). **Cifras en miles de pesos (M$).** Los ratios y las variaciones dan lo mismo en miles.
 
 ## Los siete datos

@@ -1,5 +1,7 @@
 # Prueba de práctica: análisis financiero (liquidez, las 6 fórmulas y variación)
 
+Para la prueba del profesor **Juan Castillo** (análisis financiero; el trabajo en Excel es de Rafael, no se mezcla). Fecha sin confirmar ⚠️.
+
 Prueba hecha como tus ejercicios y tus pruebas (selección múltiple, términos pareados y desarrollo), de **100 puntos** y **90 minutos** sugeridos.
 ⚠️ Los datos son **inventados para practicar** (no son de clase) y los puntajes los supuse yo (el proceso vale más que el resultado solo, como en tus pruebas).
 

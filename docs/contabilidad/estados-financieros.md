@@ -22,6 +22,18 @@ Lo marcado "según la clase" es lo que dijo el profesor y no lo verifiqué en fu
 
 > Precisión: el balance por sí solo muestra solvencia y liquidez; la **rentabilidad** sale de combinarlo con el estado de resultados (por ejemplo, utilidad ÷ patrimonio).
 
+### ¿Cada cuánto y cuándo se hacen? (duda del alumno, 02-11-2026)
+
+| Estado | Cada cuánto | Qué abarca |
+|---|---|---|
+| Estado de situación financiera | Por obligación, **al menos una vez al año**, al cierre del ejercicio (en Chile, normalmente el 31 de diciembre). También mensual o trimestral para controlarse (las S.A. abiertas, cada tres meses a la CMF). | **Una fecha** («al 31 de diciembre de 2025»): es una foto. |
+| Estado de resultados | Igual: **al menos una vez al año**, junto con el estado de situación; también mensual o trimestral. | **Un período** («del 1 de enero al 31 de diciembre de 2025»): es una película del año. |
+
+- **Durante el año** solo se registran las operaciones (libro diario → libro mayor).
+- **Al cierre** (31 de diciembre): balance de comprobación → **ajustes** → saldos ajustados (balance de 8 columnas: las columnas de inventario van al estado de situación y las de resultados al estado de resultados) → **primero el estado de resultados** → después el estado de situación, porque la utilidad pasa al patrimonio. El corte es el 31 de diciembre, pero el trabajo se hace en las semanas siguientes, cuando ya están todos los documentos, y antes de la declaración de renta de abril.
+- **Solo a fin de año** van los asientos de cierre: ventas y gastos quedan en cero y el año siguiente parten de nuevo; activo, pasivo y patrimonio siguen con sus saldos (asiento de apertura). Pasos completos en [ciclo-contable-y-ppm.md](ciclo-contable-y-ppm.md).
+- Ejemplo (Comercial Arrayán): estado de resultados del 01-01 al 31-12-2025 = 40.000.000 − 36.180.000 = **3.820.000** de utilidad → aparece en el patrimonio del estado de situación al 31-12-2025.
+
 ### Cómo el paquete arma el flujo de efectivo
 
 Asigna el movimiento de caja y banco de cada asiento a la actividad de su contrapartida de mayor monto (depósito a plazo y activo fijo → inversión;

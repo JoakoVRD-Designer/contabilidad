@@ -3,6 +3,8 @@
 Equipo 1, 4.° medio C (12 láminas, con notas del orador y reparto: integrante 1 láminas 1-3, integrante 2 láminas 4-6, integrante 3 láminas 7-8, integrante 4 láminas 9-12).
 El .pptx **no se guarda en el repo** porque trae los nombres de los integrantes (regla de privacidad del repo); el rediseño del 02-11-2026 se entregó por el chat.
 
+**Versión de 7 diapositivas (02-11-2026, pedida por el alumno, con más texto para leer al exponer):** 1 portada · 2 qué es, para qué sirve y conceptos · 3 documentos y procedimiento · 4 el caso: supuestos, clasificación y resultado · 5 estado de situación financiera · 6 errores frecuentes y controles · 7 conclusiones, mejora concreta y fuentes. Reparto: integrante 1 láminas 1-2 · integrante 2 lámina 3 y la mitad izquierda de la 4 · integrante 3 la mitad derecha de la 4 y la 5 · integrante 4 láminas 6-7 (las notas del orador originales quedaron unidas de a pares).
+
 ## El caso: Comercial Arrayán Ltda. (ferretería ficticia de Chillán, cierre al 31-12-2025)
 
 | Activo | $ | Pasivo y patrimonio | $ |

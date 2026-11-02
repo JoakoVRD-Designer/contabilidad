@@ -109,6 +109,8 @@ GUION = [
 PREGUNTAS_PROFE = [
     ["¿Por qué se llama «ajustado»?",
      "Porque se arma después de registrar los ajustes (depreciación, remuneraciones por pagar y seguro pagado por adelantado). Así los saldos muestran lo que de verdad pasó al cierre."],
+    ["¿Cada cuánto se hace?",
+     "Por obligación, al menos una vez al año, al cierre del ejercicio (en Chile, normalmente el 31 de diciembre). Las empresas también lo pueden hacer mensual o trimestral para controlarse; antes de cada uno se registran los ajustes de ese período (por ejemplo, la depreciación de un mes: 1.140.000 ÷ 12 = 95.000)."],
     ["¿Por qué la depreciación acumulada se resta?",
      "Porque es una cuenta de saldo acreedor que rebaja el valor del bien. Muebles: 2.400.000 − 480.000 = 1.920.000. Vehículo: 9.000.000 − 1.800.000 = 7.200.000."],
     ["¿Cómo sacaste la depreciación del año?",
@@ -154,6 +156,7 @@ assert 25_850_000 + 36_180_000 == 62_030_000 == 480_000 + 1_800_000 + 9_750_000 
 assert 240_000 + 900_000 == 1_140_000 and round(0.10 * 2_400_000) == 240_000 and round(0.10 * 9_000_000) == 900_000
 assert 9_750_000 + (10_000_000 + 3_820_000 + 1_140_000) == 24_710_000
 assert round(14_450_000 / 4_950_000, 2) == 2.92
+assert 1_140_000 / 12 == 95_000
 
 if __name__ == "__main__":
     d = {"guion": GUION, "preguntas": PREGUNTAS_PROFE, "antes": ANTES}

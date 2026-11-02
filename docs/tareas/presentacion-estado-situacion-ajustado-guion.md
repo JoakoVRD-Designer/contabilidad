@@ -182,6 +182,7 @@ Eso sería todo. Muchas gracias por escuchar. ¿Tienen alguna pregunta?
 | Pregunta | Respuesta |
 |---|---|
 | ¿Por qué se llama «ajustado»? | Porque se arma después de registrar los ajustes (depreciación, remuneraciones por pagar y seguro pagado por adelantado). Así los saldos muestran lo que de verdad pasó al cierre. |
+| ¿Cada cuánto se hace? | Por obligación, al menos una vez al año, al cierre del ejercicio (en Chile, normalmente el 31 de diciembre). Las empresas también lo pueden hacer mensual o trimestral para controlarse; antes de cada uno se registran los ajustes de ese período (por ejemplo, la depreciación de un mes: 1.140.000 ÷ 12 = 95.000). |
 | ¿Por qué la depreciación acumulada se resta? | Porque es una cuenta de saldo acreedor que rebaja el valor del bien. Muebles: 2.400.000 − 480.000 = 1.920.000. Vehículo: 9.000.000 − 1.800.000 = 7.200.000. |
 | ¿Cómo sacaste la depreciación del año? | Muebles: 10 % de 2.400.000 = 240.000. Vehículo: 10 % de 9.000.000 = 900.000. Total: 1.140.000. |
 | ¿Qué costos y gastos suman los 36.180.000? | Costo de ventas 25.000.000 + remuneraciones 6.500.000 + arriendo 2.400.000 + depreciación 1.140.000 + seguros 300.000 + gastos generales 840.000 = 36.180.000. |

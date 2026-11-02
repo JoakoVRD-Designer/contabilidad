@@ -1,7 +1,15 @@
-# Presentación grupal: Estado de situación financiera ajustado (profesora Carmen Navarrete)
+# Presentación: Estado de situación financiera ajustado (profesora Carmen Navarrete)
+
+**Versión final (02-11-2026): la presenta Joaquín Verdejo solo.** 7 diapositivas minimalistas en blanco y negro (escala de grises, Calibri, líneas finas), transición «Desvanecer», animaciones de entrada automáticas (un clic por diapositiva) y sonidos propios (entrada en la portada, un sonido corto al cambiar, campanita en la 5). Portada solo con el nombre del alumno y la profesora; logos en gris.
+
+- Presentación: [presentacion-estado-situacion-ajustado.pptx](presentacion-estado-situacion-ajustado.pptx) (el guion completo está en las notas del orador).
+- Guion para practicar: [presentacion-estado-situacion-ajustado-guion.md](presentacion-estado-situacion-ajustado-guion.md) y [PDF para imprimir](presentacion-estado-situacion-ajustado-guion.pdf): unos 12 minutos (13 con las dos preguntas al curso).
+- Generador: `ejemplos/presentacion_estado_situacion/` (ver su README).
+
+## Historial (versión grupal)
 
 Equipo 1, 4.° medio C (12 láminas, con notas del orador y reparto: integrante 1 láminas 1-3, integrante 2 láminas 4-6, integrante 3 láminas 7-8, integrante 4 láminas 9-12).
-El .pptx **no se guarda en el repo** porque trae los nombres de los integrantes (regla de privacidad del repo); el rediseño del 02-11-2026 se entregó por el chat.
+Las versiones grupales (rediseño de 12 y de 7 láminas, 02-11-2026) **no se guardan en el repo** porque traían los nombres de los integrantes; se entregaron por el chat. La versión final sí se guarda porque solo lleva el nombre del alumno.
 
 **Versión de 7 diapositivas (02-11-2026, pedida por el alumno, con más texto para leer al exponer):** 1 portada · 2 qué es, para qué sirve y conceptos · 3 documentos y procedimiento · 4 el caso: supuestos, clasificación y resultado · 5 estado de situación financiera · 6 errores frecuentes y controles · 7 conclusiones, mejora concreta y fuentes. Reparto: integrante 1 láminas 1-2 · integrante 2 lámina 3 y la mitad izquierda de la 4 · integrante 3 la mitad derecha de la 4 y la 5 · integrante 4 láminas 6-7 (las notas del orador originales quedaron unidas de a pares).
 
@@ -25,4 +33,4 @@ El .pptx **no se guarda en el repo** porque trae los nombres de los integrantes 
 - Ecuación: 23.570.000 = 9.750.000 + 13.820.000 ✓ (todas las cifras revisadas el 02-11-2026).
 - Clave: se clasifica por **plazo** (12 meses), no por el nombre de la cuenta; la depreciación acumulada **resta** del bien; cuadrar no basta (omitir la depreciación igual cuadra).
 
-⚠️ En las notas de la lámina 12 dice que se mantenga la declaración de uso de IA solo si describe fielmente cómo la usó el grupo: el rediseño se hizo con IA, así que conviene declararlo si la pauta lo pide.
+⚠️ Las notas originales pedían mantener la declaración de uso de IA solo si describe fielmente cómo se usó: el diseño y el guion se hicieron con IA, así que conviene declararlo si la pauta lo pide.

@@ -69,3 +69,4 @@ Orden sugerido para aprender de verdad, y no solo copiar. Cada tema tiene tres p
 - [Prueba de práctica N°1: liquidez, las 6 fórmulas, variación y conceptos (con pauta y PDF)](tareas/prueba-razones-practica.md)
 
 - [Prueba tipo de Juan Castillo con casos (buscar datos en estados financieros completos), con pauta](tareas/prueba-casos-juan-castillo.md)
+- [Presentación grupal: estado de situación financiera ajustado (Carmen Navarrete), caso Comercial Arrayán](tareas/presentacion-estado-situacion-ajustado.md)
